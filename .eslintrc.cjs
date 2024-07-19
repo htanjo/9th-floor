@@ -10,7 +10,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.app.json',
+    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
   },
   plugins: ['react-refresh'],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
