@@ -6,6 +6,7 @@ module.exports = {
     'airbnb/hooks',
     'airbnb-typescript',
     'plugin:react/jsx-runtime',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
