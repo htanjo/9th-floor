@@ -1,0 +1,32 @@
+.debugger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 10px;
+  line-height: 1;
+  font-size: 12px;
+  font-family: monospace;
+  color: #fff;
+  user-select: none;
+}
+.stats {
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+.button {
+  margin-bottom: 10px;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 0;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  &:hover {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  &:focus {
+    outline: none;
+  }
+}
