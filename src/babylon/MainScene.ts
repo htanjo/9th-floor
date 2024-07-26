@@ -10,7 +10,9 @@ import {
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import { keyframes, Keyframes } from '../settings/keyframes';
-import roomMesh from '../assets/room.glb?url';
+import roomMeshUrl from '../assets/room.glb?url';
+import lightmap1TextureUrl from '../assets/lightmap_1.hdr?url';
+import lightmap2TextureUrl from '../assets/lightmap_2.hdr?url';
 
 export default class MainScene {
   public scene: Scene;
@@ -57,7 +59,7 @@ export default class MainScene {
 
   public async start() {
     const { scene } = this;
-    scene.clearColor = new Color4(0, 0, 0, 0);
+    scene.clearColor = new Color4(1, 1, 1, 1);
     scene.ambientColor = Color3.White();
     scene.fogMode = Scene.FOGMODE_EXP2;
     scene.fogColor = Color3.FromHexString('#413d38');
@@ -78,13 +80,42 @@ export default class MainScene {
     // freeCamera.attachControl(scene.getEngine().getRenderingCanvas(), true);
 
     const assetsManager = new AssetsManager(scene);
-    assetsManager.addMeshTask('roomMesh', undefined, roomMesh, '');
+    assetsManager.addMeshTask('roomMesh', undefined, roomMeshUrl, '');
+    const lightmap1TextureTask = assetsManager.addTextureTask(
+      'lightmap1Texture',
+      lightmap1TextureUrl,
+      undefined,
+      false,
+    );
+    const lightmap2TextureTask = assetsManager.addTextureTask(
+      'lightmap2Texture',
+      lightmap2TextureUrl,
+      undefined,
+      false,
+    );
     assetsManager.load();
 
     assetsManager.onFinish = () => {
       scene.materials.forEach((material) => {
         const pbrMaterial = material as PBRMaterial;
-        pbrMaterial.ambientColor = Color3.White();
+        switch (pbrMaterial.name) {
+          case 'ceiling':
+          case 'floor':
+          case 'wall':
+            pbrMaterial.lightmapTexture = lightmap1TextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
+          case 'wood':
+            pbrMaterial.lightmapTexture = lightmap2TextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
+          default:
+            pbrMaterial.ambientColor = Color3.White();
+        }
       });
     };
   }
