@@ -4,6 +4,7 @@ import {
   Color4,
   // FreeCamera,
   PBRMaterial,
+  PointLight,
   Scene,
   Vector3,
 } from '@babylonjs/core';
@@ -98,6 +99,8 @@ export default class MainScene {
     assetsManager.onFinish = () => {
       scene.materials.forEach((material) => {
         const pbrMaterial = material as PBRMaterial;
+        pbrMaterial.maxSimultaneousLights = 10;
+        pbrMaterial.specularIntensity = 100; // Enhance specular lighting.
         switch (pbrMaterial.name) {
           case 'ceiling':
           case 'floor':
@@ -117,6 +120,31 @@ export default class MainScene {
             pbrMaterial.ambientColor = Color3.White();
         }
       });
+
+      // Add specular lights.
+      const windowLight1 = new PointLight(
+        'window_light_1',
+        new Vector3(1.6, 4.8, -22),
+        scene,
+      );
+      windowLight1.intensity = 1.2;
+      windowLight1.diffuse = Color3.FromHexString('#bcdaff');
+      windowLight1.radius = 1.0;
+
+      const windowLight2 = windowLight1.clone('window_light_2') as PointLight;
+      windowLight2.position = new Vector3(-1.6, 4.8, -22);
+
+      const wallLight1 = new PointLight(
+        'wall_light_1',
+        new Vector3(0, 5.8, 0),
+        scene,
+      );
+      wallLight1.intensity = 0.3;
+      wallLight1.diffuse = Color3.FromHexString('#ffdfc7');
+      wallLight1.radius = 0.2;
+
+      const wallLight2 = wallLight1.clone('wall_light_2') as PointLight;
+      wallLight2.position = new Vector3(0, 2.2, 0);
     };
   }
 
