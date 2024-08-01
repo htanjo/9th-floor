@@ -11,9 +11,11 @@ import {
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import { keyframes, Keyframes } from '../settings/keyframes';
-import roomMeshUrl from '../assets/room.glb?url';
+import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1.hdr?url';
 import lightmap2TextureUrl from '../assets/lightmap_2.hdr?url';
+import lightmap3TextureUrl from '../assets/lightmap_3.hdr?url';
+import lightmap4TextureUrl from '../assets/lightmap_4.hdr?url';
 
 export default class MainScene {
   public scene: Scene;
@@ -81,7 +83,7 @@ export default class MainScene {
     // freeCamera.attachControl(scene.getEngine().getRenderingCanvas(), true);
 
     const assetsManager = new AssetsManager(scene);
-    assetsManager.addMeshTask('roomMesh', undefined, roomMeshUrl, '');
+    assetsManager.addMeshTask('mansionMesh', undefined, mansionMeshUrl, '');
     const lightmap1TextureTask = assetsManager.addTextureTask(
       'lightmap1Texture',
       lightmap1TextureUrl,
@@ -94,13 +96,25 @@ export default class MainScene {
       undefined,
       false,
     );
+    const lightmap3TextureTask = assetsManager.addTextureTask(
+      'lightmap3Texture',
+      lightmap3TextureUrl,
+      undefined,
+      false,
+    );
+    const lightmap4TextureTask = assetsManager.addTextureTask(
+      'lightmap4Texture',
+      lightmap4TextureUrl,
+      undefined,
+      false,
+    );
     assetsManager.load();
 
     assetsManager.onFinish = () => {
       scene.materials.forEach((material) => {
         const pbrMaterial = material as PBRMaterial;
         pbrMaterial.maxSimultaneousLights = 10;
-        pbrMaterial.specularIntensity = 100; // Enhance specular lighting.
+        pbrMaterial.specularIntensity = 150; // Enhance specular lighting.
         switch (pbrMaterial.name) {
           case 'ceiling':
           case 'floor':
@@ -112,6 +126,23 @@ export default class MainScene {
             break;
           case 'wood':
             pbrMaterial.lightmapTexture = lightmap2TextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
+          case 'railing_baluster':
+          case 'railing_handrail':
+          case 'railing_newel':
+            pbrMaterial.lightmapTexture = lightmap3TextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
+          case 'cornice':
+          case 'pillar':
+          case 'railing_base':
+          case 'wainscot':
+            pbrMaterial.lightmapTexture = lightmap4TextureTask.texture;
             pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
             pbrMaterial.useLightmapAsShadowmap = true;
             pbrMaterial.ambientColor = Color3.White();
