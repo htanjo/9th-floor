@@ -59,6 +59,10 @@ button:focus-visible {
   height: 100%;
 }
 
+#babylonjsLoadingDiv {
+  overflow: hidden;
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
