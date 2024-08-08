@@ -2,6 +2,7 @@ import {
   AssetsManager,
   Color3,
   Color4,
+  DirectionalLight,
   // FreeCamera,
   PBRMaterial,
   PointLight,
@@ -65,11 +66,11 @@ export default class MainScene {
 
   public async start() {
     const { scene, camera } = this;
-    scene.clearColor = new Color4(1, 1, 1, 1);
+    scene.clearColor = new Color4(0, 0, 0, 0);
     scene.ambientColor = Color3.White();
     scene.fogMode = Scene.FOGMODE_EXP2;
     scene.fogColor = Color3.FromHexString('#413d38');
-    scene.fogDensity = 0.016;
+    scene.fogDensity = 0.025;
 
     // scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
 
@@ -145,6 +146,9 @@ export default class MainScene {
             pbrMaterial.useLightmapAsShadowmap = true;
             pbrMaterial.ambientColor = Color3.White();
             break;
+          case 'stairs_back':
+          case 'stairs_base':
+          case 'stairs_runner':
           case 'wood':
             pbrMaterial.lightmapTexture = lightmap2TextureTask.texture;
             pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
@@ -164,11 +168,17 @@ export default class MainScene {
           case 'pillar':
           case 'railing_base':
           case 'wainscot':
+            pbrMaterial.lightmapTexture = lightmap4TextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
           case 'window_frame':
             pbrMaterial.lightmapTexture = lightmap4TextureTask.texture;
             pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
             pbrMaterial.useLightmapAsShadowmap = true;
             pbrMaterial.ambientColor = Color3.White();
+            pbrMaterial.directIntensity = 0.15;
             break;
           case 'lamp_base':
             pbrMaterial.lightmapTexture = lightmap5TextureTask.texture;
@@ -177,8 +187,8 @@ export default class MainScene {
             pbrMaterial.ambientColor = Color3.White();
             break;
           case 'lamp_shade':
-            pbrMaterial.ambientColor = Color3.FromHexString('#dddddd');
-            // pbrMaterial.emissiveIntensity = 0.8;
+            pbrMaterial.ambientColor = Color3.FromHexString('#ffffff');
+            pbrMaterial.emissiveIntensity = 4;
             break;
           case 'window_glass':
             pbrMaterial.disableLighting = true;
@@ -186,8 +196,8 @@ export default class MainScene {
             pbrMaterial.indexOfRefraction = 0.8;
             pbrMaterial.metallic = 0;
             pbrMaterial.roughness = 1;
-            pbrMaterial.emissiveColor = Color3.FromHexString('#7ab6ff');
-            pbrMaterial.emissiveIntensity = 0.35;
+            pbrMaterial.emissiveColor = Color3.FromHexString('#d1e3ff');
+            pbrMaterial.emissiveIntensity = 0.5;
             pbrMaterial.fogEnabled = false;
             pbrMaterial.zOffset = 0.1; // Avoid z-fighting.
             break;
@@ -205,30 +215,66 @@ export default class MainScene {
       windowLight1.intensity = 1.4;
       windowLight1.diffuse = Color3.FromHexString('#bcdaff');
       windowLight1.radius = 1.0;
+      const windowLight1ExcludedMeshes = scene.meshes.filter((mesh) =>
+        ['floor_1'].includes(mesh.name),
+      );
+      windowLight1.excludedMeshes = windowLight1ExcludedMeshes;
 
       const windowLight2 = windowLight1.clone('window_light_2') as PointLight;
       windowLight2.position = new Vector3(-1.2, 4.2, -17);
 
       const wallLight1 = new PointLight(
         'wall_light_1',
-        new Vector3(0, 6.0, 0.1),
+        new Vector3(0, 5.8, 0.01),
         scene,
       );
       wallLight1.intensity = 0.2;
       wallLight1.diffuse = Color3.FromHexString('#ffc7a4');
       wallLight1.radius = 0.1;
+      const wallLightIncludedMeshes = scene.meshes.filter((mesh) =>
+        [
+          'ceiling',
+          'floor_1',
+          'floor_2',
+          'wall',
+          'wainscot',
+          'cornice',
+          'pillar',
+          'door',
+        ].includes(mesh.name),
+      );
+      wallLight1.includedOnlyMeshes = wallLightIncludedMeshes;
 
       const wallLight2 = wallLight1.clone('wall_light_2') as PointLight;
-      wallLight2.position = new Vector3(0, 2.4, 0.1);
+      wallLight2.position = new Vector3(0, 2.2, 0.01);
+      wallLight2.includedOnlyMeshes = wallLightIncludedMeshes;
 
-      const topLight = new PointLight(
+      const wallLight3 = wallLight1.clone('wall_light_3') as PointLight;
+      wallLight3.position = new Vector3(1.6, 2.2, -11);
+      const wallLight3IncludedMeshes = scene.meshes.filter((mesh) =>
+        ['stairs_base', 'stairs_back'].includes(mesh.name),
+      );
+      wallLight3.includedOnlyMeshes = wallLight3IncludedMeshes;
+
+      const topLight = new DirectionalLight(
         'top_light',
-        new Vector3(0, 20.0, -5.0),
+        new Vector3(0.4, -1.0, -0.3),
         scene,
       );
-      topLight.intensity = 30.0;
+      topLight.intensity = 0.15;
       topLight.diffuse = Color3.FromHexString('#ffdfc7');
-      topLight.radius = 1.0;
+      topLight.radius = 0.2;
+      const topLightIncludedMeshes = scene.meshes.filter((mesh) =>
+        [
+          'wainscot',
+          'pillar',
+          'door',
+          'railing_newel',
+          'railing_handrail',
+          'lamp_base',
+        ].includes(mesh.name),
+      );
+      topLight.includedOnlyMeshes = topLightIncludedMeshes;
     };
   }
 

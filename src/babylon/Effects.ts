@@ -3,7 +3,7 @@ import {
   Color4,
   // ColorGradingTexture,
   DefaultRenderingPipeline,
-  GlowLayer,
+  // GlowLayer,
   // LensRenderingPipeline,
   Scene,
 } from '@babylonjs/core';
@@ -39,28 +39,15 @@ export default class Effects {
     }
 
     // Add glow effects.
-    const glowLayer = new GlowLayer('glowLayer', scene, {
-      mainTextureRatio: 0.4, // Large value reduces flickering, but hits performance. Default: 0.5
-      // mainTextureFixedSize: 512, // Large value reduces flickering, but hits performance.
-      blurKernelSize: verticalSize * 0.03, // Effect size. Large value may flickering.
-      // alphaBlendingMode: Engine.ALPHA_MAXIMIZED,
-      mainTextureSamples: 2,
-      ldrMerge: true,
-    });
-    glowLayer.intensity = 0.6;
-
-    // const lensEffect = new LensRenderingPipeline(
-    //   'lensEffect',
-    //   {
-    //     edge_blur: 0.7,
-    //     chromatic_aberration: 1.0,
-    //     distortion: 0.5,
-    //     // grain_amount: 1.0,
-    //   },
-    //   scene,
-    //   1.0,
-    //   cameras
-    // );
+    // const glowLayer = new GlowLayer('glowLayer', scene, {
+    //   mainTextureRatio: 0.4, // Large value reduces flickering, but hits performance. Default: 0.5
+    //   // mainTextureFixedSize: 512, // Large value reduces flickering, but hits performance.
+    //   blurKernelSize: verticalSize * 0.03, // Effect size. Large value may flickering.
+    //   // alphaBlendingMode: Engine.ALPHA_MAXIMIZED,
+    //   mainTextureSamples: 2,
+    //   ldrMerge: true,
+    // });
+    // glowLayer.intensity = 0.6;
 
     // Add post processing effects.
     const pipeline = new DefaultRenderingPipeline(
@@ -74,18 +61,18 @@ export default class Effects {
     // pipeline.sharpenEnabled = true;
     pipeline.bloomEnabled = true;
     pipeline.bloomThreshold = 0.48;
-    pipeline.bloomWeight = 0.2;
-    pipeline.bloomKernel = verticalSize * 0.2; // Effect size. Large value may cause flickering.
+    pipeline.bloomWeight = 0.4;
+    pipeline.bloomKernel = verticalSize * 0.25; // Effect size. Large value may cause flickering.
     pipeline.bloomScale = 0.5; // Large value reduces flickering, but hits performance.
 
     pipeline.chromaticAberrationEnabled = true;
-    pipeline.chromaticAberration.aberrationAmount = 20;
+    pipeline.chromaticAberration.aberrationAmount = 30;
     pipeline.chromaticAberration.radialIntensity = 1;
 
     // pipeline.imageProcessing.contrast = 1.2;
     // pipeline.imageProcessing.exposure = 1.3;
     pipeline.imageProcessing.vignetteEnabled = true;
-    pipeline.imageProcessing.vignetteWeight = 1.8;
+    pipeline.imageProcessing.vignetteWeight = 2.4;
     pipeline.imageProcessing.vignetteCameraFov = vignetteCameraFov;
     pipeline.imageProcessing.vignetteStretch = 0;
     pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#003a70ff');
@@ -100,6 +87,20 @@ export default class Effects {
     // scene.onNewCameraAddedObservable.add((camera) => {
     //   pipeline.addCamera(camera);
     // });
+
+    // const lensEffect = new LensRenderingPipeline(
+    //   'lensEffect',
+    //   {
+    //     edge_blur: 0.7,
+    //     chromatic_aberration: 1.0,
+    //     distortion: 0.5,
+    //     // grain_amount: 1.0,
+    //   },
+    //   scene,
+    //   1.0,
+    //   cameras,
+    // );
+
     // TODO: update effects when canvas resized.
   }
 }
