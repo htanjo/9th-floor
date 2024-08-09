@@ -18,6 +18,7 @@ import lightmap2TextureUrl from '../assets/lightmap_2_0000.hdr?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0000.hdr?url';
 import lightmap4TextureUrl from '../assets/lightmap_4_0000.hdr?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0000.hdr?url';
+import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0000.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 import Effects from './Effects';
 
@@ -122,6 +123,12 @@ export default class MainScene {
       undefined,
       false,
     );
+    const lightmapHallwayTextureTask = assetsManager.addTextureTask(
+      'lightmapHallwayTexture',
+      lightmapHallwayTextureUrl,
+      undefined,
+      false,
+    );
     const environmentTextureTask =
       assetsManager.addEquiRectangularCubeTextureAssetTask(
         'environmentTexture',
@@ -201,6 +208,22 @@ export default class MainScene {
             pbrMaterial.fogEnabled = false;
             pbrMaterial.zOffset = 0.1; // Avoid z-fighting.
             break;
+          case 'hallway_ceiling':
+          case 'hallway_cornice':
+          case 'hallway_door':
+          case 'hallway_floor':
+          case 'hallway_lamp_base':
+          case 'hallway_wainscot':
+          case 'hallway_wall':
+            pbrMaterial.lightmapTexture = lightmapHallwayTextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
+          case 'hallway_lamp_shade':
+            pbrMaterial.ambientColor = Color3.FromHexString('#ffffff');
+            pbrMaterial.emissiveIntensity = 3;
+            break;
           default:
             pbrMaterial.ambientColor = Color3.White();
         }
@@ -216,12 +239,35 @@ export default class MainScene {
       windowLight1.diffuse = Color3.FromHexString('#bcdaff');
       windowLight1.radius = 1.0;
       const windowLight1ExcludedMeshes = scene.meshes.filter((mesh) =>
-        ['floor_1'].includes(mesh.name),
+        [
+          'floor_1',
+          'hallway_ceiling',
+          'hallway_cornice',
+          'hallway_door',
+          'hallway_floor',
+          'hallway_lamp_base',
+          'hallway_lamp_shade',
+          'hallway_wainscot',
+          'hallway_wall',
+        ].includes(mesh.name),
       );
       windowLight1.excludedMeshes = windowLight1ExcludedMeshes;
 
       const windowLight2 = windowLight1.clone('window_light_2') as PointLight;
       windowLight2.position = new Vector3(-1.2, 4.2, -17);
+      const windowLight2ExcludedMeshes = scene.meshes.filter((mesh) =>
+        [
+          'hallway_ceiling',
+          'hallway_cornice',
+          'hallway_door',
+          'hallway_floor',
+          'hallway_lamp_base',
+          'hallway_lamp_shade',
+          'hallway_wainscot',
+          'hallway_wall',
+        ].includes(mesh.name),
+      );
+      windowLight2.excludedMeshes = windowLight2ExcludedMeshes;
 
       const wallLight1 = new PointLight(
         'wall_light_1',
@@ -241,6 +287,7 @@ export default class MainScene {
           'cornice',
           'pillar',
           'door',
+          'hallway_door',
         ].includes(mesh.name),
       );
       wallLight1.includedOnlyMeshes = wallLightIncludedMeshes;
@@ -272,9 +319,39 @@ export default class MainScene {
           'railing_newel',
           'railing_handrail',
           'lamp_base',
+          'hallway_door',
+          'hallway_lamp_base',
+          'hallway_wainscot',
         ].includes(mesh.name),
       );
       topLight.includedOnlyMeshes = topLightIncludedMeshes;
+
+      const hallwayLight1 = new PointLight(
+        'hallway_light_1',
+        new Vector3(-3.4, 5.8, -4.05),
+        scene,
+      );
+      hallwayLight1.intensity = 0.2;
+      hallwayLight1.diffuse = Color3.FromHexString('#ffc7a4');
+      hallwayLight1.radius = 0.1;
+      const hallwayLightIncludedMeshes = scene.meshes.filter((mesh) =>
+        [
+          'door',
+          'hallway_ceiling',
+          'hallway_cornice',
+          'hallway_door',
+          'hallway_floor',
+          'hallway_wainscot',
+          'hallway_wall',
+        ].includes(mesh.name),
+      );
+      hallwayLight1.includedOnlyMeshes = hallwayLightIncludedMeshes;
+
+      const hallwayLight2 = hallwayLight1.clone(
+        'hallway_light_2',
+      ) as PointLight;
+      hallwayLight2.position = new Vector3(-3.4, 5.8, 8.05);
+      hallwayLight2.includedOnlyMeshes = hallwayLightIncludedMeshes;
     };
   }
 
