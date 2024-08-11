@@ -66,7 +66,7 @@ export default class Effects {
     pipeline.bloomScale = 0.5; // Large value reduces flickering, but hits performance.
 
     pipeline.chromaticAberrationEnabled = true;
-    pipeline.chromaticAberration.aberrationAmount = 30;
+    pipeline.chromaticAberration.aberrationAmount = 20;
     pipeline.chromaticAberration.radialIntensity = 1;
 
     // pipeline.imageProcessing.contrast = 1.2;

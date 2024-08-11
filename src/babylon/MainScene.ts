@@ -185,7 +185,7 @@ export default class MainScene {
             pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
             pbrMaterial.useLightmapAsShadowmap = true;
             pbrMaterial.ambientColor = Color3.White();
-            pbrMaterial.directIntensity = 0.15;
+            pbrMaterial.directIntensity = 0.2;
             break;
           case 'lamp_base':
             pbrMaterial.lightmapTexture = lightmap5TextureTask.texture;
@@ -232,10 +232,10 @@ export default class MainScene {
       // Add specular lights.
       const windowLight1 = new PointLight(
         'window_light_1',
-        new Vector3(1.2, 4.2, -17),
+        new Vector3(1.2, 4.6, -17),
         scene,
       );
-      windowLight1.intensity = 1.4;
+      windowLight1.intensity = 0.9;
       windowLight1.diffuse = Color3.FromHexString('#bcdaff');
       windowLight1.radius = 1.0;
       const windowLight1ExcludedMeshes = scene.meshes.filter((mesh) =>
@@ -254,7 +254,7 @@ export default class MainScene {
       windowLight1.excludedMeshes = windowLight1ExcludedMeshes;
 
       const windowLight2 = windowLight1.clone('window_light_2') as PointLight;
-      windowLight2.position = new Vector3(-1.2, 4.2, -17);
+      windowLight2.position = new Vector3(-1.2, 4.6, -17);
       const windowLight2ExcludedMeshes = scene.meshes.filter((mesh) =>
         [
           'hallway_ceiling',
@@ -271,10 +271,10 @@ export default class MainScene {
 
       const wallLight1 = new PointLight(
         'wall_light_1',
-        new Vector3(0, 5.8, 0.01),
+        new Vector3(0, 5.8, 0.05),
         scene,
       );
-      wallLight1.intensity = 0.2;
+      wallLight1.intensity = 0.15;
       wallLight1.diffuse = Color3.FromHexString('#ffc7a4');
       wallLight1.radius = 0.1;
       const wallLightIncludedMeshes = scene.meshes.filter((mesh) =>
@@ -293,7 +293,7 @@ export default class MainScene {
       wallLight1.includedOnlyMeshes = wallLightIncludedMeshes;
 
       const wallLight2 = wallLight1.clone('wall_light_2') as PointLight;
-      wallLight2.position = new Vector3(0, 2.2, 0.01);
+      wallLight2.position = new Vector3(0, 2.2, 0.05);
       wallLight2.includedOnlyMeshes = wallLightIncludedMeshes;
 
       const wallLight3 = wallLight1.clone('wall_light_3') as PointLight;
@@ -331,7 +331,7 @@ export default class MainScene {
         new Vector3(-3.4, 5.8, -4.05),
         scene,
       );
-      hallwayLight1.intensity = 0.2;
+      hallwayLight1.intensity = 0.15;
       hallwayLight1.diffuse = Color3.FromHexString('#ffc7a4');
       hallwayLight1.radius = 0.1;
       const hallwayLightIncludedMeshes = scene.meshes.filter((mesh) =>
