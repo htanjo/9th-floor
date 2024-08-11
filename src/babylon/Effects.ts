@@ -1,13 +1,13 @@
 import {
   Camera,
   Color4,
-  // ColorGradingTexture,
+  ColorGradingTexture,
   DefaultRenderingPipeline,
   // GlowLayer,
   // LensRenderingPipeline,
   Scene,
 } from '@babylonjs/core';
-// import colorGradingImage from '../assets/lut.3dl?url';
+import colorGradingTextureUrl from '../assets/lut_64.3dl?url';
 
 export default class Effects {
   public constructor(scene: Scene, cameras: Camera[]) {
@@ -76,13 +76,13 @@ export default class Effects {
     pipeline.imageProcessing.vignetteCameraFov = vignetteCameraFov;
     pipeline.imageProcessing.vignetteStretch = 0;
     pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#003a70ff');
-    // pipeline.imageProcessing.colorGradingEnabled = true;
-    // const colorGradingTexture = new ColorGradingTexture(
-    //   colorGradingImage,
-    //   scene,
-    // );
-    // pipeline.imageProcessing.colorGradingTexture = colorGradingTexture;
-    // pipeline.imageProcessing.colorGradingTexture.level = 1.0;
+    pipeline.imageProcessing.colorGradingEnabled = true;
+    const colorGradingTexture = new ColorGradingTexture(
+      colorGradingTextureUrl,
+      scene,
+    );
+    pipeline.imageProcessing.colorGradingTexture = colorGradingTexture;
+    pipeline.imageProcessing.colorGradingTexture.level = 1.0;
 
     // scene.onNewCameraAddedObservable.add((camera) => {
     //   pipeline.addCamera(camera);
