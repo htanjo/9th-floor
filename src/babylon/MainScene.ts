@@ -142,7 +142,8 @@ export default class MainScene {
         const pbrMaterial = material as PBRMaterial;
         pbrMaterial.maxSimultaneousLights = 10;
         pbrMaterial.specularIntensity = 100; // Enhance specular lighting.
-        // pbrMaterial.enableSpecularAntiAliasing = true;
+        pbrMaterial.enableSpecularAntiAliasing = true;
+        pbrMaterial.forceIrradianceInFragment = true;
         // pbrMaterial.usePhysicalLightFalloff = false;
         switch (pbrMaterial.name) {
           case 'ceiling':
