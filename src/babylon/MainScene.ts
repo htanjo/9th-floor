@@ -3,15 +3,19 @@ import {
   Color3,
   Color4,
   DirectionalLight,
+  EquiRectangularCubeTextureAssetTask,
   // FreeCamera,
   PBRMaterial,
   PointLight,
   Scene,
+  TextureAssetTask,
   Vector3,
 } from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
+import Effects from './Effects';
 import { keyframes, Keyframes } from '../settings/keyframes';
+import { materialConfigs, meshConfigs } from '../settings/model';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
@@ -21,7 +25,6 @@ import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
 import lightmap6TextureUrl from '../assets/lightmap_6_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
-import Effects from './Effects';
 
 export default class MainScene {
   public scene: Scene;
@@ -93,165 +96,132 @@ export default class MainScene {
     // new Effects(scene, [freeCamera]);
 
     const assetsManager = new AssetsManager(scene);
-    assetsManager.addMeshTask('mansionMesh', undefined, mansionMeshUrl, '');
-    const lightmap1TextureTask = assetsManager.addTextureTask(
-      'lightmap1Texture',
+    assetsManager.addMeshTask('mansion_mesh', undefined, mansionMeshUrl, '');
+    assetsManager.addTextureTask(
+      'lightmap_1_texture',
       lightmap1TextureUrl,
       undefined,
       false,
     );
-    const lightmap2TextureTask = assetsManager.addTextureTask(
-      'lightmap2Texture',
+    assetsManager.addTextureTask(
+      'lightmap_2_texture',
       lightmap2TextureUrl,
       undefined,
       false,
     );
-    const lightmap3TextureTask = assetsManager.addTextureTask(
-      'lightmap3Texture',
+    assetsManager.addTextureTask(
+      'lightmap_3_texture',
       lightmap3TextureUrl,
       undefined,
       false,
     );
-    const lightmap4TextureTask = assetsManager.addTextureTask(
-      'lightmap4Texture',
+    assetsManager.addTextureTask(
+      'lightmap_4_texture',
       lightmap4TextureUrl,
       undefined,
       false,
     );
-    const lightmap5TextureTask = assetsManager.addTextureTask(
-      'lightmap5Texture',
+    assetsManager.addTextureTask(
+      'lightmap_5_texture',
       lightmap5TextureUrl,
       undefined,
       false,
     );
-    const lightmap6TextureTask = assetsManager.addTextureTask(
-      'lightmap6Texture',
+    assetsManager.addTextureTask(
+      'lightmap_6_texture',
       lightmap6TextureUrl,
       undefined,
       false,
     );
-    const lightmapHallwayTextureTask = assetsManager.addTextureTask(
-      'lightmapHallwayTexture',
+    assetsManager.addTextureTask(
+      'lightmap_hallway_texture',
       lightmapHallwayTextureUrl,
       undefined,
       false,
     );
-    const environmentTextureTask =
-      assetsManager.addEquiRectangularCubeTextureAssetTask(
-        'environmentTexture',
-        environmentTextureUrl,
-        512,
-      );
+    assetsManager.addEquiRectangularCubeTextureAssetTask(
+      'environment_texture',
+      environmentTextureUrl,
+      512,
+    );
     assetsManager.load();
 
-    assetsManager.onFinish = () => {
+    assetsManager.onFinish = (tasks) => {
+      // Customize materials.
       scene.materials.forEach((material) => {
-        const pbrMaterial = material as PBRMaterial;
-        pbrMaterial.maxSimultaneousLights = 10;
-        pbrMaterial.specularIntensity = 100; // Enhance specular lighting.
-        pbrMaterial.enableSpecularAntiAliasing = true;
-        pbrMaterial.forceIrradianceInFragment = true;
-        // pbrMaterial.usePhysicalLightFalloff = false;
-        switch (pbrMaterial.name) {
-          case 'ceiling_center':
-          case 'ceiling_edge':
-          case 'floor_center':
-          case 'floor_edge':
-          case 'wall':
-            pbrMaterial.lightmapTexture = lightmap1TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'stairs_back':
-          case 'stairs_base':
-          case 'stairs_runner':
-          case 'wood':
-            pbrMaterial.lightmapTexture = lightmap2TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'railing_baluster':
-          case 'railing_handrail':
-          case 'railing_newel':
-            pbrMaterial.lightmapTexture = lightmap3TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'cornice':
-          case 'door':
-          case 'pillar':
-          case 'railing_base':
-          case 'wainscot':
-            pbrMaterial.lightmapTexture = lightmap4TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'window_frame':
-            pbrMaterial.lightmapTexture = lightmap4TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            pbrMaterial.directIntensity = 0.2;
-            break;
-          case 'lamp_base':
-            pbrMaterial.lightmapTexture = lightmap5TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'buffet':
-          case 'chair':
-          case 'console_table':
-          case 'picture_canvas_1':
-          case 'picture_canvas_2':
-          case 'picture_canvas_3':
-          case 'picture_canvas_4':
-          case 'picture_canvas_5':
-          case 'picture_canvas_6':
-          case 'picture_frame':
-          case 'vase':
-            pbrMaterial.lightmapTexture = lightmap6TextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'lamp_shade':
-            pbrMaterial.ambientColor = Color3.FromHexString('#ffffff');
-            pbrMaterial.emissiveIntensity = 4;
-            break;
-          case 'window_glass':
-            pbrMaterial.disableLighting = true;
-            pbrMaterial.refractionTexture = environmentTextureTask.texture;
-            pbrMaterial.indexOfRefraction = 0.8;
-            pbrMaterial.metallic = 0;
-            pbrMaterial.roughness = 1;
-            pbrMaterial.emissiveColor = Color3.FromHexString('#d1e3ff');
-            pbrMaterial.emissiveIntensity = 0.5;
-            pbrMaterial.fogEnabled = false;
-            pbrMaterial.zOffset = 0.1; // Avoid z-fighting.
-            break;
-          case 'hallway_ceiling':
-          case 'hallway_cornice':
-          case 'hallway_door':
-          case 'hallway_floor':
-          case 'hallway_lamp_base':
-          case 'hallway_wainscot':
-          case 'hallway_wall':
-            pbrMaterial.lightmapTexture = lightmapHallwayTextureTask.texture;
-            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-            pbrMaterial.useLightmapAsShadowmap = true;
-            pbrMaterial.ambientColor = Color3.White();
-            break;
-          case 'hallway_lamp_shade':
-            pbrMaterial.ambientColor = Color3.FromHexString('#ffffff');
-            pbrMaterial.emissiveIntensity = 3;
-            break;
-          default:
-            pbrMaterial.ambientColor = Color3.White();
+        if (material instanceof PBRMaterial) {
+          /* eslint-disable no-param-reassign */
+
+          // Common material config
+          material.ambientColor = Color3.White();
+          material.maxSimultaneousLights = 10;
+          material.specularIntensity = 100; // Enhance specular lighting.
+          material.enableSpecularAntiAliasing = true;
+          material.forceIrradianceInFragment = true;
+          // material.usePhysicalLightFalloff = false;
+
+          const materialConfig = materialConfigs.find(
+            (config) => config.name === material.name,
+          );
+          if (materialConfig) {
+            const {
+              lightmapTextureName,
+              refractionTextureName,
+              directIntensity,
+              emissiveColorHex,
+              emissiveIntensity,
+              fogEnabled,
+              zOffset,
+            } = materialConfig;
+
+            // Lightmap config
+            const lightmapTexture = lightmapTextureName
+              ? tasks.find(
+                  (task): task is TextureAssetTask =>
+                    task instanceof TextureAssetTask &&
+                    task.name === lightmapTextureName,
+                )?.texture
+              : undefined;
+            if (lightmapTexture) {
+              material.lightmapTexture = lightmapTexture;
+              material.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+              material.useLightmapAsShadowmap = true;
+            }
+
+            // Refraction config
+            const refractionTexture = refractionTextureName
+              ? tasks.find(
+                  (task): task is EquiRectangularCubeTextureAssetTask =>
+                    task instanceof EquiRectangularCubeTextureAssetTask &&
+                    task.name === refractionTextureName,
+                )?.texture
+              : undefined;
+            if (refractionTexture) {
+              material.refractionTexture = refractionTexture;
+              material.indexOfRefraction = 0.8;
+              material.metallic = 0;
+              material.roughness = 1;
+              material.disableLighting = true;
+            }
+
+            // Additional custom config
+            if (directIntensity !== undefined) {
+              material.directIntensity = directIntensity;
+            }
+            if (emissiveColorHex !== undefined) {
+              material.emissiveColor = Color3.FromHexString(emissiveColorHex);
+            }
+            if (emissiveIntensity !== undefined) {
+              material.emissiveIntensity = emissiveIntensity;
+            }
+            if (fogEnabled !== undefined) {
+              material.fogEnabled = fogEnabled;
+            }
+            if (zOffset !== undefined) {
+              material.zOffset = zOffset;
+            }
+          }
+          /* eslint-enable no-param-reassign */
         }
       });
 
@@ -264,96 +234,24 @@ export default class MainScene {
       windowLight1.intensity = 0.9;
       windowLight1.diffuse = Color3.FromHexString('#bcdaff');
       windowLight1.radius = 1.0;
-      const windowLight1ExcludedMeshes = scene.meshes.filter((mesh) =>
-        [
-          'ceiling_1_center',
-          'ceiling_1_edge',
-          'floor_1_center',
-          'floor_1_edge',
-          'hallway_ceiling',
-          'hallway_cornice',
-          'hallway_door',
-          'hallway_floor',
-          'hallway_lamp_base',
-          'hallway_lamp_shade',
-          'hallway_wainscot',
-          'hallway_wall',
-        ].includes(mesh.name),
-      );
-      windowLight1.excludedMeshes = windowLight1ExcludedMeshes;
 
       const windowLight2 = windowLight1.clone('window_light_2') as PointLight;
       windowLight2.position = new Vector3(-1.2, 4.6, -17);
-      const windowLight2ExcludedMeshes = scene.meshes.filter((mesh) =>
-        [
-          'ceiling_1_center',
-          'ceiling_1_edge',
-          'hallway_ceiling',
-          'hallway_cornice',
-          'hallway_door',
-          'hallway_floor',
-          'hallway_lamp_base',
-          'hallway_lamp_shade',
-          'hallway_wainscot',
-          'hallway_wall',
-        ].includes(mesh.name),
-      );
-      windowLight2.excludedMeshes = windowLight2ExcludedMeshes;
 
       const wallLight1 = new PointLight(
         'wall_light_1',
-        new Vector3(0, 5.8, 0.05),
+        new Vector3(0, 2.2, 0.05),
         scene,
       );
       wallLight1.intensity = 0.15;
       wallLight1.diffuse = Color3.FromHexString('#ffc7a4');
       wallLight1.radius = 0.1;
-      const wallLightIncludedMeshes = scene.meshes.filter((mesh) =>
-        [
-          'ceiling_1_center',
-          'ceiling_1_edge',
-          'ceiling_2_center',
-          'ceiling_2_edge',
-          'floor_1_center',
-          'floor_1_edge',
-          'floor_2_center',
-          'floor_2_edge',
-          'wall',
-          'wainscot',
-          'cornice',
-          'pillar',
-          'door',
-          'buffet',
-          'chair',
-          'console_table',
-          'picture_canvas_1',
-          'picture_canvas_2',
-          'picture_canvas_3',
-          'picture_canvas_4',
-          'picture_canvas_5',
-          'picture_canvas_6',
-          'picture_frame',
-          'vase',
-          'hallway_door',
-        ].includes(mesh.name),
-      );
-      wallLight1.includedOnlyMeshes = wallLightIncludedMeshes;
 
       const wallLight2 = wallLight1.clone('wall_light_2') as PointLight;
-      wallLight2.position = new Vector3(0, 2.2, 0.05);
-      wallLight2.includedOnlyMeshes = wallLightIncludedMeshes;
+      wallLight2.position = new Vector3(0, 5.8, 0.05);
 
       const wallLight3 = wallLight1.clone('wall_light_3') as PointLight;
       wallLight3.position = new Vector3(1.2, 2.2, -11);
-      const wallLight3IncludedMeshes = scene.meshes.filter((mesh) =>
-        [
-          'ceiling_1_center',
-          'ceiling_1_edge',
-          'stairs_base',
-          'stairs_back',
-        ].includes(mesh.name),
-      );
-      wallLight3.includedOnlyMeshes = wallLight3IncludedMeshes;
 
       const topLight = new DirectionalLight(
         'top_light',
@@ -363,25 +261,6 @@ export default class MainScene {
       topLight.intensity = 0.15;
       topLight.diffuse = Color3.FromHexString('#ffdfc7');
       topLight.radius = 0.2;
-      const topLightIncludedMeshes = scene.meshes.filter((mesh) =>
-        [
-          'wainscot',
-          'pillar',
-          'door',
-          'railing_newel',
-          'railing_handrail',
-          'lamp_base',
-          'buffet',
-          'chair',
-          'console_table',
-          'picture_frame',
-          'vase',
-          'hallway_door',
-          'hallway_lamp_base',
-          'hallway_wainscot',
-        ].includes(mesh.name),
-      );
-      topLight.includedOnlyMeshes = topLightIncludedMeshes;
 
       const hallwayLight1 = new PointLight(
         'hallway_light_1',
@@ -391,24 +270,23 @@ export default class MainScene {
       hallwayLight1.intensity = 0.15;
       hallwayLight1.diffuse = Color3.FromHexString('#ffc7a4');
       hallwayLight1.radius = 0.1;
-      const hallwayLightIncludedMeshes = scene.meshes.filter((mesh) =>
-        [
-          'door',
-          'hallway_ceiling',
-          'hallway_cornice',
-          'hallway_door',
-          'hallway_floor',
-          'hallway_wainscot',
-          'hallway_wall',
-        ].includes(mesh.name),
-      );
-      hallwayLight1.includedOnlyMeshes = hallwayLightIncludedMeshes;
 
       const hallwayLight2 = hallwayLight1.clone(
         'hallway_light_2',
       ) as PointLight;
       hallwayLight2.position = new Vector3(-3.4, 5.8, 8.05);
-      hallwayLight2.includedOnlyMeshes = hallwayLightIncludedMeshes;
+
+      scene.lights.forEach((light) => {
+        /* eslint-disable no-param-reassign */
+        const includedMeshNames = meshConfigs
+          .filter((config) => config.effectiveLightNames.includes(light.name))
+          .map((config) => config.name);
+        const includedMeshes = scene.meshes.filter((mesh) =>
+          includedMeshNames.includes(mesh.name),
+        );
+        light.includedOnlyMeshes = includedMeshes;
+        /* eslint-enable no-param-reassign */
+      });
     };
   }
 
