@@ -72,7 +72,7 @@ export default class Effects {
     // pipeline.imageProcessing.contrast = 1.2;
     // pipeline.imageProcessing.exposure = 1.3;
     pipeline.imageProcessing.vignetteEnabled = true;
-    pipeline.imageProcessing.vignetteWeight = 2.4;
+    pipeline.imageProcessing.vignetteWeight = 2.0;
     pipeline.imageProcessing.vignetteCameraFov = vignetteCameraFov;
     pipeline.imageProcessing.vignetteStretch = 0;
     pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#003a70ff');

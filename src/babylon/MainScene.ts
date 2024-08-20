@@ -13,12 +13,13 @@ import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import { keyframes, Keyframes } from '../settings/keyframes';
 import mansionMeshUrl from '../assets/mansion.glb?url';
-import lightmap1TextureUrl from '../assets/lightmap_1_0000.hdr?url';
-import lightmap2TextureUrl from '../assets/lightmap_2_0000.hdr?url';
-import lightmap3TextureUrl from '../assets/lightmap_3_0000.hdr?url';
-import lightmap4TextureUrl from '../assets/lightmap_4_0000.hdr?url';
-import lightmap5TextureUrl from '../assets/lightmap_5_0000.hdr?url';
-import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0000.hdr?url';
+import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
+import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
+import lightmap3TextureUrl from '../assets/lightmap_3_0001.hdr?url';
+import lightmap4TextureUrl from '../assets/lightmap_4_0001.hdr?url';
+import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
+import lightmap6TextureUrl from '../assets/lightmap_6_0001.hdr?url';
+import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 import Effects from './Effects';
 
@@ -123,6 +124,12 @@ export default class MainScene {
       undefined,
       false,
     );
+    const lightmap6TextureTask = assetsManager.addTextureTask(
+      'lightmap6Texture',
+      lightmap6TextureUrl,
+      undefined,
+      false,
+    );
     const lightmapHallwayTextureTask = assetsManager.addTextureTask(
       'lightmapHallwayTexture',
       lightmapHallwayTextureUrl,
@@ -146,8 +153,10 @@ export default class MainScene {
         pbrMaterial.forceIrradianceInFragment = true;
         // pbrMaterial.usePhysicalLightFalloff = false;
         switch (pbrMaterial.name) {
-          case 'ceiling':
-          case 'floor':
+          case 'ceiling_center':
+          case 'ceiling_edge':
+          case 'floor_center':
+          case 'floor_edge':
           case 'wall':
             pbrMaterial.lightmapTexture = lightmap1TextureTask.texture;
             pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
@@ -190,6 +199,22 @@ export default class MainScene {
             break;
           case 'lamp_base':
             pbrMaterial.lightmapTexture = lightmap5TextureTask.texture;
+            pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+            pbrMaterial.useLightmapAsShadowmap = true;
+            pbrMaterial.ambientColor = Color3.White();
+            break;
+          case 'buffet':
+          case 'chair':
+          case 'console_table':
+          case 'picture_canvas_1':
+          case 'picture_canvas_2':
+          case 'picture_canvas_3':
+          case 'picture_canvas_4':
+          case 'picture_canvas_5':
+          case 'picture_canvas_6':
+          case 'picture_frame':
+          case 'vase':
+            pbrMaterial.lightmapTexture = lightmap6TextureTask.texture;
             pbrMaterial.lightmapTexture.coordinatesIndex = 1; // Use UV2.
             pbrMaterial.useLightmapAsShadowmap = true;
             pbrMaterial.ambientColor = Color3.White();
@@ -241,7 +266,10 @@ export default class MainScene {
       windowLight1.radius = 1.0;
       const windowLight1ExcludedMeshes = scene.meshes.filter((mesh) =>
         [
-          'floor_1',
+          'ceiling_1_center',
+          'ceiling_1_edge',
+          'floor_1_center',
+          'floor_1_edge',
           'hallway_ceiling',
           'hallway_cornice',
           'hallway_door',
@@ -258,6 +286,8 @@ export default class MainScene {
       windowLight2.position = new Vector3(-1.2, 4.6, -17);
       const windowLight2ExcludedMeshes = scene.meshes.filter((mesh) =>
         [
+          'ceiling_1_center',
+          'ceiling_1_edge',
           'hallway_ceiling',
           'hallway_cornice',
           'hallway_door',
@@ -280,14 +310,30 @@ export default class MainScene {
       wallLight1.radius = 0.1;
       const wallLightIncludedMeshes = scene.meshes.filter((mesh) =>
         [
-          'ceiling',
-          'floor_1',
-          'floor_2',
+          'ceiling_1_center',
+          'ceiling_1_edge',
+          'ceiling_2_center',
+          'ceiling_2_edge',
+          'floor_1_center',
+          'floor_1_edge',
+          'floor_2_center',
+          'floor_2_edge',
           'wall',
           'wainscot',
           'cornice',
           'pillar',
           'door',
+          'buffet',
+          'chair',
+          'console_table',
+          'picture_canvas_1',
+          'picture_canvas_2',
+          'picture_canvas_3',
+          'picture_canvas_4',
+          'picture_canvas_5',
+          'picture_canvas_6',
+          'picture_frame',
+          'vase',
           'hallway_door',
         ].includes(mesh.name),
       );
@@ -298,9 +344,14 @@ export default class MainScene {
       wallLight2.includedOnlyMeshes = wallLightIncludedMeshes;
 
       const wallLight3 = wallLight1.clone('wall_light_3') as PointLight;
-      wallLight3.position = new Vector3(1.6, 2.2, -11);
+      wallLight3.position = new Vector3(1.2, 2.2, -11);
       const wallLight3IncludedMeshes = scene.meshes.filter((mesh) =>
-        ['stairs_base', 'stairs_back'].includes(mesh.name),
+        [
+          'ceiling_1_center',
+          'ceiling_1_edge',
+          'stairs_base',
+          'stairs_back',
+        ].includes(mesh.name),
       );
       wallLight3.includedOnlyMeshes = wallLight3IncludedMeshes;
 
@@ -320,6 +371,11 @@ export default class MainScene {
           'railing_newel',
           'railing_handrail',
           'lamp_base',
+          'buffet',
+          'chair',
+          'console_table',
+          'picture_frame',
+          'vase',
           'hallway_door',
           'hallway_lamp_base',
           'hallway_wainscot',
