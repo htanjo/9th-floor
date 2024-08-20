@@ -189,218 +189,229 @@ export const materialConfigs: MaterialConfigs = [
 export const meshConfigs: MeshConfigs = [
   {
     name: 'ceiling_1_center',
-    effectiveLightNames: ['wall_light_1', 'wall_light_3'],
+    effectiveLightNames: ['floor_1_light', 'stairs_light'],
   },
   {
     name: 'ceiling_1_edge',
-    effectiveLightNames: ['wall_light_1', 'wall_light_3'],
+    effectiveLightNames: ['floor_1_light', 'stairs_light'],
   },
   {
     name: 'ceiling_2_center',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'ceiling_2_edge',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'floor_1_center',
-    effectiveLightNames: ['window_light_2', 'wall_light_1'],
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
   },
   {
     name: 'floor_1_edge',
-    effectiveLightNames: ['window_light_2', 'wall_light_1'],
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
   },
   {
     name: 'floor_2_center',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: [
+      'window_left_light',
+      'window_right_light',
+      'floor_2_light',
+    ],
   },
   {
     name: 'floor_2_edge',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: [
+      'window_left_light',
+      'window_right_light',
+      'floor_2_light',
+    ],
   },
   {
     name: 'wall',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_1',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_1_light',
+      'floor_2_light',
     ],
   },
   {
     name: 'signboard',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'stairs_back',
-    effectiveLightNames: ['wall_light_3', 'top_light'],
+    effectiveLightNames: ['stairs_light', 'top_light'],
   },
   {
     name: 'stairs_base',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_3',
+      'window_composite_light',
+      'stairs_light',
       'top_light',
     ],
   },
   {
     name: 'stairs_runner',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'top_light'],
   },
   {
     name: 'railing_baluster',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'top_light'],
   },
   {
     name: 'railing_handrail',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'top_light'],
   },
   {
     name: 'railing_newel',
+    effectiveLightNames: ['window_composite_light', 'top_light'],
+  },
+  {
+    name: 'cornice_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+  },
+  {
+    name: 'cornice_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
+    name: 'door_1',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_3',
+      'window_composite_light',
+      'floor_1_light',
+      'top_light',
+      'hallway_front_light',
+    ],
+  },
+  {
+    name: 'door_2',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_2_light',
+      'top_light',
+      'hallway_front_light',
+    ],
+  },
+  {
+    name: 'pillar_1',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_1_light',
       'top_light',
     ],
   },
   {
-    name: 'cornice',
+    name: 'pillar_2',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_1',
-      'wall_light_2',
-    ],
-  },
-  {
-    name: 'door',
-    effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_1',
-      'wall_light_2',
-      'top_light',
-      'hallway_light_1',
-      'hallway_light_2',
-    ],
-  },
-  {
-    name: 'pillar',
-    effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_1',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'railing_base',
+    effectiveLightNames: ['window_composite_light', 'top_light'],
+  },
+  {
+    name: 'wainscot_1',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_3',
+      'window_composite_light',
+      'floor_1_light',
       'top_light',
     ],
   },
   {
-    name: 'wainscot',
+    name: 'wainscot_2',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_1',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'window_frame',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'top_light'],
+    effectiveLightNames: [
+      'window_left_light',
+      'window_right_light',
+      'top_light',
+    ],
   },
   {
     name: 'lamp_base',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'top_light'],
   },
   {
     name: 'buffet',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'chair',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'console_table',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'picture_canvas_1',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'picture_canvas_2',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'picture_canvas_3',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'picture_canvas_4',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'picture_canvas_5',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'picture_canvas_6',
-    effectiveLightNames: ['window_light_1', 'window_light_2', 'wall_light_2'],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'picture_frame',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'vase',
     effectiveLightNames: [
-      'window_light_1',
-      'window_light_2',
-      'wall_light_2',
+      'window_composite_light',
+      'floor_2_light',
       'top_light',
     ],
   },
   {
     name: 'lamp_shade',
-    effectiveLightNames: ['window_light_1', 'window_light_2'],
+    effectiveLightNames: ['window_composite_light'],
   },
   {
     name: 'window_glass',
@@ -408,25 +419,25 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'hallway_ceiling',
-    effectiveLightNames: ['hallway_light_1', 'hallway_light_2'],
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
   },
   {
     name: 'hallway_cornice',
-    effectiveLightNames: ['hallway_light_1', 'hallway_light_2'],
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
   },
   {
     name: 'hallway_door',
     effectiveLightNames: [
-      'wall_light_1',
-      'wall_light_2',
+      'floor_1_light',
+      'floor_2_light',
       'top_light',
-      'hallway_light_1',
-      'hallway_light_2',
+      'hallway_front_light',
+      'hallway_back_light',
     ],
   },
   {
     name: 'hallway_floor',
-    effectiveLightNames: ['hallway_light_1', 'hallway_light_2'],
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
   },
   {
     name: 'hallway_lamp_base',
@@ -434,11 +445,15 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'hallway_wainscot',
-    effectiveLightNames: ['top_light', 'hallway_light_1', 'hallway_light_2'],
+    effectiveLightNames: [
+      'top_light',
+      'hallway_front_light',
+      'hallway_back_light',
+    ],
   },
   {
     name: 'hallway_wall',
-    effectiveLightNames: ['hallway_light_1', 'hallway_light_2'],
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
   },
   {
     name: 'hallway_lamp_shade',

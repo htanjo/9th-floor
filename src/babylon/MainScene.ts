@@ -226,32 +226,43 @@ export default class MainScene {
       });
 
       // Add specular lights.
-      const windowLight1 = new PointLight(
-        'window_light_1',
+      const windowCompositeLight = new PointLight(
+        'window_composite_light',
+        new Vector3(0, 4.6, -17),
+        scene,
+      );
+      windowCompositeLight.intensity = 2.8;
+      windowCompositeLight.diffuse = Color3.FromHexString('#bcdaff');
+      windowCompositeLight.radius = 1.6;
+
+      const windowLeftLight = new PointLight(
+        'window_left_light',
         new Vector3(1.2, 4.6, -17),
         scene,
       );
-      windowLight1.intensity = 0.9;
-      windowLight1.diffuse = Color3.FromHexString('#bcdaff');
-      windowLight1.radius = 1.0;
+      windowLeftLight.intensity = 0.9;
+      windowLeftLight.diffuse = Color3.FromHexString('#bcdaff');
+      windowLeftLight.radius = 1.0;
 
-      const windowLight2 = windowLight1.clone('window_light_2') as PointLight;
-      windowLight2.position = new Vector3(-1.2, 4.6, -17);
+      const windowRightLight = windowLeftLight.clone(
+        'window_right_light',
+      ) as PointLight;
+      windowRightLight.position = new Vector3(-1.2, 4.6, -17);
 
-      const wallLight1 = new PointLight(
-        'wall_light_1',
+      const floor1Light = new PointLight(
+        'floor_1_light',
         new Vector3(0, 2.2, 0.05),
         scene,
       );
-      wallLight1.intensity = 0.15;
-      wallLight1.diffuse = Color3.FromHexString('#ffc7a4');
-      wallLight1.radius = 0.1;
+      floor1Light.intensity = 0.15;
+      floor1Light.diffuse = Color3.FromHexString('#ffc7a4');
+      floor1Light.radius = 0.1;
 
-      const wallLight2 = wallLight1.clone('wall_light_2') as PointLight;
-      wallLight2.position = new Vector3(0, 5.8, 0.05);
+      const floor2Light = floor1Light.clone('floor_2_light') as PointLight;
+      floor2Light.position = new Vector3(0, 5.8, 0.05);
 
-      const wallLight3 = wallLight1.clone('wall_light_3') as PointLight;
-      wallLight3.position = new Vector3(1.2, 2.2, -11);
+      const stairsLight = floor1Light.clone('stairs_light') as PointLight;
+      stairsLight.position = new Vector3(1.2, 2.2, -11);
 
       const topLight = new DirectionalLight(
         'top_light',
@@ -262,19 +273,19 @@ export default class MainScene {
       topLight.diffuse = Color3.FromHexString('#ffdfc7');
       topLight.radius = 0.2;
 
-      const hallwayLight1 = new PointLight(
-        'hallway_light_1',
+      const hallwayFrontLight = new PointLight(
+        'hallway_front_light',
         new Vector3(-3.4, 5.8, -4.05),
         scene,
       );
-      hallwayLight1.intensity = 0.15;
-      hallwayLight1.diffuse = Color3.FromHexString('#ffc7a4');
-      hallwayLight1.radius = 0.1;
+      hallwayFrontLight.intensity = 0.15;
+      hallwayFrontLight.diffuse = Color3.FromHexString('#ffc7a4');
+      hallwayFrontLight.radius = 0.1;
 
-      const hallwayLight2 = hallwayLight1.clone(
-        'hallway_light_2',
+      const hallwayBackLight = hallwayFrontLight.clone(
+        'hallway_back_light',
       ) as PointLight;
-      hallwayLight2.position = new Vector3(-3.4, 5.8, 8.05);
+      hallwayBackLight.position = new Vector3(-3.4, 5.8, 8.05);
 
       scene.lights.forEach((light) => {
         /* eslint-disable no-param-reassign */
