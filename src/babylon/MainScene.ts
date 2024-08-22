@@ -40,6 +40,11 @@ export default class MainScene {
   }
 
   public set frame(frame: number) {
+    if (frame > this.frame) {
+      this.camera.forward = true;
+    } else if (frame < this.frame) {
+      this.camera.forward = false;
+    }
     this.camera.frame = frame;
   }
 

@@ -19,6 +19,8 @@ export default class RouteCamera extends TargetCamera {
 
   public keyframes: Keyframes = [];
 
+  public forward = true;
+
   private minFov = 55 * (Math.PI / 180); // FOV for 16/9 landscape mode.
 
   private maxFov = 81 * (Math.PI / 180); // FOV for 9/16 portrait mode.
@@ -124,6 +126,12 @@ export default class RouteCamera extends TargetCamera {
       this.frame,
       this.keyframes,
     );
+
+    // Change rotation when moving backward.
+    if (!this.forward) {
+      rotation.x *= 0.4; // Look down a little when climbing stairs.
+      rotation.y += Math.PI; // Turn back.
+    }
 
     let input = new Vector2(0, 0);
     if (this.usePointerInput) {
