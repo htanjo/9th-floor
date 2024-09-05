@@ -78,6 +78,7 @@ export default class MainScene {
 
   public async start() {
     const { scene, camera } = this;
+    const { maxAnisotropy } = scene.getEngine().getCaps();
     scene.clearColor = new Color4(0, 0, 0, 0);
     scene.ambientColor = Color3.White();
     scene.fogMode = Scene.FOGMODE_EXP2;
@@ -235,6 +236,15 @@ export default class MainScene {
               material.alpha = 1;
               material.alphaMode = Engine.ALPHA_DISABLE;
             }
+            if (material.albedoTexture) {
+              material.albedoTexture.anisotropicFilteringLevel = maxAnisotropy;
+            }
+            // if (material.metallicTexture) {
+            //   material.metallicTexture.anisotropicFilteringLevel = maxAnisotropy;
+            // }
+            // if (material.bumpTexture) {
+            //   material.bumpTexture.anisotropicFilteringLevel = maxAnisotropy;
+            // }
           }
           /* eslint-enable no-param-reassign */
         }
