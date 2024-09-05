@@ -2,11 +2,11 @@ export interface MaterialConfig {
   name: string;
   lightmapTextureName?: string;
   refractionTextureName?: string;
-  directIntensity?: number;
   emissiveColorHex?: string;
   emissiveIntensity?: number;
   fogEnabled?: boolean;
   zOffset?: number;
+  alphaDisabled?: boolean;
 }
 
 export type MaterialConfigs = MaterialConfig[];
@@ -36,7 +36,19 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
-    name: 'wall',
+    name: 'floor_gate',
+    lightmapTextureName: 'lightmap_1_texture',
+  },
+  {
+    name: 'floor_medallion',
+    lightmapTextureName: 'lightmap_1_texture',
+  },
+  {
+    name: 'wall_room',
+    lightmapTextureName: 'lightmap_1_texture',
+  },
+  {
+    name: 'wall_stairs',
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
@@ -44,11 +56,11 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
-    name: 'stairs_base',
+    name: 'stairs_landing',
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
-    name: 'stairs_runner',
+    name: 'stairs_steps',
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
@@ -88,12 +100,11 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
-    name: 'window_frame',
-    lightmapTextureName: 'lightmap_4_texture',
-    directIntensity: 0.2,
+    name: 'lamp_base',
+    lightmapTextureName: 'lightmap_5_texture',
   },
   {
-    name: 'lamp_base',
+    name: 'window_frame',
     lightmapTextureName: 'lightmap_5_texture',
   },
   {
@@ -133,8 +144,16 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_6_texture',
   },
   {
-    name: 'picture_frame',
-    lightmapTextureName: 'lightmap_6_texture',
+    name: 'picture_frame_1',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_frame_2',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_frame_3',
+    lightmapTextureName: 'lightmap_7_texture',
   },
   {
     name: 'vase',
@@ -142,18 +161,23 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'lamp_shade',
-    emissiveIntensity: 4,
+    emissiveIntensity: 2,
+    alphaDisabled: true,
   },
   {
     name: 'window_glass',
     refractionTextureName: 'environment_texture',
-    emissiveColorHex: '#d1e3ff',
-    emissiveIntensity: 0.5,
+    emissiveIntensity: 0.6,
+    emissiveColorHex: '#7bb3ff',
     fogEnabled: false,
     zOffset: 0.1, // Avoid z-fighting.
   },
   {
-    name: 'hallway_ceiling',
+    name: 'hallway_ceiling_center',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_ceiling_edge',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
@@ -182,7 +206,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 3,
+    emissiveIntensity: 1.8,
   },
 ];
 
@@ -212,6 +236,14 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
   },
   {
+    name: 'floor_1_gate',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+  },
+  {
+    name: 'floor_1_medallion',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+  },
+  {
     name: 'floor_2_center',
     effectiveLightNames: [
       'window_left_light',
@@ -228,7 +260,31 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
-    name: 'wall',
+    name: 'floor_2_gate',
+    effectiveLightNames: [
+      'window_left_light',
+      'window_right_light',
+      'floor_2_light',
+    ],
+  },
+  {
+    name: 'floor_2_medallion',
+    effectiveLightNames: [
+      'window_left_light',
+      'window_right_light',
+      'floor_2_light',
+    ],
+  },
+  {
+    name: 'wall_room_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+  },
+  {
+    name: 'wall_room_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
+    name: 'wall_stairs',
     effectiveLightNames: [
       'window_composite_light',
       'floor_1_light',
@@ -248,20 +304,16 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['stairs_light', 'top_light'],
   },
   {
-    name: 'stairs_base',
-    effectiveLightNames: [
-      'window_composite_light',
-      'stairs_light',
-      'top_light',
-    ],
+    name: 'stairs_landing',
+    effectiveLightNames: ['window_composite_light'],
   },
   {
-    name: 'stairs_runner',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    name: 'stairs_steps',
+    effectiveLightNames: ['window_composite_light'],
   },
   {
     name: 'railing_baluster',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    effectiveLightNames: ['window_composite_light'],
   },
   {
     name: 'railing_handrail',
@@ -334,16 +386,12 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
-    name: 'window_frame',
-    effectiveLightNames: [
-      'window_left_light',
-      'window_right_light',
-      'top_light',
-    ],
-  },
-  {
     name: 'lamp_base',
     effectiveLightNames: ['window_composite_light', 'top_light'],
+  },
+  {
+    name: 'window_frame',
+    effectiveLightNames: ['window_sun_light', 'top_light'],
   },
   {
     name: 'buffet',
@@ -394,7 +442,23 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_frame',
+    name: 'picture_frame_1',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_2_light',
+      'top_light',
+    ],
+  },
+  {
+    name: 'picture_frame_2',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_2_light',
+      'top_light',
+    ],
+  },
+  {
+    name: 'picture_frame_3',
     effectiveLightNames: [
       'window_composite_light',
       'floor_2_light',
@@ -418,7 +482,11 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: [],
   },
   {
-    name: 'hallway_ceiling',
+    name: 'hallway_ceiling_center',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+  },
+  {
+    name: 'hallway_ceiling_edge',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
   },
   {

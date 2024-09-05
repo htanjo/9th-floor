@@ -3,6 +3,7 @@ import {
   Color3,
   Color4,
   DirectionalLight,
+  Engine,
   EquiRectangularCubeTextureAssetTask,
   // FreeCamera,
   PBRMaterial,
@@ -23,6 +24,7 @@ import lightmap3TextureUrl from '../assets/lightmap_3_0001.hdr?url';
 import lightmap4TextureUrl from '../assets/lightmap_4_0001.hdr?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
 import lightmap6TextureUrl from '../assets/lightmap_6_0001.hdr?url';
+import lightmap7TextureUrl from '../assets/lightmap_7_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 
@@ -139,6 +141,12 @@ export default class MainScene {
       false,
     );
     assetsManager.addTextureTask(
+      'lightmap_7_texture',
+      lightmap7TextureUrl,
+      undefined,
+      false,
+    );
+    assetsManager.addTextureTask(
       'lightmap_hallway_texture',
       lightmapHallwayTextureUrl,
       undefined,
@@ -172,11 +180,11 @@ export default class MainScene {
             const {
               lightmapTextureName,
               refractionTextureName,
-              directIntensity,
               emissiveColorHex,
               emissiveIntensity,
               fogEnabled,
               zOffset,
+              alphaDisabled,
             } = materialConfig;
 
             // Lightmap config
@@ -203,27 +211,29 @@ export default class MainScene {
               : undefined;
             if (refractionTexture) {
               material.refractionTexture = refractionTexture;
-              material.indexOfRefraction = 0.8;
+              material.indexOfRefraction = 0.9;
               material.metallic = 0;
               material.roughness = 1;
               material.disableLighting = true;
             }
 
             // Additional custom config
-            if (directIntensity !== undefined) {
-              material.directIntensity = directIntensity;
+            if (emissiveIntensity !== undefined) {
+              material.emissiveIntensity = emissiveIntensity;
+              material.emissiveColor = Color3.White();
             }
             if (emissiveColorHex !== undefined) {
               material.emissiveColor = Color3.FromHexString(emissiveColorHex);
-            }
-            if (emissiveIntensity !== undefined) {
-              material.emissiveIntensity = emissiveIntensity;
             }
             if (fogEnabled !== undefined) {
               material.fogEnabled = fogEnabled;
             }
             if (zOffset !== undefined) {
               material.zOffset = zOffset;
+            }
+            if (alphaDisabled) {
+              material.alpha = 1;
+              material.alphaMode = Engine.ALPHA_DISABLE;
             }
           }
           /* eslint-enable no-param-reassign */
@@ -233,26 +243,35 @@ export default class MainScene {
       // Add specular lights.
       const windowCompositeLight = new PointLight(
         'window_composite_light',
-        new Vector3(0, 4.6, -17),
+        new Vector3(0, 4.6, -18),
         scene,
       );
-      windowCompositeLight.intensity = 2.8;
-      windowCompositeLight.diffuse = Color3.FromHexString('#bcdaff');
+      windowCompositeLight.intensity = 2.6;
+      windowCompositeLight.diffuse = Color3.FromHexString('#85bcff');
       windowCompositeLight.radius = 1.6;
 
       const windowLeftLight = new PointLight(
         'window_left_light',
-        new Vector3(1.2, 4.6, -17),
+        new Vector3(1.3, 5, -18),
         scene,
       );
-      windowLeftLight.intensity = 0.9;
-      windowLeftLight.diffuse = Color3.FromHexString('#bcdaff');
+      windowLeftLight.intensity = 2.0;
+      windowLeftLight.diffuse = Color3.FromHexString('#85bcff');
       windowLeftLight.radius = 1.0;
 
       const windowRightLight = windowLeftLight.clone(
         'window_right_light',
       ) as PointLight;
-      windowRightLight.position = new Vector3(-1.2, 4.6, -17);
+      windowRightLight.position = new Vector3(-1.3, 5, -18);
+
+      const windowSunLight = new PointLight(
+        'window_sun_light',
+        new Vector3(-2, 8, -24),
+        scene,
+      );
+      windowSunLight.intensity = 0.4;
+      windowSunLight.diffuse = Color3.FromHexString('#fff6e7');
+      windowSunLight.radius = 1.6;
 
       const floor1Light = new PointLight(
         'floor_1_light',
@@ -283,7 +302,7 @@ export default class MainScene {
         new Vector3(-3.4, 5.8, -4.05),
         scene,
       );
-      hallwayFrontLight.intensity = 0.15;
+      hallwayFrontLight.intensity = 0.25;
       hallwayFrontLight.diffuse = Color3.FromHexString('#ffc7a4');
       hallwayFrontLight.radius = 0.1;
 
