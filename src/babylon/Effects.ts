@@ -60,8 +60,8 @@ export default class Effects {
     // pipeline.fxaaEnabled = true; // Enable FXAA.
     // pipeline.sharpenEnabled = true;
     pipeline.bloomEnabled = true;
-    pipeline.bloomThreshold = 0.48;
-    pipeline.bloomWeight = 0.35;
+    pipeline.bloomThreshold = 0.08;
+    pipeline.bloomWeight = 0.32;
     pipeline.bloomKernel = verticalSize * 0.25; // Effect size. Large value may cause flickering.
     pipeline.bloomScale = 0.5; // Large value reduces flickering, but hits performance.
 

@@ -183,7 +183,7 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'window_glass',
     refractionTextureName: 'environment_texture',
-    emissiveIntensity: 0.6,
+    emissiveIntensity: 0.5,
     emissiveColorHex: '#7bb3ff',
     fogEnabled: false,
     zOffset: 0.1, // Avoid z-fighting.
@@ -222,7 +222,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 1.8,
+    emissiveIntensity: 2,
   },
 ];
 
