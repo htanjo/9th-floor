@@ -120,7 +120,7 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_6_texture',
   },
   {
-    name: 'picture_canvas_1',
+    name: 'vase',
     lightmapTextureName: 'lightmap_6_texture',
   },
   {
