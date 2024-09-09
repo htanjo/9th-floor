@@ -124,24 +124,44 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_6_texture',
   },
   {
-    name: 'picture_canvas_2',
-    lightmapTextureName: 'lightmap_6_texture',
+    name: 'picture_canvas_01',
+    lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_3',
-    lightmapTextureName: 'lightmap_6_texture',
+    name: 'picture_canvas_02',
+    lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_4',
-    lightmapTextureName: 'lightmap_6_texture',
+    name: 'picture_canvas_03',
+    lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_5',
-    lightmapTextureName: 'lightmap_6_texture',
+    name: 'picture_canvas_04',
+    lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_6',
-    lightmapTextureName: 'lightmap_6_texture',
+    name: 'picture_canvas_05',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_canvas_06',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_canvas_07',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_canvas_08',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_canvas_09',
+    lightmapTextureName: 'lightmap_7_texture',
+  },
+  {
+    name: 'picture_canvas_10',
+    lightmapTextureName: 'lightmap_7_texture',
   },
   {
     name: 'picture_frame_1',
@@ -154,10 +174,6 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'picture_frame_3',
     lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'vase',
-    lightmapTextureName: 'lightmap_6_texture',
   },
   {
     name: 'lamp_shade',
@@ -418,27 +434,51 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
-    name: 'picture_canvas_1',
+    name: 'vase',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_2_light',
+      'top_light',
+    ],
+  },
+  {
+    name: 'picture_canvas_01',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_canvas_2',
+    name: 'picture_canvas_02',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_canvas_3',
+    name: 'picture_canvas_03',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_canvas_4',
+    name: 'picture_canvas_04',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_canvas_5',
+    name: 'picture_canvas_05',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_canvas_6',
+    name: 'picture_canvas_06',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
+    name: 'picture_canvas_07',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
+    name: 'picture_canvas_08',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
+    name: 'picture_canvas_09',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
+    name: 'picture_canvas_10',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
@@ -459,14 +499,6 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'picture_frame_3',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
-  },
-  {
-    name: 'vase',
     effectiveLightNames: [
       'window_composite_light',
       'floor_2_light',
