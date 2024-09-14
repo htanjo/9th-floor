@@ -15,7 +15,7 @@ import {
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import Effects from './Effects';
-import { keyframes, Keyframes } from '../settings/keyframes';
+import { keyframes } from '../settings/keyframes';
 import { materialConfigs, meshConfigs } from '../settings/model';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
@@ -34,9 +34,7 @@ export default class MainScene {
 
   public camera: RouteCamera;
 
-  private moveSpeed = 0.005; // Number of frames advanced by 1px scroll input.
-
-  private keyframes: Keyframes = [];
+  private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
 
   public get frame(): number {
     return this.camera.frame;
@@ -52,29 +50,25 @@ export default class MainScene {
   }
 
   public get maxFrame(): number {
-    if (this.keyframes.length < 1) {
-      return 0;
-    }
-    return this.keyframes[this.keyframes.length - 1].frame;
+    return this.camera.maxFrame;
   }
 
   public constructor(scene: Scene) {
     this.scene = scene;
-    this.keyframes = keyframes;
     const initialFrame = keyframes[0];
     const initialCameraPosition = new Vector3(
-      initialFrame.camera?.position?.x,
-      initialFrame.camera?.position?.y,
-      initialFrame.camera?.position?.z,
+      initialFrame.position.x,
+      initialFrame.position.y,
+      initialFrame.position.z,
     );
-    const initialCameraRotation = new Vector3(
-      initialFrame.camera?.rotation?.x,
-      initialFrame.camera?.rotation?.y,
-      initialFrame.camera?.rotation?.z,
+    const initialCameraRotation = new Vector3(0, Math.PI, 0);
+    this.camera = new RouteCamera(
+      'camera',
+      keyframes,
+      initialCameraPosition,
+      scene,
     );
-    this.camera = new RouteCamera('camera', initialCameraPosition, scene);
     this.camera.rotation = initialCameraRotation;
-    this.camera.keyframes = keyframes;
   }
 
   public async start() {

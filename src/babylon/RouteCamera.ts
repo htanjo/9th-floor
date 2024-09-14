@@ -1,5 +1,7 @@
 import {
+  Curve3,
   Nullable,
+  Path3D,
   Scene,
   TargetCamera,
   Vector2,
@@ -21,6 +23,20 @@ export default class RouteCamera extends TargetCamera {
 
   public forward = true;
 
+  public get maxFrame(): number {
+    if (this.keyframes.length <= 1) {
+      return this.keyframes.length;
+    }
+    return (this.keyframes.length - 1) * 10;
+  }
+
+  public get progress(): number {
+    if (this.maxFrame === 0) {
+      return 0;
+    }
+    return this.frame / this.maxFrame; // 0 to 1
+  }
+
   private minFov = 55 * (Math.PI / 180); // FOV for 16/9 landscape mode.
 
   private maxFov = 81 * (Math.PI / 180); // FOV for 9/16 portrait mode.
@@ -35,23 +51,43 @@ export default class RouteCamera extends TargetCamera {
 
   private rotationLimit = 60; // degrees
 
+  private path: Nullable<Path3D> = null;
+
+  private baseDirection = new Vector3(0, 0, 1);
+
   private handleDeviceOrientationBound: (event: DeviceOrientationEvent) => void;
 
   private handleOrientationChangeBound: (event: Event) => void;
 
   public constructor(
     name: string,
+    keyframes: Keyframes,
     position: Vector3,
     scene?: Scene,
     setActiveOnSceneIfNoneActive?: boolean,
   ) {
     super(name, position, scene, setActiveOnSceneIfNoneActive);
 
+    this.keyframes = keyframes;
     this.fov = this.minFov;
     this.minZ = 0.01;
     this.usePointerInput = hasPointingDevice;
     this.useOrientationInput =
       !this.usePointerInput && !!window.DeviceOrientationEvent;
+
+    // Create Path3D object from spline curve with keyframe points.
+    const keyframePoints = this.keyframes.map(
+      (keyframe) =>
+        new Vector3(
+          keyframe.position.x,
+          keyframe.position.y,
+          keyframe.position.z,
+        ),
+    );
+    const curve = Curve3.CreateCatmullRomSpline(keyframePoints, 10, false);
+    const points = curve.getPoints();
+    this.path = new Path3D(points);
+
     this.handleDeviceOrientationBound = this.handleDeviceOrientation.bind(this);
     this.handleOrientationChangeBound = this.handleOrientationChange.bind(this);
 
@@ -122,15 +158,13 @@ export default class RouteCamera extends TargetCamera {
   }
 
   private updateCamera() {
-    const { position, rotation } = RouteCamera.getCurrentFrameData(
-      this.frame,
-      this.keyframes,
-    );
+    const targetPosition = this.getTargetPosition();
+    const targetRotation = this.getTargetRotation();
 
     // Change rotation when moving backward.
     if (!this.forward) {
-      rotation.x *= 0.4; // Look down a little when climbing stairs.
-      rotation.y += Math.PI; // Turn back.
+      targetRotation.x *= 0.4; // Look down a little when climbing stairs.
+      targetRotation.y += Math.PI; // Turn back.
     }
 
     let input = new Vector2(0, 0);
@@ -139,8 +173,8 @@ export default class RouteCamera extends TargetCamera {
     } else if (this.useOrientationInput) {
       input = this.getOrientationInput();
     }
-    rotation.x += input.y * (Math.PI * 0.1);
-    rotation.y += input.x * (Math.PI * 0.2);
+    targetRotation.x += input.y * (Math.PI * 0.1);
+    targetRotation.y += input.x * (Math.PI * 0.2);
 
     // Update camera state with tween animation.
     const deltaTime = this.getEngine().getDeltaTime();
@@ -148,16 +182,24 @@ export default class RouteCamera extends TargetCamera {
       ? deltaTime / 200
       : deltaTime / 250;
     let rotationLerpAmount = this.useOrientationInput
-      ? deltaTime / 100
-      : deltaTime / 150;
+      ? deltaTime / 150
+      : deltaTime / 200;
     if (positionLerpAmount > 1) {
       positionLerpAmount = 1;
     }
     if (rotationLerpAmount > 1) {
       rotationLerpAmount = 1;
     }
-    this.position = Vector3.Lerp(this.position, position, positionLerpAmount);
-    this.rotation = Vector3.Lerp(this.rotation, rotation, rotationLerpAmount);
+    this.position = Vector3.Lerp(
+      this.position,
+      targetPosition,
+      positionLerpAmount,
+    );
+    this.rotation = Vector3.Lerp(
+      this.rotation,
+      targetRotation,
+      rotationLerpAmount,
+    );
     this.updateFov();
   }
 
@@ -230,51 +272,41 @@ export default class RouteCamera extends TargetCamera {
     return new Vector2(xInput, yInput);
   }
 
-  private static getCurrentFrameData(
-    currentFrame: number,
-    keyframes: Keyframes,
-  ) {
-    function getCurrentFrameValue(name: 'position' | 'rotation') {
-      let x = 0;
-      let y = 0;
-      let z = 0;
-      const matchedKeyframe = keyframes.find(
-        (keyframe) =>
-          keyframe.frame === currentFrame && keyframe.camera?.[name],
-      );
-      const matchedValue = matchedKeyframe?.camera?.[name];
-      if (matchedKeyframe && matchedValue) {
-        x = matchedValue.x;
-        y = matchedValue.y;
-        z = matchedValue.z;
-      } else {
-        const previousKeyframe = [...keyframes]
-          .reverse()
-          .find(
-            (keyframe) =>
-              keyframe.frame < currentFrame && keyframe.camera?.[name],
-          ); // Last matched item in array
-        const previousValue = previousKeyframe?.camera?.[name];
-        const nextKeyframe = keyframes.find(
-          (keyframe) =>
-            keyframe.frame > currentFrame && keyframe.camera?.[name],
-        );
-        const nextValue = nextKeyframe?.camera?.[name];
-        if (previousKeyframe && previousValue && nextKeyframe && nextValue) {
-          const progressRate =
-            (currentFrame - previousKeyframe.frame) /
-            (nextKeyframe.frame - previousKeyframe.frame);
-          x = previousValue.x + (nextValue.x - previousValue.x) * progressRate;
-          y = previousValue.y + (nextValue.y - previousValue.y) * progressRate;
-          z = previousValue.z + (nextValue.z - previousValue.z) * progressRate;
-        }
-      }
-      return new Vector3(x, y, z);
+  private getTargetPosition() {
+    if (!this.path) {
+      return this.position;
     }
-    return {
-      frame: currentFrame,
-      position: getCurrentFrameValue('position'),
-      rotation: getCurrentFrameValue('rotation'),
-    };
+    const targetPosition = this.path.getPointAt(this.progress);
+    return targetPosition;
+  }
+
+  private getTargetRotation() {
+    if (!this.path) {
+      return this.rotation;
+    }
+
+    // Calculate camera Y rotation from tangent vector.
+    const targetDirection = this.path.getTangentAt(this.progress);
+    let rotationY = Math.acos(
+      Vector3.Dot(
+        this.baseDirection,
+        new Vector3(targetDirection.x, 0, targetDirection.z).normalize(),
+      ),
+    );
+    if (targetDirection.x < 0) {
+      rotationY = Math.PI * 2 - rotationY;
+    }
+
+    // Prevent camera from rotating +- 360 degrees.
+    const currentRotationY = this.forward
+      ? this.rotation.y
+      : this.rotation.y - Math.PI;
+    while (Math.abs(rotationY - currentRotationY) > Math.PI) {
+      const correction =
+        rotationY > currentRotationY ? -2 * Math.PI : 2 * Math.PI;
+      rotationY += correction;
+    }
+
+    return new Vector3(0, rotationY, 0);
   }
 }
