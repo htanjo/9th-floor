@@ -176,7 +176,36 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_7_texture',
   },
   {
+    name: 'book',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'bookshelf',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'buffet_1',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'chair_1',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'library_table',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'table_lamp_base',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
     name: 'lamp_shade',
+    emissiveIntensity: 2,
+    alphaDisabled: true,
+  },
+  {
+    name: 'table_lamp_shade',
     emissiveIntensity: 2,
     alphaDisabled: true,
   },
@@ -317,7 +346,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'stairs_back',
-    effectiveLightNames: ['stairs_light', 'top_light'],
+    effectiveLightNames: ['stairs_light'],
   },
   {
     name: 'stairs_landing',
@@ -352,7 +381,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: [
       'window_composite_light',
       'floor_1_light',
-      'top_light',
       'hallway_front_light',
     ],
   },
@@ -361,29 +389,20 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: [
       'window_composite_light',
       'floor_2_light',
-      'top_light',
       'hallway_front_light',
     ],
   },
   {
     name: 'pillar_1',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_1_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
   },
   {
     name: 'pillar_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'railing_base',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    effectiveLightNames: ['window_composite_light'],
   },
   {
     name: 'wainscot_1',
@@ -411,27 +430,15 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'buffet',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'chair',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'console_table',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'vase',
@@ -506,8 +513,40 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
+    name: 'book',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_1_light',
+      'top_light',
+    ],
+  },
+  {
+    name: 'bookshelf',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+  },
+  {
+    name: 'buffet_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+  },
+  {
+    name: 'chair_1',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+  },
+  {
+    name: 'library_table',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+  },
+  {
+    name: 'table_lamp_base',
+    effectiveLightNames: ['window_composite_light', 'top_light'],
+  },
+  {
     name: 'lamp_shade',
     effectiveLightNames: ['window_composite_light'],
+  },
+  {
+    name: 'table_lamp_shade',
+    effectiveLightNames: [],
   },
   {
     name: 'window_glass',
@@ -530,7 +569,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: [
       'floor_1_light',
       'floor_2_light',
-      'top_light',
       'hallway_front_light',
       'hallway_back_light',
     ],
