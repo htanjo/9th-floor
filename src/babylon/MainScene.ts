@@ -25,6 +25,7 @@ import lightmap4TextureUrl from '../assets/lightmap_4_0001.hdr?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
 import lightmap6TextureUrl from '../assets/lightmap_6_0001.hdr?url';
 import lightmap7TextureUrl from '../assets/lightmap_7_0001.hdr?url';
+import lightmap8TextureUrl from '../assets/lightmap_8_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 
@@ -144,6 +145,12 @@ export default class MainScene {
     assetsManager.addTextureTask(
       'lightmap_7_texture',
       lightmap7TextureUrl,
+      undefined,
+      false,
+    );
+    assetsManager.addTextureTask(
+      'lightmap_8_texture',
+      lightmap8TextureUrl,
       undefined,
       false,
     );
@@ -297,6 +304,15 @@ export default class MainScene {
 
       const stairsLight = floor1Light.clone('stairs_light') as PointLight;
       stairsLight.position = new Vector3(1.2, 2.2, -11);
+
+      const tableLight = new PointLight(
+        'table_light',
+        new Vector3(-1.7, 1.1, -7.2),
+        scene,
+      );
+      tableLight.intensity = 0.1;
+      tableLight.diffuse = Color3.FromHexString('#ffb575');
+      tableLight.radius = 0.1;
 
       const topLight = new DirectionalLight(
         'top_light',
