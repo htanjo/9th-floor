@@ -176,7 +176,7 @@ export default class MainScene {
           // Common material config
           material.ambientColor = Color3.White();
           material.maxSimultaneousLights = 10;
-          material.specularIntensity = 100; // Enhance specular lighting.
+          material.specularIntensity = 120; // Enhance specular lighting.
           material.enableSpecularAntiAliasing = true;
           material.forceIrradianceInFragment = true;
           // material.usePhysicalLightFalloff = false;
@@ -206,6 +206,7 @@ export default class MainScene {
             if (lightmapTexture) {
               material.lightmapTexture = lightmapTexture;
               material.lightmapTexture.coordinatesIndex = 1; // Use UV2.
+              material.lightmapTexture.level = 1.0;
               material.useLightmapAsShadowmap = true;
             }
 
@@ -263,7 +264,7 @@ export default class MainScene {
         new Vector3(0, 4.6, -18),
         scene,
       );
-      windowCompositeLight.intensity = 2.6;
+      windowCompositeLight.intensity = 3.0;
       windowCompositeLight.diffuse = Color3.FromHexString('#85bcff');
       windowCompositeLight.radius = 1.6;
 
@@ -295,7 +296,7 @@ export default class MainScene {
         new Vector3(0, 2.2, 0.05),
         scene,
       );
-      floor1Light.intensity = 0.15;
+      floor1Light.intensity = 0.2;
       floor1Light.diffuse = Color3.FromHexString('#ffc7a4');
       floor1Light.radius = 0.1;
 
