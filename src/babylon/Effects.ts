@@ -3,6 +3,7 @@ import {
   Color4,
   ColorGradingTexture,
   DefaultRenderingPipeline,
+  ImageProcessingConfiguration,
   // GlowLayer,
   // LensRenderingPipeline,
   Scene,
@@ -83,6 +84,9 @@ export default class Effects {
     );
     pipeline.imageProcessing.colorGradingTexture = colorGradingTexture;
     pipeline.imageProcessing.colorGradingTexture.level = 1.0;
+    pipeline.imageProcessing.toneMappingEnabled = true;
+    pipeline.imageProcessing.toneMappingType =
+      ImageProcessingConfiguration.TONEMAPPING_STANDARD;
 
     // scene.onNewCameraAddedObservable.add((camera) => {
     //   pipeline.addCamera(camera);
