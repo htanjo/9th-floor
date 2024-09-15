@@ -48,12 +48,12 @@ export const keyframes: Keyframes = [
   },
   {
     position: { x: 0.2, y: 5.1, z: -7.5 },
-    forwardRotationOffset: { x: toRadians(-5), y: toRadians(-10), z: 0 },
+    forwardRotationOffset: { x: toRadians(-7), y: toRadians(-10), z: 0 },
     backwardRotationOffset: { x: 0, y: toRadians(5), z: 0 },
   },
   {
     position: { x: 1, y: 5.1, z: -10 },
-    forwardRotationOffset: { x: toRadians(5), y: toRadians(10), z: 0 },
+    forwardRotationOffset: { x: toRadians(2), y: toRadians(10), z: 0 },
     backwardRotationOffset: { x: 0, y: toRadians(-20), z: 0 },
   },
   {
@@ -68,17 +68,17 @@ export const keyframes: Keyframes = [
   },
   {
     position: { x: 0.4, y: 3.3, z: -15.2 },
-    forwardRotationOffset: { x: toRadians(-12), y: toRadians(10), z: 0 },
+    forwardRotationOffset: { x: toRadians(-10), y: toRadians(10), z: 0 },
     backwardRotationOffset: { x: toRadians(-14), y: toRadians(10), z: 0 },
   },
   {
     position: { x: -0.4, y: 3.3, z: -15.2 },
-    forwardRotationOffset: { x: toRadians(10), y: toRadians(-5), z: 0 },
+    forwardRotationOffset: { x: toRadians(-5), y: toRadians(-5), z: 0 },
     backwardRotationOffset: { x: toRadians(-16), y: 0, z: 0 },
   },
   {
     position: { x: -1, y: 3.3, z: -14.5 },
-    forwardRotationOffset: { x: toRadians(50), y: 0, z: 0 },
+    forwardRotationOffset: { x: toRadians(45), y: 0, z: 0 },
     backwardRotationOffset: { x: toRadians(10), y: toRadians(-7), z: 0 },
   },
   {
