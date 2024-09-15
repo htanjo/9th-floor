@@ -51,9 +51,13 @@ export default class RouteCamera extends TargetCamera {
 
   private rotationLimit = 60; // degrees
 
-  private path: Nullable<Path3D> = null;
-
   private baseDirection = new Vector3(0, 0, 1);
+
+  private positionPath: Nullable<Path3D> = null;
+
+  private forwardRotationOffsetPath: Nullable<Path3D> = null;
+
+  private backwardRotationOffsetPath: Nullable<Path3D> = null;
 
   private handleDeviceOrientationBound: (event: DeviceOrientationEvent) => void;
 
@@ -76,7 +80,7 @@ export default class RouteCamera extends TargetCamera {
       !this.usePointerInput && !!window.DeviceOrientationEvent;
 
     // Create Path3D object from spline curve with keyframe points.
-    const keyframePoints = this.keyframes.map(
+    const keyPositionPoints = this.keyframes.map(
       (keyframe) =>
         new Vector3(
           keyframe.position.x,
@@ -84,9 +88,46 @@ export default class RouteCamera extends TargetCamera {
           keyframe.position.z,
         ),
     );
-    const curve = Curve3.CreateCatmullRomSpline(keyframePoints, 10, false);
-    const points = curve.getPoints();
-    this.path = new Path3D(points);
+    const positionCurve = Curve3.CreateCatmullRomSpline(
+      keyPositionPoints,
+      10,
+      false,
+    );
+    this.positionPath = new Path3D(positionCurve.getPoints());
+
+    const keyForwardRotationOffsetPoints = this.keyframes.map(
+      (keyframe) =>
+        new Vector3(
+          keyframe.forwardRotationOffset.x,
+          keyframe.forwardRotationOffset.y,
+          keyframe.forwardRotationOffset.z,
+        ),
+    );
+    const forwardRotationOffsetCurve = Curve3.CreateCatmullRomSpline(
+      keyForwardRotationOffsetPoints,
+      10,
+      false,
+    );
+    this.forwardRotationOffsetPath = new Path3D(
+      forwardRotationOffsetCurve.getPoints(),
+    );
+
+    const keyBackwardRotationOffsetPoints = this.keyframes.map(
+      (keyframe) =>
+        new Vector3(
+          keyframe.backwardRotationOffset.x,
+          keyframe.backwardRotationOffset.y,
+          keyframe.backwardRotationOffset.z,
+        ),
+    );
+    const backwardRotationOffsetCurve = Curve3.CreateCatmullRomSpline(
+      keyBackwardRotationOffsetPoints,
+      10,
+      false,
+    );
+    this.backwardRotationOffsetPath = new Path3D(
+      backwardRotationOffsetCurve.getPoints(),
+    );
 
     this.handleDeviceOrientationBound = this.handleDeviceOrientation.bind(this);
     this.handleOrientationChangeBound = this.handleOrientationChange.bind(this);
@@ -161,10 +202,9 @@ export default class RouteCamera extends TargetCamera {
     const targetPosition = this.getTargetPosition();
     const targetRotation = this.getTargetRotation();
 
-    // Change rotation when moving backward.
+    // Turn back when moving backward.
     if (!this.forward) {
-      targetRotation.x *= 0.4; // Look down a little when climbing stairs.
-      targetRotation.y += Math.PI; // Turn back.
+      targetRotation.y += Math.PI;
     }
 
     let input = new Vector2(0, 0);
@@ -273,20 +313,20 @@ export default class RouteCamera extends TargetCamera {
   }
 
   private getTargetPosition() {
-    if (!this.path) {
+    if (!this.positionPath) {
       return this.position;
     }
-    const targetPosition = this.path.getPointAt(this.progress);
+    const targetPosition = this.positionPath.getPointAt(this.progress);
     return targetPosition;
   }
 
   private getTargetRotation() {
-    if (!this.path) {
+    if (!this.positionPath) {
       return this.rotation;
     }
 
     // Calculate camera Y rotation from tangent vector.
-    const targetDirection = this.path.getTangentAt(this.progress);
+    const targetDirection = this.positionPath.getTangentAt(this.progress);
     let rotationY = Math.acos(
       Vector3.Dot(
         this.baseDirection,
@@ -307,6 +347,16 @@ export default class RouteCamera extends TargetCamera {
       rotationY += correction;
     }
 
-    return new Vector3(0, rotationY, 0);
+    // Adjust rotation based on offset settings.
+    // TODO: .getPointAt(this.progress) doesn't return expected value.
+    const rotationOffset =
+      (this.forward
+        ? this.forwardRotationOffsetPath?.getPoints()[Math.floor(this.frame)]
+        : this.backwardRotationOffsetPath?.getPoints()[
+            Math.floor(this.frame)
+          ]) || new Vector3(0, 0, 0);
+
+    const targetRotation = new Vector3(0, rotationY, 0).add(rotationOffset);
+    return targetRotation;
   }
 }
