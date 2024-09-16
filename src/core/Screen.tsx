@@ -2,23 +2,23 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Scene } from '@babylonjs/core';
 import SceneComponent from 'babylonjs-hook';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
-import Debugger from './Debugger';
-import MainScene from '../babylon/MainScene';
+import SceneManager from '../graphics/SceneManager';
+import Debugger from '../ui/Debugger';
 import classes from './Screen.module.scss';
 
 function Screen() {
-  const mainSceneRef = useRef<MainScene | null>(null);
+  const sceneManagerRef = useRef<SceneManager | null>(null);
 
   const handleScroll = useCallback((event: VirtualScrollEvent) => {
-    if (mainSceneRef.current) {
-      mainSceneRef.current.inputMove(-event.deltaY); // Negative deltaY means scroll to bottom.
+    if (sceneManagerRef.current) {
+      sceneManagerRef.current.inputMove(-event.deltaY); // Negative deltaY means scroll to bottom.
     }
   }, []);
 
   const onSceneReady = useCallback(async (scene: Scene) => {
-    const mainScene = new MainScene(scene);
-    mainScene.start();
-    mainSceneRef.current = mainScene;
+    const sceneManager = new SceneManager(scene);
+    sceneManager.start();
+    sceneManagerRef.current = sceneManager;
   }, []);
 
   useEffect(() => {

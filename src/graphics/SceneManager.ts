@@ -15,8 +15,7 @@ import {
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import Effects from './Effects';
-import { keyframes } from '../settings/keyframes';
-import { materialConfigs, meshConfigs } from '../settings/model';
+import { materialConfigs, meshConfigs } from '../settings/models';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
@@ -29,7 +28,7 @@ import lightmap8TextureUrl from '../assets/lightmap_8_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 
-export default class MainScene {
+export default class SceneManager {
   public scene: Scene;
 
   public camera: RouteCamera;
@@ -55,20 +54,7 @@ export default class MainScene {
 
   public constructor(scene: Scene) {
     this.scene = scene;
-    const initialFrame = keyframes[0];
-    const initialCameraPosition = new Vector3(
-      initialFrame.position.x,
-      initialFrame.position.y,
-      initialFrame.position.z,
-    );
-    const initialCameraRotation = new Vector3(0, Math.PI, 0);
-    this.camera = new RouteCamera(
-      'camera',
-      keyframes,
-      initialCameraPosition,
-      scene,
-    );
-    this.camera.rotation = initialCameraRotation;
+    this.camera = new RouteCamera('camera', scene);
   }
 
   public async start() {

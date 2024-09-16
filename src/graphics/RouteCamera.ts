@@ -7,8 +7,8 @@ import {
   Vector2,
   Vector3,
 } from '@babylonjs/core';
-import { Keyframes } from '../settings/keyframes';
-import { hasPointingDevice } from '../settings/config';
+import { keyframes, Keyframes } from '../settings/keyframes';
+import { hasPointingDevice } from '../settings/general';
 
 interface DeviceOrientation {
   alpha: number;
@@ -63,18 +63,21 @@ export default class RouteCamera extends TargetCamera {
 
   private handleOrientationChangeBound: (event: Event) => void;
 
-  public constructor(
-    name: string,
-    keyframes: Keyframes,
-    position: Vector3,
-    scene?: Scene,
-    setActiveOnSceneIfNoneActive?: boolean,
-  ) {
-    super(name, position, scene, setActiveOnSceneIfNoneActive);
+  public constructor(name: string, scene?: Scene) {
+    const initialFrame = keyframes[0];
+    const initialPosition = new Vector3(
+      initialFrame.position.x,
+      initialFrame.position.y,
+      initialFrame.position.z,
+    );
 
-    this.keyframes = keyframes;
+    super(name, initialPosition, scene);
+
+    this.rotation = new Vector3(0, Math.PI, 0);
     this.fov = this.minFov;
     this.minZ = 0.01;
+
+    this.keyframes = keyframes;
     this.usePointerInput = hasPointingDevice;
     this.useOrientationInput =
       !this.usePointerInput && !!window.DeviceOrientationEvent;
