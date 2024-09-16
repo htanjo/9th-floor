@@ -29,61 +29,58 @@ import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 
 export default class SceneManager {
-  public scene: Scene;
+  private scene: Scene;
 
-  public camera: RouteCamera;
-
-  private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
-
-  public get frame(): number {
-    return this.camera.frame;
-  }
-
-  public set frame(frame: number) {
-    if (frame > this.frame) {
-      this.camera.forward = true;
-    } else if (frame < this.frame) {
-      this.camera.forward = false;
-    }
-    this.camera.frame = frame;
-  }
-
-  public get maxFrame(): number {
-    return this.camera.maxFrame;
-  }
+  private camera: RouteCamera;
 
   public constructor(scene: Scene) {
     this.scene = scene;
-    this.camera = new RouteCamera('camera', scene);
-  }
+    this.camera = new RouteCamera('camera', this.scene);
 
-  public async start() {
-    const { scene, camera } = this;
-    const { maxAnisotropy } = scene.getEngine().getCaps();
-    scene.clearColor = new Color4(0, 0, 0, 0);
-    scene.ambientColor = Color3.White();
-    scene.fogMode = Scene.FOGMODE_EXP2;
-    scene.fogColor = Color3.FromHexString('#413d38');
-    scene.fogDensity = 0.025;
+    this.scene.clearColor = new Color4(0, 0, 0, 0);
+    this.scene.ambientColor = Color3.White();
+    this.scene.fogMode = Scene.FOGMODE_EXP2;
+    this.scene.fogColor = Color3.FromHexString('#413d38');
+    this.scene.fogDensity = 0.025;
 
-    // scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
+    // this.scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
 
     // const freeCamera = new FreeCamera(
     //   'freeCamera',
     //   new Vector3(0, 1.5, 0),
-    //   scene,
+    //   this.scene,
     // );
     // freeCamera.rotation.y = 180 * (Math.PI / 180);
     // freeCamera.minZ = 0.01;
     // freeCamera.fov = 57 * (Math.PI / 180);
     // freeCamera.speed = 0.1;
-    // scene.activeCamera = freeCamera;
-    // freeCamera.attachControl(scene.getEngine().getRenderingCanvas(), true);
+    // freeCamera.attachControl(this.scene.getEngine().getRenderingCanvas(), true);
+    // this.scene.activeCamera = freeCamera;
 
     // eslint-disable-next-line no-new
-    new Effects(scene, [camera]);
-    // new Effects(scene, [freeCamera]);
+    new Effects(this.scene, [this.camera]);
+    // new Effects(this.scene, [freeCamera]);
+  }
 
+  public applyFrame(frame: number) {
+    this.camera.frame = frame;
+  }
+
+  public applyDirection(direction: 'forward' | 'backward') {
+    if (direction === 'forward') {
+      this.camera.forward = true;
+    } else if (direction === 'backward') {
+      this.camera.forward = false;
+    }
+  }
+
+  public applyRotation(x: number, y: number) {
+    this.camera.inputX = x;
+    this.camera.inputY = y;
+  }
+
+  public loadAssets(callback: Function = () => {}) {
+    const { scene } = this;
     const assetsManager = new AssetsManager(scene);
     assetsManager.addMeshTask('mansion_mesh', undefined, mansionMeshUrl, '');
     assetsManager.addTextureTask(
@@ -148,6 +145,7 @@ export default class SceneManager {
     assetsManager.load();
 
     assetsManager.onFinish = (tasks) => {
+      const { maxAnisotropy } = scene.getEngine().getCaps();
       // Customize materials.
       scene.materials.forEach((material) => {
         if (material instanceof PBRMaterial) {
@@ -329,13 +327,9 @@ export default class SceneManager {
         light.includedOnlyMeshes = includedMeshes;
         /* eslint-enable no-param-reassign */
       });
-    };
-  }
 
-  public inputMove(value: number) {
-    let newFrame = this.frame + value * this.moveSpeed;
-    if (newFrame < 0) newFrame = 0;
-    if (newFrame > this.maxFrame) newFrame = this.maxFrame;
-    this.frame = newFrame;
+      // Trigger callback finally.
+      callback();
+    };
   }
 }

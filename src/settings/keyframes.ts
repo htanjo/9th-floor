@@ -10,6 +10,8 @@ function toRadians(degrees: number) {
   return degrees * (Math.PI / 180);
 }
 
+const keyframeSegments = 10;
+
 export const keyframes: Keyframes = [
   {
     position: { x: -3.4, y: 5.1, z: 3.5 },
@@ -117,3 +119,5 @@ export const keyframes: Keyframes = [
     backwardRotationOffset: { x: 0, y: toRadians(-10), z: 0 },
   },
 ];
+
+export const maxFrame = (keyframes.length - 1) * keyframeSegments;
