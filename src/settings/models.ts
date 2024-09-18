@@ -201,12 +201,12 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'lamp_shade',
-    emissiveIntensity: 2,
+    emissiveIntensity: 2.5,
     alphaDisabled: true,
   },
   {
     name: 'table_lamp_shade',
-    emissiveIntensity: 2,
+    emissiveIntensity: 1.8,
     alphaDisabled: true,
   },
   {
@@ -251,7 +251,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 2,
+    emissiveIntensity: 2.5,
   },
 ];
 
@@ -514,11 +514,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'book',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_1_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
   },
   {
     name: 'bookshelf',
