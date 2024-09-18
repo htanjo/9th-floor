@@ -74,6 +74,10 @@ export default class SceneManager {
     }
   }
 
+  public applyTurnRate(turnRate: number) {
+    this.camera.turnRate = turnRate;
+  }
+
   public applyRotation(x: number, y: number) {
     this.camera.inputX = x;
     this.camera.inputY = y;

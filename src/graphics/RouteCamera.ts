@@ -1,17 +1,12 @@
-import {
-  Curve3,
-  Nullable,
-  Path3D,
-  Scene,
-  TargetCamera,
-  Vector3,
-} from '@babylonjs/core';
+import { Curve3, Path3D, Scene, TargetCamera, Vector3 } from '@babylonjs/core';
 import { keyframes, Keyframes, maxFrame } from '../settings/keyframes';
 
 export default class RouteCamera extends TargetCamera {
   public frame = 0;
 
   public forward = true;
+
+  public turnRate = 0; // 0 to 1
 
   public inputX = 0; // -1 to 1
 
@@ -21,24 +16,17 @@ export default class RouteCamera extends TargetCamera {
 
   private maxFrame = maxFrame;
 
-  private get progress(): number {
-    if (this.maxFrame === 0) {
-      return 0;
-    }
-    return this.frame / this.maxFrame; // 0 to 1
-  }
-
   private minFov = 55 * (Math.PI / 180); // FOV for 16/9 landscape mode.
 
   private maxFov = 81 * (Math.PI / 180); // FOV for 9/16 portrait mode.
 
   private baseDirection = new Vector3(0, 0, 1);
 
-  private positionPath: Nullable<Path3D> = null;
+  private positionPath: Path3D;
 
-  private forwardRotationOffsetPath: Nullable<Path3D> = null;
+  private forwardRotationOffsetPath: Path3D;
 
-  private backwardRotationOffsetPath: Nullable<Path3D> = null;
+  private backwardRotationOffsetPath: Path3D;
 
   public constructor(name: string, scene?: Scene) {
     const initialFrame = keyframes[0];
@@ -108,6 +96,13 @@ export default class RouteCamera extends TargetCamera {
     this.getScene().registerBeforeRender(() => this.updateCamera());
   }
 
+  private getProgress(frame: number) {
+    if (this.maxFrame === 0) {
+      return 0;
+    }
+    return frame / this.maxFrame; // 0 to 1
+  }
+
   private updateFov() {
     const canvas = this.getEngine().getRenderingCanvas();
     if (canvas) {
@@ -130,11 +125,6 @@ export default class RouteCamera extends TargetCamera {
   private updateCamera() {
     const targetPosition = this.getTargetPosition();
     const targetRotation = this.getTargetRotation();
-
-    // Turn back when moving backward.
-    if (!this.forward) {
-      targetRotation.y += Math.PI;
-    }
 
     // Adjust rotation based on user input.
     targetRotation.x += this.inputY * (Math.PI * 0.1);
@@ -164,50 +154,84 @@ export default class RouteCamera extends TargetCamera {
   }
 
   private getTargetPosition() {
-    if (!this.positionPath) {
-      return this.position;
-    }
-    const targetPosition = this.positionPath.getPointAt(this.progress);
+    const progress = this.getProgress(this.frame);
+    const targetPosition = this.positionPath.getPointAt(progress);
     return targetPosition;
   }
 
-  private getTargetRotation() {
-    if (!this.positionPath) {
-      return this.rotation;
-    }
-
+  private getBaseRotation(frame: number, forward: boolean) {
     // Calculate camera Y rotation from tangent vector.
-    const targetDirection = this.positionPath.getTangentAt(this.progress);
+    const progress = this.getProgress(frame);
+    const tangent = this.positionPath.getTangentAt(progress);
     let rotationY = Math.acos(
       Vector3.Dot(
         this.baseDirection,
-        new Vector3(targetDirection.x, 0, targetDirection.z).normalize(),
+        new Vector3(tangent.x, 0, tangent.z).normalize(),
       ),
     );
-    if (targetDirection.x < 0) {
+    if (tangent.x < 0) {
       rotationY = Math.PI * 2 - rotationY;
     }
 
-    // Prevent camera from rotating +- 360 degrees.
-    const currentRotationY = this.forward
-      ? this.rotation.y
-      : this.rotation.y - Math.PI;
-    while (Math.abs(rotationY - currentRotationY) > Math.PI) {
-      const correction =
-        rotationY > currentRotationY ? -2 * Math.PI : 2 * Math.PI;
-      rotationY += correction;
+    // Turn back when moving backward.
+    if (!forward) {
+      rotationY += Math.PI;
     }
 
     // Adjust rotation based on offset settings.
-    // TODO: .getPointAt(this.progress) doesn't return expected value.
+    // Memo: .getPointAt(progress) doesn't return expected value.
+    const pointIndex = Math.floor(frame);
     const rotationOffset =
-      (this.forward
-        ? this.forwardRotationOffsetPath?.getPoints()[Math.floor(this.frame)]
-        : this.backwardRotationOffsetPath?.getPoints()[
-            Math.floor(this.frame)
-          ]) || new Vector3(0, 0, 0);
+      (forward
+        ? this.forwardRotationOffsetPath?.getPoints()[pointIndex]
+        : this.backwardRotationOffsetPath?.getPoints()[pointIndex]) ||
+      new Vector3(0, 0, 0);
 
-    const targetRotation = new Vector3(0, rotationY, 0).add(rotationOffset);
+    const baseRotation = new Vector3(0, rotationY, 0).add(rotationOffset);
+    return baseRotation;
+  }
+
+  private getTargetRotation() {
+    const baseRotation = this.getBaseRotation(this.frame, this.forward);
+    let targetRotation: Vector3;
+
+    // Calculate turning.
+    if (this.turnRate !== 0) {
+      // Turn in the opposite direction to the previous movement.
+      let previousFrame = this.forward ? this.frame - 1 : this.frame + 1;
+      if (previousFrame < 0) {
+        previousFrame = 0;
+      } else if (previousFrame > this.maxFrame) {
+        previousFrame = this.maxFrame;
+      }
+      const previousBaseRotation = this.getBaseRotation(
+        previousFrame,
+        this.forward,
+      );
+      // If rotating negatively in the previous frame, turn in the positive direction.
+      const turnPositive = baseRotation.y < previousBaseRotation.y;
+      const nextBaseRotation = this.getBaseRotation(this.frame, !this.forward);
+      if (turnPositive && nextBaseRotation.y - baseRotation.y < 0) {
+        nextBaseRotation.y += 2 * Math.PI;
+      } else if (!turnPositive && nextBaseRotation.y - baseRotation.y > 0) {
+        nextBaseRotation.y -= 2 * Math.PI;
+      }
+      targetRotation = Vector3.Lerp(
+        baseRotation,
+        nextBaseRotation,
+        this.turnRate,
+      );
+    } else {
+      targetRotation = baseRotation.clone();
+    }
+
+    // Adjust rotation direction by 360 degrees to avoid jumping.
+    while (Math.abs(targetRotation.y - this.rotation.y) > Math.PI) {
+      const correction =
+        targetRotation.y > this.rotation.y ? -2 * Math.PI : 2 * Math.PI;
+      targetRotation.y += correction;
+    }
+
     return targetRotation;
   }
 }

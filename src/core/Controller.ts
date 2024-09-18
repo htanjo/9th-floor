@@ -17,7 +17,11 @@ export default class Controller {
 
   private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
 
-  private moveDirection: 'forward' | 'backward' = 'forward';
+  private moveForward = true;
+
+  private turnFrames = 10; // Number of frames to complete turn.
+
+  private turnRate = 0; // 0 to 1
 
   private usePointerInput = false;
 
@@ -91,16 +95,51 @@ export default class Controller {
   }
 
   private inputMove(value: number) {
-    // Update frame number.
-    let newFrame = this.frame + value * this.moveSpeed;
-    if (newFrame < 0) newFrame = 0;
-    if (newFrame > this.maxFrame) newFrame = this.maxFrame;
-    this.frame = newFrame;
-    this.sceneManager.applyFrame(this.frame);
+    let frameIncrement = value;
 
-    // Update move direction.
-    this.moveDirection = value >= 0 ? 'forward' : 'backward';
-    this.sceneManager.applyDirection(this.moveDirection);
+    // Handle turn movement.
+    const reversalInput =
+      (this.moveForward && frameIncrement < 0) ||
+      (!this.moveForward && frameIncrement > 0);
+    if (this.turnRate > 0 || reversalInput) {
+      const turnRateIncrement = reversalInput
+        ? Math.abs(frameIncrement) / this.turnFrames
+        : -Math.abs(frameIncrement) / this.turnFrames;
+      let newTurnRate = this.turnRate + turnRateIncrement;
+      if (newTurnRate > 1) {
+        // Complete turn.
+        this.moveForward = !this.moveForward;
+        this.sceneManager.applyDirection(
+          this.moveForward ? 'forward' : 'backward',
+        );
+        const surplusTurnRate = newTurnRate - 1;
+        frameIncrement = this.moveForward
+          ? surplusTurnRate * this.turnFrames
+          : -surplusTurnRate * this.turnFrames;
+        newTurnRate = 0;
+      } else if (newTurnRate < 0) {
+        // Cancel turn.
+        const surplusTurnRate = -newTurnRate;
+        frameIncrement = this.moveForward
+          ? surplusTurnRate * this.turnFrames
+          : -surplusTurnRate * this.turnFrames;
+        newTurnRate = 0;
+      } else {
+        // Don't update frame during turn.
+        frameIncrement = 0;
+      }
+      this.turnRate = newTurnRate;
+      this.sceneManager.applyTurnRate(this.turnRate);
+    }
+
+    // Update frame number.
+    if (frameIncrement !== 0) {
+      let newFrame = this.frame + frameIncrement;
+      if (newFrame < 0) newFrame = 0;
+      if (newFrame > this.maxFrame) newFrame = this.maxFrame;
+      this.frame = newFrame;
+      this.sceneManager.applyFrame(this.frame);
+    }
   }
 
   private inputRotation(x: number, y: number) {
@@ -114,7 +153,8 @@ export default class Controller {
   }
 
   private handleScroll(event: VirtualScrollEvent) {
-    this.inputMove(-event.deltaY); // Scroll bottom to move forward.
+    const frame = -event.deltaY * this.moveSpeed; // Scroll bottom to move forward.
+    this.inputMove(frame); // Scroll bottom to move forward.
   }
 
   private handlePointermove(event: PointerEvent) {
