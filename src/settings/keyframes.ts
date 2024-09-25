@@ -91,22 +91,22 @@ export const keyframes: Keyframes = [
   {
     position: { x: -0.9, y: 1.5, z: -10 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
-    backwardRotationOffset: { x: 0, y: 0, z: 0 },
+    backwardRotationOffset: { x: toRadians(10), y: 0, z: 0 },
   },
   {
     position: { x: 0, y: 1.5, z: -7.5 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
-    backwardRotationOffset: { x: 0, y: 0, z: 0 },
+    backwardRotationOffset: { x: toRadians(-5), y: toRadians(30), z: 0 },
   },
   {
     position: { x: -0.2, y: 1.5, z: -5 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
-    backwardRotationOffset: { x: toRadians(10), y: toRadians(10), z: 0 },
+    backwardRotationOffset: { x: toRadians(5), y: toRadians(8), z: 0 },
   },
   {
     position: { x: 0.1, y: 1.5, z: -2.6 },
     forwardRotationOffset: { x: 0, y: toRadians(20), z: 0 },
-    backwardRotationOffset: { x: toRadians(15), y: toRadians(15), z: 0 },
+    backwardRotationOffset: { x: toRadians(15), y: toRadians(18), z: 0 },
   },
   {
     position: { x: -0.6, y: 1.5, z: -1.8 },

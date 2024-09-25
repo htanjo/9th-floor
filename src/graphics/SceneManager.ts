@@ -246,7 +246,7 @@ export default class SceneManager {
         new Vector3(0, 4.6, -18),
         scene,
       );
-      windowCompositeLight.intensity = 3.0;
+      windowCompositeLight.intensity = 3.6;
       windowCompositeLight.diffuse = Color3.FromHexString('#85bcff');
       windowCompositeLight.radius = 1.6;
 
@@ -255,7 +255,7 @@ export default class SceneManager {
         new Vector3(1.3, 5, -18),
         scene,
       );
-      windowLeftLight.intensity = 2.0;
+      windowLeftLight.intensity = 2.4;
       windowLeftLight.diffuse = Color3.FromHexString('#85bcff');
       windowLeftLight.radius = 1.0;
 
