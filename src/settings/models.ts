@@ -64,10 +64,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
-    name: 'wood',
-    lightmapTextureName: 'lightmap_2_texture',
-  },
-  {
     name: 'railing_baluster',
     lightmapTextureName: 'lightmap_3_texture',
   },
@@ -108,10 +104,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_5_texture',
   },
   {
-    name: 'buffet',
-    lightmapTextureName: 'lightmap_6_texture',
-  },
-  {
     name: 'chair',
     lightmapTextureName: 'lightmap_6_texture',
   },
@@ -124,55 +116,19 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_6_texture',
   },
   {
-    name: 'picture_canvas_01',
+    name: 'picture_canvas',
     lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_02',
+    name: 'picture_frame_black',
     lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_03',
+    name: 'picture_frame_gold',
     lightmapTextureName: 'lightmap_7_texture',
   },
   {
-    name: 'picture_canvas_04',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_canvas_05',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_canvas_06',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_canvas_07',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_canvas_08',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_canvas_09',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_canvas_10',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_frame_1',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_frame_2',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_frame_3',
+    name: 'picture_frame_silver',
     lightmapTextureName: 'lightmap_7_texture',
   },
   {
@@ -184,7 +140,7 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
-    name: 'buffet_1',
+    name: 'buffet',
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
@@ -192,7 +148,19 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
+    name: 'clock',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'corner_cabinet',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
     name: 'library_table',
+    lightmapTextureName: 'lightmap_8_texture',
+  },
+  {
+    name: 'signboard',
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
@@ -201,7 +169,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'lamp_shade',
-    emissiveIntensity: 2.5,
+    emissiveIntensity: 2.8,
     alphaDisabled: true,
   },
   {
@@ -212,7 +180,7 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'window_glass',
     refractionTextureName: 'environment_texture',
-    emissiveIntensity: 0.5,
+    emissiveIntensity: 0.6,
     emissiveColorHex: '#7bb3ff',
     fogEnabled: false,
     zOffset: 0.1, // Avoid z-fighting.
@@ -251,7 +219,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 2.5,
+    emissiveIntensity: 2.8,
   },
 ];
 
@@ -334,14 +302,6 @@ export const meshConfigs: MeshConfigs = [
       'window_composite_light',
       'floor_1_light',
       'floor_2_light',
-    ],
-  },
-  {
-    name: 'signboard',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
     ],
   },
   {
@@ -429,10 +389,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_sun_light', 'top_light'],
   },
   {
-    name: 'buffet',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
     name: 'chair',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
@@ -449,47 +405,19 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
-    name: 'picture_canvas_01',
+    name: 'picture_canvas_1',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+  },
+  {
+    name: 'picture_canvas_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
-    name: 'picture_canvas_02',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    name: 'picture_frame_black_1',
+    effectiveLightNames: ['window_composite_light', 'table_light', 'top_light'],
   },
   {
-    name: 'picture_canvas_03',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_04',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_05',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_06',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_07',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_08',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_09',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_canvas_10',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-  },
-  {
-    name: 'picture_frame_1',
+    name: 'picture_frame_black_2',
     effectiveLightNames: [
       'window_composite_light',
       'floor_2_light',
@@ -497,7 +425,7 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
-    name: 'picture_frame_2',
+    name: 'picture_frame_gold_2',
     effectiveLightNames: [
       'window_composite_light',
       'floor_2_light',
@@ -505,7 +433,7 @@ export const meshConfigs: MeshConfigs = [
     ],
   },
   {
-    name: 'picture_frame_3',
+    name: 'picture_frame_silver_2',
     effectiveLightNames: [
       'window_composite_light',
       'floor_2_light',
@@ -525,12 +453,32 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
   },
   {
+    name: 'buffet_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
     name: 'chair_1',
     effectiveLightNames: ['window_composite_light', 'table_light'],
   },
   {
+    name: 'clock',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+  },
+  {
+    name: 'corner_cabinet_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+  },
+  {
+    name: 'corner_cabinet_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+  },
+  {
     name: 'library_table',
     effectiveLightNames: ['window_composite_light', 'table_light'],
+  },
+  {
+    name: 'signboard',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
   },
   {
     name: 'table_lamp_base',
