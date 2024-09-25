@@ -59,7 +59,7 @@ export default class Effects {
     );
     pipeline.samples = 4; // Enable MSAA.
     // pipeline.fxaaEnabled = true; // Enable FXAA.
-    // pipeline.sharpenEnabled = true;
+    pipeline.sharpenEnabled = true;
     pipeline.bloomEnabled = true;
     pipeline.bloomThreshold = 0.08;
     pipeline.bloomWeight = 0.26;
