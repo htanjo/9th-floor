@@ -104,6 +104,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_5_texture',
   },
   {
+    name: 'cat',
+    lightmapTextureName: 'lightmap_6_texture',
+  },
+  {
     name: 'chair',
     lightmapTextureName: 'lightmap_6_texture',
   },
@@ -386,7 +390,11 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'window_frame',
-    effectiveLightNames: ['window_sun_light', 'top_light'],
+    effectiveLightNames: ['window_sun_light', 'room_composite_light'],
+  },
+  {
+    name: 'cat',
+    effectiveLightNames: ['window_sun_light'],
   },
   {
     name: 'chair',

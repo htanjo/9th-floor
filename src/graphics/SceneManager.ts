@@ -288,6 +288,15 @@ export default class SceneManager {
       const stairsLight = floor1Light.clone('stairs_light') as PointLight;
       stairsLight.position = new Vector3(1.2, 2.2, -11);
 
+      const roomCompositeLight = new PointLight(
+        'room_composite_light',
+        new Vector3(0, 4.5, -13),
+        scene,
+      );
+      roomCompositeLight.intensity = 0.2;
+      roomCompositeLight.diffuse = Color3.FromHexString('#ffc7a4');
+      roomCompositeLight.radius = 0.2;
+
       const tableLight = new PointLight(
         'table_light',
         new Vector3(-1.7, 1.1, -7.2),
