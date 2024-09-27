@@ -306,8 +306,6 @@ export default class SceneManager {
 
       // Clone meshes and lights by node.
       const room2 = room.clone('room_2', null) as typeof room;
-      room2.position.x = -6.8;
-      room2.position.z = 4;
       room2.rotation.y = Math.PI;
       const hallway2 = hallway.clone('hallway_2', null) as typeof hallway;
       hallway2.position.y = -3.6;
