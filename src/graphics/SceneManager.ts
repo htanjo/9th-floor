@@ -10,12 +10,13 @@ import {
   PointLight,
   Scene,
   TextureAssetTask,
+  TransformNode,
   Vector3,
 } from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import Effects from './Effects';
-import { materialConfigs, meshConfigs } from '../settings/models';
+import { lightConfigs, materialConfigs, meshConfigs } from '../settings/models';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
@@ -150,6 +151,69 @@ export default class SceneManager {
 
     assetsManager.onFinish = (tasks) => {
       const { maxAnisotropy } = scene.getEngine().getCaps();
+
+      // Add transform nodes to group meshes and lights.
+      const room = new TransformNode('room', scene);
+      const roomMeshes = new TransformNode('room_meshes', scene);
+      roomMeshes.rotation.y = Math.PI;
+      roomMeshes.scaling.z = -1;
+      roomMeshes.parent = room;
+      const hallway = new TransformNode('hallway', scene);
+      const hallwayMeshes = new TransformNode('hallway_meshes', scene);
+      hallwayMeshes.rotation.y = Math.PI;
+      hallwayMeshes.scaling.z = -1;
+      hallwayMeshes.parent = hallway;
+
+      // Move meshes into transform nodes.
+      meshConfigs.forEach((meshConfig) => {
+        const { name, parentNodeName } = meshConfig;
+        const mesh = scene.getMeshByName(name);
+        if (mesh) {
+          mesh.parent = scene.getNodeByName(parentNodeName);
+        }
+      });
+
+      // Add specular lights.
+      lightConfigs.forEach((lightConfig) => {
+        let light: PointLight | DirectionalLight;
+        const {
+          name,
+          variant,
+          position,
+          intensity,
+          diffuseColorHex,
+          radius,
+          parentNodeName,
+        } = lightConfig;
+        switch (variant) {
+          case 'DirectionalLight':
+            light = new DirectionalLight(
+              name,
+              new Vector3(position.x, position.y, position.z),
+              scene,
+            );
+            break;
+          case 'PointLight':
+          default:
+            light = new PointLight(
+              name,
+              new Vector3(position.x, position.y, position.z),
+              scene,
+            );
+        }
+        light.intensity = intensity;
+        light.diffuse = Color3.FromHexString(diffuseColorHex);
+        light.radius = radius;
+        light.shadowEnabled = false;
+        light.parent = scene.getNodeByName(parentNodeName);
+      });
+
+      // Remove unnecessary glTF node.
+      const rootNode = scene.getNodeByName('__root__');
+      if (rootNode) {
+        rootNode.dispose();
+      }
+
       // Customize materials.
       scene.materials.forEach((material) => {
         if (material instanceof PBRMaterial) {
@@ -240,104 +304,31 @@ export default class SceneManager {
         }
       });
 
-      // Add specular lights.
-      const windowCompositeLight = new PointLight(
-        'window_composite_light',
-        new Vector3(0, 4.6, -18),
-        scene,
-      );
-      windowCompositeLight.intensity = 3.6;
-      windowCompositeLight.diffuse = Color3.FromHexString('#85bcff');
-      windowCompositeLight.radius = 1.6;
+      // Clone meshes and lights by node.
+      const room2 = room.clone('room_2', null) as typeof room;
+      room2.position.x = -6.8;
+      room2.position.z = 4;
+      room2.rotation.y = Math.PI;
+      const hallway2 = hallway.clone('hallway_2', null) as typeof hallway;
+      hallway2.position.y = -3.6;
 
-      const windowLeftLight = new PointLight(
-        'window_left_light',
-        new Vector3(1.3, 5, -18),
-        scene,
-      );
-      windowLeftLight.intensity = 2.4;
-      windowLeftLight.diffuse = Color3.FromHexString('#85bcff');
-      windowLeftLight.radius = 1.0;
-
-      const windowRightLight = windowLeftLight.clone(
-        'window_right_light',
-      ) as PointLight;
-      windowRightLight.position = new Vector3(-1.3, 5, -18);
-
-      const windowSunLight = new PointLight(
-        'window_sun_light',
-        new Vector3(-2, 8, -24),
-        scene,
-      );
-      windowSunLight.intensity = 0.4;
-      windowSunLight.diffuse = Color3.FromHexString('#fff6e7');
-      windowSunLight.radius = 1.6;
-
-      const floor1Light = new PointLight(
-        'floor_1_light',
-        new Vector3(0, 2.2, 0.05),
-        scene,
-      );
-      floor1Light.intensity = 0.2;
-      floor1Light.diffuse = Color3.FromHexString('#ffc7a4');
-      floor1Light.radius = 0.1;
-
-      const floor2Light = floor1Light.clone('floor_2_light') as PointLight;
-      floor2Light.position = new Vector3(0, 5.8, 0.05);
-
-      const stairsLight = floor1Light.clone('stairs_light') as PointLight;
-      stairsLight.position = new Vector3(1.2, 2.2, -11);
-
-      const roomCompositeLight = new PointLight(
-        'room_composite_light',
-        new Vector3(0, 4.5, -13),
-        scene,
-      );
-      roomCompositeLight.intensity = 0.2;
-      roomCompositeLight.diffuse = Color3.FromHexString('#ffc7a4');
-      roomCompositeLight.radius = 0.2;
-
-      const tableLight = new PointLight(
-        'table_light',
-        new Vector3(-1.7, 1.1, -7.2),
-        scene,
-      );
-      tableLight.intensity = 0.1;
-      tableLight.diffuse = Color3.FromHexString('#ffb575');
-      tableLight.radius = 0.1;
-
-      const topLight = new DirectionalLight(
-        'top_light',
-        new Vector3(0.4, -1.0, -0.3),
-        scene,
-      );
-      topLight.intensity = 0.15;
-      topLight.diffuse = Color3.FromHexString('#ffdfc7');
-      topLight.radius = 0.2;
-
-      const hallwayFrontLight = new PointLight(
-        'hallway_front_light',
-        new Vector3(-3.4, 5.8, -4.05),
-        scene,
-      );
-      hallwayFrontLight.intensity = 0.25;
-      hallwayFrontLight.diffuse = Color3.FromHexString('#ffc7a4');
-      hallwayFrontLight.radius = 0.1;
-
-      const hallwayBackLight = hallwayFrontLight.clone(
-        'hallway_back_light',
-      ) as PointLight;
-      hallwayBackLight.position = new Vector3(-3.4, 5.8, 8.05);
-
+      // Limit effective lights based on config and node groups.
       scene.lights.forEach((light) => {
         /* eslint-disable no-param-reassign */
+        const baseLightName = light.name.split('.').pop() as string; // name: '<parentNodeName>.<baseLightName>'
         const includedMeshNames = meshConfigs
-          .filter((config) => config.effectiveLightNames.includes(light.name))
+          .filter((config) =>
+            config.effectiveLightNames.includes(baseLightName),
+          )
           .map((config) => config.name);
-        const includedMeshes = scene.meshes.filter((mesh) =>
-          includedMeshNames.includes(mesh.name),
-        );
-        light.includedOnlyMeshes = includedMeshes;
+        const parentNode = light.parent;
+        if (parentNode) {
+          const includedMeshes = parentNode.getChildMeshes().filter((mesh) => {
+            const baseMeshName = mesh.name.split('.').pop() as string; // name: '<parentNodeName>.<baseMeshName>'
+            return includedMeshNames.includes(baseMeshName);
+          });
+          light.includedOnlyMeshes = includedMeshes;
+        }
         /* eslint-enable no-param-reassign */
       });
 
