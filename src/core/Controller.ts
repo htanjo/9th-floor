@@ -33,6 +33,10 @@ export default class Controller {
 
   private deviceOrientation: DeviceOrientation | null = null;
 
+  private routeOffset = 0;
+
+  private routeInvert = false;
+
   private sceneManager: SceneManager;
 
   private virtualScroll: VirtualScroll | null = null;
@@ -132,13 +136,35 @@ export default class Controller {
       this.sceneManager.applyTurnRate(this.turnRate);
     }
 
-    // Update frame number.
+    // Handle frame update.
     if (frameIncrement !== 0) {
-      let newFrame = this.frame + frameIncrement;
-      if (newFrame < 0) newFrame = 0;
-      if (newFrame > this.maxFrame) newFrame = this.maxFrame;
-      this.frame = newFrame;
-      this.sceneManager.applyFrame(this.frame);
+      const newFrame = this.frame + frameIncrement;
+      if (newFrame < 0) {
+        // If player exceeds the start point, restart a route in the opposite direction.
+        this.routeInvert = !this.routeInvert;
+        this.moveForward = true;
+        this.turnRate = 0;
+        this.frame = -newFrame;
+        this.sceneManager.applyRoute(this.routeOffset, this.routeInvert);
+        this.sceneManager.applyDirection('forward');
+        this.sceneManager.applyTurnRate(this.turnRate);
+        this.sceneManager.applyFrame(this.frame);
+      } else if (newFrame > this.maxFrame) {
+        // If player exceeds the end point, decrement the offset and restart a route in the opposite direction.
+        this.routeOffset -= 1;
+        this.routeInvert = !this.routeInvert;
+        this.moveForward = true;
+        this.turnRate = 0;
+        this.frame = newFrame - this.maxFrame;
+        this.sceneManager.applyRoute(this.routeOffset, this.routeInvert);
+        this.sceneManager.applyDirection('forward');
+        this.sceneManager.applyTurnRate(this.turnRate);
+        this.sceneManager.applyFrame(this.frame);
+      } else {
+        // Otherwise, just update the frame number.
+        this.frame = newFrame;
+        this.sceneManager.applyFrame(this.frame);
+      }
     }
   }
 
@@ -153,8 +179,13 @@ export default class Controller {
   }
 
   private handleScroll(event: VirtualScrollEvent) {
-    const frame = -event.deltaY * this.moveSpeed; // Scroll bottom to move forward.
-    this.inputMove(frame); // Scroll bottom to move forward.
+    // On even offset floors (0, -2, -4, ...), scroll bottom (negative deltaY) to move forward.
+    const evenOffset = this.routeOffset % 2 === 0;
+    let multiplier = evenOffset ? -1 : 1;
+    // In invert route, reverse the direction.
+    multiplier = this.routeInvert ? -multiplier : multiplier;
+    const frameIncrement = event.deltaY * this.moveSpeed * multiplier;
+    this.inputMove(frameIncrement);
   }
 
   private handlePointermove(event: PointerEvent) {

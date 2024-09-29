@@ -1,5 +1,6 @@
 import { Curve3, Path3D, Scene, TargetCamera, Vector3 } from '@babylonjs/core';
 import { keyframes, Keyframes, maxFrame } from '../settings/keyframes';
+import { floorHeight } from '../settings/models';
 
 export default class RouteCamera extends TargetCamera {
   public frame = 0;
@@ -22,11 +23,11 @@ export default class RouteCamera extends TargetCamera {
 
   private baseDirection = new Vector3(0, 0, 1);
 
-  private positionPath: Path3D;
+  private positionPath!: Path3D;
 
-  private forwardRotationOffsetPath: Path3D;
+  private forwardRotationOffsetPath!: Path3D;
 
-  private backwardRotationOffsetPath: Path3D;
+  private backwardRotationOffsetPath!: Path3D;
 
   public constructor(name: string, scene?: Scene) {
     const initialFrame = keyframes[0];
@@ -43,13 +44,21 @@ export default class RouteCamera extends TargetCamera {
     this.minZ = 0.01;
     this.keyframes = keyframes;
 
+    // Define route data with Path3D object.
+    this.updateRoute(0, false);
+
+    // Register event for each rendering frame.
+    this.getScene().registerBeforeRender(() => this.updateCamera());
+  }
+
+  public updateRoute(offset = 0, invert = false) {
     // Create Path3D object from spline curve with keyframe points.
     const keyPositionPoints = this.keyframes.map(
       (keyframe) =>
         new Vector3(
-          keyframe.position.x,
-          keyframe.position.y,
-          keyframe.position.z,
+          invert ? -keyframe.position.x : keyframe.position.x,
+          keyframe.position.y + offset * floorHeight,
+          invert ? -keyframe.position.z : keyframe.position.z,
         ),
     );
     const positionCurve = Curve3.CreateCatmullRomSpline(
@@ -92,8 +101,6 @@ export default class RouteCamera extends TargetCamera {
     this.backwardRotationOffsetPath = new Path3D(
       backwardRotationOffsetCurve.getPoints(),
     );
-
-    this.getScene().registerBeforeRender(() => this.updateCamera());
   }
 
   private getProgress(frame: number) {

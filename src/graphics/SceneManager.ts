@@ -16,7 +16,12 @@ import {
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import Effects from './Effects';
-import { lightConfigs, materialConfigs, meshConfigs } from '../settings/models';
+import {
+  floorHeight,
+  lightConfigs,
+  materialConfigs,
+  meshConfigs,
+} from '../settings/models';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
@@ -34,6 +39,8 @@ export default class SceneManager {
 
   private camera: RouteCamera;
 
+  private rootNode: TransformNode;
+
   public constructor(scene: Scene) {
     this.scene = scene;
     this.camera = new RouteCamera('camera', this.scene);
@@ -43,6 +50,8 @@ export default class SceneManager {
     this.scene.fogMode = Scene.FOGMODE_EXP2;
     this.scene.fogColor = Color3.FromHexString('#413d38');
     this.scene.fogDensity = 0.025;
+
+    this.rootNode = new TransformNode('root_node', scene);
 
     // this.scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
 
@@ -82,6 +91,12 @@ export default class SceneManager {
   public applyRotation(x: number, y: number) {
     this.camera.inputX = x;
     this.camera.inputY = y;
+  }
+
+  public applyRoute(offset: number, invert: boolean) {
+    const { rootNode } = this;
+    this.camera.updateRoute(offset, invert);
+    rootNode.position.y = offset * floorHeight;
   }
 
   public loadAssets(callback: Function = () => {}) {
@@ -209,9 +224,9 @@ export default class SceneManager {
       });
 
       // Remove unnecessary glTF node.
-      const rootNode = scene.getNodeByName('__root__');
-      if (rootNode) {
-        rootNode.dispose();
+      const gltfRootNode = scene.getNodeByName('__root__');
+      if (gltfRootNode) {
+        gltfRootNode.dispose();
       }
 
       // Customize materials.
@@ -308,7 +323,13 @@ export default class SceneManager {
       const room2 = room.clone('room_2', null) as typeof room;
       room2.rotation.y = Math.PI;
       const hallway2 = hallway.clone('hallway_2', null) as typeof hallway;
-      hallway2.position.y = -3.6;
+      hallway2.position.y = -floorHeight;
+
+      // Move all nodes into root node.
+      room.parent = this.rootNode;
+      room2.parent = this.rootNode;
+      hallway.parent = this.rootNode;
+      hallway2.parent = this.rootNode;
 
       // Limit effective lights based on config and node groups.
       scene.lights.forEach((light) => {

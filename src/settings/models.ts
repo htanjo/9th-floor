@@ -35,6 +35,8 @@ export interface LightConfig {
 
 export type LightConfigs = LightConfig[];
 
+export const floorHeight = 3.6;
+
 export const materialConfigs: MaterialConfigs = [
   {
     name: 'ceiling_center',

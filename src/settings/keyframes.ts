@@ -14,12 +14,7 @@ const keyframeSegments = 10;
 
 export const keyframes: Keyframes = [
   {
-    position: { x: 0, y: 5.1, z: 1.5 },
-    forwardRotationOffset: { x: 0, y: 0, z: 0 },
-    backwardRotationOffset: { x: 0, y: 0, z: 0 },
-  },
-  {
-    position: { x: 0, y: 5.1, z: -0.6 },
+    position: { x: 0, y: 5.1, z: 0 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
     backwardRotationOffset: { x: 0, y: 0, z: 0 },
   },
@@ -117,6 +112,16 @@ export const keyframes: Keyframes = [
     position: { x: 1.1, y: 1.5, z: -4 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
     backwardRotationOffset: { x: 0, y: toRadians(-10), z: 0 },
+  },
+  {
+    position: { x: -0.2, y: 1.5, z: -3.2 },
+    forwardRotationOffset: { x: 0, y: 0, z: 0 },
+    backwardRotationOffset: { x: 0, y: 0, z: 0 },
+  },
+  {
+    position: { x: 0, y: 1.5, z: 0 },
+    forwardRotationOffset: { x: 0, y: 0, z: 0 },
+    backwardRotationOffset: { x: 0, y: 0, z: 0 },
   },
 ];
 
