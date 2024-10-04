@@ -127,6 +127,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_6_texture',
   },
   {
+    name: 'cat_cloth',
+    lightmapTextureName: 'lightmap_6_texture',
+  },
+  {
     name: 'chair',
     lightmapTextureName: 'lightmap_6_texture',
   },
@@ -192,12 +196,12 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'lamp_shade',
-    emissiveIntensity: 2.8,
+    emissiveIntensity: 2.5,
     alphaDisabled: true,
   },
   {
     name: 'table_lamp_shade',
-    emissiveIntensity: 1.8,
+    emissiveIntensity: 1,
     alphaDisabled: true,
   },
   {
@@ -242,7 +246,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 2.8,
+    emissiveIntensity: 2.5,
     alphaDisabled: true,
   },
 ];
@@ -336,11 +340,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'wall_stairs',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_1_light',
-      'floor_2_light',
-    ],
+    effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -435,8 +435,33 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
-    name: 'lamp_base',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    name: 'lamp_base_back_1',
+    effectiveLightNames: ['lamp_center_1_light', 'window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_base_back_2',
+    effectiveLightNames: ['lamp_center_2_light', 'window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_base_center_1',
+    effectiveLightNames: ['lamp_center_1_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_base_center_2',
+    effectiveLightNames: ['lamp_center_2_light', 'floor_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_base_front_1',
+    effectiveLightNames: ['lamp_front_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_base_front_2',
+    effectiveLightNames: ['lamp_front_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -446,7 +471,12 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'cat',
-    effectiveLightNames: ['window_sun_light'],
+    effectiveLightNames: ['window_distant_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'cat_cloth',
+    effectiveLightNames: ['window_distant_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -480,34 +510,22 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'picture_frame_black_1',
-    effectiveLightNames: ['window_composite_light', 'table_light', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'table_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'picture_frame_black_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'picture_frame_gold_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'picture_frame_silver_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -562,7 +580,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'table_lamp_base',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    effectiveLightNames: ['stairs_light', 'top_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -611,8 +629,13 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_lamp_base',
-    effectiveLightNames: ['hallway_top_light'],
+    name: 'hallway_lamp_base_front',
+    effectiveLightNames: ['hallway_lamp_front_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_lamp_base_back',
+    effectiveLightNames: ['hallway_lamp_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
@@ -643,11 +666,24 @@ export const lightConfigs: LightConfigs = [
     position: {
       x: 3.4,
       y: 4.6,
-      z: -20,
+      z: -20.5,
     },
     intensity: 3.6,
     diffuseColorHex: '#85bcff',
     radius: 1.6,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'window_distant_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 5,
+      z: -24,
+    },
+    intensity: 2.8,
+    diffuseColorHex: '#fffcde',
+    radius: 1.2,
     parentNodeName: 'room',
   },
   {
@@ -684,8 +720,8 @@ export const lightConfigs: LightConfigs = [
       y: 8,
       z: -26,
     },
-    intensity: 0.4,
-    diffuseColorHex: '#fff6e7',
+    intensity: 0.3,
+    diffuseColorHex: '#ffebc9',
     radius: 1.6,
     parentNodeName: 'room',
   },
@@ -713,6 +749,19 @@ export const lightConfigs: LightConfigs = [
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
     radius: 0.1,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'floor_2_distant_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 6.2,
+      z: 3,
+    },
+    intensity: 1.8,
+    diffuseColorHex: '#ffc7a4',
+    radius: 0.2,
     parentNodeName: 'room',
   },
   {
@@ -751,7 +800,7 @@ export const lightConfigs: LightConfigs = [
     },
     intensity: 0.1,
     diffuseColorHex: '#ffb575',
-    radius: 0.1,
+    radius: 0.2,
     parentNodeName: 'room',
   },
   {
@@ -791,6 +840,58 @@ export const lightConfigs: LightConfigs = [
     intensity: 0.15,
     diffuseColorHex: '#ffdfc7',
     radius: 0.2,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'lamp_center_1_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 2.2,
+      z: -10,
+    },
+    intensity: 0.18,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.3,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'lamp_center_2_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 5.8,
+      z: -10,
+    },
+    intensity: 0.18,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.3,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'lamp_front_1_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.6,
+      y: 2.2,
+      z: -2.6,
+    },
+    intensity: 0.02,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.1,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'lamp_front_2_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.6,
+      y: 5.8,
+      z: -2.6,
+    },
+    intensity: 0.02,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.1,
     parentNodeName: 'room',
   },
   {
@@ -842,6 +943,32 @@ export const lightConfigs: LightConfigs = [
     },
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
+    radius: 0.1,
+    parentNodeName: 'hallway',
+  },
+  {
+    name: 'hallway_lamp_front_light',
+    variant: 'PointLight',
+    position: {
+      x: 0.2,
+      y: 5.8,
+      z: -5.4,
+    },
+    intensity: 0.02,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.1,
+    parentNodeName: 'hallway',
+  },
+  {
+    name: 'hallway_lamp_back_light',
+    variant: 'PointLight',
+    position: {
+      x: -0.2,
+      y: 5.8,
+      z: 5.4,
+    },
+    intensity: 0.02,
+    diffuseColorHex: '#ffdfc7',
     radius: 0.1,
     parentNodeName: 'hallway',
   },

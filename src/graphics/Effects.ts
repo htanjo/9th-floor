@@ -67,13 +67,13 @@ export default class Effects {
     pipeline.bloomScale = 0.5; // Large value reduces flickering, but hits performance.
 
     pipeline.chromaticAberrationEnabled = true;
-    pipeline.chromaticAberration.aberrationAmount = 20;
+    pipeline.chromaticAberration.aberrationAmount = 30;
     pipeline.chromaticAberration.radialIntensity = 1;
 
     // pipeline.imageProcessing.contrast = 1.2;
     // pipeline.imageProcessing.exposure = 1.3;
     pipeline.imageProcessing.vignetteEnabled = true;
-    pipeline.imageProcessing.vignetteWeight = 2.0;
+    pipeline.imageProcessing.vignetteWeight = 3.0;
     pipeline.imageProcessing.vignetteCameraFov = vignetteCameraFov;
     pipeline.imageProcessing.vignetteStretch = 0;
     pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#003a70ff');

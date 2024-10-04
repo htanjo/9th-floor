@@ -50,6 +50,7 @@ export default class SceneManager {
     this.scene.fogMode = Scene.FOGMODE_EXP2;
     this.scene.fogColor = Color3.FromHexString('#413d38');
     this.scene.fogDensity = 0.025;
+    this.scene.imageProcessingConfiguration.toneMappingEnabled = true;
 
     this.rootNode = new TransformNode('root_node', scene);
 
@@ -237,7 +238,7 @@ export default class SceneManager {
           // Common material config
           material.ambientColor = Color3.White();
           material.maxSimultaneousLights = 10;
-          material.specularIntensity = 120; // Enhance specular lighting.
+          material.specularIntensity = 150; // Enhance specular lighting.
           material.enableSpecularAntiAliasing = true;
           material.forceIrradianceInFragment = true;
           // material.usePhysicalLightFalloff = false;

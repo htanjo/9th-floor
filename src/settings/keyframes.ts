@@ -50,7 +50,7 @@ export const keyframes: Keyframes = [
   },
   {
     position: { x: 4.4, y: 5.1, z: -12 },
-    forwardRotationOffset: { x: toRadians(2), y: toRadians(10), z: 0 },
+    forwardRotationOffset: { x: toRadians(2), y: toRadians(35), z: 0 },
     backwardRotationOffset: { x: 0, y: toRadians(-20), z: 0 },
   },
   {
