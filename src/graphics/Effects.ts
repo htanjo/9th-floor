@@ -88,9 +88,9 @@ export default class Effects {
     pipeline.imageProcessing.toneMappingType =
       ImageProcessingConfiguration.TONEMAPPING_STANDARD;
 
-    // scene.onNewCameraAddedObservable.add((camera) => {
-    //   pipeline.addCamera(camera);
-    // });
+    scene.onNewCameraAddedObservable.add((camera) => {
+      pipeline.addCamera(camera);
+    });
 
     // const lensEffect = new LensRenderingPipeline(
     //   'lensEffect',

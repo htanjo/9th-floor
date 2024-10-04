@@ -5,7 +5,6 @@ import {
   DirectionalLight,
   Engine,
   EquiRectangularCubeTextureAssetTask,
-  // FreeCamera,
   PBRMaterial,
   PointLight,
   Scene,
@@ -43,7 +42,7 @@ export default class SceneManager {
 
   public constructor(scene: Scene) {
     this.scene = scene;
-    this.camera = new RouteCamera('camera', this.scene);
+    this.camera = new RouteCamera('route_camera', this.scene);
 
     this.scene.clearColor = new Color4(0, 0, 0, 0);
     this.scene.ambientColor = Color3.White();
@@ -55,18 +54,6 @@ export default class SceneManager {
     this.rootNode = new TransformNode('root_node', scene);
 
     // this.scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
-
-    // const freeCamera = new FreeCamera(
-    //   'freeCamera',
-    //   new Vector3(0, 1.5, 0),
-    //   this.scene,
-    // );
-    // freeCamera.rotation.y = 180 * (Math.PI / 180);
-    // freeCamera.minZ = 0.01;
-    // freeCamera.fov = 57 * (Math.PI / 180);
-    // freeCamera.speed = 0.1;
-    // freeCamera.attachControl(this.scene.getEngine().getRenderingCanvas(), true);
-    // this.scene.activeCamera = freeCamera;
 
     // eslint-disable-next-line no-new
     new Effects(this.scene, [this.camera]);
