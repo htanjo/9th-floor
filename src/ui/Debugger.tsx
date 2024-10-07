@@ -29,7 +29,7 @@ function Debugger() {
       if (!scene.getCameraByName('free_camera')) {
         const freeCamera = new FreeCamera(
           'free_camera',
-          new Vector3(0, 1.5, 0),
+          new Vector3(0, 5.1, 0),
           scene,
         );
         freeCamera.rotation.y = 180 * (Math.PI / 180);
@@ -70,10 +70,10 @@ function Debugger() {
       <button type="button" className={classes.button} onClick={toggleCamera}>
         Camera
       </button>
-      <div className={classes.stats}>FPS: {fps}</div>
       <div className={classes.stats}>
         Free Camera: {freeCameraEnabled.toString()}
       </div>
+      <div className={classes.stats}>FPS: {fps}</div>
     </div>
   );
 }
