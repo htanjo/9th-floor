@@ -45,17 +45,17 @@ export const keyframes: Keyframes = [
   },
   {
     position: { x: 3.6, y: 5.1, z: -9.5 },
-    forwardRotationOffset: { x: toRadians(-7), y: toRadians(-10), z: 0 },
+    forwardRotationOffset: { x: toRadians(-7), y: toRadians(-40), z: 0 },
     backwardRotationOffset: { x: 0, y: toRadians(5), z: 0 },
   },
   {
     position: { x: 4.4, y: 5.1, z: -12 },
-    forwardRotationOffset: { x: toRadians(2), y: toRadians(35), z: 0 },
-    backwardRotationOffset: { x: 0, y: toRadians(-20), z: 0 },
+    forwardRotationOffset: { x: toRadians(2), y: toRadians(30), z: 0 },
+    backwardRotationOffset: { x: 0, y: toRadians(-45), z: 0 },
   },
   {
     position: { x: 4.6, y: 4.5, z: -14 },
-    forwardRotationOffset: { x: toRadians(35), y: toRadians(3), z: 0 },
+    forwardRotationOffset: { x: toRadians(45), y: toRadians(3), z: 0 },
     backwardRotationOffset: { x: toRadians(5), y: toRadians(-5), z: 0 },
   },
   {

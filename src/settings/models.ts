@@ -195,6 +195,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
+    name: 'sword',
+    lightmapTextureName: 'lightmap_9_texture',
+  },
+  {
     name: 'lamp_shade',
     emissiveIntensity: 2.5,
     alphaDisabled: true,
@@ -429,7 +433,7 @@ export const meshConfigs: MeshConfigs = [
     name: 'wainscot_2',
     effectiveLightNames: [
       'window_composite_light',
-      'floor_2_light',
+      'floor_2_distant_light',
       'top_light',
     ],
     parentNodeName: 'room_meshes',
@@ -491,11 +495,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'vase',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -570,7 +570,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'library_table',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
+    effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -581,6 +581,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'table_lamp_base',
     effectiveLightNames: ['stairs_light', 'top_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'sword',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
   },
   {

@@ -30,6 +30,7 @@ import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
 import lightmap6TextureUrl from '../assets/lightmap_6_0001.hdr?url';
 import lightmap7TextureUrl from '../assets/lightmap_7_0001.hdr?url';
 import lightmap8TextureUrl from '../assets/lightmap_8_0001.hdr?url';
+import lightmap9TextureUrl from '../assets/lightmap_9_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.jpg';
 
@@ -57,7 +58,6 @@ export default class SceneManager {
 
     // eslint-disable-next-line no-new
     new Effects(this.scene, [this.camera]);
-    // new Effects(this.scene, [freeCamera]);
   }
 
   public applyFrame(frame: number) {
@@ -136,6 +136,12 @@ export default class SceneManager {
     assetsManager.addTextureTask(
       'lightmap_8_texture',
       lightmap8TextureUrl,
+      undefined,
+      false,
+    );
+    assetsManager.addTextureTask(
+      'lightmap_9_texture',
+      lightmap9TextureUrl,
       undefined,
       false,
     );
