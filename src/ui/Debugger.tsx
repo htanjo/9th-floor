@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { FreeCamera, Scene, Vector3 } from '@babylonjs/core';
 import '@babylonjs/inspector';
 import { useAfterRender, useScene } from 'babylonjs-hook';
+import RouteCamera from '../graphics/RouteCamera';
 import classes from './Debugger.module.scss';
 
 function Debugger() {
@@ -25,16 +26,13 @@ function Debugger() {
       if (!scene) {
         return currentFreeCameraEnabled;
       }
+      const routeCamera = scene.getCameraByName('route_camera') as RouteCamera;
+      let freeCamera = scene.getCameraByName('free_camera') as FreeCamera;
       // Initialize FreeCamera for the first time.
-      if (!scene.getCameraByName('free_camera')) {
-        const freeCamera = new FreeCamera(
-          'free_camera',
-          new Vector3(0, 5.1, 0),
-          scene,
-        );
+      if (!freeCamera) {
+        freeCamera = new FreeCamera('free_camera', Vector3.Zero(), scene);
         freeCamera.rotation.y = 180 * (Math.PI / 180);
         freeCamera.minZ = 0.01;
-        freeCamera.fov = 57 * (Math.PI / 180);
         freeCamera.speed = 0.1;
         freeCamera.attachControl(scene.getEngine().getRenderingCanvas(), true);
         freeCamera.keysUp.push(87); // W
@@ -44,10 +42,11 @@ function Debugger() {
       }
       // Toggle active camera.
       if (currentFreeCameraEnabled) {
-        const routeCamera = scene.getCameraByName('route_camera');
         scene.activeCamera = routeCamera;
       } else {
-        const freeCamera = scene.getCameraByName('free_camera');
+        freeCamera.position = routeCamera.position.clone();
+        freeCamera.rotation = routeCamera.rotation.clone();
+        freeCamera.fov = routeCamera.fov;
         scene.activeCamera = freeCamera;
       }
       return !currentFreeCameraEnabled;
