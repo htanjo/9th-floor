@@ -230,8 +230,8 @@ export default class SceneManager {
 
           // Common material config
           material.ambientColor = Color3.White();
-          material.maxSimultaneousLights = 10;
-          material.specularIntensity = 150; // Enhance specular lighting.
+          material.maxSimultaneousLights = 4;
+          material.specularIntensity = 200; // Enhance specular lighting.
           material.enableSpecularAntiAliasing = true;
           material.forceIrradianceInFragment = true;
           // material.usePhysicalLightFalloff = false;

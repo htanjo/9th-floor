@@ -89,17 +89,17 @@ export const keyframes: Keyframes = [
     backwardRotationOffset: { x: toRadians(10), y: 0, z: 0 },
   },
   {
-    position: { x: 3.4, y: 1.5, z: -9.5 },
+    position: { x: 3.5, y: 1.5, z: -9.5 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
     backwardRotationOffset: { x: toRadians(-5), y: toRadians(30), z: 0 },
   },
   {
-    position: { x: 3.2, y: 1.5, z: -7 },
+    position: { x: 3.3, y: 1.5, z: -7 },
     forwardRotationOffset: { x: 0, y: 0, z: 0 },
     backwardRotationOffset: { x: toRadians(5), y: toRadians(8), z: 0 },
   },
   {
-    position: { x: 3.5, y: 1.5, z: -4.6 },
+    position: { x: 3.6, y: 1.5, z: -4.7 },
     forwardRotationOffset: { x: 0, y: toRadians(20), z: 0 },
     backwardRotationOffset: { x: toRadians(15), y: toRadians(18), z: 0 },
   },

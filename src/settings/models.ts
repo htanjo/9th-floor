@@ -171,10 +171,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
-    name: 'chair_1',
-    lightmapTextureName: 'lightmap_8_texture',
-  },
-  {
     name: 'clock',
     lightmapTextureName: 'lightmap_8_texture',
   },
@@ -195,12 +191,16 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
+    name: 'phonograph',
+    lightmapTextureName: 'lightmap_9_texture',
+  },
+  {
     name: 'sword',
     lightmapTextureName: 'lightmap_9_texture',
   },
   {
     name: 'lamp_shade',
-    emissiveIntensity: 2.5,
+    emissiveIntensity: 3.6,
     alphaDisabled: true,
   },
   {
@@ -250,7 +250,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 2.5,
+    emissiveIntensity: 3.6,
     alphaDisabled: true,
   },
 ];
@@ -484,8 +484,13 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
-    name: 'chair',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    name: 'chair_1',
+    effectiveLightNames: ['window_inner_light', 'table_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'chair_2',
+    effectiveLightNames: ['window_inner_light', 'chair_front_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -545,12 +550,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'buffet_2',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'chair_1',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -570,7 +570,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'library_table',
-    effectiveLightNames: ['window_composite_light'],
+    effectiveLightNames: ['window_composite_light', 'table_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -581,6 +581,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'table_lamp_base',
     effectiveLightNames: ['stairs_light', 'top_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'phonograph',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -692,6 +697,19 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
   },
   {
+    name: 'window_inner_light',
+    variant: 'PointLight',
+    position: {
+      x: 3,
+      y: 4.4,
+      z: -15,
+    },
+    intensity: 4.2,
+    diffuseColorHex: '#85bcff',
+    radius: 1.6,
+    parentNodeName: 'room',
+  },
+  {
     name: 'window_left_light',
     variant: 'PointLight',
     position: {
@@ -699,7 +717,7 @@ export const lightConfigs: LightConfigs = [
       y: 5,
       z: -20,
     },
-    intensity: 2.4,
+    intensity: 2,
     diffuseColorHex: '#85bcff',
     radius: 1,
     parentNodeName: 'room',
@@ -712,7 +730,7 @@ export const lightConfigs: LightConfigs = [
       y: 5,
       z: -20,
     },
-    intensity: 2.4,
+    intensity: 2,
     diffuseColorHex: '#85bcff',
     radius: 1,
     parentNodeName: 'room',
@@ -842,7 +860,7 @@ export const lightConfigs: LightConfigs = [
       y: -1,
       z: -0.3,
     },
-    intensity: 0.15,
+    intensity: 0.1,
     diffuseColorHex: '#ffdfc7',
     radius: 0.2,
     parentNodeName: 'room',
@@ -897,6 +915,19 @@ export const lightConfigs: LightConfigs = [
     intensity: 0.02,
     diffuseColorHex: '#ffdfc7',
     radius: 0.1,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'chair_front_2_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 5.8,
+      z: -3.8,
+    },
+    intensity: 0.3,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.2,
     parentNodeName: 'room',
   },
   {
