@@ -4,10 +4,12 @@ import {
   Color4,
   DirectionalLight,
   Engine,
-  EquiRectangularCubeTextureAssetTask,
+  HDRCubeTextureAssetTask,
+  MeshBuilder,
   PBRMaterial,
   PointLight,
   Scene,
+  StandardMaterial,
   TextureAssetTask,
   TransformNode,
   Vector3,
@@ -32,7 +34,7 @@ import lightmap7TextureUrl from '../assets/lightmap_7_0001.hdr?url';
 import lightmap8TextureUrl from '../assets/lightmap_8_0001.hdr?url';
 import lightmap9TextureUrl from '../assets/lightmap_9_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
-import environmentTextureUrl from '../assets/environment.jpg';
+import environmentTextureUrl from '../assets/environment.hdr?url';
 
 export default class SceneManager {
   private scene: Scene;
@@ -151,7 +153,7 @@ export default class SceneManager {
       undefined,
       false,
     );
-    assetsManager.addEquiRectangularCubeTextureAssetTask(
+    assetsManager.addHDRCubeTextureTask(
       'environment_texture',
       environmentTextureUrl,
       512,
@@ -160,6 +162,11 @@ export default class SceneManager {
 
     assetsManager.onFinish = (tasks) => {
       const { maxAnisotropy } = scene.getEngine().getCaps();
+
+      // Create skybox.
+      const skybox = MeshBuilder.CreateBox('skybox', { size: 1000 }, scene);
+      skybox.material = new StandardMaterial('skybox', scene);
+      skybox.material.backFaceCulling = false;
 
       // Add transform nodes to group meshes and lights.
       const room = new TransformNode('room', scene);
@@ -268,16 +275,17 @@ export default class SceneManager {
             // Refraction config
             const refractionTexture = refractionTextureName
               ? tasks.find(
-                  (task): task is EquiRectangularCubeTextureAssetTask =>
-                    task instanceof EquiRectangularCubeTextureAssetTask &&
+                  (task): task is HDRCubeTextureAssetTask =>
+                    task instanceof HDRCubeTextureAssetTask &&
                     task.name === refractionTextureName,
                 )?.texture
               : undefined;
             if (refractionTexture) {
               material.refractionTexture = refractionTexture;
               material.indexOfRefraction = 0.9;
+              material.alpha = 0;
               material.metallic = 0;
-              material.roughness = 1;
+              material.roughness = 0;
               material.disableLighting = true;
             }
 
