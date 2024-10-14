@@ -191,6 +191,16 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_8_texture',
   },
   {
+    name: 'decal_common',
+    lightmapTextureName: 'lightmap_9_texture',
+    zOffset: -0.1,
+  },
+  {
+    name: 'decal_spiderweb',
+    lightmapTextureName: 'lightmap_9_texture',
+    zOffset: -0.3,
+  },
+  {
     name: 'phonograph',
     lightmapTextureName: 'lightmap_9_texture',
   },
@@ -226,6 +236,18 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_cornice',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_decal_common',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_decal_spiderweb',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_decal',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
@@ -584,6 +606,35 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'decal_spiderweb',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'decal_floor_1',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'decal_floor_2',
+    effectiveLightNames: [
+      'window_left_light',
+      'window_right_light',
+      'floor_2_light',
+    ],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'decal_wall_1',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'decal_wall_2',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'phonograph',
     effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
@@ -620,6 +671,16 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'hallway_cornice',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_decal_spiderweb',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_decal_wall',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
