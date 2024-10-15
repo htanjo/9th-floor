@@ -167,6 +167,7 @@ export default class SceneManager {
       const skybox = MeshBuilder.CreateBox('skybox', { size: 1000 }, scene);
       skybox.material = new StandardMaterial('skybox', scene);
       skybox.material.backFaceCulling = false;
+      skybox.parent = this.rootNode; // If skybox is visible from window, don't include it in rootNode.
 
       // Add transform nodes to group meshes and lights.
       const room = new TransformNode('room', scene);
