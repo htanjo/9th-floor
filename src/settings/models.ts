@@ -255,7 +255,15 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_floor',
+    name: 'hallway_floor_center',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_floor_edge',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_floor_gate',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
@@ -264,6 +272,10 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_wainscot',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
+    name: 'hallway_pillar',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
@@ -455,7 +467,7 @@ export const meshConfigs: MeshConfigs = [
     name: 'wainscot_2',
     effectiveLightNames: [
       'window_composite_light',
-      'floor_2_distant_light',
+      'floor_2_light',
       'top_light',
     ],
     parentNodeName: 'room_meshes',
@@ -597,7 +609,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'signboard',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    effectiveLightNames: ['window_composite_light', 'signboard_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -607,7 +619,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'decal_spiderweb',
-    effectiveLightNames: ['window_composite_light'],
+    effectiveLightNames: [],
     parentNodeName: 'room_meshes',
   },
   {
@@ -676,7 +688,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'hallway_decal_spiderweb',
-    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    effectiveLightNames: [], // Avoid unexpected specular and z-fighting.
     parentNodeName: 'hallway_meshes',
   },
   {
@@ -695,7 +707,17 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_floor',
+    name: 'hallway_floor_center',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_floor_edge',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_floor_gate',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
@@ -707,6 +729,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'hallway_lamp_base_back',
     effectiveLightNames: ['hallway_lamp_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_pillar',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
@@ -872,6 +899,19 @@ export const lightConfigs: LightConfigs = [
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
     radius: 0.2,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'signboard_light',
+    variant: 'PointLight',
+    position: {
+      x: 3,
+      y: 7,
+      z: -4,
+    },
+    intensity: 0.08,
+    diffuseColorHex: '#ffeed3',
+    radius: 0.1,
     parentNodeName: 'room',
   },
   {
