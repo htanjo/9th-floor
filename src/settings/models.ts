@@ -905,9 +905,9 @@ export const lightConfigs: LightConfigs = [
     name: 'signboard_light',
     variant: 'PointLight',
     position: {
-      x: 3,
-      y: 7,
-      z: -4,
+      x: 3.4,
+      y: 6.4,
+      z: -3,
     },
     intensity: 0.08,
     diffuseColorHex: '#ffeed3',
