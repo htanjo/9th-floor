@@ -29,10 +29,6 @@ import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0001.hdr?url';
 import lightmap4TextureUrl from '../assets/lightmap_4_0001.hdr?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
-import lightmap6TextureUrl from '../assets/lightmap_6_0001.hdr?url';
-import lightmap7TextureUrl from '../assets/lightmap_7_0001.hdr?url';
-import lightmap8TextureUrl from '../assets/lightmap_8_0001.hdr?url';
-import lightmap9TextureUrl from '../assets/lightmap_9_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentTextureUrl from '../assets/environment.hdr?url';
 
@@ -120,30 +116,6 @@ export default class SceneManager {
     assetsManager.addTextureTask(
       'lightmap_5_texture',
       lightmap5TextureUrl,
-      undefined,
-      false,
-    );
-    assetsManager.addTextureTask(
-      'lightmap_6_texture',
-      lightmap6TextureUrl,
-      undefined,
-      false,
-    );
-    assetsManager.addTextureTask(
-      'lightmap_7_texture',
-      lightmap7TextureUrl,
-      undefined,
-      false,
-    );
-    assetsManager.addTextureTask(
-      'lightmap_8_texture',
-      lightmap8TextureUrl,
-      undefined,
-      false,
-    );
-    assetsManager.addTextureTask(
-      'lightmap_9_texture',
-      lightmap9TextureUrl,
       undefined,
       false,
     );

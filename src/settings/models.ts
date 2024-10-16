@@ -47,6 +47,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
+    name: 'cornice',
+    lightmapTextureName: 'lightmap_1_texture',
+  },
+  {
     name: 'floor_center',
     lightmapTextureName: 'lightmap_1_texture',
   },
@@ -63,12 +67,44 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
+    name: 'wainscot',
+    lightmapTextureName: 'lightmap_1_texture',
+  },
+  {
     name: 'wall_room',
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
     name: 'wall_stairs',
     lightmapTextureName: 'lightmap_1_texture',
+  },
+  {
+    name: 'door',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
+    name: 'lamp_base',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
+    name: 'pillar',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
+    name: 'railing_baluster',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
+    name: 'railing_base',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
+    name: 'railing_handrail',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
+    name: 'railing_newel',
+    lightmapTextureName: 'lightmap_2_texture',
   },
   {
     name: 'stairs_back',
@@ -83,130 +119,94 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
-    name: 'railing_baluster',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'railing_handrail',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'railing_newel',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'cornice',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'door',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'pillar',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'railing_base',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'wainscot',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'lamp_base',
-    lightmapTextureName: 'lightmap_5_texture',
-  },
-  {
     name: 'window_frame',
-    lightmapTextureName: 'lightmap_5_texture',
-  },
-  {
-    name: 'cat',
-    lightmapTextureName: 'lightmap_6_texture',
-  },
-  {
-    name: 'cat_cloth',
-    lightmapTextureName: 'lightmap_6_texture',
-  },
-  {
-    name: 'chair',
-    lightmapTextureName: 'lightmap_6_texture',
-  },
-  {
-    name: 'console_table',
-    lightmapTextureName: 'lightmap_6_texture',
-  },
-  {
-    name: 'vase',
-    lightmapTextureName: 'lightmap_6_texture',
-  },
-  {
-    name: 'picture_canvas',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_frame_black',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_frame_gold',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'picture_frame_silver',
-    lightmapTextureName: 'lightmap_7_texture',
-  },
-  {
-    name: 'book',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_2_texture',
   },
   {
     name: 'bookshelf',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
   },
   {
     name: 'buffet',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'chair',
+    lightmapTextureName: 'lightmap_3_texture',
   },
   {
     name: 'clock',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'console_table',
+    lightmapTextureName: 'lightmap_3_texture',
   },
   {
     name: 'corner_cabinet',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
   },
   {
     name: 'library_table',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'picture_canvas',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'picture_frame_black',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'picture_frame_gold',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'picture_frame_silver',
+    lightmapTextureName: 'lightmap_3_texture',
   },
   {
     name: 'signboard',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
   },
   {
     name: 'table_lamp_base',
-    lightmapTextureName: 'lightmap_8_texture',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'book',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'cat',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'cat_cloth',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'phonograph',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'sword',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'vase',
+    lightmapTextureName: 'lightmap_4_texture',
   },
   {
     name: 'decal_common',
-    lightmapTextureName: 'lightmap_9_texture',
+    lightmapTextureName: 'lightmap_5_texture',
     zOffset: -0.1,
   },
   {
     name: 'decal_spiderweb',
-    lightmapTextureName: 'lightmap_9_texture',
+    lightmapTextureName: 'lightmap_5_texture',
     zOffset: -0.3,
-  },
-  {
-    name: 'phonograph',
-    lightmapTextureName: 'lightmap_9_texture',
-  },
-  {
-    name: 'sword',
-    lightmapTextureName: 'lightmap_9_texture',
   },
   {
     name: 'lamp_shade',
@@ -311,6 +311,16 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'cornice_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'cornice_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'floor_1_center',
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
     parentNodeName: 'room_meshes',
@@ -367,6 +377,24 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'wainscot_1',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_1_light',
+      'top_light',
+    ],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'wainscot_2',
+    effectiveLightNames: [
+      'window_composite_light',
+      'floor_2_light',
+      'top_light',
+    ],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'wall_room_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'room_meshes',
@@ -379,46 +407,6 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'wall_stairs',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'stairs_back',
-    effectiveLightNames: ['stairs_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'stairs_landing',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'stairs_steps',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'railing_baluster',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'railing_handrail',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'railing_newel',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'cornice_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'cornice_2',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -436,39 +424,6 @@ export const meshConfigs: MeshConfigs = [
       'window_composite_light',
       'floor_2_light',
       'outer_floor_2_light',
-    ],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'pillar_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'pillar_2',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'railing_base',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'wainscot_1',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_1_light',
-      'top_light',
-    ],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'wainscot_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
     ],
     parentNodeName: 'room_meshes',
   },
@@ -503,18 +458,73 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'pillar_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'pillar_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'railing_baluster',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'railing_base',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'railing_handrail',
+    effectiveLightNames: ['window_composite_light', 'top_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'railing_newel',
+    effectiveLightNames: ['window_composite_light', 'top_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'stairs_back',
+    effectiveLightNames: ['stairs_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'stairs_landing',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'stairs_steps',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'window_frame',
     effectiveLightNames: ['window_sun_light', 'room_composite_light'],
     parentNodeName: 'room_meshes',
   },
   {
-    name: 'cat',
-    effectiveLightNames: ['window_distant_light'],
+    name: 'bookshelf',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'room_meshes',
   },
   {
-    name: 'cat_cloth',
-    effectiveLightNames: ['window_distant_light'],
+    name: 'buffet_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'buffet_2',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'library_table',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -528,13 +538,23 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'clock',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'console_table',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
-    name: 'vase',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    name: 'corner_cabinet_1',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'corner_cabinet_2',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -568,46 +588,6 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
-    name: 'book',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'bookshelf',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'buffet_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'buffet_2',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'clock',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'corner_cabinet_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'corner_cabinet_2',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'library_table',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
     name: 'signboard',
     effectiveLightNames: ['window_composite_light', 'signboard_light'],
     parentNodeName: 'room_meshes',
@@ -615,6 +595,36 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'table_lamp_base',
     effectiveLightNames: ['stairs_light', 'top_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'cat',
+    effectiveLightNames: ['window_distant_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'cat_cloth',
+    effectiveLightNames: ['window_distant_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'phonograph',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'sword',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'vase',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'book',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -644,16 +654,6 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'decal_wall_2',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'phonograph',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
-    parentNodeName: 'room_meshes',
-  },
-  {
-    name: 'sword',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
