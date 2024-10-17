@@ -88,6 +88,11 @@ export default class SceneManager {
   public loadAssets(callback: Function = () => {}) {
     const { scene } = this;
     const assetsManager = new AssetsManager(scene);
+
+    // Hide built-in loading screen.
+    assetsManager.useDefaultLoadingScreen = false;
+
+    // Load assets.
     assetsManager.addMeshTask('mansion_mesh', undefined, mansionMeshUrl, '');
     assetsManager.addTextureTask(
       'lightmap_1_texture',

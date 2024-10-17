@@ -1,9 +1,8 @@
-.startScreen {
+.splashScreen {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  transition: opacity 500ms;
+  z-index: 2;
 }
 .content {
   position: absolute;
@@ -18,10 +17,6 @@
   text-shadow: rgba(0, 0, 0, 0.6) 0 0 16px;
   color: #dbc6ae;
   pointer-events: none;
-  transition: transform 300ms;
-  @media (pointer: coarse) {
-    transition: transform 100ms; // Reduce smooth scroll effects on touch devices.
-  }
 }
 .title {
   position: absolute;
@@ -42,30 +37,28 @@
   }
   .emphasized {
     font-size: 1.4em;
-    color: #ff5b35;
+    // color: #ff5b35;
+    color: #b7a696;
   }
   .collapsed {
     letter-spacing: -0.12em;
   }
-  .subtitle {
-    margin-top: 4px;
-  }
 }
-.navigation {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  text-align: center;
+.loading {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.loadingText {
   font-size: 1.2rem;
-  .icon {
-    vertical-align: -0.1em;
-    font-size: 0.8em;
-  }
 }
 .backdrop {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 1);
 }

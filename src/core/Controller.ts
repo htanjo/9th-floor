@@ -23,7 +23,7 @@ export default class Controller {
 
   private turnRate = 0; // 0 to 1
 
-  private turnEnabled = true;
+  private turnEnabled = false;
 
   private usePointerInput = false;
 
@@ -39,7 +39,9 @@ export default class Controller {
 
   private routeInvert = false;
 
-  private startScreenEnabled = true;
+  private splashScreenEnabled = true;
+
+  private startScreenEnabled = false;
 
   private startScreenProgress = 0;
 
@@ -87,6 +89,21 @@ export default class Controller {
           this.orientationChangeListener,
         );
       }
+
+      // Hide splash screen and show start screen.
+      // Slightly delay it to prevent frame drop due to the initial rendering.
+      setTimeout(() => {
+        this.splashScreenEnabled = false;
+        this.startScreenEnabled = true;
+        this.emitter.dispatchEvent(new CustomEvent('splashScreenToggle'));
+        this.emitter.dispatchEvent(new CustomEvent('startScreenToggle'));
+      }, 1000);
+    });
+  }
+
+  public onSplashScreenToggle(callback: (enabled: boolean) => void) {
+    this.emitter.addEventListener('splashScreenToggle', () => {
+      callback(this.splashScreenEnabled);
     });
   }
 
@@ -205,7 +222,9 @@ export default class Controller {
   }
 
   private handleScroll(event: VirtualScrollEvent) {
-    if (this.startScreenEnabled) {
+    if (this.splashScreenEnabled) {
+      // Do nothing during the splash screen.
+    } else if (this.startScreenEnabled) {
       const scrollMultiplier = hasTouchscreen ? 2 : 1;
       const nextStartScreenProgress =
         this.startScreenProgress -
