@@ -1,0 +1,71 @@
+.startScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: opacity 500ms;
+}
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  font-family: 'EB Garamond', serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.4rem;
+  text-shadow: rgba(0, 0, 0, 0.6) 0 0 16px;
+  color: #dbc6ae;
+  pointer-events: none;
+  transition: transform 300ms;
+  @media (pointer: coarse) {
+    transition: transform 100ms; // Reduce smooth scroll effects on touch devices.
+  }
+}
+.title {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -16vh;
+  text-align: center;
+  h1 {
+    margin: 0;
+    white-space: nowrap;
+    font-family: 'Macondo', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: min(16vw, 14vh);
+    letter-spacing: -0.03em;
+    text-shadow: none;
+    color: #ffffff;
+  }
+  .emphasized {
+    font-size: 1.4em;
+    color: #ff5b35;
+  }
+  .collapsed {
+    letter-spacing: -0.12em;
+  }
+  .subtitle {
+    margin-top: 4px;
+  }
+}
+.navigation {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.6rem;
+  .icon {
+    vertical-align: -0.1em;
+    font-size: 0.8em;
+  }
+}
+.backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

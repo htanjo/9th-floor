@@ -1,7 +1,7 @@
 import { Scene } from '@babylonjs/core';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
 import SceneManager from '../graphics/SceneManager';
-import { hasPointingDevice } from '../settings/general';
+import { hasPointingDevice, hasTouchscreen } from '../settings/general';
 import { maxFrame } from '../settings/keyframes';
 
 interface DeviceOrientation {
@@ -23,6 +23,8 @@ export default class Controller {
 
   private turnRate = 0; // 0 to 1
 
+  private turnEnabled = true;
+
   private usePointerInput = false;
 
   private useOrientationInput = false;
@@ -37,7 +39,13 @@ export default class Controller {
 
   private routeInvert = false;
 
+  private startScreenEnabled = true;
+
+  private startScreenProgress = 0;
+
   private sceneManager: SceneManager;
+
+  private emitter: EventTarget;
 
   private virtualScroll: VirtualScroll | null = null;
 
@@ -54,6 +62,9 @@ export default class Controller {
     this.pointermoveListener = this.handlePointermove.bind(this);
     this.deviceOrientationListener = this.handleDeviceOrientation.bind(this);
     this.orientationChangeListener = this.handleOrientationChange.bind(this);
+
+    // Prepare for custom events.
+    this.emitter = new EventTarget();
 
     // Set up 3D scene.
     this.sceneManager = new SceneManager(scene);
@@ -79,6 +90,18 @@ export default class Controller {
     });
   }
 
+  public onStartScreenToggle(callback: (enabled: boolean) => void) {
+    this.emitter.addEventListener('startScreenToggle', () => {
+      callback(this.startScreenEnabled);
+    });
+  }
+
+  public onStartScreenProgress(callback: (progress: number) => void) {
+    this.emitter.addEventListener('startScreenProgress', () => {
+      callback(this.startScreenProgress);
+    });
+  }
+
   public destroy() {
     if (this.virtualScroll) {
       this.virtualScroll.destroy();
@@ -96,6 +119,9 @@ export default class Controller {
         this.orientationChangeListener,
       );
     }
+    // TODO: Remove custom event listeners.
+    // if (this.emitter) {
+    // }
   }
 
   private inputMove(value: number) {
@@ -105,7 +131,7 @@ export default class Controller {
     const reversalInput =
       (this.moveForward && frameIncrement < 0) ||
       (!this.moveForward && frameIncrement > 0);
-    if (this.turnRate > 0 || reversalInput) {
+    if (this.turnEnabled && (this.turnRate > 0 || reversalInput)) {
       const turnRateIncrement = reversalInput
         ? Math.abs(frameIncrement) / this.turnFrames
         : -Math.abs(frameIncrement) / this.turnFrames;
@@ -179,13 +205,40 @@ export default class Controller {
   }
 
   private handleScroll(event: VirtualScrollEvent) {
-    // On even offset floors (0, -2, -4, ...), scroll bottom (negative deltaY) to move forward.
-    const evenOffset = this.routeOffset % 2 === 0;
-    let multiplier = evenOffset ? -1 : 1;
-    // In invert route, reverse the direction.
-    multiplier = this.routeInvert ? -multiplier : multiplier;
-    const frameIncrement = event.deltaY * this.moveSpeed * multiplier;
-    this.inputMove(frameIncrement);
+    if (this.startScreenEnabled) {
+      const scrollMultiplier = hasTouchscreen ? 2 : 1;
+      const nextStartScreenProgress =
+        this.startScreenProgress -
+        event.deltaY / (window.innerHeight * scrollMultiplier);
+      if (nextStartScreenProgress < 0) {
+        // Stop at the initial position.
+        this.startScreenProgress = 0;
+        this.emitter.dispatchEvent(new CustomEvent('startScreenProgress'));
+      } else if (nextStartScreenProgress > 1) {
+        // Hide the start screen and start playable mode.
+        this.startScreenProgress = 1;
+        this.startScreenEnabled = false;
+        this.emitter.dispatchEvent(new CustomEvent('startScreenProgress'));
+        this.emitter.dispatchEvent(new CustomEvent('startScreenToggle'));
+        this.turnEnabled = true;
+      } else {
+        // Play animations during the start screen.
+        this.startScreenProgress = nextStartScreenProgress;
+        this.emitter.dispatchEvent(new CustomEvent('startScreenProgress'));
+        const frameIncrement =
+          event.deltaY * this.moveSpeed * -nextStartScreenProgress; // From 0 to 100% speed
+        // TODO: This may cause unexpected progress when user scrolls up and down during the start screen.
+        this.inputMove(frameIncrement);
+      }
+    } else {
+      // On even offset floors (0, -2, -4, ...), scroll bottom (negative deltaY) to move forward.
+      const evenOffset = this.routeOffset % 2 === 0;
+      let multiplier = evenOffset ? -1 : 1;
+      // In invert route, reverse the direction.
+      multiplier = this.routeInvert ? -multiplier : multiplier;
+      const frameIncrement = event.deltaY * this.moveSpeed * multiplier;
+      this.inputMove(frameIncrement);
+    }
   }
 
   private handlePointermove(event: PointerEvent) {
