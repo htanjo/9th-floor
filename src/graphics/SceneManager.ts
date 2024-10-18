@@ -30,7 +30,8 @@ import lightmap3TextureUrl from '../assets/lightmap_3_0001.hdr?url';
 import lightmap4TextureUrl from '../assets/lightmap_4_0001.hdr?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
-import environmentTextureUrl from '../assets/environment.hdr?url';
+import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
+import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
 
 export default class SceneManager {
   private scene: Scene;
@@ -131,8 +132,13 @@ export default class SceneManager {
       false,
     );
     assetsManager.addHDRCubeTextureTask(
-      'environment_texture',
-      environmentTextureUrl,
+      'environment_outdoor_texture',
+      environmentOutdoorTextureUrl,
+      512,
+    );
+    assetsManager.addHDRCubeTextureTask(
+      'environment_mirror_texture',
+      environmentMirrorTextureUrl,
       512,
     );
     assetsManager.load();
@@ -227,6 +233,7 @@ export default class SceneManager {
           if (materialConfig) {
             const {
               lightmapTextureName,
+              reflectionTextureName,
               refractionTextureName,
               emissiveColorHex,
               emissiveIntensity,
@@ -248,6 +255,20 @@ export default class SceneManager {
               material.lightmapTexture.coordinatesIndex = 1; // Use UV2.
               material.lightmapTexture.level = 1.0;
               material.useLightmapAsShadowmap = true;
+            }
+
+            // Reflection config
+            const reflectionTexture = reflectionTextureName
+              ? tasks.find(
+                  (task): task is HDRCubeTextureAssetTask =>
+                    task instanceof HDRCubeTextureAssetTask &&
+                    task.name === reflectionTextureName,
+                )?.texture
+              : undefined;
+            if (reflectionTexture) {
+              material.reflectionTexture = reflectionTexture;
+              material.reflectivityColor = Color3.White();
+              material.environmentIntensity = 1.0;
             }
 
             // Refraction config

@@ -1,6 +1,7 @@
 export interface MaterialConfig {
   name: string;
   lightmapTextureName?: string;
+  reflectionTextureName?: string;
   refractionTextureName?: string;
   emissiveColorHex?: string;
   emissiveIntensity?: number;
@@ -187,6 +188,15 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
+    name: 'mirror_frame',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'mirror_surface',
+    lightmapTextureName: 'lightmap_4_texture',
+    reflectionTextureName: 'environment_mirror_texture',
+  },
+  {
     name: 'phonograph',
     lightmapTextureName: 'lightmap_4_texture',
   },
@@ -220,9 +230,9 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'window_glass',
-    refractionTextureName: 'environment_texture',
-    emissiveIntensity: 0.6,
-    emissiveColorHex: '#7bb3ff',
+    refractionTextureName: 'environment_outdoor_texture',
+    emissiveIntensity: 0.3,
+    emissiveColorHex: '#95aeff',
     fogEnabled: false,
     zOffset: 0.1, // Avoid z-fighting.
   },
@@ -605,6 +615,16 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'cat_cloth',
     effectiveLightNames: ['window_distant_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'mirror_frame',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'mirror_surface',
+    effectiveLightNames: [],
     parentNodeName: 'room_meshes',
   },
   {
