@@ -205,6 +205,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
+    name: 'typewriter',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
     name: 'vase',
     lightmapTextureName: 'lightmap_4_texture',
   },
@@ -225,7 +229,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'table_lamp_shade',
-    emissiveIntensity: 1,
+    emissiveIntensity: 1.5,
     alphaDisabled: true,
   },
   {
@@ -604,7 +608,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'table_lamp_base',
-    effectiveLightNames: ['stairs_light', 'top_light'],
+    effectiveLightNames: ['lamp_center_1_light', 'top_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -635,6 +639,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'sword',
     effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'typewriter',
+    effectiveLightNames: ['lamp_center_1_light', 'table_light'],
     parentNodeName: 'room_meshes',
   },
   {
