@@ -201,6 +201,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
+    name: 'poster',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
     name: 'sword',
     lightmapTextureName: 'lightmap_4_texture',
   },
@@ -537,8 +541,18 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'buffet_stairs',
+    effectiveLightNames: ['window_composite_light', 'stairs_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'library_table',
     effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'library_table_stairs',
+    effectiveLightNames: ['window_composite_light', 'stairs_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -552,6 +566,11 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'chair_stairs',
+    effectiveLightNames: ['window_composite_light', 'stairs_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'clock',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'room_meshes',
@@ -559,6 +578,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'console_table',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'console_table_stairs',
+    effectiveLightNames: ['window_composite_light', 'stairs_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -634,6 +658,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'phonograph',
     effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'poster',
+    effectiveLightNames: ['floor_1_light', 'table_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -908,8 +937,8 @@ export const lightConfigs: LightConfigs = [
     name: 'stairs_light',
     variant: 'PointLight',
     position: {
-      x: 4.6,
-      y: 2.2,
+      x: 5,
+      y: 2,
       z: -13,
     },
     intensity: 0.2,
