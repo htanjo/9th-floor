@@ -635,7 +635,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'signboard',
-    effectiveLightNames: ['window_composite_light', 'signboard_light'],
+    effectiveLightNames: ['signboard_left_light', 'signboard_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -988,7 +988,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
   },
   {
-    name: 'signboard_light',
+    name: 'signboard_left_light',
     variant: 'PointLight',
     position: {
       x: 3.4,
@@ -997,6 +997,19 @@ export const lightConfigs: LightConfigs = [
     },
     intensity: 0.08,
     diffuseColorHex: '#ffeed3',
+    radius: 0.1,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'signboard_right_light',
+    variant: 'PointLight',
+    position: {
+      x: 2.4,
+      y: 6,
+      z: -8,
+    },
+    intensity: 1,
+    diffuseColorHex: '#85bcff',
     radius: 0.1,
     parentNodeName: 'room',
   },
