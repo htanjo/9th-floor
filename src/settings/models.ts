@@ -180,11 +180,19 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
+    name: 'box',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
     name: 'cat',
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
     name: 'cat_cloth',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'globe',
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
@@ -636,6 +644,21 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'room_meshes',
   },
   {
+    name: 'box_1',
+    effectiveLightNames: ['table_light', 'floor_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'box_2',
+    effectiveLightNames: ['window_right_light', 'lamp_center_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'box_stairs',
+    effectiveLightNames: ['window_composite_light', 'stairs_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
     name: 'cat',
     effectiveLightNames: ['window_distant_light'],
     parentNodeName: 'room_meshes',
@@ -643,6 +666,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'cat_cloth',
     effectiveLightNames: ['window_distant_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'globe',
+    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
