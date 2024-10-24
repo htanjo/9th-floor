@@ -1007,12 +1007,12 @@ export const lightConfigs: LightConfigs = [
     variant: 'PointLight',
     position: {
       x: 3.4,
-      y: 4.5,
+      y: 5.2,
       z: -15,
     },
-    intensity: 0.2,
+    intensity: 0.15,
     diffuseColorHex: '#ffc7a4',
-    radius: 0.2,
+    radius: 0.4,
     parentNodeName: 'room',
   },
   {
