@@ -20,7 +20,7 @@ export const keyframes: Keyframes = [
   },
   {
     position: { x: -0.2, y: 5.1, z: -3.2 },
-    forwardRotationOffset: { x: toRadians(5), y: 0, z: 0 },
+    forwardRotationOffset: { x: 0, y: 0, z: 0 },
     backwardRotationOffset: { x: 0, y: 0, z: 0 },
   },
   {

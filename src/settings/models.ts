@@ -88,6 +88,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
+    name: 'lamp_shade_off',
+    lightmapTextureName: 'lightmap_2_texture',
+  },
+  {
     name: 'pillar',
     lightmapTextureName: 'lightmap_2_texture',
   },
@@ -297,6 +301,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
+    name: 'hallway_lamp_shade_off',
+    lightmapTextureName: 'lightmap_hallway_texture',
+  },
+  {
     name: 'hallway_wainscot',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
@@ -481,6 +489,16 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'lamp_base_front_2',
     effectiveLightNames: ['lamp_front_2_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_base_stairs',
+    effectiveLightNames: ['window_composite_light', 'room_composite_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lamp_shade_off',
+    effectiveLightNames: ['window_composite_light', 'room_composite_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -815,6 +833,16 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'hallway_lamp_base_back',
     effectiveLightNames: ['hallway_lamp_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_lamp_base_side',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_lamp_shade_off',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
