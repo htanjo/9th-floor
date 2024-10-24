@@ -9,6 +9,7 @@ function Debugger() {
   const scene = useScene();
   const [fps, setFps] = useState('');
   const [freeCameraEnabled, setFreeCameraEnabled] = useState(false);
+  // const [effectsEnabled, setEffectsEnabled] = useState(true);
 
   const toggleInspector = useCallback(() => {
     if (scene?.debugLayer) {
@@ -53,6 +54,28 @@ function Debugger() {
     });
   }, [scene]);
 
+  // TODO: Screen is too dark when disabling the effects.
+  // const toggleEffects = useCallback(() => {
+  //   setEffectsEnabled((currentEffectsEnabled) => {
+  //     // If scene is not ready, do nothing.
+  //     if (!scene) {
+  //       return currentEffectsEnabled;
+  //     }
+  //     if (currentEffectsEnabled) {
+  //       scene.postProcessRenderPipelineManager.detachCamerasFromRenderPipeline(
+  //         'effects',
+  //         scene.cameras,
+  //       );
+  //     } else {
+  //       scene.postProcessRenderPipelineManager.attachCamerasToRenderPipeline(
+  //         'effects',
+  //         scene.cameras,
+  //       );
+  //     }
+  //     return !currentEffectsEnabled;
+  //   });
+  // }, [scene]);
+
   useAfterRender((currentScene: Scene) => {
     setFps(currentScene.getEngine().getFps().toFixed());
   });
@@ -69,9 +92,13 @@ function Debugger() {
       <button type="button" className={classes.button} onClick={toggleCamera}>
         Camera
       </button>
+      {/* <button type="button" className={classes.button} onClick={toggleEffects}>
+        Effects
+      </button> */}
       <div className={classes.stats}>
         Free Camera: {freeCameraEnabled.toString()}
       </div>
+      {/* <div className={classes.stats}>Effects: {effectsEnabled.toString()}</div> */}
       <div className={classes.stats}>FPS: {fps}</div>
     </div>
   );

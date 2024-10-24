@@ -52,7 +52,7 @@ export default class Effects {
 
     // Add post processing effects.
     const pipeline = new DefaultRenderingPipeline(
-      'renderPipeline',
+      'effects',
       true,
       scene,
       cameras,
@@ -60,6 +60,7 @@ export default class Effects {
     pipeline.samples = 4; // Enable MSAA.
     // pipeline.fxaaEnabled = true; // Enable FXAA.
     pipeline.sharpenEnabled = true;
+    pipeline.sharpen.edgeAmount = 0.4;
     pipeline.bloomEnabled = true;
     pipeline.bloomThreshold = 0.08;
     pipeline.bloomWeight = 0.24;
