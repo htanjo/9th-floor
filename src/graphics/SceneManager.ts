@@ -40,6 +40,12 @@ export default class SceneManager {
 
   private rootNode: TransformNode;
 
+  private remainingLoaded: number = 0;
+
+  private totalLoaded: number = 0;
+
+  private emitter: EventTarget;
+
   public constructor(scene: Scene) {
     this.scene = scene;
     this.camera = new RouteCamera('route_camera', this.scene);
@@ -57,6 +63,8 @@ export default class SceneManager {
 
     // eslint-disable-next-line no-new
     new Effects(this.scene, [this.camera]);
+
+    this.emitter = new EventTarget();
   }
 
   public applyFrame(frame: number) {
@@ -86,7 +94,7 @@ export default class SceneManager {
     rootNode.position.y = offset * floorHeight;
   }
 
-  public loadAssets(callback: Function = () => {}) {
+  public loadAssets() {
     const { scene } = this;
     const assetsManager = new AssetsManager(scene);
 
@@ -142,6 +150,11 @@ export default class SceneManager {
       512,
     );
     assetsManager.load();
+    assetsManager.onProgress = (remaining, total) => {
+      this.remainingLoaded = remaining;
+      this.totalLoaded = total;
+      this.emitter.dispatchEvent(new CustomEvent('assetsLoadingProgress'));
+    };
 
     assetsManager.onFinish = (tasks) => {
       const { maxAnisotropy } = scene.getEngine().getCaps();
@@ -352,8 +365,19 @@ export default class SceneManager {
         /* eslint-enable no-param-reassign */
       });
 
-      // Trigger callback finally.
-      callback();
+      this.emitter.dispatchEvent(new CustomEvent('ready'));
     };
+  }
+
+  public onAssetsLoaded(callback: (remaining: number, total: number) => void) {
+    this.emitter.addEventListener('assetsLoadingProgress', () => {
+      callback(this.remainingLoaded, this.totalLoaded);
+    });
+  }
+
+  public onReady(callback: () => void) {
+    this.emitter.addEventListener('ready', () => {
+      callback();
+    });
   }
 }

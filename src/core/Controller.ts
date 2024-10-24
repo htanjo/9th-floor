@@ -41,6 +41,8 @@ export default class Controller {
 
   private splashScreenEnabled = true;
 
+  private loadingProgress = 0;
+
   private startScreenEnabled = false;
 
   private startScreenProgress = 0;
@@ -71,8 +73,18 @@ export default class Controller {
     // Set up 3D scene.
     this.sceneManager = new SceneManager(scene);
 
+    // Load glTF and textures.
+    this.sceneManager.loadAssets();
+
+    // Update loading progress.
+    this.sceneManager.onAssetsLoaded((remaining, total) => {
+      // Add +1 for final rendering task.
+      this.loadingProgress = 1 - (remaining + 1) / (total + 1);
+      this.emitter.dispatchEvent(new CustomEvent('loadingProgress'));
+    });
+
     // Attach input events after assets loaded.
-    this.sceneManager.loadAssets(() => {
+    this.sceneManager.onReady(() => {
       this.virtualScroll = new VirtualScroll({ touchMultiplier: 3 });
       this.virtualScroll.on(this.handleScroll.bind(this));
 
@@ -93,8 +105,10 @@ export default class Controller {
       // Hide splash screen and show start screen.
       // Slightly delay it to prevent frame drop due to the initial rendering.
       setTimeout(() => {
+        this.loadingProgress = 1;
         this.splashScreenEnabled = false;
         this.startScreenEnabled = true;
+        this.emitter.dispatchEvent(new CustomEvent('loadingProgress'));
         this.emitter.dispatchEvent(new CustomEvent('splashScreenToggle'));
         this.emitter.dispatchEvent(new CustomEvent('startScreenToggle'));
       }, 1000);
@@ -104,6 +118,12 @@ export default class Controller {
   public onSplashScreenToggle(callback: (enabled: boolean) => void) {
     this.emitter.addEventListener('splashScreenToggle', () => {
       callback(this.splashScreenEnabled);
+    });
+  }
+
+  public onLoadingProgress(callback: (progress: number) => void) {
+    this.emitter.addEventListener('loadingProgress', () => {
+      callback(this.loadingProgress);
     });
   }
 

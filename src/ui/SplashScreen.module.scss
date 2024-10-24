@@ -46,13 +46,28 @@
 }
 .loading {
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-top: 18px;
+  margin-left: 32px;
+  margin-right: 32px;
+}
+.progress {
+  display: flex;
+  min-width: min(85vw, 74vh);
+  max-width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background-color: rgba(219, 198, 174, 0.2);
+}
+.progressBar {
+  width: 100%;
+  background-color: #b7a696;
+  transition: transform 500ms;
 }
 .loadingText {
+  margin-top: min(3.4vw, 3vh);
   font-size: 1.2rem;
 }
 .backdrop {

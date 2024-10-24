@@ -9,6 +9,7 @@ import SplashScreen from '../ui/SplashScreen';
 
 function Screen() {
   const [splashScreenEnabled, setSplashScreenEnabled] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
   const [startScreenProgress, setStartScreenProgress] = useState(0);
 
@@ -17,6 +18,7 @@ function Screen() {
     controller.onSplashScreenToggle((enabled) =>
       setSplashScreenEnabled(enabled),
     );
+    controller.onLoadingProgress((progress) => setLoadingProgress(progress));
     controller.onStartScreenToggle((enabled) => setStartScreenEnabled(enabled));
     controller.onStartScreenProgress((progress) =>
       setStartScreenProgress(progress),
@@ -25,7 +27,10 @@ function Screen() {
 
   return (
     <>
-      <SplashScreen enabled={splashScreenEnabled} />
+      <SplashScreen
+        enabled={splashScreenEnabled}
+        loadingProgress={loadingProgress}
+      />
       <StartScreen
         enabled={startScreenEnabled}
         progress={startScreenProgress}
