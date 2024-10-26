@@ -184,6 +184,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
+    name: 'bottle',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
     name: 'box',
     lightmapTextureName: 'lightmap_4_texture',
   },
@@ -197,6 +201,10 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'globe',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
+    name: 'lantern',
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
@@ -412,20 +420,12 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'wainscot_1',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_1_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'wainscot_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'top_light',
-    ],
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -445,20 +445,12 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'door_1',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_1_light',
-      'outer_floor_1_light',
-    ],
+    effectiveLightNames: ['floor_1_light', 'outer_floor_1_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'door_2',
-    effectiveLightNames: [
-      'window_composite_light',
-      'floor_2_light',
-      'outer_floor_2_light',
-    ],
+    effectiveLightNames: ['floor_2_light', 'outer_floor_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -523,12 +515,12 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'railing_handrail',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'railing_newel',
-    effectiveLightNames: ['window_composite_light', 'top_light'],
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -658,17 +650,27 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'table_lamp_base',
-    effectiveLightNames: ['lamp_center_1_light', 'top_light'],
+    effectiveLightNames: ['lamp_center_1_light', 'top_left_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'bottle_1',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'bottle_2',
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'box_1',
-    effectiveLightNames: ['table_light', 'floor_2_light'],
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'box_2',
-    effectiveLightNames: ['window_right_light', 'lamp_center_2_light'],
+    effectiveLightNames: ['window_right_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -688,7 +690,17 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'globe',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lantern_1',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'lantern_2',
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -703,7 +715,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'phonograph',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -713,22 +725,27 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'sword',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    effectiveLightNames: ['window_composite_light', 'sword_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'typewriter',
-    effectiveLightNames: ['lamp_center_1_light', 'table_light'],
+    effectiveLightNames: ['table_light', 'top_right_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'typewriter_2',
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'vase',
-    effectiveLightNames: ['window_composite_light', 'lamp_center_2_light'],
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'room_meshes',
   },
   {
     name: 'book',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    effectiveLightNames: ['table_light', 'top_right_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -801,13 +818,13 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_door',
-    effectiveLightNames: [
-      'hallway_outer_front_light',
-      'hallway_outer_back_light',
-      'hallway_front_light',
-      'hallway_back_light',
-    ],
+    name: 'hallway_door_front',
+    effectiveLightNames: ['hallway_outer_front_light', 'hallway_front_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'hallway_door_back',
+    effectiveLightNames: ['hallway_outer_back_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
@@ -853,7 +870,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'hallway_wainscot',
     effectiveLightNames: [
-      'hallway_top_light',
+      'hallway_top_right_light',
       'hallway_front_light',
       'hallway_back_light',
     ],
@@ -1081,14 +1098,27 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
   },
   {
-    name: 'top_light',
+    name: 'top_right_light',
     variant: 'DirectionalLight',
     position: {
       x: 0.4,
       y: -1,
       z: -0.3,
     },
-    intensity: 0.1,
+    intensity: 0.08,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.2,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'top_left_light',
+    variant: 'DirectionalLight',
+    position: {
+      x: -0.4,
+      y: -1,
+      z: -0.3,
+    },
+    intensity: 0.08,
     diffuseColorHex: '#ffdfc7',
     radius: 0.2,
     parentNodeName: 'room',
@@ -1156,6 +1186,19 @@ export const lightConfigs: LightConfigs = [
     intensity: 0.3,
     diffuseColorHex: '#ffdfc7',
     radius: 0.2,
+    parentNodeName: 'room',
+  },
+  {
+    name: 'sword_light',
+    variant: 'PointLight',
+    position: {
+      x: 2,
+      y: 6.4,
+      z: -12,
+    },
+    intensity: 0.12,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.3,
     parentNodeName: 'room',
   },
   {
@@ -1237,7 +1280,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'hallway',
   },
   {
-    name: 'hallway_top_light',
+    name: 'hallway_top_right_light',
     variant: 'DirectionalLight',
     position: {
       x: 0.4,
