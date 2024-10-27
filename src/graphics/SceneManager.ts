@@ -1,10 +1,12 @@
 import {
+  Animation,
   AssetsManager,
   Color3,
   Color4,
   DirectionalLight,
   Engine,
   HDRCubeTextureAssetTask,
+  Material,
   MeshBuilder,
   PBRMaterial,
   PointLight,
@@ -177,15 +179,6 @@ export default class SceneManager {
       hallwayMeshes.scaling.z = -1;
       hallwayMeshes.parent = hallway;
 
-      // Move meshes into transform nodes.
-      meshConfigs.forEach((meshConfig) => {
-        const { name, parentNodeName } = meshConfig;
-        const mesh = scene.getMeshByName(name);
-        if (mesh) {
-          mesh.parent = scene.getNodeByName(parentNodeName);
-        }
-      });
-
       // Add specular lights.
       lightConfigs.forEach((lightConfig) => {
         let light: PointLight | DirectionalLight;
@@ -197,6 +190,7 @@ export default class SceneManager {
           diffuseColorHex,
           radius,
           parentNodeName,
+          animation,
         } = lightConfig;
         switch (variant) {
           case 'DirectionalLight':
@@ -219,13 +213,36 @@ export default class SceneManager {
         light.radius = radius;
         light.shadowEnabled = false;
         light.parent = scene.getNodeByName(parentNodeName);
-      });
 
-      // Remove unnecessary glTF node.
-      const gltfRootNode = scene.getNodeByName('__root__');
-      if (gltfRootNode) {
-        gltfRootNode.dispose();
-      }
+        // Apply light animation.
+        if (animation) {
+          const {
+            targetProperty,
+            easingFunction,
+            easingMode,
+            framePerSecond,
+            keys,
+          } = animation;
+          const lightAnimation = new Animation(
+            `${name}_light_animation`,
+            targetProperty,
+            framePerSecond,
+            Animation.ANIMATIONTYPE_FLOAT,
+            Animation.ANIMATIONLOOPMODE_CYCLE,
+          );
+          easingFunction.setEasingMode(easingMode);
+          lightAnimation.setEasingFunction(easingFunction);
+          lightAnimation.setKeys(keys);
+          scene.beginDirectAnimation(
+            light,
+            [lightAnimation],
+            0,
+            keys[keys.length - 1].frame,
+            true,
+            1,
+          );
+        }
+      });
 
       // Customize materials.
       scene.materials.forEach((material) => {
@@ -253,6 +270,7 @@ export default class SceneManager {
               fogEnabled,
               zOffset,
               alphaDisabled,
+              alphaBlendDisabled,
             } = materialConfig;
 
             // Lightmap config
@@ -319,6 +337,9 @@ export default class SceneManager {
               material.alpha = 1;
               material.alphaMode = Engine.ALPHA_DISABLE;
             }
+            if (alphaBlendDisabled) {
+              material.transparencyMode = Material.MATERIAL_ALPHATEST;
+            }
             if (material.albedoTexture) {
               material.albedoTexture.anisotropicFilteringLevel = maxAnisotropy;
             }
@@ -333,11 +354,71 @@ export default class SceneManager {
         }
       });
 
+      // Configure meshes.
+      meshConfigs.forEach((meshConfig) => {
+        const { name, parentNodeName, animation } = meshConfig;
+        const mesh = scene.getMeshByName(name);
+        if (mesh) {
+          // Move meshes into transform nodes.
+          mesh.parent = scene.getNodeByName(parentNodeName);
+
+          // Apply mesh animation.
+          if (animation) {
+            const {
+              targetProperty,
+              easingFunction,
+              easingMode,
+              framePerSecond,
+              keys,
+            } = animation;
+            const meshAnimation = new Animation(
+              `${name}_mesh_animation`,
+              targetProperty,
+              framePerSecond,
+              Animation.ANIMATIONTYPE_FLOAT,
+              Animation.ANIMATIONLOOPMODE_CYCLE,
+            );
+            easingFunction.setEasingMode(easingMode);
+            meshAnimation.setKeys(keys);
+            meshAnimation.setEasingFunction(easingFunction);
+            scene.beginDirectAnimation(
+              mesh,
+              [meshAnimation],
+              0,
+              keys[keys.length - 1].frame,
+              true,
+              1,
+            );
+          }
+        }
+      });
+
+      // Remove unnecessary glTF node.
+      const gltfRootNode = scene.getNodeByName('__root__');
+      if (gltfRootNode) {
+        gltfRootNode.dispose();
+      }
+
       // Clone meshes and lights by node.
       const room2 = room.clone('room_2', null) as typeof room;
       room2.rotation.y = Math.PI;
       const hallway2 = hallway.clone('hallway_2', null) as typeof hallway;
       hallway2.position.y = -floorHeight;
+
+      // Copy object animations for room2 as they are not cloned at the same time.
+      // On the other hand, mesh animations are applied to the newly created meshes automatically.
+      scene.animationGroups.forEach((animationGroup) => {
+        const { name } = animationGroup;
+        if (name.startsWith('phonograph')) {
+          animationGroup.clone(`${name}_2`, (oldTarget) => {
+            const meshes = room2.getChildMeshes();
+            const newTarget = meshes.find((mesh) =>
+              mesh.name.endsWith(oldTarget.name),
+            );
+            return newTarget;
+          });
+        }
+      });
 
       // Move all nodes into root node.
       room.parent = this.rootNode;
@@ -363,6 +444,14 @@ export default class SceneManager {
           light.includedOnlyMeshes = includedMeshes;
         }
         /* eslint-enable no-param-reassign */
+      });
+
+      // Play all animations.
+      // For some reasons, Babylon.js plays only one animation in glTF.
+      scene.animationGroups.forEach((animationGroup) => {
+        if (!animationGroup.isPlaying) {
+          animationGroup.play(true);
+        }
       });
 
       this.emitter.dispatchEvent(new CustomEvent('ready'));
