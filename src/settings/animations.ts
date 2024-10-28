@@ -118,7 +118,7 @@ export function createAnimationConfig(
     easingMode,
     framePerSecond: baseFps,
     keys: keys.map((key) => ({
-      frame: Math.round((key.frame * baseFps) / 60),
+      frame: (key.frame * baseFps) / 60,
       value: baseValue * key.value,
     })),
   };

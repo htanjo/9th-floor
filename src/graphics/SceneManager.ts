@@ -179,7 +179,7 @@ export default class SceneManager {
       hallwayMeshes.scaling.z = -1;
       hallwayMeshes.parent = hallway;
 
-      // Add specular lights.
+      // Create specular lights.
       lightConfigs.forEach((lightConfig) => {
         let light: PointLight | DirectionalLight;
         const {
@@ -190,7 +190,6 @@ export default class SceneManager {
           diffuseColorHex,
           radius,
           parentNodeName,
-          animation,
         } = lightConfig;
         switch (variant) {
           case 'DirectionalLight':
@@ -213,35 +212,6 @@ export default class SceneManager {
         light.radius = radius;
         light.shadowEnabled = false;
         light.parent = scene.getNodeByName(parentNodeName);
-
-        // Apply light animation.
-        if (animation) {
-          const {
-            targetProperty,
-            easingFunction,
-            easingMode,
-            framePerSecond,
-            keys,
-          } = animation;
-          const lightAnimation = new Animation(
-            `${name}_light_animation`,
-            targetProperty,
-            framePerSecond,
-            Animation.ANIMATIONTYPE_FLOAT,
-            Animation.ANIMATIONLOOPMODE_CYCLE,
-          );
-          easingFunction.setEasingMode(easingMode);
-          lightAnimation.setEasingFunction(easingFunction);
-          lightAnimation.setKeys(keys);
-          scene.beginDirectAnimation(
-            light,
-            [lightAnimation],
-            0,
-            keys[keys.length - 1].frame,
-            true,
-            1,
-          );
-        }
       });
 
       // Customize materials.
@@ -426,8 +396,9 @@ export default class SceneManager {
       hallway.parent = this.rootNode;
       hallway2.parent = this.rootNode;
 
-      // Limit effective lights based on config and node groups.
+      // Configure lights.
       scene.lights.forEach((light) => {
+        // Limit effective lights based on config and node groups.
         /* eslint-disable no-param-reassign */
         const baseLightName = light.name.split('.').pop() as string; // name: '<parentNodeName>.<baseLightName>'
         const includedMeshNames = meshConfigs
@@ -444,6 +415,38 @@ export default class SceneManager {
           light.includedOnlyMeshes = includedMeshes;
         }
         /* eslint-enable no-param-reassign */
+
+        // Apply light animation.
+        const lightConfig = lightConfigs.find(
+          (config) => config.name === light.name.split('.').pop(),
+        );
+        if (lightConfig?.animation) {
+          const {
+            targetProperty,
+            easingFunction,
+            easingMode,
+            framePerSecond,
+            keys,
+          } = lightConfig.animation;
+          const lightAnimation = new Animation(
+            `${light.name}_light_animation`,
+            targetProperty,
+            framePerSecond,
+            Animation.ANIMATIONTYPE_FLOAT,
+            Animation.ANIMATIONLOOPMODE_CYCLE,
+          );
+          easingFunction.setEasingMode(easingMode);
+          lightAnimation.setEasingFunction(easingFunction);
+          lightAnimation.setKeys(keys);
+          scene.beginDirectAnimation(
+            light,
+            [lightAnimation],
+            0,
+            keys[keys.length - 1].frame,
+            true,
+            1,
+          );
+        }
       });
 
       // Play all animations.
