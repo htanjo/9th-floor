@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { animated, config, easings, useSpring } from '@react-spring/web';
 import Logo from './Logo';
 import { hasTouchscreen } from '../settings/general';
@@ -9,7 +10,7 @@ interface StartScreenProps {
 }
 
 function StartScreen({ enabled, progress }: StartScreenProps) {
-  const mounted = enabled;
+  const [mounted, setMounted] = useState(enabled);
 
   const contentStyle = useSpring({
     opacity: 1 - progress,
@@ -17,6 +18,11 @@ function StartScreen({ enabled, progress }: StartScreenProps) {
     config: {
       easing: easings.easeOutSine,
       duration: hasTouchscreen ? 100 : 200,
+    },
+    onRest: (result) => {
+      if (result.value.opacity === 0) {
+        setMounted(false);
+      }
     },
   });
 
@@ -41,6 +47,12 @@ function StartScreen({ enabled, progress }: StartScreenProps) {
     transform: `translateY(${80 + progress * 20}%)`,
     config: config.default,
   });
+
+  useEffect(() => {
+    if (enabled) {
+      setMounted(true);
+    }
+  }, [enabled]);
 
   if (!mounted) {
     return null;
