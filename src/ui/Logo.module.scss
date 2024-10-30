@@ -1,0 +1,46 @@
+.logo {
+  position: relative;
+  font-family: 'Macondo', serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  background-image: linear-gradient(
+      rgba(91, 71, 49, 0.9),
+      rgba(161, 133, 103, 0.9),
+      rgba(91, 71, 49, 0.9)
+    ),
+    url('/logo_bg.png');
+  background-size: normal, contain;
+  background-clip: text, text;
+  &.colorized {
+    background-image: linear-gradient(
+        rgba(133, 89, 38, 0.8),
+        rgba(255, 229, 143, 0.8),
+        rgba(133, 89, 38, 0.8)
+      ),
+      url('/logo_bg.png');
+  }
+}
+.emphasized {
+  font-size: 1.4em;
+  // Explicitly specify "inherit" to set sizing correctly based on the font-size.
+  background-image: inherit;
+  background-size: inherit;
+  background-clip: inherit;
+  .colorized & {
+    background-image: linear-gradient(
+        rgba(139, 0, 147, 0.9),
+        rgba(225, 0, 49, 0.9),
+        rgba(255, 86, 60, 0.9),
+        rgba(225, 0, 49, 0.9),
+        rgba(139, 0, 147, 0.9)
+      ),
+      url('/logo_bg.png');
+  }
+}
+.collapsed {
+  letter-spacing: -0.12em;
+}

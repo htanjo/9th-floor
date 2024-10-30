@@ -16,7 +16,6 @@
   font-size: 2rem;
   text-shadow: rgba(0, 0, 0, 0.6) 0 0 16px;
   color: #dbc6ae;
-  pointer-events: none;
 }
 .title {
   position: absolute;
@@ -26,22 +25,8 @@
   text-align: center;
   h1 {
     margin: 0;
-    white-space: nowrap;
-    font-family: 'Macondo', serif;
-    font-weight: 400;
-    font-style: normal;
     font-size: min(16vw, 14vh);
-    letter-spacing: -0.03em;
     text-shadow: none;
-    color: #ffffff;
-  }
-  .emphasized {
-    font-size: 1.4em;
-    // color: #ff5b35;
-    color: #b7a696;
-  }
-  .collapsed {
-    letter-spacing: -0.12em;
   }
 }
 .loading {
@@ -50,21 +35,12 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  margin-left: 32px;
-  margin-right: 32px;
+  margin-left: 24px;
+  margin-right: 24px;
 }
-.progress {
-  display: flex;
+.loadingBar {
   min-width: min(85vw, 74vh);
   max-width: 100%;
-  height: 2px;
-  overflow: hidden;
-  background-color: rgba(219, 198, 174, 0.2);
-}
-.progressBar {
-  width: 100%;
-  background-color: #b7a696;
-  transition: transform 500ms;
 }
 .loadingText {
   margin-top: min(3.4vw, 3vh);

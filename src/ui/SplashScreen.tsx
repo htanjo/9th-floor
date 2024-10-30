@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { animated, config, useSpring } from '@react-spring/web';
+import Logo from './Logo';
+import ProgressBar from './ProgressBar';
 import classes from './SplashScreen.module.scss';
 
 interface SplashScreenProps {
@@ -8,15 +10,15 @@ interface SplashScreenProps {
 }
 
 function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
-  const [unmounted, setUnmounted] = useState(false);
+  const [mounted, setMounted] = useState(enabled);
 
   const screenStyle = useSpring({
     opacity: enabled ? 1 : 0,
     config: config.molasses,
-    delay: 400,
+    delay: 600,
     onRest: (result) => {
       if (result.value.opacity === 0) {
-        setUnmounted(true);
+        setMounted(false);
       }
     },
   });
@@ -25,10 +27,10 @@ function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
   const loadingStyle = useSpring({
     opacity: enabled ? 1 : 0,
     config: config.default,
-    delay: 200,
+    delay: 400,
   });
 
-  if (unmounted) {
+  if (!mounted) {
     return null;
   }
 
@@ -37,17 +39,11 @@ function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
       <div className={classes.content}>
         <div className={classes.title}>
           <h1>
-            The <span className={classes.emphasized}>9</span>th Fl
-            <span className={classes.collapsed}>o</span>or
+            <Logo colorized={false} />
           </h1>
           <animated.div className={classes.loading} style={loadingStyle}>
-            <div className={classes.progress}>
-              <div
-                className={classes.progressBar}
-                style={{
-                  transform: `translateX(${(1 - loadingProgress) * -100}%)`,
-                }}
-              />
+            <div className={classes.loadingBar}>
+              <ProgressBar progress={loadingProgress} />
             </div>
             <div className={classes.loadingText}>Loading...</div>
           </animated.div>

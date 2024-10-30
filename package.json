@@ -15,6 +15,7 @@
     "@babylonjs/loaders": "^7.27.0",
     "@react-spring/web": "^9.7.5",
     "babylonjs-hook": "^0.1.1",
+    "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "virtual-scroll": "^2.2.1"
