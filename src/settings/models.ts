@@ -248,7 +248,7 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'decal_common',
     lightmapTextureName: 'lightmap_5_texture',
-    alphaBlendDisabled: true,
+    alphaBlendDisabled: true, // Avoid unnatural specular caused by angles.
     // zOffset: -0.1,
   },
   {
@@ -480,7 +480,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'door_1',
-    effectiveLightNames: ['floor_1_light', 'outer_floor_1_light'],
+    effectiveLightNames: ['floor_1_light', 'window_composite_light'],
     parentNodeName: 'room_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
@@ -489,7 +489,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'door_2',
-    effectiveLightNames: ['floor_2_light', 'outer_floor_2_light'],
+    effectiveLightNames: ['floor_2_light', 'window_composite_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -746,7 +746,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'globe',
-    effectiveLightNames: ['window_composite_light', 'top_right_light'],
+    effectiveLightNames: ['window_composite_light', 'mirror_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -853,7 +853,7 @@ export const meshConfigs: MeshConfigs = [
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
-        'flickerSlow',
+        'flickerMedium',
         getMaterialConfig('lamp_shade_1')?.emissiveIntensity || 0,
         15,
       ),
@@ -866,7 +866,7 @@ export const meshConfigs: MeshConfigs = [
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
-        'flickerMedium',
+        'flickerFast',
         getMaterialConfig('lamp_shade_2')?.emissiveIntensity || 0,
         15,
       ),
@@ -905,7 +905,7 @@ export const meshConfigs: MeshConfigs = [
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
-        'flickerMedium',
+        'flickerFast',
         getMaterialConfig('lamp_shade_5')?.emissiveIntensity || 0,
         15,
       ),
@@ -918,7 +918,7 @@ export const meshConfigs: MeshConfigs = [
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
-        'flickerFast',
+        'flickerVeryFast',
         getMaterialConfig('table_lamp_shade')?.emissiveIntensity || 0,
         15,
       ),
@@ -931,7 +931,7 @@ export const meshConfigs: MeshConfigs = [
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
-        'flickerVerySlowGentle',
+        'flickerVerySlow',
         getMaterialConfig('window_glass')?.emissiveIntensity || 0,
         15,
       ),
@@ -943,7 +943,7 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerFastGentle', 1.0, 10),
+      ...createAnimationConfig('flickerVeryFastSlight', 1.0, 10),
     },
   },
   {
@@ -968,12 +968,12 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'hallway_door_front',
-    effectiveLightNames: ['hallway_outer_front_light', 'hallway_front_light'],
+    effectiveLightNames: ['hallway_front_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
     name: 'hallway_door_back',
-    effectiveLightNames: ['hallway_outer_back_light', 'hallway_back_light'],
+    effectiveLightNames: ['hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
@@ -1037,7 +1037,7 @@ export const meshConfigs: MeshConfigs = [
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
-        'flickerFast',
+        'flickerVeryFastGentle',
         getMaterialConfig('hallway_lamp_shade')?.emissiveIntensity || 0,
         15,
       ),
@@ -1105,13 +1105,13 @@ export const lightConfigs: LightConfigs = [
       y: 5,
       z: -20,
     },
-    intensity: 1.8,
+    intensity: 1.5,
     diffuseColorHex: '#85bcff',
     radius: 1,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerVerySlow', 2, 30),
+      ...createAnimationConfig('flickerVerySlow', 1.5, 30),
     },
   },
   {
@@ -1122,13 +1122,13 @@ export const lightConfigs: LightConfigs = [
       y: 5,
       z: -20,
     },
-    intensity: 1.8,
+    intensity: 1.5,
     diffuseColorHex: '#85bcff',
     radius: 1,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerVerySlow', 2, 30),
+      ...createAnimationConfig('flickerVerySlow', 1.5, 30),
     },
   },
   {
@@ -1162,7 +1162,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.2, 30),
+      ...createAnimationConfig('flickerMedium', 0.2, 30),
     },
   },
   {
@@ -1179,7 +1179,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.2, 30),
+      ...createAnimationConfig('flickerMedium', 0.2, 30),
     },
   },
   {
@@ -1196,7 +1196,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 1.8, 30),
+      ...createAnimationConfig('flickerMedium', 1.8, 30),
     },
   },
   {
@@ -1230,7 +1230,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerMedium', 0.15, 30),
+      ...createAnimationConfig('flickerFast', 0.15, 30),
     },
   },
   {
@@ -1247,7 +1247,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerMedium', 0.08, 30),
+      ...createAnimationConfig('flickerFast', 0.08, 30),
     },
   },
   {
@@ -1264,7 +1264,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.8, 30),
+      ...createAnimationConfig('flickerVeryFast', 0.8, 30),
     },
   },
   {
@@ -1281,41 +1281,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.1, 30),
-    },
-  },
-  {
-    name: 'outer_floor_1_light',
-    variant: 'PointLight',
-    position: {
-      x: 0,
-      y: 2.2,
-      z: -6.05,
-    },
-    intensity: 0.25,
-    diffuseColorHex: '#ffc7a4',
-    radius: 0.1,
-    parentNodeName: 'room',
-    animation: {
-      targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.25, 30),
-    },
-  },
-  {
-    name: 'outer_floor_2_light',
-    variant: 'PointLight',
-    position: {
-      x: 0,
-      y: 5.8,
-      z: -6.05,
-    },
-    intensity: 0.25,
-    diffuseColorHex: '#ffc7a4',
-    radius: 0.1,
-    parentNodeName: 'room',
-    animation: {
-      targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.25, 30),
+      ...createAnimationConfig('flickerVeryFast', 0.1, 30),
     },
   },
   {
@@ -1332,7 +1298,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.08, 30),
+      ...createAnimationConfig('flickerMedium', 0.08, 30),
     },
   },
   {
@@ -1349,7 +1315,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.08, 30),
+      ...createAnimationConfig('flickerMedium', 0.08, 30),
     },
   },
   {
@@ -1366,7 +1332,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerMedium', 0.18, 30),
+      ...createAnimationConfig('flickerFast', 0.18, 30),
     },
   },
   {
@@ -1383,7 +1349,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerMedium', 0.18, 30),
+      ...createAnimationConfig('flickerFast', 0.18, 30),
     },
   },
   {
@@ -1400,7 +1366,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.02, 30),
+      ...createAnimationConfig('flickerMedium', 0.02, 30),
     },
   },
   {
@@ -1417,7 +1383,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.02, 30),
+      ...createAnimationConfig('flickerMedium', 0.02, 30),
     },
   },
   {
@@ -1451,7 +1417,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.3, 30),
+      ...createAnimationConfig('flickerMedium', 0.3, 30),
     },
   },
   {
@@ -1462,13 +1428,13 @@ export const lightConfigs: LightConfigs = [
       y: 6.4,
       z: -12,
     },
-    intensity: 0.1,
+    intensity: 0.06,
     diffuseColorHex: '#ffdfc7',
     radius: 0.3,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.1, 30),
+      ...createAnimationConfig('flickerSlow', 0.06, 30),
     },
   },
   {
@@ -1485,7 +1451,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerMedium', 0.06, 30),
+      ...createAnimationConfig('flickerSlow', 0.06, 30),
     },
   },
   {
@@ -1502,7 +1468,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'hallway',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.25, 30),
+      ...createAnimationConfig('flickerVeryFastGentle', 0.25, 30),
     },
   },
   {
@@ -1519,41 +1485,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'hallway',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.25, 30),
-    },
-  },
-  {
-    name: 'hallway_outer_front_light',
-    variant: 'PointLight',
-    position: {
-      x: 3.4,
-      y: 5.8,
-      z: -1.95,
-    },
-    intensity: 0.2,
-    diffuseColorHex: '#ffc7a4',
-    radius: 0.1,
-    parentNodeName: 'hallway',
-    animation: {
-      targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.2, 30),
-    },
-  },
-  {
-    name: 'hallway_outer_back_light',
-    variant: 'PointLight',
-    position: {
-      x: -3.4,
-      y: 5.8,
-      z: 1.95,
-    },
-    intensity: 0.2,
-    diffuseColorHex: '#ffc7a4',
-    radius: 0.1,
-    parentNodeName: 'hallway',
-    animation: {
-      targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.2, 30),
+      ...createAnimationConfig('flickerVeryFastGentle', 0.25, 30),
     },
   },
   {
@@ -1570,7 +1502,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'hallway',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.02, 30),
+      ...createAnimationConfig('flickerVeryFastGentle', 0.02, 30),
     },
   },
   {
@@ -1587,7 +1519,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'hallway',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.02, 30),
+      ...createAnimationConfig('flickerVeryFastGentle', 0.02, 30),
     },
   },
   {
@@ -1604,7 +1536,7 @@ export const lightConfigs: LightConfigs = [
     parentNodeName: 'hallway',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerSlow', 0.15, 30),
+      ...createAnimationConfig('flickerVeryFastGentle', 0.15, 30),
     },
   },
 ];
