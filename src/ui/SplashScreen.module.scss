@@ -9,13 +9,8 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  font-family: 'EB Garamond', serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
   font-size: 2rem;
-  text-shadow: rgba(0, 0, 0, 0.6) 0 0 16px;
-  color: #dbc6ae;
+  color: var(--text-color-disabled);
 }
 .title {
   position: absolute;

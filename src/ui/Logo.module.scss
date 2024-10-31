@@ -6,39 +6,26 @@
   letter-spacing: -0.03em;
   line-height: 1;
   white-space: nowrap;
-  color: transparent;
-  background-image: linear-gradient(
-      rgba(91, 71, 49, 0.9),
-      rgba(161, 133, 103, 0.9),
-      rgba(91, 71, 49, 0.9)
-    ),
-    url('/logo_bg.png');
-  background-size: normal, contain;
-  background-clip: text, text;
+  color: inherit;
+  background-image: none;
+  cursor: default;
   &.colorized {
-    background-image: linear-gradient(
-        rgba(133, 89, 38, 0.8),
-        rgba(255, 229, 143, 0.8),
-        rgba(133, 89, 38, 0.8)
-      ),
-      url('/logo_bg.png');
+    color: transparent;
+    background-image: linear-gradient(#ffb96e, #fff198, #ffb96e),
+      repeating-linear-gradient(-30deg, #444444 0px 0.015em, #999999 0px 0.03em);
+    background-clip: text;
+    background-blend-mode: hard-light;
   }
 }
 .emphasized {
-  font-size: 1.4em;
-  // Explicitly specify "inherit" to set sizing correctly based on the font-size.
-  background-image: inherit;
-  background-size: inherit;
-  background-clip: inherit;
+  font-size: 1.5em;
   .colorized & {
-    background-image: linear-gradient(
-        rgba(139, 0, 147, 0.9),
-        rgba(225, 0, 49, 0.9),
-        rgba(255, 86, 60, 0.9),
-        rgba(225, 0, 49, 0.9),
-        rgba(139, 0, 147, 0.9)
-      ),
-      url('/logo_bg.png');
+    color: transparent;
+    background-image: linear-gradient(#ff3676, #ff7920, #ff3676),
+      repeating-linear-gradient(-30deg, #666666 0px 0.01em, #999999 0px 0.02em);
+    background-clip: text;
+    background-blend-mode: hard-light;
+    mix-blend-mode: color;
   }
 }
 .collapsed {

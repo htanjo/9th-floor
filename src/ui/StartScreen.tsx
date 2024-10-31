@@ -39,12 +39,12 @@ function StartScreen({ enabled, progress }: StartScreenProps) {
   });
 
   const letterboxTopStyle = useSpring({
-    transform: `translateY(${-80 - progress * 20}%)`,
+    transform: `translateY(${progress * -100}%)`,
     config: config.default,
   });
 
   const letterboxBottomStyle = useSpring({
-    transform: `translateY(${80 + progress * 20}%)`,
+    transform: `translateY(${progress * 100}%)`,
     config: config.default,
   });
 

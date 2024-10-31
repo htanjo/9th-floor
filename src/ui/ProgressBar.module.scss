@@ -6,7 +6,7 @@
 .icon {
   flex-grow: 0;
   font-size: 20px;
-  color: #8d7a69;
+  color: var(--text-color-disabled);
 }
 .totalBar {
   display: flex;
@@ -14,10 +14,10 @@
   flex-grow: 1;
   height: 2px;
   overflow: hidden;
-  background-color: rgba(219, 198, 174, 0.2);
+  background-color: var(--background-color-disabled);
 }
 .activeBar {
   width: 100%;
-  background-color: #8d7a69;
+  background-color: var(--text-color-disabled);
   transition: translate 500ms;
 }
