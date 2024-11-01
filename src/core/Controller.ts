@@ -1,7 +1,7 @@
 import { Scene } from '@babylonjs/core';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
 import SceneManager from '../graphics/SceneManager';
-import { hasPointingDevice, hasTouchscreen } from '../settings/general';
+import { hasPointingDevice } from '../settings/general';
 import { maxFrame } from '../settings/keyframes';
 
 interface DeviceOrientation {
