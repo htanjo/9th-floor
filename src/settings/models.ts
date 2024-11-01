@@ -230,8 +230,13 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
+    name: 'picture_rail',
+    lightmapTextureName: 'lightmap_4_texture',
+  },
+  {
     name: 'poster',
     lightmapTextureName: 'lightmap_4_texture',
+    alphaBlendDisabled: true,
   },
   {
     name: 'sword',
@@ -480,7 +485,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'door_1',
-    effectiveLightNames: ['floor_1_light', 'window_composite_light'],
+    effectiveLightNames: ['floor_1_light', 'door_1_light'],
     parentNodeName: 'room_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
@@ -489,7 +494,7 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'door_2',
-    effectiveLightNames: ['floor_2_light', 'window_composite_light'],
+    effectiveLightNames: ['floor_2_light', 'door_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -786,6 +791,16 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'phonograph_disk',
     effectiveLightNames: ['window_composite_light', 'phonograph_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'picture_rail_1',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'room_meshes',
+  },
+  {
+    name: 'picture_rail_2',
+    effectiveLightNames: ['window_composite_light', 'chair_front_2_light'],
     parentNodeName: 'room_meshes',
   },
   {
@@ -1384,6 +1399,40 @@ export const lightConfigs: LightConfigs = [
     animation: {
       targetProperty: 'intensity',
       ...createAnimationConfig('flickerMedium', 0.02, 30),
+    },
+  },
+  {
+    name: 'door_1_light',
+    variant: 'PointLight',
+    position: {
+      x: 2.8,
+      y: 1.2,
+      z: -4.4,
+    },
+    intensity: 0.15,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.2,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerMedium', 0.15, 30),
+    },
+  },
+  {
+    name: 'door_2_light',
+    variant: 'PointLight',
+    position: {
+      x: 2.8,
+      y: 4.8,
+      z: -4.4,
+    },
+    intensity: 0.15,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.2,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerMedium', 0.15, 30),
     },
   },
   {
