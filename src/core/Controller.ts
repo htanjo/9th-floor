@@ -1,7 +1,7 @@
 import { Scene } from '@babylonjs/core';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
 import SceneManager from '../graphics/SceneManager';
-import { hasPointingDevice } from '../settings/general';
+import { hasPointingDevice, hasTouchscreen } from '../settings/general';
 import { maxFrame } from '../settings/keyframes';
 
 interface DeviceOrientation {
@@ -18,6 +18,8 @@ export default class Controller {
   private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
 
   private moveForward = true;
+
+  private touchMultiplier = 3;
 
   private turnFrames = 10; // Number of frames to complete turn.
 
@@ -89,7 +91,9 @@ export default class Controller {
 
     // Attach input events after assets loaded.
     this.sceneManager.onReady(() => {
-      this.virtualScroll = new VirtualScroll({ touchMultiplier: 3 });
+      this.virtualScroll = new VirtualScroll({
+        touchMultiplier: this.touchMultiplier,
+      });
       this.virtualScroll.on(this.handleScroll.bind(this));
 
       if (this.usePointerInput) {
@@ -253,7 +257,8 @@ export default class Controller {
     } else if (this.startScreenEnabled) {
       // In the start screen, update progress and scroll value.
       const scrollLength = -event.deltaY;
-      this.startScreenScroll += scrollLength;
+      const scrollMultiplier = hasTouchscreen ? this.touchMultiplier : 1;
+      this.startScreenScroll += scrollLength / scrollMultiplier;
       if (this.startScreenScroll < 0) {
         this.startScreenScroll = 0;
       }
