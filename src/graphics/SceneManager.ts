@@ -396,6 +396,8 @@ export default class SceneManager {
       hallway.parent = this.rootNode;
       hallway2.parent = this.rootNode;
 
+      // room2.setEnabled(false);
+
       // Configure lights.
       scene.lights.forEach((light) => {
         // Limit effective lights based on config and node groups.

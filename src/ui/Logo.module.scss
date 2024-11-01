@@ -12,7 +12,7 @@
   &.colorized {
     color: transparent;
     background-image: linear-gradient(#ffb96e, #fff198, #ffb96e),
-      repeating-linear-gradient(-30deg, #444444 0px 0.015em, #999999 0px 0.03em);
+      repeating-linear-gradient(30deg, #444444 0px 0.012em, #999999 0px 0.024em);
     background-clip: text;
     background-blend-mode: hard-light;
   }
@@ -22,7 +22,7 @@
   .colorized & {
     color: transparent;
     background-image: linear-gradient(#ff3676, #ff7920, #ff3676),
-      repeating-linear-gradient(-30deg, #666666 0px 0.01em, #999999 0px 0.02em);
+      repeating-linear-gradient(30deg, #666666 0px 0.008em, #999999 0px 0.016em);
     background-clip: text;
     background-blend-mode: hard-light;
     mix-blend-mode: color;

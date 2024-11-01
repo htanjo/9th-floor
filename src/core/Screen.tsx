@@ -12,6 +12,7 @@ function Screen() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
   const [startScreenProgress, setStartScreenProgress] = useState(0);
+  const [startScreenScroll, setStartScreenScroll] = useState(0);
 
   const onSceneReady = useCallback(async (scene: Scene) => {
     const controller = new Controller(scene);
@@ -20,9 +21,10 @@ function Screen() {
     );
     controller.onLoadingProgress((progress) => setLoadingProgress(progress));
     controller.onStartScreenToggle((enabled) => setStartScreenEnabled(enabled));
-    controller.onStartScreenProgress((progress) =>
-      setStartScreenProgress(progress),
-    );
+    controller.onStartScreenProgress((progress, scroll) => {
+      setStartScreenProgress(progress);
+      setStartScreenScroll(scroll);
+    });
   }, []);
 
   return (
@@ -34,6 +36,7 @@ function Screen() {
       <StartScreen
         enabled={startScreenEnabled}
         progress={startScreenProgress}
+        scroll={startScreenScroll}
       />
       <SceneComponent
         // antialias

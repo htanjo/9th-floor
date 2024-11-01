@@ -12,6 +12,9 @@ function toRadians(degrees: number) {
 
 const keyframeSegments = 10;
 
+// Number of frames from when the title disappears to when the start screen ends.
+export const startScreenAdditionalFrames = 100;
+
 export const keyframes: Keyframes = [
   {
     position: { x: 0, y: 5.1, z: 0 },

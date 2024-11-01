@@ -45,7 +45,11 @@ export default class Controller {
 
   private startScreenEnabled = false;
 
-  private startScreenProgress = 0;
+  private startScreenProgress = 0; // 0 to 1
+
+  private startScreenScroll = 0; // pixels
+
+  private startScreenLength = 1200; // pixels
 
   private sceneManager: SceneManager;
 
@@ -133,9 +137,11 @@ export default class Controller {
     });
   }
 
-  public onStartScreenProgress(callback: (progress: number) => void) {
+  public onStartScreenProgress(
+    callback: (progress: number, scroll: number) => void,
+  ) {
     this.emitter.addEventListener('startScreenProgress', () => {
-      callback(this.startScreenProgress);
+      callback(this.startScreenProgress, this.startScreenScroll);
     });
   }
 
@@ -245,15 +251,18 @@ export default class Controller {
     if (this.splashScreenEnabled) {
       // Do nothing during the splash screen.
     } else if (this.startScreenEnabled) {
-      const scrollMultiplier = hasTouchscreen ? 2 : 1;
-      const nextStartScreenProgress =
-        this.startScreenProgress -
-        event.deltaY / (window.innerHeight * scrollMultiplier);
-      if (nextStartScreenProgress < 0) {
+      // In the start screen, update progress and scroll value.
+      const scrollLength = -event.deltaY;
+      this.startScreenScroll += scrollLength;
+      if (this.startScreenScroll < 0) {
+        this.startScreenScroll = 0;
+      }
+      this.startScreenProgress += scrollLength / this.startScreenLength;
+      if (this.startScreenProgress < 0) {
         // Stop at the initial position.
         this.startScreenProgress = 0;
         this.emitter.dispatchEvent(new CustomEvent('startScreenProgress'));
-      } else if (nextStartScreenProgress > 1) {
+      } else if (this.startScreenProgress > 1) {
         // Hide the start screen and start playable mode.
         this.startScreenProgress = 1;
         this.startScreenEnabled = false;
@@ -262,10 +271,9 @@ export default class Controller {
         this.turnEnabled = true;
       } else {
         // Play animations during the start screen.
-        this.startScreenProgress = nextStartScreenProgress;
         this.emitter.dispatchEvent(new CustomEvent('startScreenProgress'));
         const frameIncrement =
-          event.deltaY * this.moveSpeed * -nextStartScreenProgress; // From 0 to 100% speed
+          scrollLength * this.moveSpeed * this.startScreenProgress; // From 0 to 100% speed according to the progress.
         // TODO: This may cause unexpected progress when user scrolls up and down during the start screen.
         this.inputMove(frameIncrement);
       }

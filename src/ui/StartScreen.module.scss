@@ -5,11 +5,17 @@
   z-index: 1;
   overflow: hidden;
 }
-.content {
+.viewport {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 2;
+}
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   font-size: 2rem;
 }
 .title {
@@ -44,7 +50,7 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 @mixin letterbox() {
   position: absolute;
