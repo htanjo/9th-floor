@@ -63,21 +63,25 @@ export default class Effects {
     pipeline.sharpen.edgeAmount = 0.3;
     pipeline.bloomEnabled = true;
     pipeline.bloomThreshold = 0.08;
-    pipeline.bloomWeight = 0.24;
+    pipeline.bloomWeight = 0.28;
     pipeline.bloomKernel = verticalSize * 0.25; // Effect size. Large value may cause flickering.
     pipeline.bloomScale = 0.5; // Large value reduces flickering, but hits performance.
 
     pipeline.chromaticAberrationEnabled = true;
-    pipeline.chromaticAberration.aberrationAmount = 30;
+    pipeline.chromaticAberration.aberrationAmount = 40;
     pipeline.chromaticAberration.radialIntensity = 1;
+
+    // pipeline.grainEnabled = true;
+    // pipeline.grain.animated = true;
+    // pipeline.grain.intensity = 10;
 
     // pipeline.imageProcessing.contrast = 1.2;
     // pipeline.imageProcessing.exposure = 1.3;
     pipeline.imageProcessing.vignetteEnabled = true;
-    pipeline.imageProcessing.vignetteWeight = 3.0;
+    pipeline.imageProcessing.vignetteWeight = 3.5;
     pipeline.imageProcessing.vignetteCameraFov = vignetteCameraFov;
     pipeline.imageProcessing.vignetteStretch = 0;
-    pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#003a70ff');
+    pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#0f2c3eff');
     pipeline.imageProcessing.colorGradingEnabled = true;
     const colorGradingTexture = new ColorGradingTexture(
       colorGradingTextureUrl,
@@ -96,10 +100,13 @@ export default class Effects {
     // const lensEffect = new LensRenderingPipeline(
     //   'lensEffect',
     //   {
-    //     edge_blur: 0.7,
-    //     chromatic_aberration: 1.0,
+    //     chromatic_aberration: 0,
+    //     edge_blur: 0.8,
     //     distortion: 0.5,
-    //     // grain_amount: 1.0,
+    //     dof_gain: 1,
+    //     dof_aperture: 1,
+    //     blur_noise: true,
+    //     grain_amount: 1.0,
     //   },
     //   scene,
     //   1.0,

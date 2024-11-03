@@ -263,38 +263,38 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'lamp_shade_1',
-    emissiveIntensity: 4.0,
+    emissiveIntensity: 6.0,
     alphaDisabled: true,
   },
   {
     name: 'lamp_shade_2',
-    emissiveIntensity: 4.8,
+    emissiveIntensity: 7.2,
     alphaDisabled: true,
   },
   {
     name: 'lamp_shade_3',
-    emissiveIntensity: 3.8,
+    emissiveIntensity: 5.2,
     alphaDisabled: true,
   },
   {
     name: 'lamp_shade_4',
-    emissiveIntensity: 4.2,
+    emissiveIntensity: 5.8,
     alphaDisabled: true,
   },
   {
     name: 'lamp_shade_5',
-    emissiveIntensity: 3.0,
+    emissiveIntensity: 6.8,
     alphaDisabled: true,
   },
   {
     name: 'table_lamp_shade',
-    emissiveIntensity: 1.5,
+    emissiveIntensity: 1.8,
     alphaDisabled: true,
   },
   {
     name: 'window_glass',
     refractionTextureName: 'environment_outdoor_texture',
-    emissiveIntensity: 0.3,
+    emissiveIntensity: 0.25,
     emissiveColorHex: '#95aeff',
     fogEnabled: false,
     zOffset: 0.1, // Avoid z-fighting.
@@ -358,7 +358,7 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'hallway_lamp_shade',
-    emissiveIntensity: 4.2,
+    emissiveIntensity: 6.8,
     alphaDisabled: true,
   },
 ];
@@ -1173,7 +1173,7 @@ export const lightConfigs: LightConfigs = [
     },
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
-    radius: 0.1,
+    radius: 0.15,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
@@ -1190,7 +1190,7 @@ export const lightConfigs: LightConfigs = [
     },
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
-    radius: 0.1,
+    radius: 0.15,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
