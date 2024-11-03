@@ -1,6 +1,6 @@
 import { Curve3, Path3D, Scene, TargetCamera, Vector3 } from '@babylonjs/core';
 import { keyframes, Keyframes, maxFrame } from '../settings/keyframes';
-import { floorHeight } from '../settings/models';
+import { floorHeight } from '../settings/meshes';
 
 export default class RouteCamera extends TargetCamera {
   public frame = 0;

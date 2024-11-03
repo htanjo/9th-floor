@@ -20,12 +20,9 @@ import {
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import Effects from './Effects';
-import {
-  floorHeight,
-  lightConfigs,
-  materialConfigs,
-  meshConfigs,
-} from '../settings/models';
+import { materialConfigs } from '../settings/materials';
+import { floorHeight, meshConfigs } from '../settings/meshes';
+import { lightConfigs } from '../settings/lights';
 import { particleConfigs } from '../settings/particles';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
