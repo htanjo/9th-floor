@@ -39,7 +39,7 @@ function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
       <div className={classes.content}>
         <div className={classes.title}>
           <h1>
-            <Logo colorized={false} />
+            <Logo colored={false} />
           </h1>
           <animated.div className={classes.loading} style={loadingStyle}>
             <div className={classes.loadingBar}>

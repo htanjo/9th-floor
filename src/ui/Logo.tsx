@@ -1,18 +1,19 @@
-import clsx from 'clsx';
+import { useMemo } from 'react';
+import logoColoredImage from '../assets/logo.png';
+import logoFlatImage from '../assets/logo_flat.png';
 import classes from './Logo.module.scss';
 
 interface LogoProps {
-  colorized?: boolean;
+  colored?: boolean;
 }
 
-function Logo({ colorized = true }: LogoProps) {
-  return (
-    <span className={clsx(classes.logo, colorized && classes.colorized)}>
-      The <span className={classes.emphasized}>9</span>
-      th Fl
-      <span className={classes.collapsed}>o</span>or
-    </span>
+function Logo({ colored = true }: LogoProps) {
+  const imageUrl = useMemo(
+    () => (colored ? logoColoredImage : logoFlatImage),
+    [colored],
   );
+
+  return <img src={imageUrl} alt="The 9th Floor" className={classes.logo} />;
 }
 
 export default Logo;

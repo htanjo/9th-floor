@@ -1,33 +1,4 @@
 .logo {
-  position: relative;
-  font-family: 'Macondo', serif;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  white-space: nowrap;
-  color: inherit;
-  background-image: none;
-  cursor: default;
-  &.colorized {
-    color: transparent;
-    background-image: linear-gradient(#ffb96e, #fff198, #ffb96e),
-      repeating-linear-gradient(30deg, #444444 0px 0.012em, #999999 0px 0.024em);
-    background-clip: text;
-    background-blend-mode: hard-light;
-  }
-}
-.emphasized {
-  font-size: 1.5em;
-  .colorized & {
-    color: transparent;
-    background-image: linear-gradient(#ff3676, #ff7920, #ff3676),
-      repeating-linear-gradient(30deg, #666666 0px 0.008em, #999999 0px 0.016em);
-    background-clip: text;
-    background-blend-mode: hard-light;
-    mix-blend-mode: color;
-  }
-}
-.collapsed {
-  letter-spacing: -0.12em;
+  display: block;
+  width: 100%;
 }
