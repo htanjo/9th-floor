@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "ssl": "npm-run-all -p ssl:*",
+    "ssl:dev": "vite --port 9998",
+    "ssl:proxy": "local-ssl-proxy --source 9999 --target 9998",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -35,6 +38,8 @@
     "eslint-plugin-react": "^7.34.4",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "local-ssl-proxy": "^2.0.5",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.2.2",
