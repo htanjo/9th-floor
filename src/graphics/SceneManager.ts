@@ -5,6 +5,7 @@ import {
   Color4,
   DirectionalLight,
   Engine,
+  GPUParticleSystem,
   HDRCubeTextureAssetTask,
   Material,
   MeshBuilder,
@@ -25,6 +26,7 @@ import {
   materialConfigs,
   meshConfigs,
 } from '../settings/models';
+import { particleConfigs } from '../settings/particles';
 import mansionMeshUrl from '../assets/mansion.glb?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.hdr?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
@@ -34,6 +36,8 @@ import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
 import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
+import particleDustTextureUrl from '../assets/particle_dust.png?url';
+import particleFogTextureUrl from '../assets/particle_fog.png?url';
 
 export default class SceneManager {
   private scene: Scene;
@@ -59,7 +63,7 @@ export default class SceneManager {
     this.scene.fogDensity = 0.025;
     this.scene.imageProcessingConfiguration.toneMappingEnabled = true;
 
-    this.rootNode = new TransformNode('root_node', scene);
+    this.rootNode = new TransformNode('root_node', this.scene);
 
     // this.scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
 
@@ -151,6 +155,11 @@ export default class SceneManager {
       environmentMirrorTextureUrl,
       512,
     );
+    assetsManager.addTextureTask(
+      'particle_dust_texture',
+      particleDustTextureUrl,
+    );
+    assetsManager.addTextureTask('particle_fog_texture', particleFogTextureUrl);
     assetsManager.load();
     assetsManager.onProgress = (remaining, total) => {
       this.remainingLoaded = remaining;
@@ -375,8 +384,8 @@ export default class SceneManager {
       const hallway2 = hallway.clone('hallway_2', null) as typeof hallway;
       hallway2.position.y = -floorHeight;
 
-      // Copy object animations for room2 as they are not cloned at the same time.
-      // On the other hand, mesh animations are applied to the newly created meshes automatically.
+      // Clone object animations to room2 as they are not cloned automatically.
+      // On the other hand, mesh animations are applied to the newly created meshes without setup.
       scene.animationGroups.forEach((animationGroup) => {
         const { name } = animationGroup;
         if (name.startsWith('phonograph')) {
@@ -395,8 +404,6 @@ export default class SceneManager {
       room2.parent = this.rootNode;
       hallway.parent = this.rootNode;
       hallway2.parent = this.rootNode;
-
-      // room2.setEnabled(false);
 
       // Configure lights.
       scene.lights.forEach((light) => {
@@ -459,6 +466,117 @@ export default class SceneManager {
         }
       });
 
+      // Add particles.
+      particleConfigs.forEach((config) => {
+        const {
+          type,
+          name,
+          textureName,
+          capacity,
+          emitRate,
+          updateSpeed,
+          radius,
+          radiusRange,
+          minDirection,
+          maxDirection,
+          minSize,
+          maxSize,
+          minScaleX,
+          minScaleY,
+          maxScaleX,
+          maxScaleY,
+          minEmitPower,
+          maxEmitPower,
+          minLifeTime,
+          maxLifeTime,
+          minAngularSpeed,
+          maxAngularSpeed,
+          gravity,
+        } = config;
+
+        // Configure common particle settings.
+        const particleSystem = new GPUParticleSystem(name, { capacity }, scene);
+        // const particleSystem = new ParticleSystem(name, capacity, scene);
+        particleSystem.emitRate = emitRate;
+        particleSystem.updateSpeed = updateSpeed;
+        const sphereEmitter = particleSystem.createDirectedSphereEmitter(
+          radius,
+          new Vector3(minDirection.x, minDirection.y, minDirection.z),
+          new Vector3(maxDirection.x, maxDirection.y, maxDirection.z),
+        );
+        sphereEmitter.radiusRange = radiusRange;
+        particleSystem.minSize = minSize;
+        particleSystem.maxSize = maxSize;
+        particleSystem.minScaleX = minScaleX;
+        particleSystem.maxScaleX = maxScaleX;
+        particleSystem.minScaleY = minScaleY;
+        particleSystem.maxScaleY = maxScaleY;
+        particleSystem.minEmitPower = minEmitPower;
+        particleSystem.maxEmitPower = maxEmitPower;
+        particleSystem.minLifeTime = minLifeTime;
+        particleSystem.maxLifeTime = maxLifeTime;
+        particleSystem.minAngularSpeed = minAngularSpeed;
+        particleSystem.maxAngularSpeed = maxAngularSpeed;
+        particleSystem.gravity = new Vector3(gravity.x, gravity.y, gravity.z);
+
+        // Configure lifetime color.
+        particleSystem.addColorGradient(0, new Color4(0, 0, 0, 1));
+        particleSystem.addColorGradient(0.3, new Color4(1, 1, 1, 1));
+        particleSystem.addColorGradient(0.49, new Color4(0.4, 0.4, 0.4, 1));
+        particleSystem.addColorGradient(0.5, new Color4(1, 1, 1, 1));
+        particleSystem.addColorGradient(0.59, new Color4(0.4, 0.4, 0.4, 1));
+        particleSystem.addColorGradient(0.7, new Color4(1, 1, 1, 1));
+        particleSystem.addColorGradient(1, new Color4(0, 0, 0, 1));
+
+        // Texture
+        const particleTexture =
+          tasks.find(
+            (task): task is TextureAssetTask =>
+              task instanceof TextureAssetTask && task.name === textureName,
+          )?.texture || null;
+        particleSystem.particleTexture = particleTexture;
+
+        if (type === 'dynamic') {
+          // Particles move around the camera dynamically.
+          particleSystem.isLocal = false; // Particles follow the emitter with delay. (default)
+          particleSystem.direction1 = new Vector3(
+            minDirection.x,
+            minDirection.y,
+            minDirection.z,
+          );
+          particleSystem.direction2 = new Vector3(
+            maxDirection.x,
+            maxDirection.y,
+            maxDirection.z,
+          );
+          scene.registerBeforeRender(() => {
+            particleSystem.emitter =
+              scene.activeCamera?.position || Vector3.Zero();
+          });
+        } else if (type === 'static') {
+          // Particles emitted from static placeholder.
+          particleSystem.isLocal = true; // Particles follows the emitter without delay.
+          const { position, parentNodeName } = config;
+          const emitter = MeshBuilder.CreateBox(
+            `${name}_emitter`,
+            { size: 0 },
+            scene,
+          );
+          emitter.isVisible = false;
+          emitter.position = new Vector3(position.x, position.y, position.z);
+          emitter.parent = scene.getNodeByName(parentNodeName);
+          particleSystem.emitter = emitter;
+        }
+
+        // Play particle effects.
+        particleSystem.preWarmCycles = 60;
+        particleSystem.preWarmStepOffset = 10;
+        particleSystem.start();
+      });
+
+      // room2.setEnabled(false);
+
+      // Dispatch onReady event for listeners.
       this.emitter.dispatchEvent(new CustomEvent('ready'));
     };
   }

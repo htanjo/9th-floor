@@ -1,3 +1,5 @@
+import { toRadians } from './general';
+
 export interface Keyframe {
   position: { x: number; y: number; z: number };
   forwardRotationOffset: { x: number; y: number; z: number };
@@ -5,10 +7,6 @@ export interface Keyframe {
 }
 
 export type Keyframes = Keyframe[];
-
-function toRadians(degrees: number) {
-  return degrees * (Math.PI / 180);
-}
 
 const keyframeSegments = 10;
 
@@ -57,7 +55,7 @@ export const keyframes: Keyframes = [
     backwardRotationOffset: { x: 0, y: toRadians(-45), z: 0 },
   },
   {
-    position: { x: 4.5, y: 4.5, z: -14 },
+    position: { x: 4.5, y: 4.5, z: -14.1 },
     forwardRotationOffset: { x: toRadians(45), y: toRadians(3), z: 0 },
     backwardRotationOffset: { x: toRadians(5), y: toRadians(-5), z: 0 },
   },
@@ -82,9 +80,9 @@ export const keyframes: Keyframes = [
     backwardRotationOffset: { x: toRadians(15), y: toRadians(-7), z: 0 },
   },
   {
-    position: { x: 2.3, y: 2.1, z: -14 },
+    position: { x: 2.3, y: 2.1, z: -14.1 },
     forwardRotationOffset: { x: toRadians(25), y: 0, z: 0 },
-    backwardRotationOffset: { x: toRadians(25), y: 0, z: 0 },
+    backwardRotationOffset: { x: toRadians(25), y: toRadians(-20), z: 0 },
   },
   {
     position: { x: 2.5, y: 1.5, z: -12 },
