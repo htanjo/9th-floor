@@ -73,6 +73,23 @@ export default class SceneManager {
     this.emitter = new EventTarget();
   }
 
+  // private async initializeVr() {
+  //   const { scene } = this;
+  //   const floorMeshes = scene
+  //     .getNodes()
+  //     .filter(
+  //       (node): node is Mesh =>
+  //         node instanceof Mesh &&
+  //         /(floor|stairs_landing|stairs_steps)/.test(node.name),
+  //     );
+  //   const defaultXRExperience = await scene.createDefaultXRExperienceAsync({
+  //     floorMeshes,
+  //   });
+  //   const xrSessionManager = defaultXRExperience.baseExperience.sessionManager;
+  //   const xrCamera = new WebXRCamera('XRCamera', scene, xrSessionManager);
+  //   xrCamera.setTransformationFromNonVRCamera();
+  // }
+
   public applyFrame(frame: number) {
     this.camera.frame = frame;
   }
@@ -575,6 +592,7 @@ export default class SceneManager {
       });
 
       // room2.setEnabled(false);
+      // this.initializeVr();
 
       // Dispatch onReady event for listeners.
       this.emitter.dispatchEvent(new CustomEvent('ready'));
