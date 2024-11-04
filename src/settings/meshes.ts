@@ -18,7 +18,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'ceiling_1_center',
     effectiveLightNames: ['floor_1_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
@@ -27,47 +27,47 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'ceiling_1_edge',
     effectiveLightNames: ['floor_1_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'ceiling_2_center',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'ceiling_2_edge',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'cornice_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'cornice_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'floor_1_center',
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'floor_1_edge',
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'floor_1_gate',
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'floor_1_medallion',
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'floor_2_center',
@@ -76,7 +76,7 @@ export const meshConfigs: MeshConfigs = [
       'window_right_light',
       'floor_2_light',
     ],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'floor_2_edge',
@@ -85,7 +85,7 @@ export const meshConfigs: MeshConfigs = [
       'window_right_light',
       'floor_2_light',
     ],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'floor_2_gate',
@@ -94,7 +94,7 @@ export const meshConfigs: MeshConfigs = [
       'window_right_light',
       'floor_2_light',
     ],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'floor_2_medallion',
@@ -103,37 +103,37 @@ export const meshConfigs: MeshConfigs = [
       'window_right_light',
       'floor_2_light',
     ],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'wainscot_1',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'wainscot_2',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'wall_room_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'wall_room_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'wall_stairs',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'door_1',
     effectiveLightNames: ['floor_1_light', 'door_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
@@ -142,102 +142,102 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'door_2',
     effectiveLightNames: ['floor_2_light', 'door_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lamp_base_back_1',
     effectiveLightNames: ['lamp_center_1_light', 'window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'lamp_base_back_2',
     effectiveLightNames: ['lamp_center_2_light', 'window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lamp_base_center_1',
     effectiveLightNames: ['lamp_center_1_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'lamp_base_center_2',
     effectiveLightNames: ['lamp_center_2_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lamp_base_front_1',
     effectiveLightNames: ['lamp_front_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'lamp_base_front_2',
     effectiveLightNames: ['lamp_front_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lamp_base_stairs',
     effectiveLightNames: ['window_composite_light', 'room_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'lamp_shade_off',
     effectiveLightNames: ['window_composite_light', 'room_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'pillar_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'pillar_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'railing_baluster',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'railing_base',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'railing_handrail',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'railing_newel',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'stairs_back',
     effectiveLightNames: ['stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'stairs_landing',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'stairs_steps',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'window_frame',
     effectiveLightNames: ['window_sun_light', 'room_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'bookshelf',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
@@ -246,32 +246,32 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'buffet_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'buffet_2',
     effectiveLightNames: ['window_composite_light', 'mirror_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'buffet_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'library_table',
     effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'library_table_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'chair_1',
     effectiveLightNames: ['window_inner_light', 'table_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
@@ -280,87 +280,87 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'chair_2',
     effectiveLightNames: ['window_inner_light', 'chair_front_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'chair_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'clock',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'console_table',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'console_table_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'corner_cabinet_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'corner_cabinet_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'picture_canvas_1',
     effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'picture_canvas_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'picture_frame_black_1',
     effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'picture_frame_black_2',
     effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'picture_frame_gold_2',
     effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'picture_frame_silver_2',
     effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'signboard',
     effectiveLightNames: ['signboard_left_light', 'signboard_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'table_lamp_base',
     effectiveLightNames: ['lamp_center_1_light', 'top_left_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'book',
     effectiveLightNames: ['table_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'bottle_1',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
@@ -369,57 +369,57 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'bottle_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'box_1',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'box_2',
     effectiveLightNames: ['window_right_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'box_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'cat',
     effectiveLightNames: ['window_distant_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'cat_cloth',
     effectiveLightNames: ['window_distant_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'globe',
     effectiveLightNames: ['window_composite_light', 'mirror_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lantern_1',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'lantern_2',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'mirror_frame',
     effectiveLightNames: ['window_composite_light', 'mirror_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'mirror_surface',
     effectiveLightNames: [],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
     animation: {
       targetProperty: 'material.environmentIntensity',
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 15),
@@ -428,57 +428,57 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'phonograph',
     effectiveLightNames: ['window_composite_light', 'phonograph_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'phonograph_arm',
     effectiveLightNames: ['window_composite_light', 'phonograph_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'phonograph_disk',
     effectiveLightNames: ['window_composite_light', 'phonograph_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'picture_rail_1',
     effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'picture_rail_2',
     effectiveLightNames: ['window_composite_light', 'chair_front_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'poster',
     effectiveLightNames: ['floor_1_light', 'table_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'sword',
     effectiveLightNames: ['window_composite_light', 'sword_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'typewriter',
     effectiveLightNames: ['table_light', 'top_right_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'typewriter_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'vase',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'decal_spiderweb',
     effectiveLightNames: [],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
       ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
@@ -487,7 +487,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'decal_floor_1',
     effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'decal_floor_2',
@@ -496,22 +496,22 @@ export const meshConfigs: MeshConfigs = [
       'window_right_light',
       'floor_2_light',
     ],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'decal_wall_1',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'decal_wall_2',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lamp_shade_1',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -524,7 +524,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'lamp_shade_2',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -537,7 +537,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'lamp_shade_3',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -550,7 +550,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'lamp_shade_4',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -563,7 +563,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'lamp_shade_5',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -576,7 +576,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'table_lamp_shade',
     effectiveLightNames: [],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -589,7 +589,7 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'window_glass',
     effectiveLightNames: [],
-    parentNodeName: 'room_meshes',
+    parentNodeName: 'stairs_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(

@@ -6,6 +6,7 @@ import {
 } from '@babylonjs/core';
 
 export interface AnimationConfig {
+  targetProperty?: string; // Optional. Can be set afterwards.
   easingFunction: EasingFunction;
   easingMode: number;
   framePerSecond: number;

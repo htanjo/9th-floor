@@ -51,7 +51,7 @@ interface StaticParticleConfig extends BaseParticleConfig {
   parentNodeName: string;
 }
 
-type ParticleConfig = DynamicParticleConfig | StaticParticleConfig;
+export type ParticleConfig = DynamicParticleConfig | StaticParticleConfig;
 
 export type ParticleConfigs = ParticleConfig[];
 
@@ -127,7 +127,7 @@ const baseFogConfig = {
   },
 };
 
-const particleOriginalConfigs: ParticleConfigs = [
+export const particleConfigs: ParticleConfigs = [
   {
     ...baseDustConfig,
     type: 'dynamic',
@@ -148,7 +148,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 2.2,
       z: -2.3,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_1',
   },
   {
     ...baseDustConfig,
@@ -159,7 +159,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 2.2,
       z: -7,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_1',
   },
   {
     ...baseDustConfig,
@@ -170,7 +170,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 2.2,
       z: -7,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_1',
   },
   {
     ...baseDustConfig,
@@ -181,7 +181,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 5.8,
       z: -2.3,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_2',
   },
   {
     ...baseDustConfig,
@@ -192,7 +192,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 5.8,
       z: -7,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_2',
   },
   {
     ...baseDustConfig,
@@ -203,7 +203,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 5.8,
       z: -7,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_2',
   },
   {
     ...baseDustConfig,
@@ -218,7 +218,7 @@ const particleOriginalConfigs: ParticleConfigs = [
     emitRate: 50,
     updateSpeed: 0.001,
     radius: 0.2,
-    parentNodeName: 'room',
+    parentNodeName: 'floor_2',
   },
   {
     ...baseDustConfig,
@@ -232,7 +232,7 @@ const particleOriginalConfigs: ParticleConfigs = [
     radius: 0.8,
     minSize: 0.005,
     maxSize: 0.01,
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseDustConfig,
@@ -246,7 +246,7 @@ const particleOriginalConfigs: ParticleConfigs = [
     radius: 0.8,
     minSize: 0.005,
     maxSize: 0.01,
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseDustConfig,
@@ -258,7 +258,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       z: -15.5,
     },
     radius: 0.8,
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseDustConfig,
@@ -270,7 +270,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       z: -14.5,
     },
     radius: 0.8,
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseDustConfig,
@@ -282,7 +282,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       z: -13.5,
     },
     radius: 0.8,
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseDustConfig,
@@ -293,7 +293,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 1.2,
       z: -9.2,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_1',
   },
   {
     ...baseFogConfig,
@@ -322,7 +322,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: -0.01,
       z: 0,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'floor_2',
   },
   {
     ...baseFogConfig,
@@ -333,7 +333,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 2.3,
       z: -17.4,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseFogConfig,
@@ -344,7 +344,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 2.3,
       z: -17.4,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseFogConfig,
@@ -355,7 +355,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 1.1,
       z: -15.5,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseFogConfig,
@@ -366,7 +366,7 @@ const particleOriginalConfigs: ParticleConfigs = [
       y: 0.5,
       z: -13.5,
     },
-    parentNodeName: 'room',
+    parentNodeName: 'stairs',
   },
   {
     ...baseDustConfig,
@@ -398,16 +398,4 @@ const particleOriginalConfigs: ParticleConfigs = [
     maxSize: 0.02,
     parentNodeName: 'hallway',
   },
-];
-
-// Duplicate particles here because particleSystem.clone() doesn't work as expected.
-export const particleConfigs: ParticleConfigs = [
-  ...particleOriginalConfigs,
-  ...particleOriginalConfigs
-    .filter((config) => config.type === 'static')
-    .map((config) => ({
-      ...config,
-      name: `${config.name}_2`,
-      parentNodeName: `${config.parentNodeName}_2`,
-    })),
 ];

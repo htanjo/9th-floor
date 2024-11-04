@@ -2,8 +2,6 @@ import { floorHeight } from './meshes';
 
 export interface AreaConfig {
   name: string;
-  parentNodeName?: string;
-  cloneSource?: string;
   transform?: {
     position?: {
       x: number;
@@ -21,9 +19,8 @@ export interface AreaConfig {
       z: number;
     };
   };
+  children?: AreaConfig[];
 }
-
-export type AreaConfigs = AreaConfig[];
 
 const gltfTransform: AreaConfig['transform'] = {
   rotation: {
@@ -38,70 +35,135 @@ const gltfTransform: AreaConfig['transform'] = {
   },
 };
 
-export const areaConfigs: AreaConfigs = [
-  {
-    name: 'room',
-  },
-  {
-    name: 'clone.room',
-    cloneSource: 'room',
-    transform: {
-      rotation: {
-        x: 0,
-        y: Math.PI,
-        z: 0,
-      },
+export const topLevelNodeName = 'mansion';
+export const suffixOriginal = '_original';
+export const suffixClone = '_clone';
+
+export function getBaseName(name: string) {
+  return name.replace(new RegExp(`(${suffixOriginal}|${suffixClone})$`), '');
+}
+
+export function getOriginalName(name: string) {
+  const baseName = getBaseName(name);
+  return `${baseName}${suffixOriginal}`;
+}
+
+export function getCloneName(name: string) {
+  const baseName = getBaseName(name);
+  return `${baseName}${suffixClone}`;
+}
+
+// Add or remove corresponding suffix based on the reference name.
+// Ex. ('mesh', 'node_clone') => 'mesh_clone'
+// Ex. ('mesh_original', 'node') => 'mesh'
+export function getCorrespondingName(name: string, referenceName: string) {
+  if (referenceName.endsWith(suffixOriginal)) {
+    return getOriginalName(name);
+  }
+  if (referenceName.endsWith(suffixClone)) {
+    return getCloneName(name);
+  }
+  return getBaseName(name);
+}
+
+export const areaConfig: AreaConfig = {
+  name: topLevelNodeName,
+  children: [
+    {
+      name: `room${suffixOriginal}`,
+      children: [
+        {
+          name: `floor_1${suffixOriginal}`,
+          children: [
+            {
+              name: `floor_1_meshes${suffixOriginal}`,
+              transform: gltfTransform,
+            },
+          ],
+        },
+        {
+          name: `floor_2${suffixOriginal}`,
+          children: [
+            {
+              name: `floor_2_meshes${suffixOriginal}`,
+              transform: gltfTransform,
+            },
+          ],
+        },
+        {
+          name: `stairs${suffixOriginal}`,
+          children: [
+            {
+              name: `stairs_meshes${suffixOriginal}`,
+              transform: gltfTransform,
+            },
+          ],
+        },
+      ],
     },
-  },
-  {
-    name: 'hallway',
-  },
-  {
-    name: 'clone.hallway',
-    cloneSource: 'hallway',
-    transform: {
-      position: {
-        x: 0,
-        y: -floorHeight,
-        z: 0,
+    {
+      name: `room${suffixClone}`,
+      transform: {
+        rotation: {
+          x: 0,
+          y: Math.PI,
+          z: 0,
+        },
       },
+      children: [
+        {
+          name: `floor_1${suffixClone}`,
+          children: [
+            {
+              name: `floor_1_meshes${suffixClone}`,
+              transform: gltfTransform,
+            },
+          ],
+        },
+        {
+          name: `floor_2${suffixClone}`,
+          children: [
+            {
+              name: `floor_2_meshes${suffixClone}`,
+              transform: gltfTransform,
+            },
+          ],
+        },
+        {
+          name: `stairs${suffixClone}`,
+          children: [
+            {
+              name: `stairs_meshes${suffixClone}`,
+              transform: gltfTransform,
+            },
+          ],
+        },
+      ],
     },
-  },
-  {
-    name: 'room_meshes',
-    parentNodeName: 'room',
-    transform: gltfTransform,
-  },
-  // {
-  //   name: 'floor_1',
-  //   parentNodeName: 'room',
-  // },
-  // {
-  //   name: 'floor_2',
-  //   parentNodeName: 'room',
-  // },
-  // {
-  //   name: 'stairs',
-  //   parentNodeName: 'room',
-  // },
-  // {
-  //   name: 'floor_1_meshes',
-  //   parentNodeName: 'floor_1',
-  //   transform: gltfTransform,
-  // },
-  // {
-  //   name: 'floor_2_meshes',
-  //   parentNodeName: 'floor_2',
-  //   transform: gltfTransform,
-  // },
-  // {
-  //   name: 'stairs_meshes',
-  //   parentNodeName: 'stairs',
-  //   transform: gltfTransform,
-  // },
-  {
-    name: 'hallway_meshes',
-    parentNodeName: 'hallway',
-    transform: gltfTransform,
-  },
-];
+    {
+      name: `hallway${suffixOriginal}`,
+      children: [
+        {
+          name: `hallway_meshes${suffixOriginal}`,
+          transform: gltfTransform,
+        },
+      ],
+    },
+    {
+      name: `hallway${suffixClone}`,
+      transform: {
+        position: {
+          x: 0,
+          y: -floorHeight,
+          z: 0,
+        },
+      },
+      children: [
+        {
+          name: `hallway_meshes${suffixClone}`,
+          transform: gltfTransform,
+        },
+      ],
+    },
+  ],
+};
