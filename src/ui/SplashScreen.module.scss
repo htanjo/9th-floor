@@ -10,7 +10,6 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  font-size: 2rem;
   color: var(--text-color-disabled);
 }
 .title {
@@ -20,7 +19,7 @@
   margin-top: -16vh;
   text-align: center;
   h1 {
-    width: min(94vw, 81vh);
+    width: min(100vw, 80vh);
     margin: 0 auto;
   }
 }
@@ -35,12 +34,11 @@
   margin-right: 24px;
 }
 .loadingBar {
-  min-width: min(85vw, 74vh);
+  min-width: min(90vw, 72vh);
   max-width: 100%;
 }
 .loadingText {
-  margin-top: min(3.4vw, 3vh);
-  font-size: 1.2rem;
+  margin-top: min(3.5vw, 2.1vh);
 }
 .backdrop {
   position: absolute;

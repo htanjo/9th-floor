@@ -17,7 +17,6 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  font-size: 2rem;
 }
 .title {
   position: absolute;
@@ -26,8 +25,11 @@
   margin-top: -16vh;
   text-align: center;
   h1 {
-    width: min(94vw, 81vh);
+    width: min(100vw, 80vh);
     margin: 0 auto;
+  }
+  .subtitle {
+    font-size: 1.8rem;
   }
 }
 .navigation {
@@ -35,7 +37,6 @@
   bottom: 24px;
   width: 100%;
   text-align: center;
-  font-size: 1.2rem;
   .icon {
     vertical-align: -0.1em;
     font-size: 0.8em;
