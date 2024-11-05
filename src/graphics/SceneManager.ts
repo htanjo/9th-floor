@@ -61,7 +61,7 @@ export default class SceneManager {
     this.camera = new RouteCamera('route_camera', this.scene);
 
     // this.scene.useRightHandedSystem = true;
-    this.scene.clearColor = new Color4(0, 0, 0, 0);
+    this.scene.clearColor = Color4.FromHexString('#0c0a08ff');
     this.scene.ambientColor = Color3.White();
     this.scene.fogMode = Scene.FOGMODE_EXP2;
     this.scene.fogColor = Color3.FromHexString('#413d38');
