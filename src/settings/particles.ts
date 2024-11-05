@@ -327,7 +327,7 @@ export const particleConfigs: ParticleConfigs = [
     position: {
       x: 2.7,
       y: 2.3,
-      z: -17.4,
+      z: -17.2,
     },
     parentNodeName: 'stairs',
   },
@@ -338,7 +338,7 @@ export const particleConfigs: ParticleConfigs = [
     position: {
       x: 4.7,
       y: 2.3,
-      z: -17.4,
+      z: -17.2,
     },
     parentNodeName: 'stairs',
   },
