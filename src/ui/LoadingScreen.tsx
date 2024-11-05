@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { animated, config, useSpring } from '@react-spring/web';
 import Logo from './Logo';
 import ProgressBar from './ProgressBar';
-import classes from './SplashScreen.module.scss';
+import classes from './LoadingScreen.module.scss';
 
-interface SplashScreenProps {
+interface LoadingScreenProps {
   enabled: boolean;
   loadingProgress: number;
 }
 
-function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
+function LoadingScreen({ enabled, loadingProgress }: LoadingScreenProps) {
   const [mounted, setMounted] = useState(enabled);
 
   const screenStyle = useSpring({
@@ -35,7 +35,7 @@ function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
   }
 
   return (
-    <animated.div className={classes.splashScreen} style={screenStyle}>
+    <animated.div className={classes.loadingScreen} style={screenStyle}>
       <div className={classes.content}>
         <div className={classes.title}>
           <h1>
@@ -54,4 +54,4 @@ function SplashScreen({ enabled, loadingProgress }: SplashScreenProps) {
   );
 }
 
-export default SplashScreen;
+export default LoadingScreen;

@@ -5,10 +5,10 @@ import Controller from './Controller';
 import StartScreen from '../ui/StartScreen';
 import Debugger from '../ui/Debugger';
 import classes from './Screen.module.scss';
-import SplashScreen from '../ui/SplashScreen';
+import LoadingScreen from '../ui/LoadingScreen';
 
 function Screen() {
-  const [splashScreenEnabled, setSplashScreenEnabled] = useState(true);
+  const [LoadingScreenEnabled, setLoadingScreenEnabled] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
   const [startScreenProgress, setStartScreenProgress] = useState(0);
@@ -16,8 +16,8 @@ function Screen() {
 
   const onSceneReady = useCallback(async (scene: Scene) => {
     const controller = new Controller(scene);
-    controller.onSplashScreenToggle((enabled) =>
-      setSplashScreenEnabled(enabled),
+    controller.onLoadingScreenToggle((enabled) =>
+      setLoadingScreenEnabled(enabled),
     );
     controller.onLoadingProgress((progress) => setLoadingProgress(progress));
     controller.onStartScreenToggle((enabled) => setStartScreenEnabled(enabled));
@@ -29,8 +29,8 @@ function Screen() {
 
   return (
     <>
-      <SplashScreen
-        enabled={splashScreenEnabled}
+      <LoadingScreen
+        enabled={LoadingScreenEnabled}
         loadingProgress={loadingProgress}
       />
       <StartScreen

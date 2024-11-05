@@ -49,7 +49,7 @@ export default class Controller {
 
   private areaName = keyframesSetting[0].areaName;
 
-  private splashScreenEnabled = true;
+  private loadingScreenEnabled = true;
 
   private loadingProgress = 0;
 
@@ -121,22 +121,22 @@ export default class Controller {
       // Don't set area to render and cache all meshes at beginning.
       // this.sceneManager.applyArea(this.areaName);
 
-      // Hide splash screen and show start screen.
+      // Hide loading screen and show start screen.
       // Slightly delay it to prevent frame drop due to the initial rendering.
       setTimeout(() => {
         this.loadingProgress = 1;
-        this.splashScreenEnabled = false;
+        this.loadingScreenEnabled = false;
         this.startScreenEnabled = true;
         this.emitter.dispatchEvent(new CustomEvent('loadingProgress'));
-        this.emitter.dispatchEvent(new CustomEvent('splashScreenToggle'));
+        this.emitter.dispatchEvent(new CustomEvent('loadingScreenToggle'));
         this.emitter.dispatchEvent(new CustomEvent('startScreenToggle'));
       }, 1000);
     });
   }
 
-  public onSplashScreenToggle(callback: (enabled: boolean) => void) {
-    this.emitter.addEventListener('splashScreenToggle', () => {
-      callback(this.splashScreenEnabled);
+  public onLoadingScreenToggle(callback: (enabled: boolean) => void) {
+    this.emitter.addEventListener('loadingScreenToggle', () => {
+      callback(this.loadingScreenEnabled);
     });
   }
 
@@ -267,8 +267,8 @@ export default class Controller {
   }
 
   private handleScroll(event: VirtualScrollEvent) {
-    if (this.splashScreenEnabled) {
-      // Do nothing during the splash screen.
+    if (this.loadingScreenEnabled) {
+      // Do nothing during the loading screen.
     } else if (this.startScreenEnabled) {
       // In the start screen, update progress and scroll value.
       const scrollLength = -event.deltaY;
