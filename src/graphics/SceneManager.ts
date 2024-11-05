@@ -163,11 +163,6 @@ export default class SceneManager {
 
     assetsManager.onFinish = () => {
       try {
-        // Create skybox.
-        const skybox = MeshBuilder.CreateBox('skybox', { size: 1000 }, scene);
-        skybox.material = new StandardMaterial('skybox', scene);
-        skybox.material.backFaceCulling = false;
-
         // Add transform nodes to group meshes, lights and particles.
         this.createAreaNodes(areaConfig);
 
