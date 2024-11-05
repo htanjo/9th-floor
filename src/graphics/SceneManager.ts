@@ -13,7 +13,6 @@ import {
   PBRMaterial,
   PointLight,
   Scene,
-  StandardMaterial,
   TransformNode,
   Vector3,
 } from '@babylonjs/core';
