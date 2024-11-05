@@ -2,6 +2,8 @@ import { floorHeight } from './meshes';
 
 export interface AreaConfig {
   name: string;
+  hidable?: boolean;
+  visibleAreaNames?: string[];
   transform?: {
     position?: {
       x: number;
@@ -53,48 +55,76 @@ export function getCloneName(name: string) {
   return `${baseName}${suffixClone}`;
 }
 
+export function getSuffix(name: string) {
+  const matched = name.match(new RegExp(`(${suffixOriginal}|${suffixClone})$`));
+  if (matched) {
+    return matched[0];
+  }
+  return '';
+}
+
 // Add or remove corresponding suffix based on the reference name.
 // Ex. ('mesh', 'node_clone') => 'mesh_clone'
 // Ex. ('mesh_original', 'node') => 'mesh'
 export function getCorrespondingName(name: string, referenceName: string) {
-  if (referenceName.endsWith(suffixOriginal)) {
-    return getOriginalName(name);
+  const suffix = getSuffix(referenceName);
+  switch (suffix) {
+    case suffixOriginal:
+      return getOriginalName(name);
+    case suffixClone:
+      return getCloneName(name);
+    default:
+      return getBaseName(name);
   }
-  if (referenceName.endsWith(suffixClone)) {
-    return getCloneName(name);
-  }
-  return getBaseName(name);
 }
 
 export const areaConfig: AreaConfig = {
   name: topLevelNodeName,
   children: [
     {
-      name: `room${suffixOriginal}`,
+      name: getOriginalName('room'),
       children: [
         {
-          name: `floor_1${suffixOriginal}`,
+          name: getOriginalName('floor_1'),
+          hidable: true,
+          visibleAreaNames: [
+            getOriginalName('stairs'),
+            getOriginalName('floor_1'),
+            getCloneName('hallway'),
+          ],
           children: [
             {
-              name: `floor_1_meshes${suffixOriginal}`,
+              name: getOriginalName('floor_1_meshes'),
               transform: gltfTransform,
             },
           ],
         },
         {
-          name: `floor_2${suffixOriginal}`,
+          name: getOriginalName('floor_2'),
+          hidable: true,
+          visibleAreaNames: [
+            getOriginalName('hallway'),
+            getOriginalName('floor_2'),
+            getOriginalName('stairs'),
+          ],
           children: [
             {
-              name: `floor_2_meshes${suffixOriginal}`,
+              name: getOriginalName('floor_2_meshes'),
               transform: gltfTransform,
             },
           ],
         },
         {
-          name: `stairs${suffixOriginal}`,
+          name: getOriginalName('stairs'),
+          hidable: true,
+          visibleAreaNames: [
+            getOriginalName('floor_2'),
+            getOriginalName('stairs'),
+            getOriginalName('floor_1'),
+          ],
           children: [
             {
-              name: `stairs_meshes${suffixOriginal}`,
+              name: getOriginalName('stairs_meshes'),
               transform: gltfTransform,
             },
           ],
@@ -102,7 +132,7 @@ export const areaConfig: AreaConfig = {
       ],
     },
     {
-      name: `room${suffixClone}`,
+      name: getCloneName('room'),
       transform: {
         rotation: {
           x: 0,
@@ -112,28 +142,46 @@ export const areaConfig: AreaConfig = {
       },
       children: [
         {
-          name: `floor_1${suffixClone}`,
+          name: getCloneName('floor_1'),
+          hidable: true,
+          visibleAreaNames: [
+            getCloneName('stairs'),
+            getCloneName('floor_1'),
+            getCloneName('hallway'),
+          ],
           children: [
             {
-              name: `floor_1_meshes${suffixClone}`,
+              name: getCloneName('floor_1_meshes'),
               transform: gltfTransform,
             },
           ],
         },
         {
-          name: `floor_2${suffixClone}`,
+          name: getCloneName('floor_2'),
+          hidable: true,
+          visibleAreaNames: [
+            getOriginalName('hallway'),
+            getCloneName('floor_2'),
+            getCloneName('stairs'),
+          ],
           children: [
             {
-              name: `floor_2_meshes${suffixClone}`,
+              name: getCloneName('floor_2_meshes'),
               transform: gltfTransform,
             },
           ],
         },
         {
-          name: `stairs${suffixClone}`,
+          name: getCloneName('stairs'),
+          hidable: true,
+          visibleAreaNames: [
+            getCloneName('floor_2'),
+            getCloneName('stairs'),
+            getCloneName('floor_1'),
+          ],
           children: [
             {
-              name: `stairs_meshes${suffixClone}`,
+              name: getCloneName('stairs_meshes'),
               transform: gltfTransform,
             },
           ],
@@ -141,16 +189,32 @@ export const areaConfig: AreaConfig = {
       ],
     },
     {
-      name: `hallway${suffixOriginal}`,
+      name: getOriginalName('hallway'),
+      hidable: true,
+      visibleAreaNames: [
+        getCloneName('floor_2'),
+        getOriginalName('hallway'),
+        getOriginalName('floor_2'),
+      ],
       children: [
         {
-          name: `hallway_meshes${suffixOriginal}`,
+          name: getOriginalName('hallway_meshes'),
           transform: gltfTransform,
         },
       ],
     },
     {
-      name: `hallway${suffixClone}`,
+      name: getCloneName('hallway'),
+      hidable: true,
+      visibleAreaNames: [
+        getOriginalName('floor_1'),
+        getCloneName('hallway'),
+        getCloneName('floor_1'),
+        // Preload other areas to avoid rendering glitch.
+        getOriginalName('hallway'),
+        getOriginalName('floor_2'),
+        getCloneName('floor_2'),
+      ],
       transform: {
         position: {
           x: 0,
@@ -160,7 +224,7 @@ export const areaConfig: AreaConfig = {
       },
       children: [
         {
-          name: `hallway_meshes${suffixClone}`,
+          name: getCloneName('hallway_meshes'),
           transform: gltfTransform,
         },
       ],

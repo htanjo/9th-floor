@@ -40,6 +40,16 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'ceiling_stairs_center',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'ceiling_stairs_edge',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'cornice_1',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'floor_1_meshes',
@@ -48,6 +58,11 @@ export const meshConfigs: MeshConfigs = [
     name: 'cornice_2',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
     parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'cornice_stairs',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'floor_1_center',
@@ -114,6 +129,11 @@ export const meshConfigs: MeshConfigs = [
     name: 'wainscot_2',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'wainscot_stairs',
+    effectiveLightNames: ['window_composite_light', 'room_composite_light'],
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'wall_room_1',
@@ -323,6 +343,11 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'picture_canvas_stairs',
+    effectiveLightNames: ['window_composite_gentle_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'picture_frame_black_1',
     effectiveLightNames: ['window_composite_light', 'table_light'],
     parentNodeName: 'floor_1_meshes',
@@ -333,14 +358,29 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'picture_frame_black_stairs',
+    effectiveLightNames: ['window_distant_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'picture_frame_gold_2',
     effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'picture_frame_gold_stairs',
+    effectiveLightNames: ['window_distant_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'picture_frame_silver_2',
     effectiveLightNames: ['window_distant_light', 'floor_2_distant_light'],
     parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'picture_frame_silver_stairs',
+    effectiveLightNames: ['window_distant_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'signboard',
@@ -451,6 +491,11 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'picture_rail_stairs',
+    effectiveLightNames: ['window_composite_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'poster',
     effectiveLightNames: ['floor_1_light', 'table_light'],
     parentNodeName: 'floor_1_meshes',
@@ -509,9 +554,14 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
-    name: 'lamp_shade_1',
+    name: 'decal_wall_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'lamp_shade_front_1',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -522,9 +572,22 @@ export const meshConfigs: MeshConfigs = [
     },
   },
   {
-    name: 'lamp_shade_2',
+    name: 'lamp_shade_front_2',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
+    parentNodeName: 'floor_2_meshes',
+    animation: {
+      targetProperty: 'material.emissiveIntensity',
+      ...createAnimationConfig(
+        'flickerMedium',
+        getMaterialConfig('lamp_shade_1')?.emissiveIntensity || 0,
+        15,
+      ),
+    },
+  },
+  {
+    name: 'lamp_shade_middle_left_1',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -535,9 +598,22 @@ export const meshConfigs: MeshConfigs = [
     },
   },
   {
-    name: 'lamp_shade_3',
+    name: 'lamp_shade_middle_left_2',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
+    parentNodeName: 'floor_2_meshes',
+    animation: {
+      targetProperty: 'material.emissiveIntensity',
+      ...createAnimationConfig(
+        'flickerFast',
+        getMaterialConfig('lamp_shade_2')?.emissiveIntensity || 0,
+        15,
+      ),
+    },
+  },
+  {
+    name: 'lamp_shade_middle_right_1',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -548,9 +624,22 @@ export const meshConfigs: MeshConfigs = [
     },
   },
   {
-    name: 'lamp_shade_4',
+    name: 'lamp_shade_middle_right_2',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
+    parentNodeName: 'floor_2_meshes',
+    animation: {
+      targetProperty: 'material.emissiveIntensity',
+      ...createAnimationConfig(
+        'flickerSlow',
+        getMaterialConfig('lamp_shade_3')?.emissiveIntensity || 0,
+        15,
+      ),
+    },
+  },
+  {
+    name: 'lamp_shade_back_left_1',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(
@@ -561,9 +650,35 @@ export const meshConfigs: MeshConfigs = [
     },
   },
   {
-    name: 'lamp_shade_5',
+    name: 'lamp_shade_back_left_2',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
+    parentNodeName: 'floor_2_meshes',
+    animation: {
+      targetProperty: 'material.emissiveIntensity',
+      ...createAnimationConfig(
+        'flickerSlow',
+        getMaterialConfig('lamp_shade_4')?.emissiveIntensity || 0,
+        15,
+      ),
+    },
+  },
+  {
+    name: 'lamp_shade_back_right_1',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+    animation: {
+      targetProperty: 'material.emissiveIntensity',
+      ...createAnimationConfig(
+        'flickerFast',
+        getMaterialConfig('lamp_shade_5')?.emissiveIntensity || 0,
+        15,
+      ),
+    },
+  },
+  {
+    name: 'lamp_shade_back_right_2',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_2_meshes',
     animation: {
       targetProperty: 'material.emissiveIntensity',
       ...createAnimationConfig(

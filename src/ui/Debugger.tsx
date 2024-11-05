@@ -34,6 +34,7 @@ function Debugger() {
         freeCamera = new FreeCamera('free_camera', Vector3.Zero(), scene);
         freeCamera.rotation.y = 180 * (Math.PI / 180);
         freeCamera.minZ = 0.01;
+        freeCamera.maxZ = 100;
         freeCamera.speed = 0.1;
         freeCamera.attachControl(scene.getEngine().getRenderingCanvas(), true);
         freeCamera.keysUp.push(87); // W

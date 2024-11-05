@@ -52,6 +52,10 @@ export default class SceneManager {
 
   private totalLoaded: number = 0;
 
+  private areaName: string = '';
+
+  private hidableAreas: AreaConfig[] = [];
+
   private emitter: EventTarget;
 
   public constructor(scene: Scene) {
@@ -101,6 +105,29 @@ export default class SceneManager {
     const topLevelNode = scene.getNodeByName(topLevelNodeName);
     if (topLevelNode instanceof TransformNode) {
       topLevelNode.position.y = offset * floorHeight;
+    }
+  }
+
+  public applyArea(name: string) {
+    const { scene, hidableAreas } = this;
+    // When the current area is changed, update visible nodes.
+    if (name !== this.areaName) {
+      this.areaName = name;
+      hidableAreas.forEach((config) => {
+        const hidableNode = scene.getNodeByName(config.name);
+        if (hidableNode) {
+          hidableNode.setEnabled(false);
+        }
+      });
+      const currentAreaConfig = hidableAreas.find(
+        (config) => config.name === this.areaName,
+      );
+      currentAreaConfig?.visibleAreaNames?.forEach((areaName) => {
+        const visibleNode = scene.getNodeByName(areaName);
+        if (visibleNode) {
+          visibleNode.setEnabled(true);
+        }
+      });
     }
   }
 
@@ -230,8 +257,12 @@ export default class SceneManager {
 
   private createAreaNodes(areaNodeConfig: AreaConfig, parentNodeName?: string) {
     const { scene } = this;
-    const { name, transform, children } = areaNodeConfig;
+    const { name, hidable, transform, children } = areaNodeConfig;
     const transformNode = new TransformNode(name, scene);
+
+    if (hidable) {
+      this.hidableAreas.push(areaNodeConfig);
+    }
 
     if (transform) {
       const { position, rotation, scaling } = transform;

@@ -38,6 +38,23 @@ export const lightConfigs: LightConfigs = [
     },
   },
   {
+    name: 'window_composite_gentle_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 4.6,
+      z: -20.5,
+    },
+    intensity: 1.2,
+    diffuseColorHex: '#85bcff',
+    radius: 1.6,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerVerySlow', 1.2, 30),
+    },
+  },
+  {
     name: 'window_distant_light',
     variant: 'PointLight',
     position: {
@@ -215,13 +232,13 @@ export const lightConfigs: LightConfigs = [
       y: 6.4,
       z: -3,
     },
-    intensity: 0.08,
+    intensity: 0.05,
     diffuseColorHex: '#ffeed3',
     radius: 0.1,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerFast', 0.08, 30),
+      ...createAnimationConfig('flickerFast', 0.05, 30),
     },
   },
   {

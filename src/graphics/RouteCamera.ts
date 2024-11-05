@@ -42,6 +42,7 @@ export default class RouteCamera extends TargetCamera {
     this.rotation = new Vector3(0, Math.PI, 0);
     this.fov = this.minFov;
     this.minZ = 0.01;
+    this.maxZ = 15;
     this.keyframes = keyframes;
 
     // Define route data with Path3D object.

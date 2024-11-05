@@ -2,7 +2,11 @@ import { Scene } from '@babylonjs/core';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
 import SceneManager from '../graphics/SceneManager';
 import { hasPointingDevice, hasTouchscreen } from '../settings/general';
-import { maxFrame } from '../settings/keyframes';
+import {
+  keyframes as keyframesSetting,
+  maxFrame as maxFrameSetting,
+} from '../settings/keyframes';
+import { getCloneName, getOriginalName, getSuffix } from '../settings/areas';
 
 interface DeviceOrientation {
   alpha: number;
@@ -13,7 +17,9 @@ interface DeviceOrientation {
 export default class Controller {
   private frame = 0;
 
-  private maxFrame = maxFrame;
+  private keyframes = keyframesSetting;
+
+  private maxFrame = maxFrameSetting;
 
   private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
 
@@ -40,6 +46,8 @@ export default class Controller {
   private routeOffset = 0;
 
   private routeInvert = false;
+
+  private areaName = keyframesSetting[0].areaName;
 
   private splashScreenEnabled = true;
 
@@ -110,6 +118,9 @@ export default class Controller {
         );
       }
 
+      // Don't set area to render and cache all meshes at beginning.
+      // this.sceneManager.applyArea(this.areaName);
+
       // Hide splash screen and show start screen.
       // Slightly delay it to prevent frame drop due to the initial rendering.
       setTimeout(() => {
@@ -173,6 +184,10 @@ export default class Controller {
 
   private inputMove(value: number) {
     let frameIncrement = value;
+
+    // Determine the current area.
+    this.areaName = this.getCurrentAreaName();
+    this.sceneManager.applyArea(this.areaName);
 
     // Handle turn movement.
     const reversalInput =
@@ -361,5 +376,18 @@ export default class Controller {
 
   private handleOrientationChange() {
     this.resetOrientation();
+  }
+
+  private getCurrentAreaName() {
+    const { frame, keyframes, maxFrame, routeInvert } = this;
+    const currentKeyframeIndex = Math.floor(
+      (frame / maxFrame) * (keyframes.length - 1),
+    );
+    const { areaName } = keyframes[currentKeyframeIndex];
+    const hasSuffix = !!getSuffix(areaName);
+    if (hasSuffix) {
+      return areaName;
+    }
+    return routeInvert ? getCloneName(areaName) : getOriginalName(areaName);
   }
 }
