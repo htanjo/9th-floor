@@ -491,7 +491,17 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
-    name: 'decal_spiderweb',
+    name: 'decal_spiderweb_1',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'decal_spiderweb_2',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'decal_spiderweb_stairs',
     effectiveLightNames: [],
     parentNodeName: 'stairs_meshes',
   },
