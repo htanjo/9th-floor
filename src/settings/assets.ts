@@ -75,3 +75,12 @@ export const assetConfigs: AssetConfigs = [
     url: particleFogTextureUrl,
   },
 ];
+
+export function getTextureName(assetName: string) {
+  const assetConfig = assetConfigs.find((config) => config.name === assetName);
+  if (!assetConfig) {
+    return assetName;
+  }
+  // By default, textures are named according to the URL string.
+  return assetConfig.url;
+}

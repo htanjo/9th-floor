@@ -1,13 +1,12 @@
 import {
-  AbstractMesh,
   Animation,
   AssetsManager,
+  BaseTexture,
   Color3,
   Color4,
   DirectionalLight,
   Engine,
   GPUParticleSystem,
-  HDRCubeTextureAssetTask,
   Light,
   Material,
   MeshBuilder,
@@ -15,7 +14,6 @@ import {
   PointLight,
   Scene,
   StandardMaterial,
-  TextureAssetTask,
   TransformNode,
   Vector3,
 } from '@babylonjs/core';
@@ -42,6 +40,7 @@ import { LightConfig, lightConfigs } from '../settings/lights';
 import { ParticleConfig, particleConfigs } from '../settings/particles';
 import { AnimationConfig } from '../settings/animations';
 import { assetConfigs } from '../settings/assets';
+import { TextureConfig, textureConfigs } from '../settings/textures';
 
 export default class SceneManager {
   private scene: Scene;
@@ -162,19 +161,8 @@ export default class SceneManager {
       this.emitter.dispatchEvent(new CustomEvent('assetsLoadingProgress'));
     };
 
-    assetsManager.onFinish = (tasks) => {
+    assetsManager.onFinish = () => {
       try {
-        // Rename textures from auto-generated name to task-based one.
-        tasks.forEach((task) => {
-          if (
-            task instanceof TextureAssetTask ||
-            task instanceof HDRCubeTextureAssetTask
-          ) {
-            // eslint-disable-next-line no-param-reassign
-            task.texture.name = task.name;
-          }
-        });
-
         // Create skybox.
         const skybox = MeshBuilder.CreateBox('skybox', { size: 1000 }, scene);
         skybox.material = new StandardMaterial('skybox', scene);
@@ -182,6 +170,11 @@ export default class SceneManager {
 
         // Add transform nodes to group meshes, lights and particles.
         this.createAreaNodes(areaConfig);
+
+        // Configure textures loaded by assetsManager.
+        textureConfigs.forEach((textureConfig) => {
+          this.configureTexture(textureConfig);
+        });
 
         // Customize existing materials based on the config.
         materialConfigs.forEach((materialConfig) => {
@@ -297,6 +290,54 @@ export default class SceneManager {
     }
   }
 
+  private configureAnimation(
+    target: BaseTexture | Material | Light,
+    animationConfig: AnimationConfig,
+  ) {
+    const { scene } = this;
+    const { targetProperty, easingFunction, easingMode, framePerSecond, keys } =
+      animationConfig;
+    if (!targetProperty) {
+      return;
+    }
+    const targetType = target.constructor.name.toLowerCase();
+    const meshAnimation = new Animation(
+      `${target.name}_${targetType}_animation`,
+      targetProperty,
+      framePerSecond,
+      Animation.ANIMATIONTYPE_FLOAT,
+      Animation.ANIMATIONLOOPMODE_CYCLE,
+    );
+    easingFunction.setEasingMode(easingMode);
+    meshAnimation.setKeys(keys);
+    meshAnimation.setEasingFunction(easingFunction);
+    scene.beginDirectAnimation(
+      target,
+      [meshAnimation],
+      0,
+      keys[keys.length - 1].frame,
+      true,
+      1,
+    );
+  }
+
+  private configureTexture(textureConfig: TextureConfig) {
+    const { scene } = this;
+    const { name, originalName, animation } = textureConfig;
+    const texture = scene.getTextureByName(originalName);
+    if (!texture) {
+      return;
+    }
+
+    // Override texture name.
+    texture.name = name;
+
+    // Enable material animation.
+    if (animation) {
+      this.configureAnimation(texture, animation);
+    }
+  }
+
   private configureMaterial(materialConfig: MaterialConfig) {
     const { scene } = this;
     const {
@@ -310,6 +351,7 @@ export default class SceneManager {
       zOffset,
       alphaDisabled,
       alphaBlendDisabled,
+      animation,
     } = materialConfig;
     const material = scene.getMaterialByName(name);
     if (!material || !(material instanceof PBRMaterial)) {
@@ -389,51 +431,20 @@ export default class SceneManager {
     // if (material.bumpTexture) {
     //   material.bumpTexture.anisotropicFilteringLevel = maxAnisotropy;
     // }
-  }
 
-  private configureAnimation(
-    target: AbstractMesh | Light,
-    animationConfig: AnimationConfig,
-  ) {
-    const { scene } = this;
-    const { targetProperty, easingFunction, easingMode, framePerSecond, keys } =
-      animationConfig;
-    if (!targetProperty) {
-      return;
+    // Enable material animation.
+    if (animation) {
+      this.configureAnimation(material, animation);
     }
-    const targetType = target.constructor.name.toLowerCase();
-    const meshAnimation = new Animation(
-      `${target.name}_${targetType}_animation`,
-      targetProperty,
-      framePerSecond,
-      Animation.ANIMATIONTYPE_FLOAT,
-      Animation.ANIMATIONLOOPMODE_CYCLE,
-    );
-    easingFunction.setEasingMode(easingMode);
-    meshAnimation.setKeys(keys);
-    meshAnimation.setEasingFunction(easingFunction);
-    scene.beginDirectAnimation(
-      target,
-      [meshAnimation],
-      0,
-      keys[keys.length - 1].frame,
-      true,
-      1,
-    );
   }
 
   private configureMesh(meshConfig: MeshConfig) {
     const { scene } = this;
-    const { name, parentNodeName, animation } = meshConfig;
+    const { name, parentNodeName } = meshConfig;
     const mesh = scene.getMeshByName(name);
     if (mesh) {
       // Replace mesh name.
       mesh.name = getOriginalName(name);
-
-      // Enable mesh animation.
-      if (animation) {
-        this.configureAnimation(mesh, animation);
-      }
 
       // Configure hierarchy and clone meshes for another area.
       mesh.parent = scene.getNodeByName(getOriginalName(parentNodeName));
@@ -478,17 +489,18 @@ export default class SceneManager {
     light.radius = radius;
     light.shadowEnabled = false;
 
+    // Configure hierarchy and clone lights for another area.
+    light.parent = scene.getNodeByName(getOriginalName(parentNodeName));
+    const clonedLight = light.clone(
+      getCloneName(name),
+      scene.getNodeByName(getCloneName(parentNodeName)),
+    ) as typeof light;
+
     // Enable light animation.
     if (animation) {
       this.configureAnimation(light, animation);
+      this.configureAnimation(clonedLight, animation);
     }
-
-    // Configure hierarchy and clone lights for another area.
-    light.parent = scene.getNodeByName(getOriginalName(parentNodeName));
-    light.clone(
-      getCloneName(name),
-      scene.getNodeByName(getCloneName(parentNodeName)),
-    );
   }
 
   private configureEffectiveLights(meshLightConfigs: MeshConfigs) {

@@ -1,13 +1,7 @@
-import { AnimationConfig, createAnimationConfig } from './animations';
-import { getMaterialConfig } from './materials';
-
 export interface MeshConfig {
   name: string;
   effectiveLightNames: string[];
   parentNodeName: string;
-  animation?: {
-    targetProperty: string;
-  } & AnimationConfig;
 }
 
 export type MeshConfigs = MeshConfig[];
@@ -19,10 +13,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'ceiling_1_center',
     effectiveLightNames: ['floor_1_light', 'stairs_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
-    },
   },
   {
     name: 'ceiling_1_edge',
@@ -154,10 +144,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'door_1',
     effectiveLightNames: ['floor_1_light', 'door_1_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
-    },
   },
   {
     name: 'door_2',
@@ -258,10 +244,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'bookshelf',
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
-    },
   },
   {
     name: 'buffet_1',
@@ -292,10 +274,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'chair_1',
     effectiveLightNames: ['window_inner_light', 'table_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
-    },
   },
   {
     name: 'chair_2',
@@ -401,10 +379,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'bottle_1',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
-    },
   },
   {
     name: 'bottle_2',
@@ -460,10 +434,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'mirror_surface',
     effectiveLightNames: [],
     parentNodeName: 'floor_2_meshes',
-    animation: {
-      targetProperty: 'material.environmentIntensity',
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 15),
-    },
   },
   {
     name: 'phonograph',
@@ -524,10 +494,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'decal_spiderweb',
     effectiveLightNames: [],
     parentNodeName: 'stairs_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
-    },
   },
   {
     name: 'decal_floor_1',
@@ -562,166 +528,66 @@ export const meshConfigs: MeshConfigs = [
     name: 'lamp_shade_front_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerMedium',
-        getMaterialConfig('lamp_shade_1')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_front_2',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerMedium',
-        getMaterialConfig('lamp_shade_1')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_middle_left_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerFast',
-        getMaterialConfig('lamp_shade_2')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_middle_left_2',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerFast',
-        getMaterialConfig('lamp_shade_2')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_middle_right_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerSlow',
-        getMaterialConfig('lamp_shade_3')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_middle_right_2',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerSlow',
-        getMaterialConfig('lamp_shade_3')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_back_left_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerSlow',
-        getMaterialConfig('lamp_shade_4')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_back_left_2',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerSlow',
-        getMaterialConfig('lamp_shade_4')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_back_right_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerFast',
-        getMaterialConfig('lamp_shade_5')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'lamp_shade_back_right_2',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerFast',
-        getMaterialConfig('lamp_shade_5')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'table_lamp_shade',
     effectiveLightNames: [],
     parentNodeName: 'floor_1_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerVeryFast',
-        getMaterialConfig('table_lamp_shade')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'window_glass',
     effectiveLightNames: [],
     parentNodeName: 'stairs_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerVerySlow',
-        getMaterialConfig('window_glass')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
   {
     name: 'hallway_ceiling_center',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
-    animation: {
-      targetProperty: 'material.lightmapTexture.level', // Affects all materials that use the same lightmap.
-      ...createAnimationConfig('flickerVeryFastSlight', 1.0, 10),
-    },
   },
   {
     name: 'hallway_ceiling_edge',
@@ -811,13 +677,5 @@ export const meshConfigs: MeshConfigs = [
     name: 'hallway_lamp_shade',
     effectiveLightNames: [],
     parentNodeName: 'hallway_meshes',
-    animation: {
-      targetProperty: 'material.emissiveIntensity',
-      ...createAnimationConfig(
-        'flickerVeryFastGentle',
-        getMaterialConfig('hallway_lamp_shade')?.emissiveIntensity || 0,
-        15,
-      ),
-    },
   },
 ];

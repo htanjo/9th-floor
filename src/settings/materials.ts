@@ -1,3 +1,5 @@
+import { AnimationConfig, createAnimationConfig } from './animations';
+
 export interface MaterialConfig {
   name: string;
   lightmapTextureName?: string;
@@ -9,6 +11,9 @@ export interface MaterialConfig {
   zOffset?: number;
   alphaDisabled?: boolean;
   alphaBlendDisabled?: boolean;
+  animation?: {
+    targetProperty: string;
+  } & AnimationConfig;
 }
 
 export type MaterialConfigs = MaterialConfig[];
@@ -190,6 +195,10 @@ export const materialConfigs: MaterialConfigs = [
     name: 'mirror_surface',
     lightmapTextureName: 'lightmap_4_texture',
     reflectionTextureName: 'environment_mirror_texture',
+    animation: {
+      targetProperty: 'environmentIntensity',
+      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 15),
+    },
   },
   {
     name: 'phonograph',
@@ -231,31 +240,55 @@ export const materialConfigs: MaterialConfigs = [
     name: 'lamp_shade_1',
     emissiveIntensity: 6.0,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerMedium', 6.0, 15),
+    },
   },
   {
     name: 'lamp_shade_2',
     emissiveIntensity: 7.2,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerFast', 7.2, 15),
+    },
   },
   {
     name: 'lamp_shade_3',
     emissiveIntensity: 5.2,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerSlow', 5.2, 15),
+    },
   },
   {
     name: 'lamp_shade_4',
     emissiveIntensity: 5.8,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerSlow', 5.8, 15),
+    },
   },
   {
     name: 'lamp_shade_5',
     emissiveIntensity: 6.8,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerFast', 6.8, 15),
+    },
   },
   {
     name: 'table_lamp_shade',
     emissiveIntensity: 1.8,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerVeryFast', 1.8, 15),
+    },
   },
   {
     name: 'window_glass',
@@ -264,6 +297,10 @@ export const materialConfigs: MaterialConfigs = [
     emissiveColorHex: '#95aeff',
     fogEnabled: false,
     zOffset: 0.1, // Avoid z-fighting.
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerVerySlow', 0.25, 15),
+    },
   },
   {
     name: 'hallway_ceiling_center',
@@ -326,9 +363,9 @@ export const materialConfigs: MaterialConfigs = [
     name: 'hallway_lamp_shade',
     emissiveIntensity: 6.8,
     alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerVeryFastGentle', 6.8, 15),
+    },
   },
 ];
-
-export function getMaterialConfig(name: string) {
-  return materialConfigs.find((config) => config.name === name);
-}
