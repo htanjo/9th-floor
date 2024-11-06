@@ -411,6 +411,11 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
+    name: 'cat_cloth_1',
+    effectiveLightNames: ['window_inner_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
     name: 'globe',
     effectiveLightNames: ['window_composite_light', 'mirror_light'],
     parentNodeName: 'floor_2_meshes',

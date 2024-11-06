@@ -266,13 +266,13 @@ export const lightConfigs: LightConfigs = [
       y: 1.1,
       z: -9.2,
     },
-    intensity: 0.1,
+    intensity: 0.13,
     diffuseColorHex: '#ffb575',
     radius: 0.2,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerVeryFast', 0.1, 30),
+      ...createAnimationConfig('flickerVeryFast', 0.13, 30),
     },
   },
   {

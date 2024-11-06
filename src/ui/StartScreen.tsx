@@ -35,7 +35,7 @@ function StartScreen({ enabled, progress, scroll }: StartScreenProps) {
     opacity: enabled ? 1 : 0,
     transform: enabled ? 'translateY(0)' : `translateY(1em)`,
     config: config.default,
-    delay: 1200,
+    delay: 1600,
   });
 
   const letterboxTopStyle = useSpring({

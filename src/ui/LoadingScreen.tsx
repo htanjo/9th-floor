@@ -48,6 +48,11 @@ function LoadingScreen({ enabled, loadingProgress }: LoadingScreenProps) {
             <div className={classes.loadingText}>Loading...</div>
           </animated.div>
         </div>
+        <p className={classes.description}>
+          You have wandered into a mysterious mansion.
+          <br />
+          Find a way to escape.
+        </p>
       </div>
       <div className={classes.backdrop} />
     </animated.div>
