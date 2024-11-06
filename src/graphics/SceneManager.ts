@@ -54,6 +54,8 @@ export default class SceneManager {
 
   private hidableAreas: AreaConfig[] = [];
 
+  private anomalyCleanupFunction: (() => void) | null = null;
+
   private emitter: EventTarget;
 
   public constructor(scene: Scene) {
@@ -126,6 +128,13 @@ export default class SceneManager {
           visibleNode.setEnabled(true);
         }
       });
+    }
+  }
+
+  public applyAnomaly(name: string | null) {
+    this.cleanupAnomaly();
+    if (name !== null) {
+      this.causeAnomaly(name);
     }
   }
 
@@ -646,4 +655,24 @@ export default class SceneManager {
   //   const xrCamera = new WebXRCamera('XRCamera', scene, xrSessionManager);
   //   xrCamera.setTransformationFromNonVRCamera();
   // }
+
+  private cleanupAnomaly() {
+    if (this.anomalyCleanupFunction) {
+      this.anomalyCleanupFunction();
+    }
+  }
+
+  private causeAnomaly(name: string) {
+    switch (name) {
+      case 'screen_monochrome':
+        console.log('monochrome');
+        this.anomalyCleanupFunction = () => console.log('cleanup monochrome');
+        break;
+      case 'picture_wink':
+        console.log('wink');
+        this.anomalyCleanupFunction = () => console.log('cleanup wink');
+        break;
+      // no default
+    }
+  }
 }

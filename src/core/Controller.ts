@@ -7,6 +7,7 @@ import {
   maxFrame as maxFrameSetting,
 } from '../settings/keyframes';
 import { getCloneName, getOriginalName, getSuffix } from '../settings/areas';
+import { anomalyConfigs } from '../settings/anomalies';
 
 interface DeviceOrientation {
   alpha: number;
@@ -60,6 +61,10 @@ export default class Controller {
   private startScreenScroll = 0; // pixels
 
   private startScreenLength = 1200; // pixels
+
+  private incidenceRate = 0.6; // 60%
+
+  private anomalyName: string | null = null;
 
   private sceneManager: SceneManager;
 
@@ -120,6 +125,10 @@ export default class Controller {
 
       // Don't set area to render and cache all meshes at beginning.
       // this.sceneManager.applyArea(this.areaName);
+
+      // Draw the first new anomaly.
+      this.anomalyName = this.drawAnomaly();
+      this.sceneManager.applyAnomaly(this.anomalyName);
 
       // Hide loading screen and show start screen.
       // Slightly delay it to prevent frame drop due to the initial rendering.
@@ -182,6 +191,24 @@ export default class Controller {
     // }
   }
 
+  private drawAnomaly() {
+    const selectAnomaly = () => {
+      const anomalyValue = Math.random();
+      const anomalyIndex = Math.floor(anomalyConfigs.length * anomalyValue);
+      const newAnomalyName = anomalyConfigs[anomalyIndex].name;
+      // If it selects the same anomaly, reselect.
+      if (newAnomalyName === this.anomalyName) {
+        return selectAnomaly();
+      }
+      return newAnomalyName;
+    };
+    const incidenceValue = Math.random();
+    if (incidenceValue < this.incidenceRate) {
+      return selectAnomaly();
+    }
+    return null;
+  }
+
   private inputMove(value: number) {
     let frameIncrement = value;
 
@@ -237,6 +264,9 @@ export default class Controller {
         this.sceneManager.applyDirection('forward');
         this.sceneManager.applyTurnRate(this.turnRate);
         this.sceneManager.applyFrame(this.frame);
+        // Additionally, draw a new anomaly.
+        this.anomalyName = this.drawAnomaly();
+        this.sceneManager.applyAnomaly(this.anomalyName);
       } else if (newFrame > this.maxFrame) {
         // If player exceeds the end point, decrement the offset and restart a route in the opposite direction.
         this.routeOffset -= 1;
@@ -248,6 +278,9 @@ export default class Controller {
         this.sceneManager.applyDirection('forward');
         this.sceneManager.applyTurnRate(this.turnRate);
         this.sceneManager.applyFrame(this.frame);
+        // Additionally, draw a new anomaly.
+        this.anomalyName = this.drawAnomaly();
+        this.sceneManager.applyAnomaly(this.anomalyName);
       } else {
         // Otherwise, just update the frame number.
         this.frame = newFrame;
