@@ -217,7 +217,6 @@ export default class SceneManager {
           this.createParticle(particleConfig),
         );
 
-        // scene.getNodeByName(getCloneName('room'))?.setEnabled(false);
         // this.initializeVr();
 
         // Dispatch onReady event for listeners.
