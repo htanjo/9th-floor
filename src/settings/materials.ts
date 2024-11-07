@@ -237,6 +237,10 @@ export const materialConfigs: MaterialConfigs = [
     // zOffset: -0.3,
   },
   {
+    name: 'picture_canvas_anomaly',
+    lightmapTextureName: 'lightmap_anomaly_texture',
+  },
+  {
     name: 'lamp_shade_1',
     emissiveIntensity: 6.0,
     alphaDisabled: true,

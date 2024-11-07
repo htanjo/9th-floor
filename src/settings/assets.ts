@@ -4,6 +4,7 @@ import lightmap2TextureUrl from '../assets/lightmap_2_0001.hdr?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0001.hdr?url';
 import lightmap4TextureUrl from '../assets/lightmap_4_0001.hdr?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0001.hdr?url';
+import lightmapAnomalyTextureUrl from '../assets/lightmap_anomaly_0001.hdr?url';
 import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.hdr?url';
 import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
 import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
@@ -48,6 +49,11 @@ export const assetConfigs: AssetConfigs = [
     type: 'texture',
     name: 'lightmap_5_texture',
     url: lightmap5TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_anomaly_texture',
+    url: lightmapAnomalyTextureUrl,
   },
   {
     type: 'texture',

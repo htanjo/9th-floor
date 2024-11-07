@@ -442,11 +442,16 @@ export default class SceneManager {
 
   private configureMesh(meshConfig: MeshConfig) {
     const { scene } = this;
-    const { name, parentNodeName } = meshConfig;
+    const { name, parentNodeName, isVisible } = meshConfig;
     const mesh = scene.getMeshByName(name);
     if (mesh) {
       // Replace mesh name.
       mesh.name = getOriginalName(name);
+
+      // Hide anomaly meshes.
+      if (isVisible !== undefined) {
+        mesh.isVisible = isVisible;
+      }
 
       // Configure hierarchy and clone meshes for another area.
       mesh.parent = scene.getNodeByName(getOriginalName(parentNodeName));
@@ -665,14 +670,85 @@ export default class SceneManager {
   private causeAnomaly(name: string) {
     switch (name) {
       case 'screen_monochrome':
-        console.log('monochrome');
-        this.anomalyCleanupFunction = () => console.log('cleanup monochrome');
+        this.causeAnomalyMonochrome();
         break;
-      case 'picture_wink':
-        console.log('wink');
-        this.anomalyCleanupFunction = () => console.log('cleanup wink');
+      case 'picture_closed_eyes':
+        this.causeAnomalyAppear('picture_canvas_anomaly');
         break;
       // no default
     }
+  }
+
+  private causeAnomalyAppear(meshName: string) {
+    const { scene } = this;
+    const meshOriginal = scene.getMeshByName(getOriginalName(meshName));
+    const meshClone = scene.getMeshByName(getCloneName(meshName));
+    if (meshOriginal && meshClone) {
+      meshOriginal.isVisible = true;
+      meshClone.isVisible = true;
+      this.anomalyCleanupFunction = () => {
+        meshOriginal.isVisible = false;
+        meshClone.isVisible = false;
+      };
+    } else {
+      this.anomalyCleanupFunction = () => {};
+    }
+  }
+
+  private causeAnomalyMonochrome() {
+    const { scene } = this;
+    const originalMaterials: {
+      [key: string]: {
+        albedoTexture?: BaseTexture;
+        albedoColor?: Color3;
+        alpha?: number;
+      };
+    } = {};
+    scene.materials.forEach((material) => {
+      if (
+        material instanceof PBRMaterial &&
+        !(
+          material.name.startsWith('hallway_') ||
+          ['door', 'cat', 'signboard'].includes(material.name)
+        )
+      ) {
+        originalMaterials[material.id] = {};
+        /* eslint-disable no-param-reassign */
+        if (material.name.startsWith('decal_')) {
+          originalMaterials[material.id].alpha = material.alpha;
+          material.alpha = 0;
+        } else {
+          if (material.albedoTexture) {
+            originalMaterials[material.id].albedoTexture =
+              material.albedoTexture;
+            material.albedoTexture = null;
+          }
+          if (material.albedoColor) {
+            originalMaterials[material.id].albedoColor = material.albedoColor;
+            material.albedoColor = Color3.FromHexString('#666666');
+          }
+        }
+        /* eslint-enable no-param-reassign */
+      }
+    });
+    this.anomalyCleanupFunction = () => {
+      scene.materials.forEach((material) => {
+        if (material instanceof PBRMaterial && originalMaterials[material.id]) {
+          const { albedoTexture, albedoColor, alpha } =
+            originalMaterials[material.id];
+          /* eslint-disable no-param-reassign */
+          if (albedoTexture) {
+            material.albedoTexture = albedoTexture;
+          }
+          if (albedoColor) {
+            material.albedoColor = albedoColor;
+          }
+          if (alpha) {
+            material.alpha = alpha;
+          }
+          /* eslint-enable no-param-reassign */
+        }
+      });
+    };
   }
 }

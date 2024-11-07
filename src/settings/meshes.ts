@@ -2,6 +2,7 @@ export interface MeshConfig {
   name: string;
   effectiveLightNames: string[];
   parentNodeName: string;
+  isVisible?: boolean;
 }
 
 export type MeshConfigs = MeshConfig[];
@@ -538,6 +539,12 @@ export const meshConfigs: MeshConfigs = [
     name: 'decal_wall_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'picture_canvas_anomaly',
+    effectiveLightNames: ['window_composite_gentle_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+    isVisible: false,
   },
   {
     name: 'lamp_shade_front_1',

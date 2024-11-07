@@ -204,8 +204,11 @@ export default class Controller {
     };
     const incidenceValue = Math.random();
     if (incidenceValue < this.incidenceRate) {
-      return selectAnomaly();
+      const anomalyName = selectAnomaly();
+      console.log(`anomaly: ${anomalyName}`);
+      return anomalyName;
     }
+    console.log('anomaly: (none)');
     return null;
   }
 
