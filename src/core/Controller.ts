@@ -6,7 +6,12 @@ import {
   keyframes as keyframesSetting,
   maxFrame as maxFrameSetting,
 } from '../settings/keyframes';
-import { getCloneName, getOriginalName, getSuffix } from '../settings/areas';
+import {
+  getBaseName,
+  getCloneName,
+  getOriginalName,
+  getSuffix,
+} from '../settings/areas';
 import { anomalyConfigs } from '../settings/anomalies';
 
 interface DeviceOrientation {
@@ -64,7 +69,15 @@ export default class Controller {
 
   private incidenceRate = 0.6; // 60%
 
+  private minFloorNumber = 1;
+
+  private maxFloorNumber = 9;
+
+  private floorNumber = this.maxFloorNumber;
+
   private anomalyName: string | null = null;
+
+  private roomEntered = false;
 
   private sceneManager: SceneManager;
 
@@ -212,11 +225,32 @@ export default class Controller {
     return null;
   }
 
+  private checkAnswer(hasAnomaly: boolean) {
+    const correctAnswer = this.anomalyName !== null;
+    if (hasAnomaly === correctAnswer) {
+      this.floorNumber -= 1;
+      if (this.floorNumber < this.minFloorNumber) {
+        // Loop floors until I create the ending.
+        this.floorNumber = this.maxFloorNumber;
+      }
+    } else {
+      this.floorNumber = this.maxFloorNumber;
+    }
+    console.log(`floor: ${this.floorNumber}`);
+  }
+
   private inputMove(value: number) {
     let frameIncrement = value;
 
     // Determine the current area.
-    this.areaName = this.getCurrentAreaName();
+    const currentAreaName = this.getCurrentAreaName();
+    if (
+      this.areaName === getOriginalName('hallway') &&
+      getBaseName(currentAreaName) === 'floor_2'
+    ) {
+      this.roomEntered = true;
+    }
+    this.areaName = currentAreaName;
     this.sceneManager.applyArea(this.areaName);
 
     // Handle turn movement.
@@ -267,9 +301,13 @@ export default class Controller {
         this.sceneManager.applyDirection('forward');
         this.sceneManager.applyTurnRate(this.turnRate);
         this.sceneManager.applyFrame(this.frame);
-        // Additionally, draw a new anomaly.
-        this.anomalyName = this.drawAnomaly();
-        this.sceneManager.applyAnomaly(this.anomalyName);
+        // Check the answer and draw a new anomaly.
+        if (this.roomEntered) {
+          this.roomEntered = false;
+          this.checkAnswer(true);
+          this.anomalyName = this.drawAnomaly();
+          this.sceneManager.applyAnomaly(this.anomalyName);
+        }
       } else if (newFrame > this.maxFrame) {
         // If player exceeds the end point, decrement the offset and restart a route in the opposite direction.
         this.routeOffset -= 1;
@@ -281,9 +319,13 @@ export default class Controller {
         this.sceneManager.applyDirection('forward');
         this.sceneManager.applyTurnRate(this.turnRate);
         this.sceneManager.applyFrame(this.frame);
-        // Additionally, draw a new anomaly.
-        this.anomalyName = this.drawAnomaly();
-        this.sceneManager.applyAnomaly(this.anomalyName);
+        // Check the answer and draw a new anomaly.
+        if (this.roomEntered) {
+          this.roomEntered = false;
+          this.checkAnswer(false);
+          this.anomalyName = this.drawAnomaly();
+          this.sceneManager.applyAnomaly(this.anomalyName);
+        }
       } else {
         // Otherwise, just update the frame number.
         this.frame = newFrame;
