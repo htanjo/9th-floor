@@ -156,6 +156,42 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_3_texture',
   },
   {
+    name: 'signboard_front_1',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_2',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_3',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_4',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_5',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_6',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_7',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_8',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
+    name: 'signboard_front_9',
+    lightmapTextureName: 'lightmap_3_texture',
+  },
+  {
     name: 'table_lamp_base',
     lightmapTextureName: 'lightmap_3_texture',
   },

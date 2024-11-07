@@ -6,7 +6,7 @@ export type AnomalyConfigs = AnomalyConfig[];
 
 export const anomalyConfigs: AnomalyConfigs = [
   {
-    name: 'screen_monochrome',
+    name: 'screen_monotone',
   },
   {
     name: 'picture_closed_eyes',

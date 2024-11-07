@@ -138,6 +138,22 @@ export default class SceneManager {
     }
   }
 
+  public applyFloor(number: number) {
+    const { scene } = this;
+    const signboardMeshes = scene.meshes.filter((mesh) =>
+      mesh.name.startsWith('signboard_front_'),
+    );
+    signboardMeshes.forEach((mesh) => {
+      /* eslint-disable no-param-reassign */
+      if (getBaseName(mesh.name) === `signboard_front_${number}`) {
+        mesh.isVisible = true;
+      } else {
+        mesh.isVisible = false;
+      }
+      /* eslint-enable no-param-reassign */
+    });
+  }
+
   public loadAssets() {
     const { scene } = this;
     const assetsManager = new AssetsManager(scene);
@@ -669,8 +685,8 @@ export default class SceneManager {
 
   private causeAnomaly(name: string) {
     switch (name) {
-      case 'screen_monochrome':
-        this.causeAnomalyMonochrome();
+      case 'screen_monotone':
+        this.causeAnomalyMonotone();
         break;
       case 'picture_closed_eyes':
         this.causeAnomalyAppear('picture_canvas_anomaly');
@@ -695,7 +711,7 @@ export default class SceneManager {
     }
   }
 
-  private causeAnomalyMonochrome() {
+  private causeAnomalyMonotone() {
     const { scene } = this;
     const originalMaterials: {
       [key: string]: {
@@ -709,7 +725,8 @@ export default class SceneManager {
         material instanceof PBRMaterial &&
         !(
           material.name.startsWith('hallway_') ||
-          ['door', 'cat', 'signboard'].includes(material.name)
+          ['door', 'cat', 'signboard'].includes(material.name) ||
+          material.name.startsWith('signboard_front_')
         )
       ) {
         originalMaterials[material.id] = {};
@@ -725,7 +742,7 @@ export default class SceneManager {
           }
           if (material.albedoColor) {
             originalMaterials[material.id].albedoColor = material.albedoColor;
-            material.albedoColor = Color3.FromHexString('#666666');
+            material.albedoColor = Color3.FromHexString('#554b42');
           }
         }
         /* eslint-enable no-param-reassign */

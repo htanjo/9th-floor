@@ -140,6 +140,7 @@ export default class Controller {
       // this.sceneManager.applyArea(this.areaName);
 
       // Draw the first new anomaly.
+      this.sceneManager.applyFloor(this.floorNumber);
       this.anomalyName = this.drawAnomaly();
       this.sceneManager.applyAnomaly(this.anomalyName);
 
@@ -227,16 +228,7 @@ export default class Controller {
 
   private checkAnswer(hasAnomaly: boolean) {
     const correctAnswer = this.anomalyName !== null;
-    if (hasAnomaly === correctAnswer) {
-      this.floorNumber -= 1;
-      if (this.floorNumber < this.minFloorNumber) {
-        // Loop floors until I create the ending.
-        this.floorNumber = this.maxFloorNumber;
-      }
-    } else {
-      this.floorNumber = this.maxFloorNumber;
-    }
-    console.log(`floor: ${this.floorNumber}`);
+    return hasAnomaly === correctAnswer;
   }
 
   private inputMove(value: number) {
@@ -291,38 +283,40 @@ export default class Controller {
     // Handle frame update.
     if (frameIncrement !== 0) {
       const newFrame = this.frame + frameIncrement;
-      if (newFrame < 0) {
-        // If player exceeds the start point, restart a route in the opposite direction.
-        this.routeInvert = !this.routeInvert;
-        this.moveForward = true;
-        this.turnRate = 0;
-        this.frame = -newFrame;
-        this.sceneManager.applyRoute(this.routeOffset, this.routeInvert);
-        this.sceneManager.applyDirection('forward');
-        this.sceneManager.applyTurnRate(this.turnRate);
-        this.sceneManager.applyFrame(this.frame);
-        // Check the answer and draw a new anomaly.
-        if (this.roomEntered) {
-          this.roomEntered = false;
-          this.checkAnswer(true);
-          this.anomalyName = this.drawAnomaly();
-          this.sceneManager.applyAnomaly(this.anomalyName);
+      const exceedsStartLine = newFrame < 0;
+      const exceedsFinishLine = newFrame > this.maxFrame;
+      // If player exceeds the start or finish line, perform additional tasks.
+      if (exceedsStartLine || exceedsFinishLine) {
+        // After the finish line, decrement the position offset.
+        if (exceedsFinishLine) {
+          this.routeOffset -= 1;
         }
-      } else if (newFrame > this.maxFrame) {
-        // If player exceeds the end point, decrement the offset and restart a route in the opposite direction.
-        this.routeOffset -= 1;
+        // Restart a route in the opposite direction;
         this.routeInvert = !this.routeInvert;
         this.moveForward = true;
         this.turnRate = 0;
-        this.frame = newFrame - this.maxFrame;
+        this.frame = exceedsStartLine ? -newFrame : newFrame - this.maxFrame; // Set the excess.
         this.sceneManager.applyRoute(this.routeOffset, this.routeInvert);
         this.sceneManager.applyDirection('forward');
         this.sceneManager.applyTurnRate(this.turnRate);
         this.sceneManager.applyFrame(this.frame);
-        // Check the answer and draw a new anomaly.
+        // Check the answer only if player has already entered the room.
         if (this.roomEntered) {
+          const answer = exceedsStartLine; // True means hasAnomaly.
           this.roomEntered = false;
-          this.checkAnswer(false);
+          const passed = this.checkAnswer(answer);
+          if (passed) {
+            this.floorNumber -= 1;
+            if (this.floorNumber < this.minFloorNumber) {
+              // Loop floors until creating game ending.
+              this.floorNumber = this.maxFloorNumber;
+            }
+          } else {
+            // Back to the start floor.
+            this.floorNumber = this.maxFloorNumber;
+          }
+          this.sceneManager.applyFloor(this.floorNumber);
+          // Draw a new anomaly.
           this.anomalyName = this.drawAnomaly();
           this.sceneManager.applyAnomaly(this.anomalyName);
         }
