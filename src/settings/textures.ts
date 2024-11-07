@@ -53,6 +53,14 @@ export const textureConfigs: TextureConfigs = [
     },
   },
   {
+    name: 'lightmap_anomaly_texture',
+    originalName: getTextureName('lightmap_anomaly_texture'),
+    animation: {
+      targetProperty: 'level',
+      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
+    },
+  },
+  {
     name: 'lightmap_hallway_texture',
     originalName: getTextureName('lightmap_hallway_texture'),
     animation: {
