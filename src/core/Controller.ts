@@ -241,10 +241,8 @@ export default class Controller {
       this.anomalyCount < maxAnomalyCount
     ) {
       const anomalyName = selectAnomaly();
-      console.log(`anomaly: ${anomalyName}`);
       return anomalyName;
     }
-    console.log('anomaly: (none)');
     return null;
   }
 
@@ -341,7 +339,6 @@ export default class Controller {
             // Back to the start floor.
             this.floorNumber = this.maxFloorNumber;
           }
-          console.log(`resolved: ${this.resolvedAnomalyNames}`);
           if (this.anomalyName === null) {
             this.anomalyCount = 0;
             this.noAnomalyCount += 1;
