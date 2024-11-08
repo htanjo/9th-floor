@@ -8,6 +8,8 @@ import classes from './Screen.module.scss';
 import LoadingScreen from '../ui/LoadingScreen';
 
 function Screen() {
+  const [controllerInstance, setControllerInstance] =
+    useState<Controller | null>(null);
   const [LoadingScreenEnabled, setLoadingScreenEnabled] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
@@ -25,6 +27,7 @@ function Screen() {
       setStartScreenProgress(progress);
       setStartScreenScroll(scroll);
     });
+    setControllerInstance(controller);
   }, []);
 
   return (
@@ -45,7 +48,7 @@ function Screen() {
         // onRender={onRender}
         className={classes.screen}
       >
-        <Debugger />
+        <Debugger controller={controllerInstance} />
       </SceneComponent>
     </>
   );

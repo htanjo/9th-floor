@@ -27,7 +27,7 @@ interface DeviceOrientation {
 }
 
 export default class Controller {
-  private frame = 0;
+  public frame = 0;
 
   private keyframes = keyframesSetting;
 
@@ -35,13 +35,13 @@ export default class Controller {
 
   private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
 
-  private moveForward = true;
+  public moveForward = true;
 
   private touchMultiplier = 3;
 
   private turnFrames = 10; // Number of frames to complete turn.
 
-  private turnRate = 0; // 0 to 1
+  public turnRate = 0; // 0 to 1
 
   private turnEnabled = false;
 
@@ -55,11 +55,17 @@ export default class Controller {
 
   private deviceOrientation: DeviceOrientation | null = null;
 
-  private routeOffset = 0;
+  public routeOffset = 0;
 
-  private routeInvert = false;
+  public routeInvert = false;
 
-  private areaName = keyframesSetting[0].areaName;
+  public areaName = keyframesSetting[0].areaName;
+
+  private minFloorNumber = 1;
+
+  private maxFloorNumber = 9;
+
+  public floorNumber = this.maxFloorNumber;
 
   private loadingScreenEnabled = true;
 
@@ -75,19 +81,13 @@ export default class Controller {
 
   private resolvedAnomalyNames: string[] = [];
 
-  private anomalyCount = 0;
+  public anomalyCount = 0;
 
-  private noAnomalyCount = 0;
+  public noAnomalyCount = 0;
 
-  private minFloorNumber = 1;
+  public anomalyName: string | null = null;
 
-  private maxFloorNumber = 9;
-
-  private floorNumber = this.maxFloorNumber;
-
-  private anomalyName: string | null = null;
-
-  private roomEntered = false;
+  public roomEntered = false;
 
   private sceneManager: SceneManager;
 
