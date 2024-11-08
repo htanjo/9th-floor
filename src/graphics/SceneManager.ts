@@ -844,8 +844,8 @@ export default class SceneManager {
       (mesh) => mesh.clone(`${mesh.name}_ghost`, mesh.parent) as AbstractMesh,
     );
     const animations: { [key: string]: () => void } = {};
-    const minGhostAlpha = 0.2;
-    const maxGhostAlpha = 0.7;
+    const minGhostAlpha = 0.0;
+    const maxGhostAlpha = 1.0;
     const minFloatDistance = 0.05;
     const maxFloatDistance = 0.2;
     const baseFloatUpSpeed = 0.005;
@@ -863,7 +863,7 @@ export default class SceneManager {
     catGhostMeshes.forEach((mesh) => {
       mesh.visibility = 0.9999;
       if (mesh.material instanceof PBRMaterial) {
-        mesh.material.alphaMode = Engine.ALPHA_COMBINE;
+        mesh.material.alphaMode = Engine.ALPHA_ADD;
         mesh.material.alpha = minGhostAlpha;
         const animateCatGhost = () => {
           let speedRate = floatUp
