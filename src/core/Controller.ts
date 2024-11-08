@@ -331,6 +331,8 @@ export default class Controller {
             }
             this.floorNumber -= 1;
             if (this.floorNumber < this.minFloorNumber) {
+              // eslint-disable-next-line no-alert
+              alert('Congratulations! You have escaped!');
               // Loop floors until creating game ending.
               this.floorNumber = this.maxFloorNumber;
             }
