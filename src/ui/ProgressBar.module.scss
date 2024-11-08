@@ -5,7 +5,9 @@
 }
 .icon {
   flex-grow: 0;
-  font-size: 20px;
+  width: 1em;
+  font-size: 0.8rem;
+  line-height: 1;
   color: var(--text-color-disabled);
 }
 .totalBar {
