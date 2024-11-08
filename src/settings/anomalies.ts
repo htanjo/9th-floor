@@ -4,7 +4,7 @@ export interface AnomalyConfig {
 
 export type AnomalyConfigs = AnomalyConfig[];
 
-export const anomalyIncidenceRate = 1;
+export const anomalyIncidenceRate = 0.7;
 
 export const anomalyConfigs: AnomalyConfigs = [
   {
