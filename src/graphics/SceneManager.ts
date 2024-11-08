@@ -1,4 +1,5 @@
 import {
+  AbstractMesh,
   Animation,
   AssetsManager,
   BaseTexture,
@@ -685,87 +686,221 @@ export default class SceneManager {
 
   private causeAnomaly(name: string) {
     switch (name) {
-      case 'screen_monotone':
-        this.causeAnomalyMonotone();
+      case 'overall_red':
+        this.causeAnomalyOverallRed();
         break;
-      case 'picture_closed_eyes':
-        this.causeAnomalyAppear('picture_canvas_anomaly');
+      case 'phonograph_large':
+        this.causeAnomalyPhonographLarge();
+        break;
+      case 'sword_stand':
+        this.causeAnomalyAppear(['sword_anomaly'], ['sword']);
+        break;
+      case 'cat_ghost':
+        this.causeAnomalyCatGhost();
+        break;
+      case 'picture_eyes':
+        this.causeAnomalyAppear(['picture_canvas_anomaly']);
+        break;
+      case 'floor_none':
+        this.causeAnomalyAppear(
+          ['floor_none_anomaly'],
+          ['floor_1_center', 'floor_1_medallion', 'decal_floor_1'],
+        );
+        break;
+      case 'chair_outside':
+        this.causeAnomalyAppear([
+          'chair_outside_anomaly',
+          'chair_outside_anomaly_shadow',
+        ]);
         break;
       // no default
     }
   }
 
-  private causeAnomalyAppear(meshName: string) {
+  private causeAnomalyAppear(
+    anomalyMeshNames: string[],
+    flipMeshNames?: string[],
+  ) {
     const { scene } = this;
-    const meshOriginal = scene.getMeshByName(getOriginalName(meshName));
-    const meshClone = scene.getMeshByName(getCloneName(meshName));
-    if (meshOriginal && meshClone) {
-      meshOriginal.isVisible = true;
-      meshClone.isVisible = true;
-      this.anomalyCleanupFunction = () => {
-        meshOriginal.isVisible = false;
-        meshClone.isVisible = false;
-      };
-    } else {
-      this.anomalyCleanupFunction = () => {};
-    }
+    const anomalyMeshes = scene.meshes.filter((mesh) =>
+      anomalyMeshNames.includes(getBaseName(mesh.name)),
+    );
+    const flipMeshes = flipMeshNames
+      ? scene.meshes.filter((mesh) =>
+          flipMeshNames.includes(getBaseName(mesh.name)),
+        )
+      : [];
+    /* eslint-disable no-param-reassign */
+    anomalyMeshes.forEach((mesh) => {
+      mesh.isVisible = true;
+    });
+    flipMeshes.forEach((mesh) => {
+      mesh.isVisible = false;
+    });
+    this.anomalyCleanupFunction = () => {
+      anomalyMeshes.forEach((mesh) => {
+        mesh.isVisible = false;
+      });
+      flipMeshes.forEach((mesh) => {
+        mesh.isVisible = true;
+      });
+    };
+    /* eslint-enable no-param-reassign */
   }
 
-  private causeAnomalyMonotone() {
+  private causeAnomalyOverallRed() {
     const { scene } = this;
-    const originalMaterials: {
-      [key: string]: {
-        albedoTexture?: BaseTexture;
-        albedoColor?: Color3;
-        alpha?: number;
-      };
-    } = {};
+    const originalAmbientColors: { [key: string]: Color3 } = {};
+    const originalAlbedoColors: { [key: string]: Color3 } = {};
+    const originalAlbedoTextures: { [key: string]: BaseTexture } = {};
+    const originalLightDiffuse: { [key: string]: Color3 } = {};
+    /* eslint-disable no-param-reassign */
     scene.materials.forEach((material) => {
       if (
         material instanceof PBRMaterial &&
-        !(
-          material.name.startsWith('hallway_') ||
-          ['door', 'cat', 'signboard'].includes(material.name) ||
-          material.name.startsWith('signboard_front_')
-        )
+        !material.name.startsWith('hallway_')
       ) {
-        originalMaterials[material.id] = {};
-        /* eslint-disable no-param-reassign */
-        if (material.name.startsWith('decal_')) {
-          originalMaterials[material.id].alpha = material.alpha;
-          material.alpha = 0;
+        originalAmbientColors[material.id] = material.ambientColor;
+        if (
+          [
+            'signboard',
+            'cat',
+            'door',
+            'pillar',
+            'ceiling_edge',
+            'window_frame',
+          ].includes(material.name)
+        ) {
+          material.ambientColor = Color3.FromHexString('#ff7777');
         } else {
-          if (material.albedoTexture) {
-            originalMaterials[material.id].albedoTexture =
-              material.albedoTexture;
-            material.albedoTexture = null;
-          }
-          if (material.albedoColor) {
-            originalMaterials[material.id].albedoColor = material.albedoColor;
-            material.albedoColor = Color3.FromHexString('#554b42');
-          }
+          material.ambientColor = Color3.FromHexString('#ff3333');
         }
-        /* eslint-enable no-param-reassign */
+        if (material.name === 'mirror_surface') {
+          originalAlbedoColors[material.id] = material.albedoColor;
+          material.albedoColor = Color3.FromHexString('#ff7766');
+        }
+        if (material.name === 'lamp_shade' && material.albedoTexture) {
+          originalAlbedoColors[material.id] = material.albedoColor;
+          originalAlbedoTextures[material.id] = material.albedoTexture;
+          material.albedoColor = Color3.FromHexString('cc30000');
+          material.albedoTexture = null;
+        }
+      }
+    });
+    scene.lights.forEach((light) => {
+      if (!light.name.startsWith('hallway_')) {
+        originalLightDiffuse[light.id] = light.diffuse;
+        light.diffuse = Color3.FromHexString('#ffcccc');
       }
     });
     this.anomalyCleanupFunction = () => {
       scene.materials.forEach((material) => {
-        if (material instanceof PBRMaterial && originalMaterials[material.id]) {
-          const { albedoTexture, albedoColor, alpha } =
-            originalMaterials[material.id];
-          /* eslint-disable no-param-reassign */
-          if (albedoTexture) {
-            material.albedoTexture = albedoTexture;
+        if (
+          material instanceof PBRMaterial &&
+          !material.name.startsWith('hallway_')
+        ) {
+          material.ambientColor = originalAmbientColors[material.id];
+          if (material.name === 'mirror_surface') {
+            material.albedoColor = originalAlbedoColors[material.id];
           }
-          if (albedoColor) {
-            material.albedoColor = albedoColor;
+          if (material.name === 'lamp_shade' && material.albedoTexture) {
+            material.albedoColor = originalAlbedoColors[material.id];
+            material.albedoTexture = originalAlbedoTextures[material.id];
           }
-          if (alpha) {
-            material.alpha = alpha;
-          }
-          /* eslint-enable no-param-reassign */
+        }
+      });
+      scene.lights.forEach((light) => {
+        if (!light.name.startsWith('hallway_')) {
+          light.diffuse = originalLightDiffuse[light.id];
         }
       });
     };
+    /* eslint-enable no-param-reassign */
+  }
+
+  private causeAnomalyPhonographLarge() {
+    const { scene } = this;
+    const phonographDiskMeshes = scene.meshes.filter(
+      (mesh) => getBaseName(mesh.name) === 'phonograph_disk',
+    );
+    /* eslint-disable no-param-reassign */
+    phonographDiskMeshes.forEach((mesh) => {
+      mesh.scaling = new Vector3(2, 1, 2);
+    });
+    this.anomalyCleanupFunction = () => {
+      phonographDiskMeshes.forEach((mesh) => {
+        mesh.scaling = new Vector3(1, 1, 1);
+      });
+    };
+    /* eslint-enable no-param-reassign */
+  }
+
+  private causeAnomalyCatGhost() {
+    const { scene } = this;
+    const catMeshes = scene.meshes.filter((mesh) =>
+      ['cat'].includes(getBaseName(mesh.name)),
+    );
+    const catGhostMeshes = catMeshes.map(
+      (mesh) => mesh.clone(`${mesh.name}_ghost`, mesh.parent) as AbstractMesh,
+    );
+    const animations: { [key: string]: () => void } = {};
+    const minGhostAlpha = 0.2;
+    const maxGhostAlpha = 0.7;
+    const minFloatDistance = 0.05;
+    const maxFloatDistance = 0.2;
+    const baseFloatUpSpeed = 0.005;
+    const baseFloatDownSpeed = 0.02;
+    const minSpeedRate = 0.02;
+    function getFloatDistance() {
+      const distance =
+        minFloatDistance +
+        Math.random() * (maxFloatDistance - minFloatDistance);
+      return distance;
+    }
+    let floatUp = true;
+    let floatDistance = getFloatDistance();
+    /* eslint-disable no-param-reassign */
+    catGhostMeshes.forEach((mesh) => {
+      mesh.visibility = 0.9999;
+      if (mesh.material instanceof PBRMaterial) {
+        mesh.material.alphaMode = Engine.ALPHA_COMBINE;
+        mesh.material.alpha = minGhostAlpha;
+        const animateCatGhost = () => {
+          let speedRate = floatUp
+            ? (floatDistance - mesh.position.y) / floatDistance
+            : mesh.position.y / floatDistance;
+          if (speedRate < minSpeedRate) {
+            speedRate = minSpeedRate;
+          }
+          const moveDistance = floatUp
+            ? baseFloatUpSpeed * speedRate
+            : -baseFloatDownSpeed * speedRate;
+          mesh.position.y += moveDistance;
+          if (mesh.material instanceof PBRMaterial) {
+            mesh.material.alpha =
+              minGhostAlpha +
+              (maxGhostAlpha - minGhostAlpha) *
+                (mesh.position.y / floatDistance);
+          }
+          if (mesh.position.y >= floatDistance) {
+            mesh.position.y = floatDistance;
+            floatUp = false;
+          } else if (mesh.position.y <= 0) {
+            mesh.position.y = 0;
+            floatUp = true;
+            floatDistance = getFloatDistance();
+          }
+        };
+        animations[mesh.id] = animateCatGhost;
+        scene.registerBeforeRender(animateCatGhost);
+      }
+    });
+    this.anomalyCleanupFunction = () => {
+      catGhostMeshes.forEach((mesh) => {
+        scene.unregisterBeforeRender(animations[mesh.id]);
+        mesh.dispose();
+      });
+    };
+    /* eslint-enable no-param-reassign */
   }
 }

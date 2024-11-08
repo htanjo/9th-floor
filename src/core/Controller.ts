@@ -12,7 +12,7 @@ import {
   getOriginalName,
   getSuffix,
 } from '../settings/areas';
-import { anomalyConfigs } from '../settings/anomalies';
+import { anomalyConfigs, anomalyIncidenceRate } from '../settings/anomalies';
 
 interface DeviceOrientation {
   alpha: number;
@@ -67,7 +67,7 @@ export default class Controller {
 
   private startScreenLength = 1200; // pixels
 
-  private incidenceRate = 0.6; // 60%
+  private anomalyIncidenceRate = anomalyIncidenceRate;
 
   private minFloorNumber = 1;
 
@@ -217,7 +217,7 @@ export default class Controller {
       return newAnomalyName;
     };
     const incidenceValue = Math.random();
-    if (incidenceValue < this.incidenceRate) {
+    if (incidenceValue < this.anomalyIncidenceRate) {
       const anomalyName = selectAnomaly();
       console.log(`anomaly: ${anomalyName}`);
       return anomalyName;

@@ -595,9 +595,21 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
+    name: 'chair_outside_anomaly',
+    effectiveLightNames: ['floor_1_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+    isVisible: false,
+  },
+  {
     name: 'picture_canvas_anomaly',
     effectiveLightNames: ['window_composite_gentle_light', 'mirror_light'],
     parentNodeName: 'stairs_meshes',
+    isVisible: false,
+  },
+  {
+    name: 'sword_anomaly',
+    effectiveLightNames: ['window_composite_light', 'sword_light'],
+    parentNodeName: 'floor_2_meshes',
     isVisible: false,
   },
   {
@@ -659,6 +671,18 @@ export const meshConfigs: MeshConfigs = [
     name: 'window_glass',
     effectiveLightNames: [],
     parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'chair_outside_anomaly_shadow',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_1_meshes',
+    isVisible: false,
+  },
+  {
+    name: 'floor_none_anomaly',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_1_meshes',
+    isVisible: false,
   },
   {
     name: 'hallway_ceiling_center',

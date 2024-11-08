@@ -273,7 +273,15 @@ export const materialConfigs: MaterialConfigs = [
     // zOffset: -0.3,
   },
   {
+    name: 'chair_anomaly',
+    lightmapTextureName: 'lightmap_anomaly_texture',
+  },
+  {
     name: 'picture_canvas_anomaly',
+    lightmapTextureName: 'lightmap_anomaly_texture',
+  },
+  {
+    name: 'sword_anomaly',
     lightmapTextureName: 'lightmap_anomaly_texture',
   },
   {
@@ -341,6 +349,13 @@ export const materialConfigs: MaterialConfigs = [
       targetProperty: 'emissiveIntensity',
       ...createAnimationConfig('flickerVerySlow', 0.25, 15),
     },
+  },
+  {
+    name: 'anomaly_shadow',
+    zOffset: -0.1,
+  },
+  {
+    name: 'floor_none_anomaly',
   },
   {
     name: 'hallway_ceiling_center',
