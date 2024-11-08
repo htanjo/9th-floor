@@ -12,7 +12,13 @@ import {
   getOriginalName,
   getSuffix,
 } from '../settings/areas';
-import { anomalyConfigs, anomalyIncidenceRate } from '../settings/anomalies';
+import {
+  anomalyConfigs,
+  anomalyIncidenceRate,
+  maxAnomalyCount,
+  maxNoAnomalyCount,
+  resolvedAnomalyRate,
+} from '../settings/anomalies';
 
 interface DeviceOrientation {
   alpha: number;
@@ -67,7 +73,11 @@ export default class Controller {
 
   private startScreenLength = 1200; // pixels
 
-  private anomalyIncidenceRate = anomalyIncidenceRate;
+  private resolvedAnomalyNames: string[] = [];
+
+  private anomalyCount = 0;
+
+  private noAnomalyCount = 0;
 
   private minFloorNumber = 1;
 
@@ -206,18 +216,30 @@ export default class Controller {
   }
 
   private drawAnomaly() {
-    const selectAnomaly = () => {
+    const selectAnomaly = (rejectsResolvedAnomaly?: boolean) => {
       const anomalyValue = Math.random();
       const anomalyIndex = Math.floor(anomalyConfigs.length * anomalyValue);
       const newAnomalyName = anomalyConfigs[anomalyIndex].name;
-      // If it selects the same anomaly, reselect.
+      // If the anomaly is the same as previous, select again.
       if (newAnomalyName === this.anomalyName) {
         return selectAnomaly();
+      }
+      // If the anomaly is already resolved, select again depending on the probability.
+      if (
+        this.resolvedAnomalyNames.length < anomalyConfigs.length &&
+        this.resolvedAnomalyNames.includes(newAnomalyName) &&
+        (rejectsResolvedAnomaly || !(Math.random() < resolvedAnomalyRate))
+      ) {
+        return selectAnomaly(true);
       }
       return newAnomalyName;
     };
     const incidenceValue = Math.random();
-    if (incidenceValue < this.anomalyIncidenceRate) {
+    if (
+      (incidenceValue < anomalyIncidenceRate ||
+        this.noAnomalyCount >= maxNoAnomalyCount) &&
+      this.anomalyCount < maxAnomalyCount
+    ) {
       const anomalyName = selectAnomaly();
       console.log(`anomaly: ${anomalyName}`);
       return anomalyName;
@@ -306,14 +328,26 @@ export default class Controller {
           this.roomEntered = false;
           const passed = this.checkAnswer(answer);
           if (passed) {
+            if (this.anomalyName !== null) {
+              this.resolvedAnomalyNames.push(this.anomalyName);
+            }
             this.floorNumber -= 1;
             if (this.floorNumber < this.minFloorNumber) {
               // Loop floors until creating game ending.
               this.floorNumber = this.maxFloorNumber;
             }
           } else {
+            this.resolvedAnomalyNames = [];
             // Back to the start floor.
             this.floorNumber = this.maxFloorNumber;
+          }
+          console.log(`resolved: ${this.resolvedAnomalyNames}`);
+          if (this.anomalyName === null) {
+            this.anomalyCount = 0;
+            this.noAnomalyCount += 1;
+          } else {
+            this.anomalyCount += 1;
+            this.noAnomalyCount = 0;
           }
           this.sceneManager.applyFloor(this.floorNumber);
           // Draw a new anomaly.
