@@ -1,0 +1,45 @@
+.hud {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  padding: 12px;
+}
+.button {
+  padding: 0.2rem;
+  border: none;
+  line-height: 1;
+  color: inherit;
+  background: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.icon {
+  display: block;
+  color: var(--text-color-base);
+  transition:
+    color 150ms,
+    scale 150ms;
+  .button:hover &,
+  .button:focus &,
+  .button:active & {
+    color: var(--text-color-strong);
+    scale: 1.4;
+  }
+}
+// Disable hover effects on non-pointer devices.
+@media (hover: none) {
+  .button:hover .icon {
+    color: var(--text-color-base);
+    scale: 1;
+  }
+}
+
+// Stronger selector to override the default styles.
+.hud .tooltip {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: max(10px, 0.45rem);
+  color: #ffffff;
+  background-color: #000000;
+  opacity: 0.7;
+}

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Scene } from '@babylonjs/core/scene';
 import SceneComponent from 'babylonjs-hook';
 import Controller from './Controller';
@@ -6,6 +6,7 @@ import StartScreen from '../ui/StartScreen';
 import Debugger from '../ui/Debugger';
 import classes from './Screen.module.scss';
 import LoadingScreen from '../ui/LoadingScreen';
+import Hud from '../ui/Hud';
 
 function Screen() {
   const [controllerInstance, setControllerInstance] =
@@ -15,6 +16,7 @@ function Screen() {
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
   const [startScreenProgress, setStartScreenProgress] = useState(0);
   const [startScreenScroll, setStartScreenScroll] = useState(0);
+  const [fullscreen, setFullscreen] = useState(!!document.fullscreenElement);
 
   const onSceneReady = useCallback(async (scene: Scene) => {
     const controller = new Controller(scene);
@@ -29,6 +31,38 @@ function Screen() {
     });
     setControllerInstance(controller);
   }, []);
+
+  const toggleFullscreen = useCallback((fullScreenEnable: boolean) => {
+    if (fullScreenEnable) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }, []);
+
+  const changeFullscreenState = useCallback(() => {
+    if (document.fullscreenElement) {
+      setFullscreen(true);
+    } else {
+      setFullscreen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', changeFullscreenState);
+    document.addEventListener('keydown', (event) => {
+      // F11 doesn't trigger "fullscreenchange" event when entering fullscreen.
+      // As a workaround, override entering fullscreen with JavaScript API.
+      // Reference: https://stackoverflow.com/a/21118401
+      if (event.key === 'F11' && !document.fullscreenElement) {
+        event.preventDefault();
+        document.documentElement.requestFullscreen();
+      }
+    });
+    return () => {
+      document.removeEventListener('fullscreenchange', changeFullscreenState);
+    };
+  });
 
   return (
     <>
@@ -48,6 +82,7 @@ function Screen() {
         // onRender={onRender}
         className={classes.screen}
       >
+        <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
         <Debugger controller={controllerInstance} />
       </SceneComponent>
     </>
