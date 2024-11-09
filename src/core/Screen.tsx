@@ -48,19 +48,25 @@ function Screen() {
     }
   }, []);
 
-  useEffect(() => {
-    document.addEventListener('fullscreenchange', changeFullscreenState);
-    document.addEventListener('keydown', (event) => {
-      // F11 doesn't trigger "fullscreenchange" event when entering fullscreen.
-      // As a workaround, override entering fullscreen with JavaScript API.
-      // Reference: https://stackoverflow.com/a/21118401
+  // F11 doesn't trigger "fullscreenchange" event when entering fullscreen.
+  // As a workaround, override entering fullscreen with JavaScript API.
+  // Reference: https://stackoverflow.com/a/21118401
+  const enterFullscreenWithKeyboard = useCallback(
+    (event: globalThis.KeyboardEvent) => {
       if (event.key === 'F11' && !document.fullscreenElement) {
         event.preventDefault();
         document.documentElement.requestFullscreen();
       }
-    });
+    },
+    [],
+  );
+
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', changeFullscreenState);
+    document.addEventListener('keydown', enterFullscreenWithKeyboard);
     return () => {
       document.removeEventListener('fullscreenchange', changeFullscreenState);
+      document.removeEventListener('keydown', enterFullscreenWithKeyboard);
     };
   });
 
