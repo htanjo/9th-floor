@@ -1,4 +1,4 @@
-import { Scene } from '@babylonjs/core';
+import { Scene } from '@babylonjs/core/scene';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
 import SceneManager from '../graphics/SceneManager';
 import { hasPointingDevice, hasTouchscreen } from '../settings/general';

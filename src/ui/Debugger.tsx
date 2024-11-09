@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
-import { FreeCamera, Scene, Vector3 } from '@babylonjs/core';
-import '@babylonjs/inspector';
+import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
+import { Scene } from '@babylonjs/core/scene';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { useAfterRender, useScene } from 'babylonjs-hook';
 import Controller from '../core/Controller';
 import RouteCamera from '../graphics/RouteCamera';
@@ -21,7 +22,8 @@ function Debugger({ controller }: DebuggerProps) {
     setDebuggerEnabled((currentDebuggerEnabled) => !currentDebuggerEnabled);
   }, []);
 
-  const toggleInspector = useCallback(() => {
+  const toggleInspector = useCallback(async () => {
+    await import('@babylonjs/inspector');
     if (scene?.debugLayer) {
       if (!scene.debugLayer.isVisible()) {
         scene.debugLayer.show({ embedMode: true, overlay: true });

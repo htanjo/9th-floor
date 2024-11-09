@@ -1,9 +1,9 @@
 import {
   BackEase,
   EasingFunction,
-  IAnimationKey,
   SineEase,
-} from '@babylonjs/core';
+} from '@babylonjs/core/Animations/easing';
+import { IAnimationKey } from '@babylonjs/core/Animations/animationKey';
 
 export interface AnimationConfig {
   targetProperty?: string; // Optional. Can be set afterwards.

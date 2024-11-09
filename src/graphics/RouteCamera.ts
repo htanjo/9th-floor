@@ -1,4 +1,7 @@
-import { Curve3, Path3D, Scene, TargetCamera, Vector3 } from '@babylonjs/core';
+import { Curve3, Path3D } from '@babylonjs/core/Maths/math.path';
+import { Scene } from '@babylonjs/core/scene';
+import { TargetCamera } from '@babylonjs/core/Cameras/targetCamera';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { keyframes, Keyframes, maxFrame } from '../settings/keyframes';
 import { floorHeight } from '../settings/meshes';
 

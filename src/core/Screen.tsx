@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Scene } from '@babylonjs/core';
+import { Scene } from '@babylonjs/core/scene';
 import SceneComponent from 'babylonjs-hook';
 import Controller from './Controller';
 import StartScreen from '../ui/StartScreen';

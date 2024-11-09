@@ -1,13 +1,9 @@
-import {
-  Camera,
-  Color4,
-  ColorGradingTexture,
-  DefaultRenderingPipeline,
-  ImageProcessingConfiguration,
-  // GlowLayer,
-  // LensRenderingPipeline,
-  Scene,
-} from '@babylonjs/core';
+import { Camera } from '@babylonjs/core/Cameras/camera';
+import { Color4 } from '@babylonjs/core/Maths/math.color';
+import { ColorGradingTexture } from '@babylonjs/core/Materials/Textures/colorGradingTexture';
+import { DefaultRenderingPipeline } from '@babylonjs/core/PostProcesses/RenderPipeline/Pipelines/defaultRenderingPipeline';
+import { ImageProcessingConfiguration } from '@babylonjs/core/Materials/imageProcessingConfiguration';
+import { Scene } from '@babylonjs/core/scene';
 import colorGradingTextureUrl from '../assets/lut_64.3dl?url';
 
 export default class Effects {

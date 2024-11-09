@@ -1,22 +1,19 @@
-import {
-  AbstractMesh,
-  Animation,
-  AssetsManager,
-  BaseTexture,
-  Color3,
-  Color4,
-  DirectionalLight,
-  Engine,
-  GPUParticleSystem,
-  Light,
-  Material,
-  MeshBuilder,
-  PBRMaterial,
-  PointLight,
-  Scene,
-  TransformNode,
-  Vector3,
-} from '@babylonjs/core';
+import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
+import { Animation } from '@babylonjs/core/Animations/animation';
+import { AssetsManager } from '@babylonjs/core/Misc/assetsManager';
+import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
+import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
+import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { Engine } from '@babylonjs/core/Engines/engine';
+import { GPUParticleSystem } from '@babylonjs/core/Particles';
+import { Light } from '@babylonjs/core/Lights/light';
+import { Material } from '@babylonjs/core/Materials/material';
+import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
+import { PBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
+import { PointLight } from '@babylonjs/core/Lights/pointLight';
+import { Scene } from '@babylonjs/core/scene';
+import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import '@babylonjs/loaders/glTF';
 import RouteCamera from './RouteCamera';
 import Effects from './Effects';
