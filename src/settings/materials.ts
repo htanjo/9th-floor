@@ -420,130 +420,133 @@ export const materialConfigs: MaterialConfigs = [
       ...createAnimationConfig('flickerVeryFast', 1.8, 15),
     },
   },
-
   {
-    name: 'ceiling_center',
-    lightmapTextureName: 'lightmap_1_texture',
+    name: 'ceiling_center_stairs',
+    lightmapTextureName: 'lightmap_stairs_1_texture',
   },
   {
-    name: 'ceiling_edge',
-    lightmapTextureName: 'lightmap_1_texture',
+    name: 'ceiling_edge_stairs',
+    lightmapTextureName: 'lightmap_stairs_1_texture',
   },
   {
-    name: 'cornice',
-    lightmapTextureName: 'lightmap_1_texture',
+    name: 'cornice_stairs',
+    lightmapTextureName: 'lightmap_stairs_1_texture',
   },
   {
-    name: 'wainscot',
-    lightmapTextureName: 'lightmap_1_texture',
+    name: 'wainscot_stairs',
+    lightmapTextureName: 'lightmap_stairs_1_texture',
   },
   {
     name: 'wall_stairs',
-    lightmapTextureName: 'lightmap_1_texture',
+    lightmapTextureName: 'lightmap_stairs_1_texture',
   },
   {
-    name: 'lamp_base',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'lamp_base_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'lamp_shade_off',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'lamp_shade_off_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'railing_baluster',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'railing_baluster_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'railing_base',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'railing_base_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'railing_handrail',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'railing_handrail_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'railing_newel',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'railing_newel_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'stairs_back',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'stairs_back_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'stairs_landing',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'stairs_landing_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'stairs_steps',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'stairs_steps_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'window_frame',
-    lightmapTextureName: 'lightmap_2_texture',
+    name: 'window_frame_stairs',
+    lightmapTextureName: 'lightmap_stairs_2_texture',
   },
   {
-    name: 'buffet',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'buffet_stairs',
+    lightmapTextureName: 'lightmap_stairs_3_texture',
   },
   {
-    name: 'chair',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'chair_stairs',
+    lightmapTextureName: 'lightmap_stairs_3_texture',
   },
   {
-    name: 'console_table',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'console_table_stairs',
+    lightmapTextureName: 'lightmap_stairs_3_texture',
   },
   {
-    name: 'library_table',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'library_table_stairs',
+    lightmapTextureName: 'lightmap_stairs_3_texture',
   },
   {
-    name: 'picture_canvas',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'picture_canvas_stairs',
+    lightmapTextureName: 'lightmap_stairs_4_texture',
   },
   {
-    name: 'picture_frame_black',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'picture_frame_black_stairs',
+    lightmapTextureName: 'lightmap_stairs_4_texture',
   },
   {
-    name: 'picture_frame_gold',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'picture_frame_gold_stairs',
+    lightmapTextureName: 'lightmap_stairs_4_texture',
   },
   {
-    name: 'picture_frame_silver',
-    lightmapTextureName: 'lightmap_3_texture',
+    name: 'picture_frame_silver_stairs',
+    lightmapTextureName: 'lightmap_stairs_4_texture',
   },
   {
-    name: 'bottle',
-    lightmapTextureName: 'lightmap_4_texture',
+    name: 'picture_rail_stairs',
+    lightmapTextureName: 'lightmap_stairs_4_texture',
   },
   {
-    name: 'box',
-    lightmapTextureName: 'lightmap_4_texture',
+    name: 'box_stairs',
+    lightmapTextureName: 'lightmap_stairs_5_texture',
   },
   {
-    name: 'cat',
-    lightmapTextureName: 'lightmap_4_texture',
+    name: 'cat_stairs',
+    lightmapTextureName: 'lightmap_stairs_5_texture',
   },
   {
-    name: 'cat_cloth',
-    lightmapTextureName: 'lightmap_4_texture',
+    name: 'cloth_stairs',
+    lightmapTextureName: 'lightmap_stairs_5_texture',
   },
   {
-    name: 'picture_rail',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'decal_common',
-    lightmapTextureName: 'lightmap_5_texture',
+    name: 'decal_stairs',
+    lightmapTextureName: 'lightmap_stairs_6_texture',
     alphaBlendDisabled: true, // Avoid unnatural specular according to angles.
     // zOffset: -0.1,
   },
   {
-    name: 'decal_spiderweb',
-    lightmapTextureName: 'lightmap_5_texture',
-    // zOffset: -0.3,
+    name: 'window_glass_stairs',
+    refractionTextureName: 'environment_outdoor_texture',
+    emissiveIntensity: 0.25,
+    emissiveColorHex: '#95aeff',
+    fogEnabled: false,
+    zOffset: 0.1, // Avoid z-fighting.
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerVerySlow', 0.25, 15),
+    },
   },
+
   {
     name: 'chair_anomaly',
     lightmapTextureName: 'lightmap_anomaly_texture',
@@ -555,18 +558,6 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'sword_anomaly',
     lightmapTextureName: 'lightmap_anomaly_texture',
-  },
-  {
-    name: 'window_glass',
-    refractionTextureName: 'environment_outdoor_texture',
-    emissiveIntensity: 0.25,
-    emissiveColorHex: '#95aeff',
-    fogEnabled: false,
-    zOffset: 0.1, // Avoid z-fighting.
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerVerySlow', 0.25, 15),
-    },
   },
   {
     name: 'anomaly_shadow',

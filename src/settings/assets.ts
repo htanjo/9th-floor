@@ -1,6 +1,7 @@
 import mansionMeshUrl from '../assets/models/mansion.gltf?url';
 import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
 import lowerFloorMeshUrl from '../assets/models/lower_floor.gltf?url';
+import StairsMeshUrl from '../assets/models/stairs.gltf?url';
 import hallwayMeshUrl from '../assets/models/hallway.gltf?url';
 import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
 import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
@@ -15,6 +16,12 @@ import lightmapLower4TextureUrl from '../assets/lm_lower_4_0001_rgbd.png?url';
 import lightmapLower5TextureUrl from '../assets/lm_lower_5_0001_rgbd.png?url';
 import lightmapLower6TextureUrl from '../assets/lm_lower_6_0001_rgbd.png?url';
 import lightmapLower7TextureUrl from '../assets/lm_lower_7_0001_rgbd.png?url';
+import lightmapStairs1TextureUrl from '../assets/lm_stairs_1_0001_rgbd.png?url';
+import lightmapStairs2TextureUrl from '../assets/lm_stairs_2_0001_rgbd.png?url';
+import lightmapStairs3TextureUrl from '../assets/lm_stairs_3_0001_rgbd.png?url';
+import lightmapStairs4TextureUrl from '../assets/lm_stairs_4_0001_rgbd.png?url';
+import lightmapStairs5TextureUrl from '../assets/lm_stairs_5_0001_rgbd.png?url';
+import lightmapStairs6TextureUrl from '../assets/lm_stairs_6_0001_rgbd.png?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.webp?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.webp?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0001.webp?url';
@@ -50,6 +57,11 @@ export const assetConfigs: AssetConfigs = [
     type: 'mesh',
     name: 'lower_floor_mesh',
     url: lowerFloorMeshUrl,
+  },
+  {
+    type: 'mesh',
+    name: 'stairs_mesh',
+    url: StairsMeshUrl,
   },
   {
     type: 'mesh',
@@ -145,6 +157,36 @@ export const assetConfigs: AssetConfigs = [
     type: 'texture',
     name: 'lightmap_5_texture',
     url: lightmap5TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_stairs_1_texture',
+    url: lightmapStairs1TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_stairs_2_texture',
+    url: lightmapStairs2TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_stairs_3_texture',
+    url: lightmapStairs3TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_stairs_4_texture',
+    url: lightmapStairs4TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_stairs_5_texture',
+    url: lightmapStairs5TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_stairs_6_texture',
+    url: lightmapStairs6TextureUrl,
   },
   {
     type: 'texture',

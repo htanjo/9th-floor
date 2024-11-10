@@ -514,14 +514,13 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: [],
     parentNodeName: 'floor_1_meshes',
   },
-
   {
-    name: 'ceiling_stairs_center',
+    name: 'ceiling_center_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'ceiling_stairs_edge',
+    name: 'ceiling_edge_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
@@ -546,47 +545,47 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'lamp_shade_off',
+    name: 'lamp_shade_off_stairs',
     effectiveLightNames: ['window_composite_light', 'room_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'railing_baluster',
+    name: 'railing_baluster_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'railing_base',
+    name: 'railing_base_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'railing_handrail',
+    name: 'railing_handrail_stairs',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'railing_newel',
+    name: 'railing_newel_stairs',
     effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'stairs_back',
+    name: 'stairs_back_stairs',
     effectiveLightNames: ['stairs_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'stairs_landing',
+    name: 'stairs_landing_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'stairs_steps',
+    name: 'stairs_steps_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'window_frame',
+    name: 'window_frame_stairs',
     effectiveLightNames: ['window_sun_light', 'room_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
@@ -631,23 +630,23 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
+    name: 'picture_rail_stairs',
+    effectiveLightNames: ['window_composite_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'box_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'cat',
+    name: 'cat_stairs',
     effectiveLightNames: ['window_distant_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'cat_cloth',
+    name: 'cloth_stairs',
     effectiveLightNames: ['window_distant_light'],
-    parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'picture_rail_stairs',
-    effectiveLightNames: ['window_composite_light', 'mirror_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
@@ -660,6 +659,12 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
+  {
+    name: 'window_glass_stairs',
+    effectiveLightNames: [],
+    parentNodeName: 'stairs_meshes',
+  },
+
   {
     name: 'chair_outside_anomaly',
     effectiveLightNames: ['floor_1_light', 'table_light'],
@@ -677,11 +682,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light', 'sword_light'],
     parentNodeName: 'floor_2_meshes',
     isVisible: false,
-  },
-  {
-    name: 'window_glass',
-    effectiveLightNames: [],
-    parentNodeName: 'stairs_meshes',
   },
   {
     name: 'chair_outside_anomaly_shadow',
