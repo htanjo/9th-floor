@@ -295,12 +295,12 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
-    name: 'lamp_shade_middle_left_upper',
+    name: 'lamp_shade_center_left_upper',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
   },
   {
-    name: 'lamp_shade_middle_right_upper',
+    name: 'lamp_shade_center_right_upper',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
   },

@@ -194,6 +194,51 @@ export const materialConfigs: MaterialConfigs = [
     alphaBlendDisabled: true, // Avoid unnatural specular according to the angles.
     // zOffset: -0.1,
   },
+  {
+    name: 'lamp_shade_back_left_upper',
+    emissiveIntensity: 5.8,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerSlow', 5.8, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_back_right_upper',
+    emissiveIntensity: 6.8,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerFast', 6.8, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_center_left_upper',
+    emissiveIntensity: 7.2,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerFast', 7.2, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_center_right_upper',
+    emissiveIntensity: 5.2,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerSlow', 5.2, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_front_upper',
+    emissiveIntensity: 6.0,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerMedium', 6.0, 15),
+    },
+  },
 
   {
     name: 'ceiling_center',
