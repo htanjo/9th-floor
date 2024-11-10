@@ -1,5 +1,5 @@
-import mansionMeshUrl from '../assets/mansion.glb?url';
-import upperFloorMeshUrl from '../assets/upper_floor.glb?url';
+import mansionMeshUrl from '../assets/models/mansion.gltf?url';
+import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
 import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
 import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
 import lightmapUpper3TextureUrl from '../assets/lm_upper_3_0001_rgbd.png?url';
