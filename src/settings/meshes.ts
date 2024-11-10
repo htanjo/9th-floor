@@ -289,6 +289,31 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light', 'floor_1_light'],
     parentNodeName: 'floor_2_meshes',
   },
+  {
+    name: 'lamp_shade_front_upper',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'lamp_shade_middle_left_upper',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'lamp_shade_middle_right_upper',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'lamp_shade_back_left_upper',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'lamp_shade_back_right_upper',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
 
   {
     name: 'ceiling_1_center',
@@ -629,19 +654,9 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_1_meshes',
   },
   {
-    name: 'lamp_shade_front_2',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
     name: 'lamp_shade_middle_left_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_shade_middle_left_2',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'lamp_shade_middle_right_1',
@@ -649,29 +664,14 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_1_meshes',
   },
   {
-    name: 'lamp_shade_middle_right_2',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
     name: 'lamp_shade_back_left_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
   },
   {
-    name: 'lamp_shade_back_left_2',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
     name: 'lamp_shade_back_right_1',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_shade_back_right_2',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_2_meshes',
   },
   {
     name: 'table_lamp_shade',
