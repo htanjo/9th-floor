@@ -1,5 +1,6 @@
 import mansionMeshUrl from '../assets/models/mansion.gltf?url';
 import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
+import lowerFloorMeshUrl from '../assets/models/lower_floor.gltf?url';
 import hallwayMeshUrl from '../assets/models/hallway.gltf?url';
 import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
 import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
@@ -7,6 +8,13 @@ import lightmapUpper3TextureUrl from '../assets/lm_upper_3_0001_rgbd.png?url';
 import lightmapUpper4TextureUrl from '../assets/lm_upper_4_0001_rgbd.png?url';
 import lightmapUpper5TextureUrl from '../assets/lm_upper_5_0001_rgbd.png?url';
 import lightmapUpper6TextureUrl from '../assets/lm_upper_6_0001_rgbd.png?url';
+import lightmapLower1TextureUrl from '../assets/lm_lower_1_0001_rgbd.png?url';
+import lightmapLower2TextureUrl from '../assets/lm_lower_2_0001_rgbd.png?url';
+import lightmapLower3TextureUrl from '../assets/lm_lower_3_0001_rgbd.png?url';
+import lightmapLower4TextureUrl from '../assets/lm_lower_4_0001_rgbd.png?url';
+import lightmapLower5TextureUrl from '../assets/lm_lower_5_0001_rgbd.png?url';
+import lightmapLower6TextureUrl from '../assets/lm_lower_6_0001_rgbd.png?url';
+import lightmapLower7TextureUrl from '../assets/lm_lower_7_0001_rgbd.png?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.webp?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.webp?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0001.webp?url';
@@ -37,6 +45,11 @@ export const assetConfigs: AssetConfigs = [
     type: 'mesh',
     name: 'upper_floor_mesh',
     url: upperFloorMeshUrl,
+  },
+  {
+    type: 'mesh',
+    name: 'lower_floor_mesh',
+    url: lowerFloorMeshUrl,
   },
   {
     type: 'mesh',
@@ -72,6 +85,41 @@ export const assetConfigs: AssetConfigs = [
     type: 'texture',
     name: 'lightmap_upper_6_texture',
     url: lightmapUpper6TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_1_texture',
+    url: lightmapLower1TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_2_texture',
+    url: lightmapLower2TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_3_texture',
+    url: lightmapLower3TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_4_texture',
+    url: lightmapLower4TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_5_texture',
+    url: lightmapLower5TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_6_texture',
+    url: lightmapLower6TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_lower_7_texture',
+    url: lightmapLower7TextureUrl,
   },
   {
     type: 'texture',

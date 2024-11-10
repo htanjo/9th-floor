@@ -48,6 +48,41 @@ export const textureConfigs: TextureConfigs = [
     animation: roomLightmapAnimation,
   },
   {
+    name: 'lightmap_lower_1_texture',
+    originalName: getTextureName('lightmap_lower_1_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_lower_2_texture',
+    originalName: getTextureName('lightmap_lower_2_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_lower_3_texture',
+    originalName: getTextureName('lightmap_lower_3_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_lower_4_texture',
+    originalName: getTextureName('lightmap_lower_4_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_lower_5_texture',
+    originalName: getTextureName('lightmap_lower_5_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_lower_6_texture',
+    originalName: getTextureName('lightmap_lower_6_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_lower_7_texture',
+    originalName: getTextureName('lightmap_lower_7_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
     name: 'lightmap_1_texture',
     originalName: getTextureName('lightmap_1_texture'),
     animation: {

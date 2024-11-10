@@ -314,17 +314,207 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'floor_2_meshes',
   },
+  {
+    name: 'ceiling_center_lower',
+    effectiveLightNames: ['floor_1_light', 'stairs_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'ceiling_edge_lower',
+    effectiveLightNames: ['floor_1_light', 'stairs_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'cornice_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'floor_center_lower',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'floor_edge_lower',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'floor_gate_lower',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'floor_medallion_lower',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'wainscot_lower',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'wall_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'door_lower',
+    effectiveLightNames: ['floor_1_light', 'door_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_base_back_lower',
+    effectiveLightNames: ['lamp_center_1_light', 'window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_base_center_lower',
+    effectiveLightNames: ['lamp_center_1_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_base_front_lower',
+    effectiveLightNames: ['lamp_front_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'pillar_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'buffet_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'library_table_lower',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'chair_lower',
+    effectiveLightNames: ['window_inner_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'clock_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'corner_cabinet_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'bookshelf_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'picture_canvas_lower',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'picture_rail_lower',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'picture_frame_black_lower',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'book_lower',
+    effectiveLightNames: ['table_light', 'top_right_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'bottle_lower',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'box_lower',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'cloth_lower',
+    effectiveLightNames: ['window_inner_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lantern_lower',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'poster_lower',
+    effectiveLightNames: ['floor_1_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'stationery_lower',
+    effectiveLightNames: ['table_light', 'top_right_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'table_lamp_base_lower',
+    effectiveLightNames: ['lamp_center_1_light', 'top_left_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'decal_spiderweb_lower',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'decal_floor_lower',
+    effectiveLightNames: ['window_right_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'decal_wall_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_shade_front_lower',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_shade_center_left_lower',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_shade_center_right_lower',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_shade_back_left_lower',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'lamp_shade_back_right_lower',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'table_lamp_shade_lower',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_1_meshes',
+  },
 
-  {
-    name: 'ceiling_1_center',
-    effectiveLightNames: ['floor_1_light', 'stairs_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'ceiling_1_edge',
-    effectiveLightNames: ['floor_1_light', 'stairs_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
   {
     name: 'ceiling_stairs_center',
     effectiveLightNames: ['window_composite_light'],
@@ -336,39 +526,9 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'cornice_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'cornice_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'floor_1_center',
-    effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'floor_1_edge',
-    effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'floor_1_gate',
-    effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'floor_1_medallion',
-    effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'wainscot_1',
-    effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'wainscot_stairs',
@@ -376,34 +536,9 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'wall_room_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'wall_stairs',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'door_1',
-    effectiveLightNames: ['floor_1_light', 'door_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_base_back_1',
-    effectiveLightNames: ['lamp_center_1_light', 'window_composite_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_base_center_1',
-    effectiveLightNames: ['lamp_center_1_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_base_front_1',
-    effectiveLightNames: ['lamp_front_1_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'lamp_base_stairs',
@@ -414,11 +549,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'lamp_shade_off',
     effectiveLightNames: ['window_composite_light', 'room_composite_light'],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'pillar_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'railing_baluster',
@@ -461,24 +591,9 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'bookshelf',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'buffet_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'buffet_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'library_table',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'library_table_stairs',
@@ -486,19 +601,9 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'chair_1',
-    effectiveLightNames: ['window_inner_light', 'table_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'chair_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'clock',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'console_table_stairs',
@@ -506,24 +611,9 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'corner_cabinet_1',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'picture_canvas_1',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'picture_canvas_stairs',
     effectiveLightNames: ['window_composite_gentle_light', 'mirror_light'],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'picture_frame_black_1',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'picture_frame_black_stairs',
@@ -541,26 +631,6 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'table_lamp_base',
-    effectiveLightNames: ['lamp_center_1_light', 'top_left_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'book',
-    effectiveLightNames: ['table_light', 'top_right_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'bottle_1',
-    effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'box_1',
-    effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'box_stairs',
     effectiveLightNames: ['window_composite_light', 'stairs_light'],
     parentNodeName: 'stairs_meshes',
@@ -576,54 +646,14 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'cat_cloth_1',
-    effectiveLightNames: ['window_inner_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lantern_1',
-    effectiveLightNames: ['window_composite_light', 'top_left_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'picture_rail_1',
-    effectiveLightNames: ['window_composite_light', 'table_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'picture_rail_stairs',
     effectiveLightNames: ['window_composite_light', 'mirror_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
-    name: 'poster',
-    effectiveLightNames: ['floor_1_light', 'table_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'typewriter',
-    effectiveLightNames: ['table_light', 'top_right_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'decal_spiderweb_1',
-    effectiveLightNames: [],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'decal_spiderweb_stairs',
     effectiveLightNames: [],
     parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'decal_floor_1',
-    effectiveLightNames: ['window_right_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'decal_wall_1',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'decal_wall_stairs',
@@ -647,36 +677,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light', 'sword_light'],
     parentNodeName: 'floor_2_meshes',
     isVisible: false,
-  },
-  {
-    name: 'lamp_shade_front_1',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_shade_middle_left_1',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_shade_middle_right_1',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_shade_back_left_1',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'lamp_shade_back_right_1',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'table_lamp_shade',
-    effectiveLightNames: [],
-    parentNodeName: 'floor_1_meshes',
   },
   {
     name: 'window_glass',

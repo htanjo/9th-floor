@@ -191,7 +191,7 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'decal_upper',
     lightmapTextureName: 'lightmap_upper_6_texture',
-    alphaBlendDisabled: true, // Avoid unnatural specular according to the angles.
+    alphaBlendDisabled: true, // Avoid unnatural specular according to angles.
     // zOffset: -0.1,
   },
   {
@@ -239,6 +239,187 @@ export const materialConfigs: MaterialConfigs = [
       ...createAnimationConfig('flickerMedium', 6.0, 15),
     },
   },
+  {
+    name: 'ceiling_center_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'ceiling_edge_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'cornice_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'floor_center_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'floor_edge_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'floor_gate_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'floor_medallion_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'wainscot_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'wall_lower',
+    lightmapTextureName: 'lightmap_lower_1_texture',
+  },
+  {
+    name: 'door_lower',
+    lightmapTextureName: 'lightmap_lower_2_texture',
+  },
+  {
+    name: 'lamp_base_lower',
+    lightmapTextureName: 'lightmap_lower_2_texture',
+  },
+  {
+    name: 'pillar_lower',
+    lightmapTextureName: 'lightmap_lower_2_texture',
+  },
+  {
+    name: 'buffet_lower',
+    lightmapTextureName: 'lightmap_lower_3_texture',
+  },
+  {
+    name: 'chair_lower',
+    lightmapTextureName: 'lightmap_lower_3_texture',
+  },
+  {
+    name: 'clock_lower',
+    lightmapTextureName: 'lightmap_lower_3_texture',
+  },
+  {
+    name: 'console_table_lower',
+    lightmapTextureName: 'lightmap_lower_3_texture',
+  },
+  {
+    name: 'corner_cabinet_lower',
+    lightmapTextureName: 'lightmap_lower_3_texture',
+  },
+  {
+    name: 'library_table_lower',
+    lightmapTextureName: 'lightmap_lower_3_texture',
+  },
+  {
+    name: 'bookshelf_lower',
+    lightmapTextureName: 'lightmap_lower_4_texture',
+  },
+  {
+    name: 'picture_canvas_lower',
+    lightmapTextureName: 'lightmap_lower_5_texture',
+  },
+  {
+    name: 'picture_frame_black_lower',
+    lightmapTextureName: 'lightmap_lower_5_texture',
+  },
+  {
+    name: 'picture_rail_lower',
+    lightmapTextureName: 'lightmap_lower_5_texture',
+  },
+  {
+    name: 'poster_lower',
+    lightmapTextureName: 'lightmap_lower_5_texture',
+    alphaBlendDisabled: true,
+  },
+  {
+    name: 'book_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'bottle_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'box_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'cloth_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'lantern_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'table_lamp_base_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'stationery_lower',
+    lightmapTextureName: 'lightmap_lower_6_texture',
+  },
+  {
+    name: 'decal_lower',
+    lightmapTextureName: 'lightmap_lower_7_texture',
+    alphaBlendDisabled: true, // Avoid unnatural specular according to angles.
+    // zOffset: -0.1,
+  },
+  {
+    name: 'lamp_shade_front_lower',
+    emissiveIntensity: 6.0,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerMedium', 6.0, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_center_left_lower',
+    emissiveIntensity: 7.2,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerFast', 7.2, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_center_right_lower',
+    emissiveIntensity: 5.2,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerSlow', 5.2, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_back_left_lower',
+    emissiveIntensity: 5.8,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerSlow', 5.8, 15),
+    },
+  },
+  {
+    name: 'lamp_shade_back_right_lower',
+    emissiveIntensity: 6.8,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerFast', 6.8, 15),
+    },
+  },
+  {
+    name: 'table_lamp_shade_lower',
+    emissiveIntensity: 1.8,
+    alphaDisabled: true,
+    animation: {
+      targetProperty: 'emissiveIntensity',
+      ...createAnimationConfig('flickerVeryFast', 1.8, 15),
+    },
+  },
 
   {
     name: 'ceiling_center',
@@ -253,27 +434,7 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
-    name: 'floor_center',
-    lightmapTextureName: 'lightmap_1_texture',
-  },
-  {
-    name: 'floor_edge',
-    lightmapTextureName: 'lightmap_1_texture',
-  },
-  {
-    name: 'floor_gate',
-    lightmapTextureName: 'lightmap_1_texture',
-  },
-  {
-    name: 'floor_medallion',
-    lightmapTextureName: 'lightmap_1_texture',
-  },
-  {
     name: 'wainscot',
-    lightmapTextureName: 'lightmap_1_texture',
-  },
-  {
-    name: 'wall_room',
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
@@ -281,19 +442,11 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_1_texture',
   },
   {
-    name: 'door',
-    lightmapTextureName: 'lightmap_2_texture',
-  },
-  {
     name: 'lamp_base',
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
     name: 'lamp_shade_off',
-    lightmapTextureName: 'lightmap_2_texture',
-  },
-  {
-    name: 'pillar',
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
@@ -329,10 +482,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_2_texture',
   },
   {
-    name: 'bookshelf',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
     name: 'buffet',
     lightmapTextureName: 'lightmap_3_texture',
   },
@@ -341,15 +490,7 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_3_texture',
   },
   {
-    name: 'clock',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
     name: 'console_table',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'corner_cabinet',
     lightmapTextureName: 'lightmap_3_texture',
   },
   {
@@ -373,14 +514,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_3_texture',
   },
   {
-    name: 'table_lamp_base',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'book',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
     name: 'bottle',
     lightmapTextureName: 'lightmap_4_texture',
   },
@@ -397,26 +530,13 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
-    name: 'lantern',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
     name: 'picture_rail',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'poster',
-    lightmapTextureName: 'lightmap_4_texture',
-    alphaBlendDisabled: true,
-  },
-  {
-    name: 'typewriter',
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
     name: 'decal_common',
     lightmapTextureName: 'lightmap_5_texture',
-    alphaBlendDisabled: true, // Avoid unnatural specular caused by angles.
+    alphaBlendDisabled: true, // Avoid unnatural specular according to angles.
     // zOffset: -0.1,
   },
   {
@@ -435,60 +555,6 @@ export const materialConfigs: MaterialConfigs = [
   {
     name: 'sword_anomaly',
     lightmapTextureName: 'lightmap_anomaly_texture',
-  },
-  {
-    name: 'lamp_shade_1',
-    emissiveIntensity: 6.0,
-    alphaDisabled: true,
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerMedium', 6.0, 15),
-    },
-  },
-  {
-    name: 'lamp_shade_2',
-    emissiveIntensity: 7.2,
-    alphaDisabled: true,
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerFast', 7.2, 15),
-    },
-  },
-  {
-    name: 'lamp_shade_3',
-    emissiveIntensity: 5.2,
-    alphaDisabled: true,
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerSlow', 5.2, 15),
-    },
-  },
-  {
-    name: 'lamp_shade_4',
-    emissiveIntensity: 5.8,
-    alphaDisabled: true,
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerSlow', 5.8, 15),
-    },
-  },
-  {
-    name: 'lamp_shade_5',
-    emissiveIntensity: 6.8,
-    alphaDisabled: true,
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerFast', 6.8, 15),
-    },
-  },
-  {
-    name: 'table_lamp_shade',
-    emissiveIntensity: 1.8,
-    alphaDisabled: true,
-    animation: {
-      targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerVeryFast', 1.8, 15),
-    },
   },
   {
     name: 'window_glass',
