@@ -19,6 +19,8 @@ function Screen() {
   const [fullscreen, setFullscreen] = useState(!!document.fullscreenElement);
 
   const onSceneReady = useCallback(async (scene: Scene) => {
+    const engine = scene.getEngine();
+    engine.enableOfflineSupport = false;
     const controller = new Controller(scene);
     controller.onLoadingScreenToggle((enabled) =>
       setLoadingScreenEnabled(enabled),
@@ -84,6 +86,7 @@ function Screen() {
       <SceneComponent
         // antialias
         // adaptToDeviceRatio
+        engineOptions={{ doNotHandleContextLost: true }}
         onSceneReady={onSceneReady}
         // onRender={onRender}
         className={classes.screen}

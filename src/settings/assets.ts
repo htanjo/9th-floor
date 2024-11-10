@@ -1,4 +1,3 @@
-import mansionMeshUrl from '../assets/models/mansion.gltf?url';
 import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
 import lowerFloorMeshUrl from '../assets/models/lower_floor.gltf?url';
 import stairsMeshUrl from '../assets/models/stairs.gltf?url';
@@ -25,11 +24,6 @@ import lightmapStairs5TextureUrl from '../assets/lm_stairs_5_0001_rgbd.png?url';
 import lightmapStairs6TextureUrl from '../assets/lm_stairs_6_0001_rgbd.png?url';
 import lightmapAnomalyTextureUrl from '../assets/lm_anomaly_0001_rgbd.png?url';
 import lightmapHallwayTextureUrl from '../assets/lm_hallway_0001_rgbd.png?url';
-import lightmap1TextureUrl from '../assets/lightmap_1_0001.webp?url';
-import lightmap2TextureUrl from '../assets/lightmap_2_0001.webp?url';
-import lightmap3TextureUrl from '../assets/lightmap_3_0001.webp?url';
-import lightmap4TextureUrl from '../assets/lightmap_4_0001.webp?url';
-import lightmap5TextureUrl from '../assets/lightmap_5_0001.webp?url';
 import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
 import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
 import particleDustTextureUrl from '../assets/particle_dust.png?url';
@@ -44,11 +38,6 @@ export interface AssetConfig {
 export type AssetConfigs = AssetConfig[];
 
 export const assetConfigs: AssetConfigs = [
-  // {
-  //   type: 'mesh',
-  //   name: 'mansion_mesh',
-  //   url: mansionMeshUrl,
-  // },
   {
     type: 'mesh',
     name: 'upper_floor_mesh',
@@ -138,31 +127,6 @@ export const assetConfigs: AssetConfigs = [
     type: 'texture',
     name: 'lightmap_lower_7_texture',
     url: lightmapLower7TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_1_texture',
-    url: lightmap1TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_2_texture',
-    url: lightmap2TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_3_texture',
-    url: lightmap3TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_4_texture',
-    url: lightmap4TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_5_texture',
-    url: lightmap5TextureUrl,
   },
   {
     type: 'texture',
