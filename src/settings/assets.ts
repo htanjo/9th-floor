@@ -1,4 +1,5 @@
 import mansionMeshUrl from '../assets/mansion.glb?url';
+import upperFloorMeshUrl from '../assets/upper_floor.glb?url';
 import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
 import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
 import lightmapUpper3TextureUrl from '../assets/lm_upper_3_0001_rgbd.png?url';
@@ -30,6 +31,11 @@ export const assetConfigs: AssetConfigs = [
     type: 'mesh',
     name: 'mansion_mesh',
     url: mansionMeshUrl,
+  },
+  {
+    type: 'mesh',
+    name: 'upper_floor_mesh',
+    url: upperFloorMeshUrl,
   },
   {
     type: 'texture',

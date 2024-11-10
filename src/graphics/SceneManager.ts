@@ -203,11 +203,12 @@ export default class SceneManager {
           this.configureMesh(meshConfig);
         });
 
-        // Remove unnecessary glTF node.
-        const gltfRootNode = scene.getNodeByName('__root__');
-        if (gltfRootNode) {
-          gltfRootNode.dispose();
-        }
+        // Remove unnecessary glTF nodes.
+        scene.getNodes().forEach((node) => {
+          if (node.name === '__root__') {
+            node.dispose();
+          }
+        });
 
         // Create lights for specular lighting.
         lightConfigs.forEach((lightConfig) => {
