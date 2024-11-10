@@ -546,9 +546,8 @@ export const materialConfigs: MaterialConfigs = [
       ...createAnimationConfig('flickerVerySlow', 0.25, 15),
     },
   },
-
   {
-    name: 'chair_anomaly',
+    name: 'chair_outside_anomaly',
     lightmapTextureName: 'lightmap_anomaly_texture',
   },
   {
@@ -560,7 +559,7 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_anomaly_texture',
   },
   {
-    name: 'anomaly_shadow',
+    name: 'chair_outside_shadow_anomaly',
     zOffset: -0.1,
   },
   {

@@ -1,7 +1,8 @@
 import mansionMeshUrl from '../assets/models/mansion.gltf?url';
 import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
 import lowerFloorMeshUrl from '../assets/models/lower_floor.gltf?url';
-import StairsMeshUrl from '../assets/models/stairs.gltf?url';
+import stairsMeshUrl from '../assets/models/stairs.gltf?url';
+import anomalyMeshUrl from '../assets/models/anomaly.gltf?url';
 import hallwayMeshUrl from '../assets/models/hallway.gltf?url';
 import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
 import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
@@ -22,13 +23,13 @@ import lightmapStairs3TextureUrl from '../assets/lm_stairs_3_0001_rgbd.png?url';
 import lightmapStairs4TextureUrl from '../assets/lm_stairs_4_0001_rgbd.png?url';
 import lightmapStairs5TextureUrl from '../assets/lm_stairs_5_0001_rgbd.png?url';
 import lightmapStairs6TextureUrl from '../assets/lm_stairs_6_0001_rgbd.png?url';
+import lightmapAnomalyTextureUrl from '../assets/lm_anomaly_0001_rgbd.png?url';
+import lightmapHallwayTextureUrl from '../assets/lm_hallway_0001_rgbd.png?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.webp?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.webp?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0001.webp?url';
 import lightmap4TextureUrl from '../assets/lightmap_4_0001.webp?url';
 import lightmap5TextureUrl from '../assets/lightmap_5_0001.webp?url';
-import lightmapAnomalyTextureUrl from '../assets/lightmap_anomaly_0001.webp?url';
-import lightmapHallwayTextureUrl from '../assets/lightmap_hallway_0001.webp?url';
 import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
 import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
 import particleDustTextureUrl from '../assets/particle_dust.png?url';
@@ -43,11 +44,11 @@ export interface AssetConfig {
 export type AssetConfigs = AssetConfig[];
 
 export const assetConfigs: AssetConfigs = [
-  {
-    type: 'mesh',
-    name: 'mansion_mesh',
-    url: mansionMeshUrl,
-  },
+  // {
+  //   type: 'mesh',
+  //   name: 'mansion_mesh',
+  //   url: mansionMeshUrl,
+  // },
   {
     type: 'mesh',
     name: 'upper_floor_mesh',
@@ -61,7 +62,12 @@ export const assetConfigs: AssetConfigs = [
   {
     type: 'mesh',
     name: 'stairs_mesh',
-    url: StairsMeshUrl,
+    url: stairsMeshUrl,
+  },
+  {
+    type: 'mesh',
+    name: 'anomaly_mesh',
+    url: anomalyMeshUrl,
   },
   {
     type: 'mesh',

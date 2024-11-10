@@ -664,7 +664,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: [],
     parentNodeName: 'stairs_meshes',
   },
-
   {
     name: 'chair_outside_anomaly',
     effectiveLightNames: ['floor_1_light', 'table_light'],
@@ -684,7 +683,7 @@ export const meshConfigs: MeshConfigs = [
     isVisible: false,
   },
   {
-    name: 'chair_outside_anomaly_shadow',
+    name: 'chair_outside_shadow_anomaly',
     effectiveLightNames: [],
     parentNodeName: 'floor_1_meshes',
     isVisible: false,

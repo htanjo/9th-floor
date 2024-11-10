@@ -709,7 +709,7 @@ export default class SceneManager {
       case 'chair_outside':
         this.causeAnomalyAppear([
           'chair_outside_anomaly',
-          'chair_outside_anomaly_shadow',
+          'chair_outside_shadow_anomaly',
         ]);
         break;
       // no default
