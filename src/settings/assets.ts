@@ -1,4 +1,10 @@
 import mansionMeshUrl from '../assets/mansion.glb?url';
+import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
+import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
+import lightmapUpper3TextureUrl from '../assets/lm_upper_3_0001_rgbd.png?url';
+import lightmapUpper4TextureUrl from '../assets/lm_upper_4_0001_rgbd.png?url';
+import lightmapUpper5TextureUrl from '../assets/lm_upper_5_0001_rgbd.png?url';
+import lightmapUpper6TextureUrl from '../assets/lm_upper_6_0001_rgbd.png?url';
 import lightmap1TextureUrl from '../assets/lightmap_1_0001.webp?url';
 import lightmap2TextureUrl from '../assets/lightmap_2_0001.webp?url';
 import lightmap3TextureUrl from '../assets/lightmap_3_0001.webp?url';
@@ -24,6 +30,36 @@ export const assetConfigs: AssetConfigs = [
     type: 'mesh',
     name: 'mansion_mesh',
     url: mansionMeshUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_upper_1_texture',
+    url: lightmapUpper1TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_upper_2_texture',
+    url: lightmapUpper2TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_upper_3_texture',
+    url: lightmapUpper3TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_upper_4_texture',
+    url: lightmapUpper4TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_upper_5_texture',
+    url: lightmapUpper5TextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_upper_6_texture',
+    url: lightmapUpper6TextureUrl,
   },
   {
     type: 'texture',

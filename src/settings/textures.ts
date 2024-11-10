@@ -11,7 +11,42 @@ export interface TextureConfig {
 
 export type TextureConfigs = TextureConfig[];
 
+const roomLightmapAnimation = {
+  targetProperty: 'level',
+  ...createAnimationConfig('flickerVerySlowGentle', 1.0, 10),
+};
+
 export const textureConfigs: TextureConfigs = [
+  {
+    name: 'lightmap_upper_1_texture',
+    originalName: getTextureName('lightmap_upper_1_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_upper_2_texture',
+    originalName: getTextureName('lightmap_upper_2_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_upper_3_texture',
+    originalName: getTextureName('lightmap_upper_3_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_upper_4_texture',
+    originalName: getTextureName('lightmap_upper_4_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_upper_5_texture',
+    originalName: getTextureName('lightmap_upper_5_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
+    name: 'lightmap_upper_6_texture',
+    originalName: getTextureName('lightmap_upper_6_texture'),
+    animation: roomLightmapAnimation,
+  },
   {
     name: 'lightmap_1_texture',
     originalName: getTextureName('lightmap_1_texture'),

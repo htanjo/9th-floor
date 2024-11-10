@@ -143,7 +143,7 @@ export default class SceneManager {
     );
     signboardMeshes.forEach((mesh) => {
       /* eslint-disable no-param-reassign */
-      if (getBaseName(mesh.name) === `signboard_front_${number}`) {
+      if (getBaseName(mesh.name) === `signboard_front_${number}_upper`) {
         mesh.isVisible = true;
       } else {
         mesh.isVisible = false;
@@ -773,11 +773,11 @@ export default class SceneManager {
         } else {
           material.ambientColor = Color3.FromHexString('#ff3333');
         }
-        if (material.name === 'mirror_surface') {
+        if (material.name.startsWith('mirror_surface')) {
           originalAlbedoColors[material.id] = material.albedoColor;
           material.albedoColor = Color3.FromHexString('#ff7766');
         }
-        if (material.name === 'lamp_shade' && material.albedoTexture) {
+        if (material.name.startsWith('lamp_shade') && material.albedoTexture) {
           originalAlbedoColors[material.id] = material.albedoColor;
           originalAlbedoTextures[material.id] = material.albedoTexture;
           material.albedoColor = Color3.FromHexString('cc30000');
@@ -798,10 +798,13 @@ export default class SceneManager {
           !material.name.startsWith('hallway_')
         ) {
           material.ambientColor = originalAmbientColors[material.id];
-          if (material.name === 'mirror_surface') {
+          if (material.name.startsWith('mirror_surface')) {
             material.albedoColor = originalAlbedoColors[material.id];
           }
-          if (material.name === 'lamp_shade' && material.albedoTexture) {
+          if (
+            material.name.startsWith('lamp_shade') &&
+            material.albedoTexture
+          ) {
             material.albedoColor = originalAlbedoColors[material.id];
             material.albedoTexture = originalAlbedoTextures[material.id];
           }

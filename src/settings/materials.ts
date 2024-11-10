@@ -20,6 +20,182 @@ export type MaterialConfigs = MaterialConfig[];
 
 export const materialConfigs: MaterialConfigs = [
   {
+    name: 'ceiling_center_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'ceiling_edge_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'cornice_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'floor_center_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'floor_edge_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'floor_gate_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'floor_medallion_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'wainscot_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'wall_upper',
+    lightmapTextureName: 'lightmap_upper_1_texture',
+  },
+  {
+    name: 'door_upper',
+    lightmapTextureName: 'lightmap_upper_2_texture',
+  },
+  {
+    name: 'lamp_base_upper',
+    lightmapTextureName: 'lightmap_upper_2_texture',
+  },
+  {
+    name: 'pillar_upper',
+    lightmapTextureName: 'lightmap_upper_2_texture',
+  },
+  {
+    name: 'buffet_upper',
+    lightmapTextureName: 'lightmap_upper_3_texture',
+  },
+  {
+    name: 'chair_upper',
+    lightmapTextureName: 'lightmap_upper_3_texture',
+  },
+  {
+    name: 'console_table_upper',
+    lightmapTextureName: 'lightmap_upper_3_texture',
+  },
+  {
+    name: 'corner_cabinet_upper',
+    lightmapTextureName: 'lightmap_upper_3_texture',
+  },
+  {
+    name: 'mirror_frame_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'mirror_surface_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+    reflectionTextureName: 'environment_mirror_texture',
+    animation: {
+      targetProperty: 'environmentIntensity',
+      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 15),
+    },
+  },
+  {
+    name: 'picture_canvas_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'picture_frame_black_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'picture_frame_gold_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'picture_frame_silver_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'picture_rail_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_base_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_1_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_2_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_3_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_4_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_5_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_6_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_7_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_8_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'signboard_front_9_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'sword_upper',
+    lightmapTextureName: 'lightmap_upper_4_texture',
+  },
+  {
+    name: 'bottle_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'box_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'globe_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'lantern_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'phonograph_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'stationery_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'vase_upper',
+    lightmapTextureName: 'lightmap_upper_5_texture',
+  },
+  {
+    name: 'decal_upper',
+    lightmapTextureName: 'lightmap_upper_6_texture',
+    alphaBlendDisabled: true, // Avoid unnatural specular according to the angles.
+    // zOffset: -0.1,
+  },
+
+  {
     name: 'ceiling_center',
     lightmapTextureName: 'lightmap_1_texture',
   },
@@ -152,46 +328,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_3_texture',
   },
   {
-    name: 'signboard',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_1',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_2',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_3',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_4',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_5',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_6',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_7',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_8',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
-    name: 'signboard_front_9',
-    lightmapTextureName: 'lightmap_3_texture',
-  },
-  {
     name: 'table_lamp_base',
     lightmapTextureName: 'lightmap_3_texture',
   },
@@ -216,28 +352,7 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
-    name: 'globe',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
     name: 'lantern',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'mirror_frame',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'mirror_surface',
-    lightmapTextureName: 'lightmap_4_texture',
-    reflectionTextureName: 'environment_mirror_texture',
-    animation: {
-      targetProperty: 'environmentIntensity',
-      ...createAnimationConfig('flickerVerySlowGentle', 1.0, 15),
-    },
-  },
-  {
-    name: 'phonograph',
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
@@ -250,15 +365,7 @@ export const materialConfigs: MaterialConfigs = [
     alphaBlendDisabled: true,
   },
   {
-    name: 'sword',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
     name: 'typewriter',
-    lightmapTextureName: 'lightmap_4_texture',
-  },
-  {
-    name: 'vase',
     lightmapTextureName: 'lightmap_4_texture',
   },
   {
