@@ -390,6 +390,7 @@ export default class SceneManager {
         material.lightmapTexture = lightmapTexture;
         material.lightmapTexture.coordinatesIndex = 1; // Use UV2.
         material.lightmapTexture.level = 1.0;
+        material.lightmapTexture.isRGBD = true;
         material.useLightmapAsShadowmap = true;
       }
     }
