@@ -522,13 +522,9 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_decal_common',
+    name: 'hallway_decal',
     lightmapTextureName: 'lightmap_hallway_texture',
     alphaBlendDisabled: true,
-  },
-  {
-    name: 'hallway_decal_spiderweb',
-    lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
     name: 'hallway_door',

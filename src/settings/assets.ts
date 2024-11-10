@@ -1,5 +1,6 @@
 import mansionMeshUrl from '../assets/models/mansion.gltf?url';
 import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
+import hallwayMeshUrl from '../assets/models/hallway.gltf?url';
 import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
 import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
 import lightmapUpper3TextureUrl from '../assets/lm_upper_3_0001_rgbd.png?url';
@@ -36,6 +37,11 @@ export const assetConfigs: AssetConfigs = [
     type: 'mesh',
     name: 'upper_floor_mesh',
     url: upperFloorMeshUrl,
+  },
+  {
+    type: 'mesh',
+    name: 'hallway_mesh',
+    url: hallwayMeshUrl,
   },
   {
     type: 'texture',
