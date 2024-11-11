@@ -9,13 +9,13 @@ import lightmap07TextureUrl from '../assets/lm_07_0001_rgbd.png?url';
 import lightmap08TextureUrl from '../assets/lm_08_0001_rgbd.png?url';
 import lightmap09TextureUrl from '../assets/lm_09_0001_rgbd.png?url';
 import lightmap10TextureUrl from '../assets/lm_10_0001_rgbd.png?url';
-import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
-import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
+import environmentOutdoorTextureUrl from '../assets/environment_outdoor.env?url';
+import environmentMirrorTextureUrl from '../assets/environment_mirror.env?url';
 import particleDustTextureUrl from '../assets/particle_dust.png?url';
 import particleFogTextureUrl from '../assets/particle_fog.png?url';
 
 export interface AssetConfig {
-  type: 'mesh' | 'texture' | 'hdrCubeTexture';
+  type: 'mesh' | 'texture' | 'cubeTexture';
   name: string;
   url: string;
 }
@@ -79,12 +79,12 @@ export const assetConfigs: AssetConfigs = [
     url: lightmap10TextureUrl,
   },
   {
-    type: 'hdrCubeTexture',
+    type: 'cubeTexture',
     name: 'environment_outdoor_texture',
     url: environmentOutdoorTextureUrl,
   },
   {
-    type: 'hdrCubeTexture',
+    type: 'cubeTexture',
     name: 'environment_mirror_texture',
     url: environmentMirrorTextureUrl,
   },

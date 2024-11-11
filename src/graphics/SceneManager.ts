@@ -169,8 +169,8 @@ export default class SceneManager {
         case 'texture':
           assetsManager.addTextureTask(name, url, undefined, false);
           break;
-        case 'hdrCubeTexture':
-          assetsManager.addHDRCubeTextureTask(name, url, 512);
+        case 'cubeTexture':
+          assetsManager.addCubeTextureTask(name, url);
           break;
         // no default
       }
