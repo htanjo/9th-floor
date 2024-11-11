@@ -566,60 +566,60 @@ export const materialConfigs: MaterialConfigs = [
     name: 'floor_none_anomaly',
   },
   {
-    name: 'hallway_ceiling_center',
+    name: 'ceiling_center_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_ceiling_edge',
+    name: 'ceiling_edge_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_cornice',
+    name: 'cornice_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_decal',
+    name: 'decal_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
     alphaBlendDisabled: true,
   },
   {
-    name: 'hallway_door',
+    name: 'door_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_floor_center',
+    name: 'floor_center_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_floor_edge',
+    name: 'floor_edge_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_floor_gate',
+    name: 'floor_gate_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_lamp_base',
+    name: 'lamp_base_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_lamp_shade_off',
+    name: 'lamp_shade_off_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_wainscot',
+    name: 'wainscot_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_pillar',
+    name: 'pillar_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_wall',
+    name: 'wall_hallway',
     lightmapTextureName: 'lightmap_hallway_texture',
   },
   {
-    name: 'hallway_lamp_shade',
+    name: 'lamp_shade_hallway',
     emissiveIntensity: 6.8,
     alphaDisabled: true,
     animation: {

@@ -40,67 +40,67 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"hallway_ceiling_center"
+			"name":"ceiling_center_hallway"
 		},
 		{
 			"mesh":1,
-			"name":"hallway_cornice"
+			"name":"cornice_hallway"
 		},
 		{
 			"mesh":2,
-			"name":"hallway_door_front"
+			"name":"door_front_hallway"
 		},
 		{
 			"mesh":3,
-			"name":"hallway_floor_center"
+			"name":"floor_center_hallway"
 		},
 		{
 			"mesh":4,
-			"name":"hallway_wall"
+			"name":"wall_hallway"
 		},
 		{
 			"mesh":5,
-			"name":"hallway_wainscot"
+			"name":"wainscot_hallway"
 		},
 		{
 			"mesh":6,
-			"name":"hallway_lamp_base_front"
+			"name":"lamp_base_front_hallway"
 		},
 		{
 			"mesh":7,
-			"name":"hallway_ceiling_edge"
+			"name":"ceiling_edge_hallway"
 		},
 		{
 			"mesh":8,
-			"name":"hallway_lamp_base_back"
+			"name":"lamp_base_back_hallway"
 		},
 		{
 			"mesh":9,
-			"name":"hallway_pillar"
+			"name":"pillar_hallway"
 		},
 		{
 			"mesh":10,
-			"name":"hallway_floor_edge"
+			"name":"floor_edge_hallway"
 		},
 		{
 			"mesh":11,
-			"name":"hallway_floor_gate"
+			"name":"floor_gate_hallway"
 		},
 		{
 			"mesh":12,
-			"name":"hallway_lamp_shade_off"
+			"name":"lamp_shade_off_hallway"
 		},
 		{
 			"mesh":13,
-			"name":"hallway_lamp_base_side"
+			"name":"lamp_base_side_hallway"
 		},
 		{
 			"mesh":14,
-			"name":"hallway_door_back"
+			"name":"door_back_hallway"
 		},
 		{
 			"mesh":15,
-			"name":"hallway_decal_spiderweb",
+			"name":"decal_spiderweb_hallway",
 			"translation":[
 				-5.099999904632568,
 				4.460000038146973,
@@ -109,7 +109,7 @@
 		},
 		{
 			"mesh":16,
-			"name":"hallway_decal_wall",
+			"name":"decal_wall_hallway",
 			"translation":[
 				-5.099999904632568,
 				4.460000038146973,
@@ -118,7 +118,7 @@
 		},
 		{
 			"mesh":17,
-			"name":"hallway_lamp_shade"
+			"name":"lamp_shade_hallway"
 		}
 	],
 	"materials":[
@@ -131,7 +131,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_ceiling_center",
+			"name":"ceiling_center_hallway",
 			"normalTexture":{
 				"extensions":{
 					"KHR_texture_transform":{
@@ -190,7 +190,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_cornice",
+			"name":"cornice_hallway",
 			"normalTexture":{
 				"index":3
 			},
@@ -213,7 +213,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_door",
+			"name":"door_hallway",
 			"normalTexture":{
 				"index":6
 			},
@@ -235,7 +235,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_floor_center",
+			"name":"floor_center_hallway",
 			"normalTexture":{
 				"index":9
 			},
@@ -258,7 +258,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_wall",
+			"name":"wall_hallway",
 			"normalTexture":{
 				"index":12
 			},
@@ -281,7 +281,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_wainscot",
+			"name":"wainscot_hallway",
 			"normalTexture":{
 				"index":15
 			},
@@ -304,7 +304,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_lamp_base",
+			"name":"lamp_base_hallway",
 			"normalTexture":{
 				"index":18
 			},
@@ -326,7 +326,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_ceiling_edge",
+			"name":"ceiling_edge_hallway",
 			"normalTexture":{
 				"index":21
 			},
@@ -349,7 +349,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_pillar",
+			"name":"pillar_hallway",
 			"normalTexture":{
 				"index":24
 			},
@@ -372,7 +372,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_floor_edge",
+			"name":"floor_edge_hallway",
 			"normalTexture":{
 				"index":27
 			},
@@ -395,7 +395,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_floor_gate",
+			"name":"floor_gate_hallway",
 			"normalTexture":{
 				"index":30
 			},
@@ -418,7 +418,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_lamp_shade_off",
+			"name":"lamp_shade_off_hallway",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":33
@@ -437,7 +437,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_decal",
+			"name":"decal_hallway",
 			"normalTexture":{
 				"index":34
 			},
@@ -469,7 +469,7 @@
 					"ior":1.4500000476837158
 				}
 			},
-			"name":"hallway_lamp_shade",
+			"name":"lamp_shade_hallway",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					1,

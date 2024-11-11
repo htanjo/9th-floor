@@ -695,82 +695,82 @@ export const meshConfigs: MeshConfigs = [
     isVisible: false,
   },
   {
-    name: 'hallway_ceiling_center',
+    name: 'ceiling_center_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_ceiling_edge',
+    name: 'ceiling_edge_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_cornice',
+    name: 'cornice_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_decal_spiderweb',
+    name: 'decal_spiderweb_hallway',
     effectiveLightNames: [], // Avoid unexpected specular and z-fighting.
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_decal_wall',
+    name: 'decal_wall_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_door_front',
+    name: 'door_front_hallway',
     effectiveLightNames: ['hallway_front_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_door_back',
+    name: 'door_back_hallway',
     effectiveLightNames: ['hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_floor_center',
+    name: 'floor_center_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_floor_edge',
+    name: 'floor_edge_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_floor_gate',
+    name: 'floor_gate_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_lamp_base_front',
+    name: 'lamp_base_front_hallway',
     effectiveLightNames: ['hallway_lamp_front_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_lamp_base_back',
+    name: 'lamp_base_back_hallway',
     effectiveLightNames: ['hallway_lamp_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_lamp_base_side',
+    name: 'lamp_base_side_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_lamp_shade_off',
+    name: 'lamp_shade_off_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_pillar',
+    name: 'pillar_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_wainscot',
+    name: 'wainscot_hallway',
     effectiveLightNames: [
       'hallway_top_right_light',
       'hallway_front_light',
@@ -779,12 +779,12 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_wall',
+    name: 'wall_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
     parentNodeName: 'hallway_meshes',
   },
   {
-    name: 'hallway_lamp_shade',
+    name: 'lamp_shade_hallway',
     effectiveLightNames: [],
     parentNodeName: 'hallway_meshes',
   },
