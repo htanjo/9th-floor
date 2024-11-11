@@ -1,6 +1,6 @@
 import { MouseEvent, useCallback } from 'react';
 import { Tooltip } from 'react-tooltip';
-import { hasPointingDevice } from '../settings/general';
+import { hasPointingDevice, isIos } from '../settings/general';
 import classes from './Hud.module.scss';
 
 interface HudProps {
@@ -21,19 +21,23 @@ function Hud({ fullscreen, onToggleFullscreen }: HudProps) {
 
   return (
     <div className={classes.hud}>
-      <button
-        type="button"
-        className={classes.button}
-        data-tooltip-id="hudTooltip"
-        data-tooltip-content={fullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-        onClick={toggleFullscreen}
-      >
-        <span className={`${classes.icon} material-symbols-outlined`}>
-          {fullscreen ? 'fullscreen_exit' : 'fullscreen'}
-        </span>
-      </button>
-      {hasPointingDevice && (
-        <Tooltip id="hudTooltip" className={classes.tooltip} />
+      {!isIos && ( // Hide fullscreen button from iOS as it conflicts scroll gestures.
+        <>
+          <button
+            type="button"
+            className={classes.button}
+            data-tooltip-id="hudTooltip"
+            data-tooltip-content={fullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+            onClick={toggleFullscreen}
+          >
+            <span className={`${classes.icon} material-symbols-outlined`}>
+              {fullscreen ? 'fullscreen_exit' : 'fullscreen'}
+            </span>
+          </button>
+          {hasPointingDevice && (
+            <Tooltip id="hudTooltip" className={classes.tooltip} />
+          )}
+        </>
       )}
     </div>
   );

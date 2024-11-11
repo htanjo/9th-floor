@@ -6,7 +6,6 @@ export const hasTouchscreen = matchMedia('(pointer:coarse)').matches;
 export function toRadians(degrees: number) {
   return degrees * (Math.PI / 180);
 }
-export const isDesktop = (() => {
-  const browser = Bowser.parse(window.navigator.userAgent);
-  return browser.platform.type === 'desktop';
-})();
+const browser = Bowser.parse(window.navigator.userAgent);
+export const isDesktop = browser.platform.type === 'desktop';
+export const isIos = browser.os.name === 'iOS';
