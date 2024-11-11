@@ -20,22 +20,22 @@ export const anomalyConfigs: AnomalyConfigs = [
   {
     name: 'overall_red',
   },
-  {
-    name: 'phonograph_large',
-  },
-  {
-    name: 'sword_stand',
-  },
-  {
-    name: 'cat_ghost',
-  },
-  {
-    name: 'picture_eyes',
-  },
+  // {
+  //   name: 'phonograph_large',
+  // },
+  // {
+  //   name: 'sword_stand',
+  // },
+  // {
+  //   name: 'cat_ghost',
+  // },
+  // {
+  //   name: 'picture_eyes',
+  // },
   {
     name: 'floor_none',
   },
-  {
-    name: 'chair_outside',
-  },
+  // {
+  //   name: 'chair_outside',
+  // },
 ];

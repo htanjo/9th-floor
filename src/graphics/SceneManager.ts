@@ -222,7 +222,7 @@ export default class SceneManager {
         // On the other hand, vertex animations are copied to the newly created meshes.
         scene.animationGroups.forEach((animationGroup) => {
           const { name } = animationGroup;
-          if (name.startsWith('phonograph')) {
+          if (name.startsWith('phonograph_')) {
             animationGroup.clone(getCloneName(name), (oldTarget) =>
               scene.getMeshByName(getCloneName(oldTarget.name)),
             );
@@ -692,7 +692,7 @@ export default class SceneManager {
         this.causeAnomalyPhonographLarge();
         break;
       case 'sword_stand':
-        this.causeAnomalyAppear(['sword_anomaly'], ['sword']);
+        this.causeAnomalyAppear(['sword_anomaly'], ['sword_upper']);
         break;
       case 'cat_ghost':
         this.causeAnomalyCatGhost();
@@ -703,7 +703,7 @@ export default class SceneManager {
       case 'floor_none':
         this.causeAnomalyAppear(
           ['floor_none_anomaly'],
-          ['floor_1_center', 'floor_1_medallion', 'decal_floor_1'],
+          ['floor_center_lower', 'floor_medallion_lower', 'decal_floor_lower'],
         );
         break;
       case 'chair_outside':
@@ -757,7 +757,7 @@ export default class SceneManager {
     scene.materials.forEach((material) => {
       if (
         material instanceof PBRMaterial &&
-        !material.name.startsWith('hallway_')
+        !material.name.endsWith('_hallway')
       ) {
         originalAmbientColors[material.id] = material.ambientColor;
         if (
@@ -778,7 +778,11 @@ export default class SceneManager {
           originalAlbedoColors[material.id] = material.albedoColor;
           material.albedoColor = Color3.FromHexString('#ff7766');
         }
-        if (material.name.startsWith('lamp_shade') && material.albedoTexture) {
+        if (
+          material.name.startsWith('lamp_shade') &&
+          material.name !== 'lamp_shade_off' &&
+          material.albedoTexture
+        ) {
           originalAlbedoColors[material.id] = material.albedoColor;
           originalAlbedoTextures[material.id] = material.albedoTexture;
           material.albedoColor = Color3.FromHexString('cc30000');
@@ -796,7 +800,7 @@ export default class SceneManager {
       scene.materials.forEach((material) => {
         if (
           material instanceof PBRMaterial &&
-          !material.name.startsWith('hallway_')
+          !material.name.endsWith('_hallway')
         ) {
           material.ambientColor = originalAmbientColors[material.id];
           if (material.name.startsWith('mirror_surface')) {
@@ -804,6 +808,7 @@ export default class SceneManager {
           }
           if (
             material.name.startsWith('lamp_shade') &&
+            material.name !== 'lamp_shade_off' &&
             material.albedoTexture
           ) {
             material.albedoColor = originalAlbedoColors[material.id];
@@ -823,7 +828,7 @@ export default class SceneManager {
   private causeAnomalyPhonographLarge() {
     const { scene } = this;
     const phonographDiskMeshes = scene.meshes.filter(
-      (mesh) => getBaseName(mesh.name) === 'phonograph_disk',
+      (mesh) => getBaseName(mesh.name) === 'phonograph_disk_upper',
     );
     /* eslint-disable no-param-reassign */
     phonographDiskMeshes.forEach((mesh) => {
@@ -840,7 +845,7 @@ export default class SceneManager {
   private causeAnomalyCatGhost() {
     const { scene } = this;
     const catMeshes = scene.meshes.filter((mesh) =>
-      ['cat'].includes(getBaseName(mesh.name)),
+      ['cat_stairs'].includes(getBaseName(mesh.name)),
     );
     const catGhostMeshes = catMeshes.map(
       (mesh) => mesh.clone(`${mesh.name}_ghost`, mesh.parent) as AbstractMesh,

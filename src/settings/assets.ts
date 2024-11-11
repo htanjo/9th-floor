@@ -1,29 +1,14 @@
-import upperFloorMeshUrl from '../assets/models/upper_floor.gltf?url';
-import lowerFloorMeshUrl from '../assets/models/lower_floor.gltf?url';
-import stairsMeshUrl from '../assets/models/stairs.gltf?url';
-import anomalyMeshUrl from '../assets/models/anomaly.gltf?url';
-import hallwayMeshUrl from '../assets/models/hallway.gltf?url';
-import lightmapUpper1TextureUrl from '../assets/lm_upper_1_0001_rgbd.png?url';
-import lightmapUpper2TextureUrl from '../assets/lm_upper_2_0001_rgbd.png?url';
-import lightmapUpper3TextureUrl from '../assets/lm_upper_3_0001_rgbd.png?url';
-import lightmapUpper4TextureUrl from '../assets/lm_upper_4_0001_rgbd.png?url';
-import lightmapUpper5TextureUrl from '../assets/lm_upper_5_0001_rgbd.png?url';
-import lightmapUpper6TextureUrl from '../assets/lm_upper_6_0001_rgbd.png?url';
-import lightmapLower1TextureUrl from '../assets/lm_lower_1_0001_rgbd.png?url';
-import lightmapLower2TextureUrl from '../assets/lm_lower_2_0001_rgbd.png?url';
-import lightmapLower3TextureUrl from '../assets/lm_lower_3_0001_rgbd.png?url';
-import lightmapLower4TextureUrl from '../assets/lm_lower_4_0001_rgbd.png?url';
-import lightmapLower5TextureUrl from '../assets/lm_lower_5_0001_rgbd.png?url';
-import lightmapLower6TextureUrl from '../assets/lm_lower_6_0001_rgbd.png?url';
-import lightmapLower7TextureUrl from '../assets/lm_lower_7_0001_rgbd.png?url';
-import lightmapStairs1TextureUrl from '../assets/lm_stairs_1_0001_rgbd.png?url';
-import lightmapStairs2TextureUrl from '../assets/lm_stairs_2_0001_rgbd.png?url';
-import lightmapStairs3TextureUrl from '../assets/lm_stairs_3_0001_rgbd.png?url';
-import lightmapStairs4TextureUrl from '../assets/lm_stairs_4_0001_rgbd.png?url';
-import lightmapStairs5TextureUrl from '../assets/lm_stairs_5_0001_rgbd.png?url';
-import lightmapStairs6TextureUrl from '../assets/lm_stairs_6_0001_rgbd.png?url';
-import lightmapAnomalyTextureUrl from '../assets/lm_anomaly_0001_rgbd.png?url';
-import lightmapHallwayTextureUrl from '../assets/lm_hallway_0001_rgbd.png?url';
+import mansionMeshUrl from '../assets/mansion.glb?url';
+import lightmap01TextureUrl from '../assets/lm_01_0001_rgbd.png?url';
+import lightmap02TextureUrl from '../assets/lm_02_0001_rgbd.png?url';
+import lightmap03TextureUrl from '../assets/lm_03_0001_rgbd.png?url';
+import lightmap04TextureUrl from '../assets/lm_04_0001_rgbd.png?url';
+import lightmap05TextureUrl from '../assets/lm_05_0001_rgbd.png?url';
+import lightmap06TextureUrl from '../assets/lm_06_0001_rgbd.png?url';
+import lightmap07TextureUrl from '../assets/lm_07_0001_rgbd.png?url';
+import lightmap08TextureUrl from '../assets/lm_08_0001_rgbd.png?url';
+import lightmap09TextureUrl from '../assets/lm_09_0001_rgbd.png?url';
+import lightmap10TextureUrl from '../assets/lm_10_0001_rgbd.png?url';
 import environmentOutdoorTextureUrl from '../assets/environment_outdoor.hdr?url';
 import environmentMirrorTextureUrl from '../assets/environment_mirror.hdr?url';
 import particleDustTextureUrl from '../assets/particle_dust.png?url';
@@ -40,133 +25,58 @@ export type AssetConfigs = AssetConfig[];
 export const assetConfigs: AssetConfigs = [
   {
     type: 'mesh',
-    name: 'upper_floor_mesh',
-    url: upperFloorMeshUrl,
-  },
-  {
-    type: 'mesh',
-    name: 'lower_floor_mesh',
-    url: lowerFloorMeshUrl,
-  },
-  {
-    type: 'mesh',
-    name: 'stairs_mesh',
-    url: stairsMeshUrl,
-  },
-  {
-    type: 'mesh',
-    name: 'anomaly_mesh',
-    url: anomalyMeshUrl,
-  },
-  {
-    type: 'mesh',
-    name: 'hallway_mesh',
-    url: hallwayMeshUrl,
+    name: 'mansion_mesh',
+    url: mansionMeshUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_upper_1_texture',
-    url: lightmapUpper1TextureUrl,
+    name: 'lightmap_01_texture',
+    url: lightmap01TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_upper_2_texture',
-    url: lightmapUpper2TextureUrl,
+    name: 'lightmap_02_texture',
+    url: lightmap02TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_upper_3_texture',
-    url: lightmapUpper3TextureUrl,
+    name: 'lightmap_03_texture',
+    url: lightmap03TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_upper_4_texture',
-    url: lightmapUpper4TextureUrl,
+    name: 'lightmap_04_texture',
+    url: lightmap04TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_upper_5_texture',
-    url: lightmapUpper5TextureUrl,
+    name: 'lightmap_05_texture',
+    url: lightmap05TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_upper_6_texture',
-    url: lightmapUpper6TextureUrl,
+    name: 'lightmap_06_texture',
+    url: lightmap06TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_lower_1_texture',
-    url: lightmapLower1TextureUrl,
+    name: 'lightmap_07_texture',
+    url: lightmap07TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_lower_2_texture',
-    url: lightmapLower2TextureUrl,
+    name: 'lightmap_08_texture',
+    url: lightmap08TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_lower_3_texture',
-    url: lightmapLower3TextureUrl,
+    name: 'lightmap_09_texture',
+    url: lightmap09TextureUrl,
   },
   {
     type: 'texture',
-    name: 'lightmap_lower_4_texture',
-    url: lightmapLower4TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_lower_5_texture',
-    url: lightmapLower5TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_lower_6_texture',
-    url: lightmapLower6TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_lower_7_texture',
-    url: lightmapLower7TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_stairs_1_texture',
-    url: lightmapStairs1TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_stairs_2_texture',
-    url: lightmapStairs2TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_stairs_3_texture',
-    url: lightmapStairs3TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_stairs_4_texture',
-    url: lightmapStairs4TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_stairs_5_texture',
-    url: lightmapStairs5TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_stairs_6_texture',
-    url: lightmapStairs6TextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_anomaly_texture',
-    url: lightmapAnomalyTextureUrl,
-  },
-  {
-    type: 'texture',
-    name: 'lightmap_hallway_texture',
-    url: lightmapHallwayTextureUrl,
+    name: 'lightmap_10_texture',
+    url: lightmap10TextureUrl,
   },
   {
     type: 'hdrCubeTexture',
