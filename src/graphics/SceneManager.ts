@@ -412,7 +412,7 @@ export default class SceneManager {
       if (refractionTexture) {
         material.refractionTexture = refractionTexture;
         material.indexOfRefraction = 0.9;
-        material.alpha = 0;
+        material.alpha = 0.001; // To prevent Safari to rendering black.
         material.metallic = 0;
         material.roughness = 0;
         material.disableLighting = true;
@@ -851,7 +851,7 @@ export default class SceneManager {
       (mesh) => mesh.clone(`${mesh.name}_ghost`, mesh.parent) as AbstractMesh,
     );
     const animations: { [key: string]: () => void } = {};
-    const minGhostAlpha = 0.0;
+    const minGhostAlpha = 0.1;
     const maxGhostAlpha = 1.0;
     const minFloatDistance = 0.05;
     const maxFloatDistance = 0.2;
