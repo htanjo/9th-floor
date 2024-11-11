@@ -86,7 +86,12 @@ function Screen() {
       <SceneComponent
         // antialias
         // adaptToDeviceRatio
-        engineOptions={{ doNotHandleContextLost: true }}
+        engineOptions={{
+          doNotHandleContextLost: true,
+          // Stability optimization for iOS
+          // Reference: https://forum.babylonjs.com/t/reducing-memory-consumption-in-babylonjs-apps/53242/3
+          powerPreference: 'default',
+        }}
         onSceneReady={onSceneReady}
         // onRender={onRender}
         className={classes.screen}
