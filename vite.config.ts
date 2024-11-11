@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     UnpluginInjectPreload({
-      files: [{ entryMatch: /(logo|logo_flat).png$/ }],
+      files: [{ entryMatch: /(logo|logo_flat).webp$/ }],
     }),
   ],
 });

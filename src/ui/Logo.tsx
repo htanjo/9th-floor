@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import logoColoredImage from '../assets/logo.png';
-import logoFlatImage from '../assets/logo_flat.png';
+import logoColoredImage from '../assets/logo.webp';
+import logoFlatImage from '../assets/logo_flat.webp';
 import classes from './Logo.module.scss';
 
 interface LogoProps {
