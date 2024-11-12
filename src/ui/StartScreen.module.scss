@@ -38,9 +38,10 @@
   width: 100%;
   text-align: center;
   .icon {
-    vertical-align: -0.1em;
-    font-size: 0.8em;
+    vertical-align: -0.15em;
+    font-size: 1em;
     color: var(--text-color-accent);
+    rotate: 90deg;
   }
 }
 .backdrop {

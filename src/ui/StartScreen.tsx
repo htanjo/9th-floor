@@ -70,11 +70,11 @@ function StartScreen({ enabled, progress, scroll }: StartScreenProps) {
           </div>
           <animated.div className={classes.navigation} style={navigationStyle}>
             <span className={`${classes.icon} material-symbols-outlined`}>
-              keyboard_double_arrow_down
+              arrows_outward
             </span>{' '}
             Scroll to Play{' '}
             <span className={`${classes.icon} material-symbols-outlined`}>
-              keyboard_double_arrow_down
+              arrows_outward
             </span>
           </animated.div>
         </animated.div>
