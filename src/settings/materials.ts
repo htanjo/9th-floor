@@ -254,6 +254,10 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_07_texture',
   },
   {
+    name: 'picture_label',
+    lightmapTextureName: 'lightmap_07_texture',
+  },
+  {
     name: 'picture_rail',
     lightmapTextureName: 'lightmap_07_texture',
   },

@@ -520,6 +520,11 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'picture_label_upper',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
     name: 'picture_rail_upper',
     effectiveLightNames: ['window_composite_light', 'chair_front_2_light'],
     parentNodeName: 'floor_2_meshes',
@@ -595,12 +600,17 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_1_meshes',
   },
   {
-    name: 'picture_rail_lower',
+    name: 'picture_frame_black_lower',
     effectiveLightNames: ['window_composite_light', 'table_light'],
     parentNodeName: 'floor_1_meshes',
   },
   {
-    name: 'picture_frame_black_lower',
+    name: 'picture_label_lower',
+    effectiveLightNames: ['window_composite_light', 'table_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'picture_rail_lower',
     effectiveLightNames: ['window_composite_light', 'table_light'],
     parentNodeName: 'floor_1_meshes',
   },
@@ -628,6 +638,11 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'picture_frame_silver_stairs',
     effectiveLightNames: ['window_distant_light', 'mirror_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'picture_label_stairs',
+    effectiveLightNames: ['window_composite_light', 'mirror_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
