@@ -3,6 +3,7 @@ import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import { Scene } from '@babylonjs/core/scene';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { useAfterRender, useScene } from 'babylonjs-hook';
+import clsx from 'clsx';
 import Controller from '../core/Controller';
 import RouteCamera from '../graphics/RouteCamera';
 import classes from './Debugger.module.scss';
@@ -16,6 +17,7 @@ function Debugger({ controller }: DebuggerProps) {
   const scene = useScene();
   const [debuggerEnabled, setDebuggerEnabled] = useState(false);
   const [fps, setFps] = useState('');
+  const [inspectorEnabled, setInspectorEnabled] = useState(false);
   const [freeCameraEnabled, setFreeCameraEnabled] = useState(false);
   const [anomalyName, setAnomalyName] = useState<string | null>(null);
   // const [effectsEnabled, setEffectsEnabled] = useState(true);
@@ -27,11 +29,14 @@ function Debugger({ controller }: DebuggerProps) {
   const toggleInspector = useCallback(async () => {
     await import('@babylonjs/inspector');
     if (scene?.debugLayer) {
-      if (!scene.debugLayer.isVisible()) {
-        scene.debugLayer.show({ embedMode: true, overlay: true });
-      } else {
+      setInspectorEnabled((currentInspectorEnabled) => {
+        if (!currentInspectorEnabled) {
+          scene.debugLayer.show({ embedMode: true, overlay: true });
+          return true;
+        }
         scene.debugLayer.hide();
-      }
+        return false;
+      });
     }
   }, [scene]);
 
@@ -118,35 +123,66 @@ function Debugger({ controller }: DebuggerProps) {
 
   return (
     <div className={classes.debugger}>
-      <button type="button" className={classes.button} onClick={toggleDebugger}>
-        Debugger
+      <button
+        type="button"
+        className={clsx(classes.button, debuggerEnabled && classes.active)}
+        onClick={toggleDebugger}
+      >
+        <span className={`${classes.icon} material-symbols-outlined`}>
+          {debuggerEnabled ? 'toggle_on' : 'toggle_off'}
+        </span>
+        <span className={classes.label}>Debugger</span>
       </button>
       {debuggerEnabled ? (
         <>
           <button
             type="button"
-            className={classes.button}
+            className={clsx(classes.button, inspectorEnabled && classes.active)}
             onClick={toggleInspector}
           >
-            Inspector
+            <span className={`${classes.icon} material-symbols-outlined`}>
+              frame_inspect
+            </span>
           </button>
           <button
             type="button"
-            className={classes.button}
+            className={clsx(
+              classes.button,
+              freeCameraEnabled && classes.active,
+            )}
             onClick={toggleCamera}
           >
-            Toggle Camera
+            <span className={`${classes.icon} material-symbols-outlined`}>
+              videocam
+            </span>
           </button>
-          <select
-            className={classes.select}
-            value={anomalyName || ''}
-            onChange={changeAnomaly}
-          >
-            <option value="">(none)</option>
-            {anomalyConfigs.map((anomaly) => (
-              <option key={anomaly.name}>{anomaly.name}</option>
-            ))}
-          </select>
+          <div className={classes.dropdown}>
+            <button type="button" className={`${classes.button}`}>
+              <span className={`${classes.icon} material-symbols-outlined`}>
+                emergency_home
+              </span>
+              <span className={classes.label}>
+                {anomalyName || '(no_anomaly)'}
+              </span>
+              <span
+                className={`${classes.icon} ${classes.arrow} material-symbols-outlined`}
+              >
+                arrow_drop_down
+              </span>
+            </button>
+            <select
+              className={classes.select}
+              value={anomalyName || ''}
+              onChange={changeAnomaly}
+            >
+              <option value="">(no_anomaly)</option>
+              {anomalyConfigs.map((anomaly) => (
+                <option key={anomaly.name} value={anomaly.name}>
+                  {anomaly.name}
+                </option>
+              ))}
+            </select>
+          </div>
           {/* <button type="button" className={classes.button} onClick={toggleEffects}>
         Effects
       </button> */}
@@ -199,7 +235,9 @@ function Debugger({ controller }: DebuggerProps) {
           </div>
         </>
       ) : (
-        <div className={classes.stats}>FPS: {fps}</div>
+        <div className={classes.stats}>
+          <div className={classes.section}>FPS: {fps}</div>
+        </div>
       )}
     </div>
   );

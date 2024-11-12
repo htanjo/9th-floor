@@ -5,6 +5,8 @@
   color: var(--text-color-disabled);
   background-color: #000000;
   cursor: default;
+  pointer-events: none;
+  user-select: none;
 }
 .title {
   position: absolute;
@@ -12,6 +14,7 @@
   width: 100%;
   margin-top: -16vh;
   text-align: center;
+  pointer-events: auto;
   h1 {
     width: min(100vw, 80vh);
     margin: 0 auto;

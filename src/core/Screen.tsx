@@ -11,12 +11,13 @@ import Hud from '../ui/Hud';
 function Screen() {
   const [controllerInstance, setControllerInstance] =
     useState<Controller | null>(null);
-  const [LoadingScreenEnabled, setLoadingScreenEnabled] = useState(true);
+  const [loadingScreenEnabled, setLoadingScreenEnabled] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
   const [startScreenProgress, setStartScreenProgress] = useState(0);
   const [startScreenScroll, setStartScreenScroll] = useState(0);
   const [fullscreen, setFullscreen] = useState(!!document.fullscreenElement);
+  const hudEnabled = !loadingScreenEnabled;
 
   const onSceneReady = useCallback(async (scene: Scene) => {
     const engine = scene.getEngine();
@@ -75,7 +76,7 @@ function Screen() {
   return (
     <>
       <LoadingScreen
-        enabled={LoadingScreenEnabled}
+        enabled={loadingScreenEnabled}
         loadingProgress={loadingProgress}
       />
       <StartScreen
@@ -96,9 +97,11 @@ function Screen() {
         // onRender={onRender}
         className={classes.screen}
       >
-        <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
-        <Debugger controller={controllerInstance} />
+        {hudEnabled && <Debugger controller={controllerInstance} />}
       </SceneComponent>
+      {hudEnabled && (
+        <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
+      )}
     </>
   );
 }

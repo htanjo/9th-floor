@@ -37,7 +37,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
-button {
+button,
+select {
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;

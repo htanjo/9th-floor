@@ -5,6 +5,8 @@
   z-index: 1;
   overflow: hidden;
   cursor: default;
+  pointer-events: none;
+  user-select: none;
 }
 .viewport {
   position: absolute;
@@ -24,6 +26,7 @@
   width: 100%;
   margin-top: -16vh;
   text-align: center;
+  pointer-events: auto;
   h1 {
     width: min(100vw, 80vh);
     margin: 0 auto;
@@ -34,12 +37,13 @@
 }
 .navigation {
   position: absolute;
-  bottom: 3vh;
+  bottom: 2.5vh;
   width: 100%;
   text-align: center;
+  pointer-events: auto;
   .icon {
     vertical-align: -0.15em;
-    font-size: 1em;
+    font-size: 0.8em;
     color: var(--text-color-accent);
     rotate: 90deg;
   }
