@@ -16,21 +16,28 @@
     margin-bottom: 12px;
   }
 }
-.button {
+.button,
+.select {
   margin-right: 12px;
   margin-bottom: 12px;
   padding: 4px 8px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 0;
+  border-radius: 4px;
   color: inherit;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.1);
   text-shadow: inherit;
   cursor: pointer;
-  &:hover {
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+  outline: none;
+  transition:
+    border-color 200ms,
+    background-color 200ms;
+  &:hover,
   &:focus {
-    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  option {
+    color: #333333;
+    background-color: #eeeeee;
   }
 }

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import { Scene } from '@babylonjs/core/scene';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -6,6 +6,7 @@ import { useAfterRender, useScene } from 'babylonjs-hook';
 import Controller from '../core/Controller';
 import RouteCamera from '../graphics/RouteCamera';
 import classes from './Debugger.module.scss';
+import { anomalyConfigs } from '../settings/anomalies';
 
 interface DebuggerProps {
   controller: Controller | null;
@@ -16,6 +17,7 @@ function Debugger({ controller }: DebuggerProps) {
   const [debuggerEnabled, setDebuggerEnabled] = useState(false);
   const [fps, setFps] = useState('');
   const [freeCameraEnabled, setFreeCameraEnabled] = useState(false);
+  const [anomalyName, setAnomalyName] = useState<string | null>(null);
   // const [effectsEnabled, setEffectsEnabled] = useState(true);
 
   const toggleDebugger = useCallback(() => {
@@ -67,6 +69,27 @@ function Debugger({ controller }: DebuggerProps) {
     });
   }, [scene]);
 
+  const changeAnomaly = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      if (controller) {
+        const newAnomalyName = event.target.value || null;
+        setAnomalyName(newAnomalyName);
+        // eslint-disable-next-line no-param-reassign
+        controller.anomalyName = newAnomalyName;
+        controller.sceneManager.applyAnomaly(newAnomalyName);
+      }
+    },
+    [controller],
+  );
+
+  useEffect(() => {
+    if (controller?.anomalyName) {
+      setAnomalyName(controller.anomalyName);
+    } else {
+      setAnomalyName(null);
+    }
+  }, [controller?.anomalyName]);
+
   // TODO: Screen is too dark when disabling the effects.
   // const toggleEffects = useCallback(() => {
   //   setEffectsEnabled((currentEffectsEnabled) => {
@@ -112,8 +135,18 @@ function Debugger({ controller }: DebuggerProps) {
             className={classes.button}
             onClick={toggleCamera}
           >
-            Camera
+            Toggle Camera
           </button>
+          <select
+            className={classes.select}
+            value={anomalyName || ''}
+            onChange={changeAnomaly}
+          >
+            <option value="">(none)</option>
+            {anomalyConfigs.map((anomaly) => (
+              <option key={anomaly.name}>{anomaly.name}</option>
+            ))}
+          </select>
           {/* <button type="button" className={classes.button} onClick={toggleEffects}>
         Effects
       </button> */}

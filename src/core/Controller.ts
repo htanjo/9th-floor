@@ -89,7 +89,7 @@ export default class Controller {
 
   public roomEntered = false;
 
-  private sceneManager: SceneManager;
+  public sceneManager: SceneManager;
 
   private emitter: EventTarget;
 
