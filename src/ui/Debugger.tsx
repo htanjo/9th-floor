@@ -161,9 +161,7 @@ function Debugger({ controller }: DebuggerProps) {
               <span className={`${classes.icon} material-symbols-outlined`}>
                 emergency_home
               </span>
-              <span className={classes.label}>
-                {anomalyName || '(no_anomaly)'}
-              </span>
+              <span className={classes.label}>{anomalyName || '(none)'}</span>
               <span
                 className={`${classes.icon} ${classes.arrow} material-symbols-outlined`}
               >
@@ -175,7 +173,7 @@ function Debugger({ controller }: DebuggerProps) {
               value={anomalyName || ''}
               onChange={changeAnomaly}
             >
-              <option value="">(no_anomaly)</option>
+              <option value="">(none)</option>
               {anomalyConfigs.map((anomaly) => (
                 <option key={anomaly.name} value={anomaly.name}>
                   {anomaly.name}
