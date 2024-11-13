@@ -271,40 +271,14 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_07_texture',
   },
   {
-    name: 'signboard_front_1',
+    name: 'signboard_number',
     lightmapTextureName: 'lightmap_07_texture',
+    alphaBlendDisabled: false, // Avoid jagged edges.
   },
   {
-    name: 'signboard_front_2',
+    name: 'signboard_text',
     lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_3',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_4',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_5',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_6',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_7',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_8',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-  {
-    name: 'signboard_front_9',
-    lightmapTextureName: 'lightmap_07_texture',
+    alphaBlendDisabled: false, // Avoid jagged edges.
   },
   {
     name: 'sword',

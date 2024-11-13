@@ -139,11 +139,27 @@ export default class SceneManager {
   public applyFloor(number: number) {
     const { scene } = this;
     const signboardMeshes = scene.meshes.filter((mesh) =>
-      mesh.name.startsWith('signboard_front_'),
+      mesh.name.startsWith('signboard_number_'),
     );
     signboardMeshes.forEach((mesh) => {
       /* eslint-disable no-param-reassign */
-      if (getBaseName(mesh.name) === `signboard_front_${number}_upper`) {
+      if (getBaseName(mesh.name) === `signboard_number_${number}_upper`) {
+        mesh.isVisible = true;
+      } else {
+        mesh.isVisible = false;
+      }
+      /* eslint-enable no-param-reassign */
+    });
+  }
+
+  public applyLanguage(language: string) {
+    const { scene } = this;
+    const signboardTextMeshes = scene.meshes.filter((mesh) =>
+      mesh.name.startsWith('signboard_text_'),
+    );
+    signboardTextMeshes.forEach((mesh) => {
+      /* eslint-disable no-param-reassign */
+      if (getBaseName(mesh.name) === `signboard_text_${language}_upper`) {
         mesh.isVisible = true;
       } else {
         mesh.isVisible = false;

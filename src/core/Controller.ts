@@ -147,6 +147,12 @@ export default class Controller {
         );
       }
 
+      // Support multi-language.
+      this.sceneManager.applyLanguage(i18n.language);
+      i18n.on('languageChanged', (language) => {
+        this.sceneManager.applyLanguage(language);
+      });
+
       // Don't set area to render and cache all meshes at beginning.
       // this.sceneManager.applyArea(this.areaName);
 
