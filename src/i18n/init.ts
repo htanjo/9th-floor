@@ -1,6 +1,8 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import enTranslation from './translations/en.json';
+import jaTranslation from './translations/ja.json';
 
 i18n
   .use(LanguageDetector)
@@ -8,29 +10,10 @@ i18n
   .init({
     resources: {
       en: {
-        translation: {
-          'Loading...': 'Loading...',
-          'You have wandered into a mysterious mansion.':
-            'You have wandered into a mysterious mansion.',
-          'Find a way to escape.': 'Find a way to escape.',
-          'Scroll to Play': 'Scroll to Play',
-          Fullscreen: 'Fullscreen',
-          'Exit Fullscreen': 'Exit Fullscreen',
-          'Congratulations! You have escaped!':
-            'Congratulations! You have escaped!',
-        },
+        translation: enTranslation,
       },
       ja: {
-        translation: {
-          'Loading...': 'ロード中...',
-          'You have wandered into a mysterious mansion.':
-            '不思議な屋敷に迷い込んでしまった。',
-          'Find a way to escape.': 'なんとかして脱出しよう。',
-          'Scroll to Play': 'スクロールしてプレイ',
-          Fullscreen: '全画面表示',
-          'Exit Fullscreen': '全画面表示を終了',
-          'Congratulations! You have escaped!': 'おめでとう！脱出に成功した！',
-        },
+        translation: jaTranslation,
       },
     },
     supportedLngs: ['en', 'ja'],
