@@ -21,7 +21,7 @@ export const anomalyConfigs: AnomalyConfigs = [
     name: 'overall_red',
   },
   {
-    name: 'phonograph_large',
+    name: 'phonograph_oval',
   },
   {
     name: 'sword_stand',

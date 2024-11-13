@@ -688,8 +688,8 @@ export default class SceneManager {
       case 'overall_red':
         this.causeAnomalyOverallRed();
         break;
-      case 'phonograph_large':
-        this.causeAnomalyPhonographLarge();
+      case 'phonograph_oval':
+        this.causeAnomalyPhonographOval();
         break;
       case 'sword_stand':
         this.causeAnomalyAppear(['sword_anomaly'], ['sword_upper']);
@@ -825,14 +825,14 @@ export default class SceneManager {
     /* eslint-enable no-param-reassign */
   }
 
-  private causeAnomalyPhonographLarge() {
+  private causeAnomalyPhonographOval() {
     const { scene } = this;
     const phonographDiskMeshes = scene.meshes.filter(
       (mesh) => getBaseName(mesh.name) === 'phonograph_disk_upper',
     );
     /* eslint-disable no-param-reassign */
     phonographDiskMeshes.forEach((mesh) => {
-      mesh.scaling = new Vector3(2, 1, 2);
+      mesh.scaling = new Vector3(1, 1, 2);
     });
     this.anomalyCleanupFunction = () => {
       phonographDiskMeshes.forEach((mesh) => {
