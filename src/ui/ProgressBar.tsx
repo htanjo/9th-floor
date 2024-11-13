@@ -7,7 +7,11 @@ interface ProgressBarProps {
 function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <div className={classes.progressBar}>
-      <span className={`${classes.icon} material-symbols-sharp`}>
+      <span
+        className={`${classes.icon} material-symbols-sharp`}
+        aria-hidden="true"
+        translate="no"
+      >
         arrow_menu_close
       </span>
       <div className={classes.totalBar}>
@@ -18,7 +22,11 @@ function ProgressBar({ progress }: ProgressBarProps) {
           }}
         />
       </div>
-      <span className={`${classes.icon} material-symbols-sharp`}>
+      <span
+        className={`${classes.icon} material-symbols-sharp`}
+        aria-hidden="true"
+        translate="no"
+      >
         arrow_menu_open
       </span>
     </div>

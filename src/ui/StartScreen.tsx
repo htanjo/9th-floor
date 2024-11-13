@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { animated, config, easings, useSpring } from '@react-spring/web';
 import Logo from './Logo';
 import { hasTouchscreen } from '../settings/general';
@@ -11,6 +12,7 @@ interface StartScreenProps {
 }
 
 function StartScreen({ enabled, progress, scroll }: StartScreenProps) {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(enabled);
 
   const viewportStyle = useSpring({
@@ -69,11 +71,19 @@ function StartScreen({ enabled, progress, scroll }: StartScreenProps) {
             <div className={classes.subtitle}>Technical Demo</div>
           </div>
           <animated.div className={classes.navigation} style={navigationStyle}>
-            <span className={`${classes.icon} material-symbols-sharp`}>
+            <span
+              className={`${classes.icon} material-symbols-sharp`}
+              aria-hidden="true"
+              translate="no"
+            >
               arrows_outward
             </span>{' '}
-            Scroll to Play{' '}
-            <span className={`${classes.icon} material-symbols-sharp`}>
+            {t('Scroll to Play')}{' '}
+            <span
+              className={`${classes.icon} material-symbols-sharp`}
+              aria-hidden="true"
+              translate="no"
+            >
               arrows_outward
             </span>
           </animated.div>

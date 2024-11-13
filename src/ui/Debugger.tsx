@@ -128,7 +128,11 @@ function Debugger({ controller }: DebuggerProps) {
         className={clsx(classes.button, debuggerEnabled && classes.active)}
         onClick={toggleDebugger}
       >
-        <span className={`${classes.icon} material-symbols-sharp`}>
+        <span
+          className={`${classes.icon} material-symbols-sharp`}
+          aria-hidden="true"
+          translate="no"
+        >
           {debuggerEnabled ? 'toggle_on' : 'toggle_off'}
         </span>
         <span className={classes.label}>Debugger</span>
@@ -140,7 +144,11 @@ function Debugger({ controller }: DebuggerProps) {
             className={clsx(classes.button, inspectorEnabled && classes.active)}
             onClick={toggleInspector}
           >
-            <span className={`${classes.icon} material-symbols-sharp`}>
+            <span
+              className={`${classes.icon} material-symbols-sharp`}
+              aria-hidden="true"
+              translate="no"
+            >
               frame_inspect
             </span>
           </button>
@@ -152,18 +160,28 @@ function Debugger({ controller }: DebuggerProps) {
             )}
             onClick={toggleCamera}
           >
-            <span className={`${classes.icon} material-symbols-sharp`}>
+            <span
+              className={`${classes.icon} material-symbols-sharp`}
+              aria-hidden="true"
+              translate="no"
+            >
               videocam
             </span>
           </button>
           <div className={classes.dropdown}>
             <button type="button" className={`${classes.button}`}>
-              <span className={`${classes.icon} material-symbols-sharp`}>
+              <span
+                className={`${classes.icon} material-symbols-sharp`}
+                aria-hidden="true"
+                translate="no"
+              >
                 emergency_home
               </span>
               <span className={classes.label}>{anomalyName || '(none)'}</span>
               <span
                 className={`${classes.icon} ${classes.arrow} material-symbols-sharp`}
+                aria-hidden="true"
+                translate="no"
               >
                 arrow_drop_down
               </span>

@@ -25,6 +25,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+:root:lang(ja) {
+  font-family: 'EB Garamond', 'Yu Mincho', 'Hiragino Mincho Pro', serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-feature-settings: 'palt' 1;
+}
 
 body {
   height: 100%;

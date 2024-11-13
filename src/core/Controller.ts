@@ -1,4 +1,5 @@
 import { Scene } from '@babylonjs/core/scene';
+import i18n from 'i18next';
 import VirtualScroll, { VirtualScrollEvent } from 'virtual-scroll';
 import SceneManager from '../graphics/SceneManager';
 import { hasPointingDevice, hasTouchscreen } from '../settings/general';
@@ -332,7 +333,7 @@ export default class Controller {
             this.floorNumber -= 1;
             if (this.floorNumber < this.minFloorNumber) {
               // eslint-disable-next-line no-alert
-              alert('Congratulations! You have escaped!');
+              alert(i18n.t('Congratulations! You have escaped!'));
               // Loop floors until creating game ending.
               this.floorNumber = this.maxFloorNumber;
             }
