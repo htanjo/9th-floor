@@ -18,11 +18,11 @@
 }
 .button {
   display: inline-block;
-  height: 1rem;
+  height: 1.2rem;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
-  padding-left: 0.15rem;
-  padding-right: 0.15rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 0;
   vertical-align: top;
@@ -63,8 +63,13 @@
   .button {
     display: inline-flex;
     align-items: center;
-    min-width: 6.5rem;
     margin: 0;
+  }
+  &.dropdownMedium .button {
+    min-width: 4rem;
+  }
+  &.dropdownLarge .button {
+    min-width: 6.5rem;
   }
   &:hover .button {
     border: 1px solid rgba(255, 255, 255, 0.6);

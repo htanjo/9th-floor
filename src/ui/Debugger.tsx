@@ -1,13 +1,15 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import { Scene } from '@babylonjs/core/scene';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { useAfterRender, useScene } from 'babylonjs-hook';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import Controller from '../core/Controller';
 import RouteCamera from '../graphics/RouteCamera';
 import classes from './Debugger.module.scss';
 import { anomalyConfigs } from '../settings/anomalies';
+import { supportedLanguages } from '../i18n/init';
 
 interface DebuggerProps {
   controller: Controller | null;
@@ -15,11 +17,19 @@ interface DebuggerProps {
 
 function Debugger({ controller }: DebuggerProps) {
   const scene = useScene();
+  const { i18n } = useTranslation();
   const [debuggerEnabled, setDebuggerEnabled] = useState(false);
   const [fps, setFps] = useState('');
   const [inspectorEnabled, setInspectorEnabled] = useState(false);
   const [freeCameraEnabled, setFreeCameraEnabled] = useState(false);
   const [anomalyName, setAnomalyName] = useState<string | null>(null);
+  const languageDisplayName = useMemo(
+    () =>
+      supportedLanguages.find((language) => language.name === i18n.language)
+        ?.displayName || '',
+    [i18n.language],
+  );
+
   // const [effectsEnabled, setEffectsEnabled] = useState(true);
 
   const toggleDebugger = useCallback(() => {
@@ -74,7 +84,7 @@ function Debugger({ controller }: DebuggerProps) {
     });
   }, [scene]);
 
-  const changeAnomaly = useCallback(
+  const handleChangeAnomaly = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
       if (controller) {
         const newAnomalyName = event.target.value || null;
@@ -85,6 +95,13 @@ function Debugger({ controller }: DebuggerProps) {
       }
     },
     [controller],
+  );
+
+  const handleChangeLanguage = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      i18n.changeLanguage(event.target.value);
+    },
+    [i18n],
   );
 
   useEffect(() => {
@@ -168,14 +185,14 @@ function Debugger({ controller }: DebuggerProps) {
               videocam
             </span>
           </button>
-          <div className={classes.dropdown}>
+          <div className={`${classes.dropdown} ${classes.dropdownLarge}`}>
             <button type="button" className={`${classes.button}`}>
               <span
                 className={`${classes.icon} material-symbols-sharp`}
                 aria-hidden="true"
                 translate="no"
               >
-                emergency_home
+                brightness_alert
               </span>
               <span className={classes.label}>{anomalyName || '(none)'}</span>
               <span
@@ -189,12 +206,42 @@ function Debugger({ controller }: DebuggerProps) {
             <select
               className={classes.select}
               value={anomalyName || ''}
-              onChange={changeAnomaly}
+              onChange={handleChangeAnomaly}
             >
               <option value="">(none)</option>
               {anomalyConfigs.map((anomaly) => (
                 <option key={anomaly.name} value={anomaly.name}>
                   {anomaly.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={`${classes.dropdown} ${classes.dropdownMedium}`}>
+            <button type="button" className={`${classes.button}`}>
+              <span
+                className={`${classes.icon} material-symbols-sharp`}
+                aria-hidden="true"
+                translate="no"
+              >
+                language
+              </span>
+              <span className={classes.label}>{languageDisplayName}</span>
+              <span
+                className={`${classes.icon} ${classes.arrow} material-symbols-sharp`}
+                aria-hidden="true"
+                translate="no"
+              >
+                arrow_drop_down
+              </span>
+            </button>
+            <select
+              className={classes.select}
+              value={i18n.language}
+              onChange={handleChangeLanguage}
+            >
+              {supportedLanguages.map((language) => (
+                <option key={language.name} value={language.name}>
+                  {language.displayName}
                 </option>
               ))}
             </select>

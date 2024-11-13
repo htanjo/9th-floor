@@ -4,6 +4,24 @@ import { initReactI18next } from 'react-i18next';
 import enTranslation from './translations/en.json';
 import jaTranslation from './translations/ja.json';
 
+export interface Language {
+  name: string;
+  displayName: string;
+}
+
+export type Languages = Language[];
+
+export const supportedLanguages: Languages = [
+  {
+    name: 'en',
+    displayName: 'English',
+  },
+  {
+    name: 'ja',
+    displayName: '日本語',
+  },
+];
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -16,7 +34,7 @@ i18n
         translation: jaTranslation,
       },
     },
-    supportedLngs: ['en', 'ja'],
+    supportedLngs: supportedLanguages.map((language) => language.name),
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // React already safes from XSS.
