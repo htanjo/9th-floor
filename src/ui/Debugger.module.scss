@@ -65,6 +65,9 @@
     align-items: center;
     margin: 0;
   }
+  &.dropdownSmall .button {
+    min-width: 2.5rem;
+  }
   &.dropdownMedium .button {
     min-width: 4rem;
   }

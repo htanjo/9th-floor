@@ -12,7 +12,7 @@ import { anomalyConfigs } from '../settings/anomalies';
 import { supportedLanguages } from '../i18n/init';
 
 interface DebuggerProps {
-  controller: Controller | null;
+  controller: Controller;
 }
 
 function Debugger({ controller }: DebuggerProps) {
@@ -23,6 +23,15 @@ function Debugger({ controller }: DebuggerProps) {
   const [inspectorEnabled, setInspectorEnabled] = useState(false);
   const [freeCameraEnabled, setFreeCameraEnabled] = useState(false);
   const [anomalyName, setAnomalyName] = useState<string | null>(null);
+  const [floorNumber, setFloorNumber] = useState(controller.floorNumber);
+  const floorNumberOptions: number[] = useMemo(() => {
+    const options = new Array(
+      controller.maxFloorNumber - (controller.minFloorNumber - 1),
+    )
+      .fill(0)
+      .map((_item, index) => controller.maxFloorNumber - index);
+    return options;
+  }, [controller.minFloorNumber, controller.maxFloorNumber]);
   const languageDisplayName = useMemo(
     () =>
       supportedLanguages.find((language) => language.name === i18n.language)
@@ -86,13 +95,22 @@ function Debugger({ controller }: DebuggerProps) {
 
   const handleChangeAnomaly = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
-      if (controller) {
-        const newAnomalyName = event.target.value || null;
-        setAnomalyName(newAnomalyName);
-        // eslint-disable-next-line no-param-reassign
-        controller.anomalyName = newAnomalyName;
-        controller.sceneManager.applyAnomaly(newAnomalyName);
-      }
+      const newAnomalyName = event.target.value || null;
+      setAnomalyName(newAnomalyName);
+      // eslint-disable-next-line no-param-reassign
+      controller.anomalyName = newAnomalyName;
+      controller.sceneManager.applyAnomaly(newAnomalyName);
+    },
+    [controller],
+  );
+
+  const handleChangeFloorNumber = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      const newFloorNumber = parseInt(event.target.value, 10);
+      setFloorNumber(newFloorNumber);
+      // eslint-disable-next-line no-param-reassign
+      controller.floorNumber = newFloorNumber;
+      controller.sceneManager.applyFloor(newFloorNumber);
     },
     [controller],
   );
@@ -105,12 +123,9 @@ function Debugger({ controller }: DebuggerProps) {
   );
 
   useEffect(() => {
-    if (controller?.anomalyName) {
-      setAnomalyName(controller.anomalyName);
-    } else {
-      setAnomalyName(null);
-    }
-  }, [controller?.anomalyName]);
+    setAnomalyName(controller.anomalyName);
+    setFloorNumber(controller.floorNumber);
+  }, [controller]);
 
   // TODO: Screen is too dark when disabling the effects.
   // const toggleEffects = useCallback(() => {
@@ -216,6 +231,36 @@ function Debugger({ controller }: DebuggerProps) {
               ))}
             </select>
           </div>
+          <div className={`${classes.dropdown} ${classes.dropdownSmall}`}>
+            <button type="button" className={`${classes.button}`}>
+              <span
+                className={`${classes.icon} material-symbols-sharp`}
+                aria-hidden="true"
+                translate="no"
+              >
+                floor
+              </span>
+              <span className={classes.label}>{controller.floorNumber}F</span>
+              <span
+                className={`${classes.icon} ${classes.arrow} material-symbols-sharp`}
+                aria-hidden="true"
+                translate="no"
+              >
+                arrow_drop_down
+              </span>
+            </button>
+            <select
+              className={classes.select}
+              value={floorNumber}
+              onChange={handleChangeFloorNumber}
+            >
+              {floorNumberOptions.map((number) => (
+                <option key={number} value={number}>
+                  {number}F
+                </option>
+              ))}
+            </select>
+          </div>
           <div className={`${classes.dropdown} ${classes.dropdownMedium}`}>
             <button type="button" className={`${classes.button}`}>
               <span
@@ -253,39 +298,33 @@ function Debugger({ controller }: DebuggerProps) {
             <div className={classes.section}>
               [Movement]
               <br />
-              Frame: {controller ? controller.frame.toFixed(2) : '--'}
+              Frame: {controller.frame.toFixed(2)}
               <br />
-              Move Forward:{' '}
-              {controller ? controller.moveForward.toString() : '--'}
+              Move Forward: {controller.moveForward.toString()}
               <br />
-              Turn Rate: {controller ? controller.turnRate.toFixed(2) : '--'}
+              Turn Rate: {controller.turnRate.toFixed(2)}
             </div>
             <div className={classes.section}>
               [Area]
               <br />
-              Floor: {controller ? controller.floorNumber : '--'}
+              Floor: {controller.floorNumber}
               <br />
-              Area Name: {controller ? controller.areaName : '--'}
+              Area Name: {controller.areaName}
               <br />
-              Route Offset: {controller ? controller.routeOffset : '--'}
+              Route Offset: {controller.routeOffset}
               <br />
-              Route Invert:{' '}
-              {controller ? controller.routeInvert.toString() : '--'}
+              Route Invert: {controller.routeInvert.toString()}
             </div>
             <div className={classes.section}>
               [Anomaly]
               <br />
-              Anomaly Name:{' '}
-              {controller ? controller.anomalyName || '(none)' : '--'}
+              Anomaly Name: {controller.anomalyName || '(none)'}
               <br />
-              Room Entered:{' '}
-              {controller ? controller.roomEntered.toString() : '--'}
+              Room Entered: {controller.roomEntered.toString()}
               <br />
-              Consecutive Anomaly Count:{' '}
-              {controller ? controller.anomalyCount : '--'}
+              Consecutive Anomaly Count: {controller.anomalyCount}
               <br />
-              Consecutive No Anomaly Count:{' '}
-              {controller ? controller.noAnomalyCount : '--'}
+              Consecutive No Anomaly Count: {controller.noAnomalyCount}
             </div>
             <div className={classes.section}>
               [Graphics]

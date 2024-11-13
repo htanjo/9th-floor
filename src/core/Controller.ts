@@ -62,9 +62,9 @@ export default class Controller {
 
   public areaName = keyframesSetting[0].areaName;
 
-  private minFloorNumber = 1;
+  public minFloorNumber = 1;
 
-  private maxFloorNumber = 9;
+  public maxFloorNumber = 9;
 
   public floorNumber = this.maxFloorNumber;
 

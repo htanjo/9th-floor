@@ -97,7 +97,9 @@ function Screen() {
         // onRender={onRender}
         className={classes.screen}
       >
-        {hudEnabled && <Debugger controller={controllerInstance} />}
+        {hudEnabled && controllerInstance && (
+          <Debugger controller={controllerInstance} />
+        )}
       </SceneComponent>
       {hudEnabled && (
         <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
