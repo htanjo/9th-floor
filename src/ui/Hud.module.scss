@@ -2,7 +2,7 @@
   position: absolute;
   bottom: 2.5vh;
   right: 2.5vh;
-  margin: -0.2rem;
+  margin: -0.3rem;
   z-index: 1;
   user-select: none;
 }
@@ -19,6 +19,7 @@
 }
 .icon {
   display: block;
+  font-size: 1rem;
   color: var(--text-color-base);
   transition:
     color 150ms,
@@ -38,11 +39,12 @@
   }
 }
 
-// Stronger selector to override the default styles.
+// Use stronger selector to override the default styles.
 .hud .tooltip {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: max(10px, 0.45rem);
-  color: #ffffff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0;
+  font-size: max(12px, 0.6rem);
+  color: var(--text-color-strong);
   background-color: #000000;
   opacity: 0.7;
 }

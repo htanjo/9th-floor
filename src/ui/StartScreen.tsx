@@ -69,11 +69,11 @@ function StartScreen({ enabled, progress, scroll }: StartScreenProps) {
             <div className={classes.subtitle}>Technical Demo</div>
           </div>
           <animated.div className={classes.navigation} style={navigationStyle}>
-            <span className={`${classes.icon} material-symbols-outlined`}>
+            <span className={`${classes.icon} material-symbols-sharp`}>
               arrows_outward
             </span>{' '}
             Scroll to Play{' '}
-            <span className={`${classes.icon} material-symbols-outlined`}>
+            <span className={`${classes.icon} material-symbols-sharp`}>
               arrows_outward
             </span>
           </animated.div>

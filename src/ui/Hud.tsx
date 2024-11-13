@@ -30,7 +30,7 @@ function Hud({ fullscreen, onToggleFullscreen }: HudProps) {
             data-tooltip-content={fullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
             onClick={toggleFullscreen}
           >
-            <span className={`${classes.icon} material-symbols-outlined`}>
+            <span className={`${classes.icon} material-symbols-sharp`}>
               {fullscreen ? 'fullscreen_exit' : 'fullscreen'}
             </span>
           </button>
