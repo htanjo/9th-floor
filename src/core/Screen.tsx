@@ -1,14 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Scene } from '@babylonjs/core/scene';
-import SceneComponent from 'babylonjs-hook';
+import SceneComponent, { useScene } from 'babylonjs-hook';
 import Controller from './Controller';
 import StartScreen from '../ui/StartScreen';
 import Debugger from '../ui/Debugger';
 import classes from './Screen.module.scss';
 import LoadingScreen from '../ui/LoadingScreen';
 import Hud from '../ui/Hud';
+import Scrollbar from '../ui/Scrollbar';
+import {
+  maxFrame as maxFrameSetting,
+  moveSpeed as moveSpeedSetting,
+} from '../settings/keyframes';
 
 function Screen() {
+  const sceneInstance = useScene();
   const [controllerInstance, setControllerInstance] =
     useState<Controller | null>(null);
   const [loadingScreenEnabled, setLoadingScreenEnabled] = useState(true);
@@ -16,8 +22,19 @@ function Screen() {
   const [startScreenEnabled, setStartScreenEnabled] = useState(false);
   const [startScreenProgress, setStartScreenProgress] = useState(0);
   const [startScreenScroll, setStartScreenScroll] = useState(0);
+  const [frameValue, setFrameValue] = useState(0);
+  const [maxFrameValue, setMaxFrameValue] = useState(maxFrameSetting);
+  const [moveSpeedValue, setMoveSpeedValue] = useState(moveSpeedSetting);
   const [fullscreen, setFullscreen] = useState(!!document.fullscreenElement);
+  const virtualContentLength = maxFrameValue / moveSpeedValue;
+  const virtualViewportLength =
+    sceneInstance?.getEngine().getRenderingCanvas()?.height ||
+    window.innerHeight;
+  const virtualScrollLength =
+    (virtualContentLength - virtualViewportLength) *
+    (frameValue / maxFrameValue);
   const hudEnabled = !loadingScreenEnabled;
+  const scrollbarEnabled = !loadingScreenEnabled;
 
   const onSceneReady = useCallback(async (scene: Scene) => {
     const engine = scene.getEngine();
@@ -31,6 +48,11 @@ function Screen() {
     controller.onStartScreenProgress((progress, scroll) => {
       setStartScreenProgress(progress);
       setStartScreenScroll(scroll);
+    });
+    controller.onFrameProgress((frame, maxFrame, moveSpeed) => {
+      setFrameValue(frame);
+      setMaxFrameValue(maxFrame);
+      setMoveSpeedValue(moveSpeed);
     });
     setControllerInstance(controller);
   }, []);
@@ -103,6 +125,13 @@ function Screen() {
       </SceneComponent>
       {hudEnabled && (
         <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
+      )}
+      {scrollbarEnabled && (
+        <Scrollbar
+          scrollLength={virtualScrollLength}
+          contentLength={virtualContentLength}
+          viewportLength={virtualViewportLength}
+        />
       )}
     </>
   );

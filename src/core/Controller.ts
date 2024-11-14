@@ -6,6 +6,7 @@ import { hasPointingDevice, hasTouchscreen } from '../settings/general';
 import {
   keyframes as keyframesSetting,
   maxFrame as maxFrameSetting,
+  moveSpeed as moveSpeedSetting,
 } from '../settings/keyframes';
 import {
   getBaseName,
@@ -34,7 +35,7 @@ export default class Controller {
 
   private maxFrame = maxFrameSetting;
 
-  private moveSpeed = 0.015; // Number of frames advanced by 1px scroll input.
+  private moveSpeed = moveSpeedSetting; // Number of frames advanced by 1px scroll input.
 
   public moveForward = true;
 
@@ -200,6 +201,14 @@ export default class Controller {
     });
   }
 
+  public onFrameProgress(
+    callback: (frame: number, maxFrame: number, moveSpeed: number) => void,
+  ) {
+    this.emitter.addEventListener('frameProgress', () => {
+      callback(this.frame, this.maxFrame, this.moveSpeed);
+    });
+  }
+
   public destroy() {
     if (this.virtualScroll) {
       this.virtualScroll.destroy();
@@ -323,6 +332,7 @@ export default class Controller {
         this.moveForward = true;
         this.turnRate = 0;
         this.frame = exceedsStartLine ? -newFrame : newFrame - this.maxFrame; // Set the excess.
+        this.emitter.dispatchEvent(new CustomEvent('frameProgress'));
         this.sceneManager.applyRoute(this.routeOffset, this.routeInvert);
         this.sceneManager.applyDirection('forward');
         this.sceneManager.applyTurnRate(this.turnRate);
@@ -363,6 +373,7 @@ export default class Controller {
       } else {
         // Otherwise, just update the frame number.
         this.frame = newFrame;
+        this.emitter.dispatchEvent(new CustomEvent('frameProgress'));
         this.sceneManager.applyFrame(this.frame);
       }
     }

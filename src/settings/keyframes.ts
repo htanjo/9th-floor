@@ -12,6 +12,9 @@ export type Keyframes = Keyframe[];
 
 const keyframeSegments = 10;
 
+// Number of frames advanced by 1px scroll input.
+export const moveSpeed = 0.015;
+
 // Number of frames from when the title disappears to when the start screen ends.
 export const startScreenAdditionalFrames = 100;
 
