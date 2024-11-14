@@ -1,3 +1,4 @@
+import Icon from './Icon';
 import classes from './ProgressBar.module.scss';
 
 interface ProgressBarProps {
@@ -7,13 +8,7 @@ interface ProgressBarProps {
 function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <div className={classes.progressBar}>
-      <span
-        className={`${classes.icon} material-symbols-sharp`}
-        aria-hidden="true"
-        translate="no"
-      >
-        arrow_menu_close
-      </span>
+      <Icon name="arrow_menu_close" className={classes.icon} />
       <div className={classes.totalBar}>
         <div
           className={classes.activeBar}
@@ -22,13 +17,7 @@ function ProgressBar({ progress }: ProgressBarProps) {
           }}
         />
       </div>
-      <span
-        className={`${classes.icon} material-symbols-sharp`}
-        aria-hidden="true"
-        translate="no"
-      >
-        arrow_menu_open
-      </span>
+      <Icon name="arrow_menu_open" className={classes.icon} />
     </div>
   );
 }

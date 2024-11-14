@@ -5,11 +5,12 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { useAfterRender, useScene } from 'babylonjs-hook';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import Icon from './Icon';
 import Controller from '../core/Controller';
 import RouteCamera from '../graphics/RouteCamera';
-import classes from './Debugger.module.scss';
 import { anomalyConfigs } from '../settings/anomalies';
 import { supportedLanguages } from '../i18n/init';
+import classes from './Debugger.module.scss';
 
 interface DebuggerProps {
   controller: Controller;
@@ -160,13 +161,10 @@ function Debugger({ controller }: DebuggerProps) {
         className={clsx(classes.button, debuggerEnabled && classes.active)}
         onClick={toggleDebugger}
       >
-        <span
-          className={`${classes.icon} material-symbols-sharp`}
-          aria-hidden="true"
-          translate="no"
-        >
-          {debuggerEnabled ? 'toggle_on' : 'toggle_off'}
-        </span>
+        <Icon
+          name={debuggerEnabled ? 'toggle_on' : 'toggle_off'}
+          className={classes.icon}
+        />
         <span className={classes.label}>Debugger</span>
       </button>
       {debuggerEnabled ? (
@@ -176,13 +174,11 @@ function Debugger({ controller }: DebuggerProps) {
             className={clsx(classes.button, inspectorEnabled && classes.active)}
             onClick={toggleInspector}
           >
-            <span
-              className={`${classes.icon} material-symbols-sharp`}
-              aria-hidden="true"
-              translate="no"
-            >
-              frame_inspect
-            </span>
+            <Icon
+              name="frame_inspect"
+              className={classes.icon}
+              aria-label="Toggle Inspector"
+            />
           </button>
           <button
             type="button"
@@ -192,31 +188,20 @@ function Debugger({ controller }: DebuggerProps) {
             )}
             onClick={toggleCamera}
           >
-            <span
-              className={`${classes.icon} material-symbols-sharp`}
-              aria-hidden="true"
-              translate="no"
-            >
-              videocam
-            </span>
+            <Icon
+              name="videocam"
+              className={classes.icon}
+              aria-label="Toggle Camera"
+            />
           </button>
           <div className={`${classes.dropdown} ${classes.dropdownLarge}`}>
             <button type="button" className={`${classes.button}`}>
-              <span
-                className={`${classes.icon} material-symbols-sharp`}
-                aria-hidden="true"
-                translate="no"
-              >
-                brightness_alert
-              </span>
+              <Icon name="brightness_alert" className={classes.icon} />
               <span className={classes.label}>{anomalyName || '(none)'}</span>
-              <span
-                className={`${classes.icon} ${classes.arrow} material-symbols-sharp`}
-                aria-hidden="true"
-                translate="no"
-              >
-                arrow_drop_down
-              </span>
+              <Icon
+                name="arrow_drop_down"
+                className={`${classes.icon} ${classes.arrow}`}
+              />
             </button>
             <select
               className={classes.select}
@@ -233,21 +218,12 @@ function Debugger({ controller }: DebuggerProps) {
           </div>
           <div className={`${classes.dropdown} ${classes.dropdownSmall}`}>
             <button type="button" className={`${classes.button}`}>
-              <span
-                className={`${classes.icon} material-symbols-sharp`}
-                aria-hidden="true"
-                translate="no"
-              >
-                floor
-              </span>
+              <Icon name="floor" className={classes.icon} />
               <span className={classes.label}>{controller.floorNumber}F</span>
-              <span
-                className={`${classes.icon} ${classes.arrow} material-symbols-sharp`}
-                aria-hidden="true"
-                translate="no"
-              >
-                arrow_drop_down
-              </span>
+              <Icon
+                name="arrow_drop_down"
+                className={`${classes.icon} ${classes.arrow}`}
+              />
             </button>
             <select
               className={classes.select}
@@ -263,21 +239,12 @@ function Debugger({ controller }: DebuggerProps) {
           </div>
           <div className={`${classes.dropdown} ${classes.dropdownMedium}`}>
             <button type="button" className={`${classes.button}`}>
-              <span
-                className={`${classes.icon} material-symbols-sharp`}
-                aria-hidden="true"
-                translate="no"
-              >
-                language
-              </span>
+              <Icon name="language" className={classes.icon} />
               <span className={classes.label}>{languageDisplayName}</span>
-              <span
-                className={`${classes.icon} ${classes.arrow} material-symbols-sharp`}
-                aria-hidden="true"
-                translate="no"
-              >
-                arrow_drop_down
-              </span>
+              <Icon
+                name="arrow_drop_down"
+                className={`${classes.icon} ${classes.arrow}`}
+              />
             </button>
             <select
               className={classes.select}

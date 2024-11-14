@@ -1,6 +1,7 @@
 import { MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tooltip';
+import Icon from './Icon';
 import { hasPointingDevice, isIos } from '../settings/general';
 import classes from './Hud.module.scss';
 
@@ -34,12 +35,11 @@ function Hud({ fullscreen, onToggleFullscreen }: HudProps) {
             }
             onClick={toggleFullscreen}
           >
-            <span
-              className={`${classes.icon} material-symbols-sharp`}
-              translate="no"
-            >
-              {fullscreen ? 'fullscreen_exit' : 'fullscreen'}
-            </span>
+            <Icon
+              name={fullscreen ? 'fullscreen_exit' : 'fullscreen'}
+              aria-label={fullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+              className={classes.icon}
+            />
           </button>
           {hasPointingDevice && (
             <Tooltip id="hudTooltip" className={classes.tooltip} />
