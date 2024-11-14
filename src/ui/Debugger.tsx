@@ -147,7 +147,6 @@ function Debugger({ controllerRef }: DebuggerProps) {
       // eslint-disable-next-line no-param-reassign
       controllerRef.current.anomalyName = newAnomalyName;
       controllerRef.current.sceneManager.applyAnomaly(newAnomalyName);
-      updateControllerData();
     }
   };
 
@@ -157,7 +156,6 @@ function Debugger({ controllerRef }: DebuggerProps) {
       // eslint-disable-next-line no-param-reassign
       controllerRef.current.floorNumber = newFloorNumber;
       controllerRef.current.sceneManager.applyFloor(newFloorNumber);
-      updateControllerData();
     }
   };
 
