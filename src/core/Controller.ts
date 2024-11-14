@@ -157,9 +157,9 @@ export default class Controller {
       // Don't set area to render and cache all meshes at beginning.
       // this.sceneManager.applyArea(this.areaName);
 
-      // Draw the first new anomaly.
+      // Don't cause any anomalies on the first 9th floor.
       this.sceneManager.applyFloor(this.floorNumber);
-      this.anomalyName = this.drawAnomaly();
+      this.anomalyName = null;
       this.sceneManager.applyAnomaly(this.anomalyName);
 
       // Hide loading screen and show start screen.
