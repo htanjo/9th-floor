@@ -1,9 +1,15 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Scene } from '@babylonjs/core/scene';
 import SceneComponent, { useScene } from 'babylonjs-hook';
 import Controller from './Controller';
 import StartScreen from '../ui/StartScreen';
-import Debugger from '../ui/Debugger';
 import classes from './Screen.module.scss';
 import LoadingScreen from '../ui/LoadingScreen';
 import Hud from '../ui/Hud';
@@ -12,6 +18,8 @@ import {
   maxFrame as maxFrameSetting,
   moveSpeed as moveSpeedSetting,
 } from '../settings/keyframes';
+
+const Debugger = lazy(() => import('../ui/Debugger'));
 
 function Screen() {
   const sceneInstance = useScene();
@@ -24,6 +32,9 @@ function Screen() {
   const [maxFrameValue, setMaxFrameValue] = useState(maxFrameSetting);
   const [moveSpeedValue, setMoveSpeedValue] = useState(moveSpeedSetting);
   const [fullscreen, setFullscreen] = useState(!!document.fullscreenElement);
+  const [debugMode] = useState(
+    new URLSearchParams(window.location.search).get('debug') === 'true', // Enable debug mode if URL has "?debug=true".
+  );
   const controllerRef = useRef<Controller | null>(null);
   const virtualContentLength = maxFrameValue / moveSpeedValue;
   const virtualViewportLength =
@@ -118,7 +129,11 @@ function Screen() {
         // onRender={onRender}
         className={classes.screen}
       >
-        {hudEnabled && <Debugger controllerRef={controllerRef} />}
+        {debugMode && hudEnabled && (
+          <Suspense fallback={null}>
+            <Debugger controllerRef={controllerRef} />
+          </Suspense>
+        )}
       </SceneComponent>
       {hudEnabled && (
         <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
