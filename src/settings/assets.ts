@@ -24,7 +24,7 @@ import environmentOutdoorTextureUrl from '../assets/environment_outdoor.env?url'
 import environmentMirrorTextureUrl from '../assets/environment_mirror.env?url';
 import particleDustTextureUrl from '../assets/particle_dust.webp?url';
 import particleFogTextureUrl from '../assets/particle_fog.webp?url';
-import { isDesktop } from './general';
+import { qualityMode } from './general';
 
 export interface AssetConfig {
   type: 'mesh' | 'texture' | 'cubeTexture';
@@ -38,57 +38,57 @@ export const assetConfigs: AssetConfigs = [
   {
     type: 'mesh',
     name: 'mansion_mesh',
-    url: isDesktop ? mansionHighMeshUrl : mansionLowMeshUrl,
+    url: qualityMode ? mansionHighMeshUrl : mansionLowMeshUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_01_texture',
-    url: isDesktop ? lightmap01HighTextureUrl : lightmap01LowTextureUrl,
+    url: qualityMode ? lightmap01HighTextureUrl : lightmap01LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_02_texture',
-    url: isDesktop ? lightmap02HighTextureUrl : lightmap02LowTextureUrl,
+    url: qualityMode ? lightmap02HighTextureUrl : lightmap02LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_03_texture',
-    url: isDesktop ? lightmap03HighTextureUrl : lightmap03LowTextureUrl,
+    url: qualityMode ? lightmap03HighTextureUrl : lightmap03LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_04_texture',
-    url: isDesktop ? lightmap04HighTextureUrl : lightmap04LowTextureUrl,
+    url: qualityMode ? lightmap04HighTextureUrl : lightmap04LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_05_texture',
-    url: isDesktop ? lightmap05HighTextureUrl : lightmap05LowTextureUrl,
+    url: qualityMode ? lightmap05HighTextureUrl : lightmap05LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_06_texture',
-    url: isDesktop ? lightmap06HighTextureUrl : lightmap06LowTextureUrl,
+    url: qualityMode ? lightmap06HighTextureUrl : lightmap06LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_07_texture',
-    url: isDesktop ? lightmap07HighTextureUrl : lightmap07LowTextureUrl,
+    url: qualityMode ? lightmap07HighTextureUrl : lightmap07LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_08_texture',
-    url: isDesktop ? lightmap08HighTextureUrl : lightmap08LowTextureUrl,
+    url: qualityMode ? lightmap08HighTextureUrl : lightmap08LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_09_texture',
-    url: isDesktop ? lightmap09HighTextureUrl : lightmap09LowTextureUrl,
+    url: qualityMode ? lightmap09HighTextureUrl : lightmap09LowTextureUrl,
   },
   {
     type: 'texture',
     name: 'lightmap_10_texture',
-    url: isDesktop ? lightmap10HighTextureUrl : lightmap10LowTextureUrl,
+    url: qualityMode ? lightmap10HighTextureUrl : lightmap10LowTextureUrl,
   },
   {
     type: 'cubeTexture',

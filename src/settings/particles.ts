@@ -1,4 +1,4 @@
-import { isDesktop, toRadians } from './general';
+import { qualityMode, toRadians } from './general';
 
 interface BaseParticleConfig {
   name: string;
@@ -127,7 +127,7 @@ const baseFogConfig = {
   },
 };
 
-export const particleConfigs: ParticleConfigs = isDesktop
+export const particleConfigs: ParticleConfigs = qualityMode
   ? [
       {
         ...baseDustConfig,
