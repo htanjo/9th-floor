@@ -1,10 +1,12 @@
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
+import { Animatable } from '@babylonjs/core/Animations/animatable';
 import { Animation } from '@babylonjs/core/Animations/animation';
 import { AssetsManager } from '@babylonjs/core/Misc/assetsManager';
 import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { CubeTexture } from '@babylonjs/core/Materials/Textures/cubeTexture';
 import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { EasingFunction, SineEase } from '@babylonjs/core/Animations/easing';
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { GPUParticleSystem } from '@babylonjs/core/Particles';
 import { Light } from '@babylonjs/core/Lights/light';
@@ -868,68 +870,82 @@ export default class SceneManager {
     const catMeshes = scene.meshes.filter((mesh) =>
       ['cat_stairs'].includes(getBaseName(mesh.name)),
     );
-    const catGhostMeshes = catMeshes.map(
-      (mesh) => mesh.clone(`${mesh.name}_ghost`, mesh.parent) as AbstractMesh,
+    const catGhostMeshes = catMeshes.reduce((meshes, mesh) => {
+      // Create two transparent clones to increase visibility.
+      const clone1 = mesh.clone(
+        `${mesh.name}_ghost_1`,
+        mesh.parent,
+      ) as AbstractMesh;
+      const clone2 = mesh.clone(
+        `${mesh.name}_ghost_2`,
+        mesh.parent,
+      ) as AbstractMesh;
+      meshes.push(clone1, clone2);
+      return meshes;
+    }, [] as AbstractMesh[]);
+    const animations: { [key: string]: Animatable } = {};
+    // Create position and alpha animation.
+    const easingFunction = new SineEase();
+    easingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT);
+    const catGhostPositionAnimation = new Animation(
+      'cat_ghost_position_animation',
+      'position.y',
+      60,
+      Animation.ANIMATIONTYPE_FLOAT,
+      Animation.ANIMATIONLOOPMODE_CYCLE,
     );
-    const animations: { [key: string]: () => void } = {};
-    const minGhostAlpha = 0.1;
-    const maxGhostAlpha = 1.0;
-    const minFloatDistance = 0.05;
-    const maxFloatDistance = 0.2;
-    const baseFloatUpSpeed = 0.005;
-    const baseFloatDownSpeed = 0.02;
-    const minSpeedRate = 0.02;
-    function getFloatDistance() {
-      const distance =
-        minFloatDistance +
-        Math.random() * (maxFloatDistance - minFloatDistance);
-      return distance;
-    }
-    let floatUp = true;
-    let floatDistance = getFloatDistance();
-    /* eslint-disable no-param-reassign */
+    catGhostPositionAnimation.setKeys([
+      { frame: 0, value: 0 },
+      { frame: 120, value: 0.18 },
+      { frame: 160, value: 0.08 },
+      { frame: 200, value: 0.22 },
+      { frame: 260, value: 0.18 },
+      { frame: 280, value: 0.3 },
+      { frame: 300, value: 0 },
+      { frame: 360, value: 0 },
+    ]);
+    catGhostPositionAnimation.setEasingFunction(easingFunction);
+    const catGhostAlphaAnimation = new Animation(
+      'cat_ghost_alpha_animation',
+      'material.alpha',
+      60,
+      Animation.ANIMATIONTYPE_FLOAT,
+      Animation.ANIMATIONLOOPMODE_CYCLE,
+    );
+    catGhostAlphaAnimation.setKeys([
+      { frame: 0, value: 0.1 },
+      { frame: 120, value: 1.0 },
+      { frame: 160, value: 0.1 },
+      { frame: 200, value: 1.0 },
+      { frame: 260, value: 0.1 },
+      { frame: 280, value: 1.0 },
+      { frame: 300, value: 0.1 },
+      { frame: 360, value: 0.1 },
+    ]);
+    catGhostAlphaAnimation.setEasingFunction(easingFunction);
     catGhostMeshes.forEach((mesh) => {
+      /* eslint-disable no-param-reassign */
       mesh.visibility = 0.9999;
       if (mesh.material instanceof PBRMaterial) {
         mesh.material.alphaMode = Engine.ALPHA_ADD;
-        mesh.material.alpha = minGhostAlpha;
-        const animateCatGhost = () => {
-          let speedRate = floatUp
-            ? (floatDistance - mesh.position.y) / floatDistance
-            : mesh.position.y / floatDistance;
-          if (speedRate < minSpeedRate) {
-            speedRate = minSpeedRate;
-          }
-          const moveDistance = floatUp
-            ? baseFloatUpSpeed * speedRate
-            : -baseFloatDownSpeed * speedRate;
-          mesh.position.y += moveDistance;
-          if (mesh.material instanceof PBRMaterial) {
-            mesh.material.alpha =
-              minGhostAlpha +
-              (maxGhostAlpha - minGhostAlpha) *
-                (mesh.position.y / floatDistance);
-          }
-          if (mesh.position.y >= floatDistance) {
-            mesh.position.y = floatDistance;
-            floatUp = false;
-          } else if (mesh.position.y <= 0) {
-            mesh.position.y = 0;
-            floatUp = true;
-            floatDistance = getFloatDistance();
-          }
-        };
-        animations[mesh.id] = animateCatGhost;
-        scene.registerBeforeRender(animateCatGhost);
+        mesh.material.alpha = 1.0;
       }
+      /* eslint-enable no-param-reassign */
+      animations[mesh.id] = scene.beginDirectAnimation(
+        mesh,
+        [catGhostPositionAnimation, catGhostAlphaAnimation],
+        0,
+        360,
+        true,
+        1,
+      );
     });
     this.anomalyCleanupFunction = () => {
       catGhostMeshes.forEach((mesh) => {
-        scene.unregisterBeforeRender(animations[mesh.id]);
+        animations[mesh.id].stop();
         mesh.dispose();
       });
     };
-    /* eslint-enable no-param-reassign */
   }
 
   private causeAnomalyWindowMove() {
@@ -937,22 +953,36 @@ export default class SceneManager {
     const windowGlassMaterials = scene.materials.filter(
       (material) => material.name === 'window_glass',
     );
-    const animations: { [key: string]: () => void } = {};
+    const animations: { [key: string]: Animatable } = {};
+    const windowMoveAnimation = new Animation(
+      'window_move_animation',
+      'refractionTexture.rotationY',
+      60,
+      Animation.ANIMATIONTYPE_FLOAT,
+      Animation.ANIMATIONLOOPMODE_CYCLE,
+    );
+    windowMoveAnimation.setKeys([
+      { frame: 0, value: 0 },
+      { frame: 1200, value: toRadians(360) },
+    ]);
     windowGlassMaterials.forEach((material) => {
       if (material instanceof PBRMaterial) {
         const { refractionTexture } = material;
         if (refractionTexture instanceof CubeTexture) {
-          const rotateOutdoor = () => {
-            refractionTexture.rotationY += toRadians(0.4);
-          };
-          animations[material.id] = rotateOutdoor;
-          scene.registerBeforeRender(rotateOutdoor);
+          animations[material.id] = scene.beginDirectAnimation(
+            material,
+            [windowMoveAnimation],
+            0,
+            1200,
+            true,
+            1,
+          );
         }
       }
     });
     this.anomalyCleanupFunction = () => {
       windowGlassMaterials.forEach((material) => {
-        scene.unregisterBeforeRender(animations[material.id]);
+        animations[material.id].stop();
         if (material instanceof PBRMaterial) {
           const { refractionTexture } = material;
           if (refractionTexture instanceof CubeTexture) {
