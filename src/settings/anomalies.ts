@@ -30,6 +30,9 @@ export const anomalyConfigs: AnomalyConfigs = [
     name: 'cat_ghost',
   },
   {
+    name: 'window_move',
+  },
+  {
     name: 'picture_eyes',
   },
   {

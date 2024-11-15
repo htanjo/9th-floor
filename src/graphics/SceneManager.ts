@@ -3,6 +3,7 @@ import { Animation } from '@babylonjs/core/Animations/animation';
 import { AssetsManager } from '@babylonjs/core/Misc/assetsManager';
 import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
+import { CubeTexture } from '@babylonjs/core/Materials/Textures/cubeTexture';
 import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { GPUParticleSystem } from '@babylonjs/core/Particles';
@@ -38,6 +39,7 @@ import { ParticleConfig, particleConfigs } from '../settings/particles';
 import { AnimationConfig } from '../settings/animations';
 import { assetConfigs } from '../settings/assets';
 import { TextureConfig, textureConfigs } from '../settings/textures';
+import { toRadians } from '../settings/general';
 
 export default class SceneManager {
   private scene: Scene;
@@ -713,6 +715,9 @@ export default class SceneManager {
       case 'cat_ghost':
         this.causeAnomalyCatGhost();
         break;
+      case 'window_move':
+        this.causeAnomalyWindowMove();
+        break;
       case 'picture_eyes':
         this.causeAnomalyAppear(['picture_canvas_anomaly']);
         break;
@@ -925,5 +930,36 @@ export default class SceneManager {
       });
     };
     /* eslint-enable no-param-reassign */
+  }
+
+  private causeAnomalyWindowMove() {
+    const { scene } = this;
+    const windowGlassMaterials = scene.materials.filter(
+      (material) => material.name === 'window_glass',
+    );
+    const animations: { [key: string]: () => void } = {};
+    windowGlassMaterials.forEach((material) => {
+      if (material instanceof PBRMaterial) {
+        const { refractionTexture } = material;
+        if (refractionTexture instanceof CubeTexture) {
+          const rotateOutdoor = () => {
+            refractionTexture.rotationY += toRadians(0.4);
+          };
+          animations[material.id] = rotateOutdoor;
+          scene.registerBeforeRender(rotateOutdoor);
+        }
+      }
+    });
+    this.anomalyCleanupFunction = () => {
+      windowGlassMaterials.forEach((material) => {
+        scene.unregisterBeforeRender(animations[material.id]);
+        if (material instanceof PBRMaterial) {
+          const { refractionTexture } = material;
+          if (refractionTexture instanceof CubeTexture) {
+            refractionTexture.rotationY = 0;
+          }
+        }
+      });
+    };
   }
 }
