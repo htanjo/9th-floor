@@ -549,11 +549,16 @@ export default class SceneManager {
           config.effectiveLightNames.includes(getBaseName(light.name)),
         )
         .map((config) => getCorrespondingName(config.name, light.name));
-      const includeMeshes = scene.meshes.filter((mesh) =>
+      const includedMeshes = scene.meshes.filter((mesh) =>
         includedMeshNames.includes(mesh.name),
       );
+      if (includedMeshes.length > 0) {
       // eslint-disable-next-line no-param-reassign
-      light.includedOnlyMeshes = includeMeshes;
+        light.includedOnlyMeshes = includedMeshes;
+      } else {
+        // If there is no effective mesh for this light, dispose the light itself.
+        light.dispose();
+      }
     });
   }
 
