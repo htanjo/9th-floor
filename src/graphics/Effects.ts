@@ -5,6 +5,10 @@ import { DefaultRenderingPipeline } from '@babylonjs/core/PostProcesses/RenderPi
 import { ImageProcessingConfiguration } from '@babylonjs/core/Materials/imageProcessingConfiguration';
 import { Scene } from '@babylonjs/core/scene';
 import colorGradingTextureUrl from '../assets/lut_64.3dl?url';
+import {
+  DepthOfFieldEffectBlurLevel,
+  LensRenderingPipeline,
+} from '@babylonjs/core';
 
 export default class Effects {
   public constructor(scene: Scene, cameras: Camera[]) {
@@ -53,15 +57,15 @@ export default class Effects {
       scene,
       cameras,
     );
-    pipeline.samples = 4; // Enable MSAA.
-    // pipeline.fxaaEnabled = true; // Enable FXAA.
+    pipeline.samples = 8; // Enable MSAA.
+    pipeline.fxaaEnabled = true; // Enable FXAA.
     pipeline.sharpenEnabled = true;
-    pipeline.sharpen.edgeAmount = 0.3;
+    pipeline.sharpen.edgeAmount = 0.5;
     pipeline.bloomEnabled = true;
     pipeline.bloomThreshold = 0.08;
     pipeline.bloomWeight = 0.28;
-    pipeline.bloomKernel = verticalSize * 0.25; // Effect size. Large value may cause flickering.
-    pipeline.bloomScale = 0.5; // Large value reduces flickering, but hits performance.
+    pipeline.bloomKernel = verticalSize * 0.35; // Effect size. Large value may cause flickering.
+    pipeline.bloomScale = 0.8; // Large value reduces flickering, but hits performance.
 
     pipeline.chromaticAberrationEnabled = true;
     pipeline.chromaticAberration.aberrationAmount = 40;
@@ -71,10 +75,16 @@ export default class Effects {
     // pipeline.grain.animated = true;
     // pipeline.grain.intensity = 10;
 
-    // pipeline.imageProcessing.contrast = 1.2;
+    pipeline.depthOfFieldEnabled = true;
+    pipeline.depthOfFieldBlurLevel = DepthOfFieldEffectBlurLevel.Medium;
+    pipeline.depthOfField.focusDistance = 1500;
+    pipeline.depthOfField.focalLength = 24;
+    pipeline.depthOfField.fStop = 2.8;
+
+    pipeline.imageProcessing.contrast = 1.1;
     // pipeline.imageProcessing.exposure = 1.3;
     pipeline.imageProcessing.vignetteEnabled = true;
-    pipeline.imageProcessing.vignetteWeight = 3.5;
+    pipeline.imageProcessing.vignetteWeight = 5.0;
     pipeline.imageProcessing.vignetteCameraFov = vignetteCameraFov;
     pipeline.imageProcessing.vignetteStretch = 0;
     pipeline.imageProcessing.vignetteColor = Color4.FromHexString('#0f2c3eff');
@@ -93,21 +103,21 @@ export default class Effects {
       pipeline.addCamera(camera);
     });
 
-    // const lensEffect = new LensRenderingPipeline(
-    //   'lensEffect',
-    //   {
-    //     chromatic_aberration: 0,
-    //     edge_blur: 0.8,
-    //     distortion: 0.5,
-    //     dof_gain: 1,
-    //     dof_aperture: 1,
-    //     blur_noise: true,
-    //     grain_amount: 1.0,
-    //   },
-    //   scene,
-    //   1.0,
-    //   cameras,
-    // );
+    const lensEffect = new LensRenderingPipeline(
+      'lensEffect',
+      {
+        chromatic_aberration: 0,
+        edge_blur: 0.8,
+        distortion: 0.5,
+        dof_gain: 1,
+        dof_aperture: 1,
+        blur_noise: true,
+        // grain_amount: 1.0,
+      },
+      scene,
+      1.0,
+      cameras,
+    );
 
     // TODO: update effects when canvas resized.
   }

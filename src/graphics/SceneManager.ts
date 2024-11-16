@@ -33,7 +33,11 @@ import {
   MeshConfigs,
   meshConfigs,
 } from '../settings/meshes';
-import { LightConfig, lightConfigs } from '../settings/lights';
+import {
+  LightConfig,
+  lightConfigs,
+  preciseLightConfigs,
+} from '../settings/lights';
 import { ParticleConfig, particleConfigs } from '../settings/particles';
 import { AnimationConfig } from '../settings/animations';
 import { assetConfigs } from '../settings/assets';
@@ -68,7 +72,7 @@ export default class SceneManager {
     this.scene.fogDensity = 0.025;
     this.scene.imageProcessingConfiguration.toneMappingEnabled = true;
 
-    // this.scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
+    this.scene.getEngine().setHardwareScalingLevel(1 / window.devicePixelRatio);
 
     // eslint-disable-next-line no-new
     new Effects(this.scene, [this.camera]);
@@ -225,7 +229,10 @@ export default class SceneManager {
         });
 
         // Create lights for specular lighting.
-        lightConfigs.forEach((lightConfig) => {
+        // lightConfigs.forEach((lightConfig) => {
+        //   this.createLight(lightConfig);
+        // });
+        preciseLightConfigs.forEach((lightConfig) => {
           this.createLight(lightConfig);
         });
         this.configureEffectiveLights(meshConfigs);
@@ -392,7 +399,7 @@ export default class SceneManager {
 
     // Common material config
     material.ambientColor = Color3.White();
-    material.maxSimultaneousLights = 4;
+    material.maxSimultaneousLights = 10;
     material.specularIntensity = 200; // Enhance specular lighting.
     material.enableSpecularAntiAliasing = true;
     material.forceIrradianceInFragment = true;
@@ -404,7 +411,7 @@ export default class SceneManager {
       if (lightmapTexture) {
         material.lightmapTexture = lightmapTexture;
         material.lightmapTexture.coordinatesIndex = 1; // Use UV2.
-        material.lightmapTexture.level = 1.0;
+        material.lightmapTexture.level = 0.9;
         material.lightmapTexture.isRGBD = true;
         material.useLightmapAsShadowmap = true;
       }
@@ -546,7 +553,8 @@ export default class SceneManager {
       // Limit effective lights based on config and node groups.
       const includedMeshNames = meshLightConfigs
         .filter((config) =>
-          config.effectiveLightNames.includes(getBaseName(light.name)),
+          // config.effectiveLightNames.includes(getBaseName(light.name)),
+          config.preciseEffectiveLightNames.includes(getBaseName(light.name)),
         )
         .map((config) => getCorrespondingName(config.name, light.name));
       const includeMeshes = scene.meshes.filter((mesh) =>

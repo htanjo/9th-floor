@@ -20,9 +20,9 @@ export default class RouteCamera extends TargetCamera {
 
   private maxFrame = maxFrame;
 
-  private minFov = 55 * (Math.PI / 180); // FOV for 16/9 landscape mode.
+  private minFov = 55 * 1.1 * (Math.PI / 180); // FOV for 16/9 landscape mode.
 
-  private maxFov = 81 * (Math.PI / 180); // FOV for 9/16 portrait mode.
+  private maxFov = 81 * 1.1 * (Math.PI / 180); // FOV for 9/16 portrait mode.
 
   private baseDirection = new Vector3(0, 0, 1);
 
