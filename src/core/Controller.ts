@@ -274,7 +274,7 @@ export default class Controller {
     const currentAreaName = this.getCurrentAreaName();
     if (
       this.areaName === getOriginalName('hallway') &&
-      getBaseName(currentAreaName) === 'floor_2'
+      getBaseName(currentAreaName) === 'upper_floor'
     ) {
       this.roomEntered = true;
     }

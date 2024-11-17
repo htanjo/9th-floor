@@ -18,7 +18,7 @@ export const maxNoAnomalyCount = 3;
 
 export const anomalyConfigs: AnomalyConfigs = [
   {
-    name: 'overall_red',
+    name: 'room_red',
   },
   {
     name: 'phonograph_oval',

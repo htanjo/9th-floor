@@ -85,31 +85,31 @@ export const areaConfig: AreaConfig = {
       name: getOriginalName('room'),
       children: [
         {
-          name: getOriginalName('floor_1'),
+          name: getOriginalName('lower_floor'),
           hidable: true,
           visibleAreaNames: [
             getOriginalName('stairs'),
-            getOriginalName('floor_1'),
+            getOriginalName('lower_floor'),
             getCloneName('hallway'),
           ],
           children: [
             {
-              name: getOriginalName('floor_1_meshes'),
+              name: getOriginalName('lower_floor_meshes'),
               transform: gltfTransform,
             },
           ],
         },
         {
-          name: getOriginalName('floor_2'),
+          name: getOriginalName('upper_floor'),
           hidable: true,
           visibleAreaNames: [
             getOriginalName('hallway'),
-            getOriginalName('floor_2'),
+            getOriginalName('upper_floor'),
             getOriginalName('stairs'),
           ],
           children: [
             {
-              name: getOriginalName('floor_2_meshes'),
+              name: getOriginalName('upper_floor_meshes'),
               transform: gltfTransform,
             },
           ],
@@ -118,9 +118,9 @@ export const areaConfig: AreaConfig = {
           name: getOriginalName('stairs'),
           hidable: true,
           visibleAreaNames: [
-            getOriginalName('floor_2'),
+            getOriginalName('upper_floor'),
             getOriginalName('stairs'),
-            getOriginalName('floor_1'),
+            getOriginalName('lower_floor'),
           ],
           children: [
             {
@@ -142,31 +142,31 @@ export const areaConfig: AreaConfig = {
       },
       children: [
         {
-          name: getCloneName('floor_1'),
+          name: getCloneName('lower_floor'),
           hidable: true,
           visibleAreaNames: [
             getCloneName('stairs'),
-            getCloneName('floor_1'),
+            getCloneName('lower_floor'),
             getCloneName('hallway'),
           ],
           children: [
             {
-              name: getCloneName('floor_1_meshes'),
+              name: getCloneName('lower_floor_meshes'),
               transform: gltfTransform,
             },
           ],
         },
         {
-          name: getCloneName('floor_2'),
+          name: getCloneName('upper_floor'),
           hidable: true,
           visibleAreaNames: [
             getOriginalName('hallway'),
-            getCloneName('floor_2'),
+            getCloneName('upper_floor'),
             getCloneName('stairs'),
           ],
           children: [
             {
-              name: getCloneName('floor_2_meshes'),
+              name: getCloneName('upper_floor_meshes'),
               transform: gltfTransform,
             },
           ],
@@ -175,9 +175,9 @@ export const areaConfig: AreaConfig = {
           name: getCloneName('stairs'),
           hidable: true,
           visibleAreaNames: [
-            getCloneName('floor_2'),
+            getCloneName('upper_floor'),
             getCloneName('stairs'),
-            getCloneName('floor_1'),
+            getCloneName('lower_floor'),
           ],
           children: [
             {
@@ -192,9 +192,9 @@ export const areaConfig: AreaConfig = {
       name: getOriginalName('hallway'),
       hidable: true,
       visibleAreaNames: [
-        getCloneName('floor_2'),
+        getCloneName('upper_floor'),
         getOriginalName('hallway'),
-        getOriginalName('floor_2'),
+        getOriginalName('upper_floor'),
       ],
       children: [
         {
@@ -207,13 +207,13 @@ export const areaConfig: AreaConfig = {
       name: getCloneName('hallway'),
       hidable: true,
       visibleAreaNames: [
-        getOriginalName('floor_1'),
+        getOriginalName('lower_floor'),
         getCloneName('hallway'),
-        getCloneName('floor_1'),
+        getCloneName('lower_floor'),
         // Preload other areas to avoid rendering glitch.
         getOriginalName('hallway'),
-        getOriginalName('floor_2'),
-        getCloneName('floor_2'),
+        getOriginalName('upper_floor'),
+        getCloneName('upper_floor'),
       ],
       transform: {
         position: {

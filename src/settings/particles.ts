@@ -141,73 +141,73 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_lamp_front_1',
+        name: 'lamp_front_upper_dust',
         position: {
           x: 3.4,
           y: 2.2,
           z: -2.3,
         },
-        parentNodeName: 'floor_1',
+        parentNodeName: 'lower_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_lamp_middle_right_1',
+        name: 'lamp_center_right_upper_dust',
         position: {
           x: 1.8,
           y: 2.2,
           z: -7,
         },
-        parentNodeName: 'floor_1',
+        parentNodeName: 'lower_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_lamp_middle_left_1',
+        name: 'lamp_center_left_upper_dust',
         position: {
           x: 5,
           y: 2.2,
           z: -7,
         },
-        parentNodeName: 'floor_1',
+        parentNodeName: 'lower_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_lamp_front_2',
+        name: 'lamp_front_upper_dust',
         position: {
           x: 3.4,
           y: 5.8,
           z: -2.3,
         },
-        parentNodeName: 'floor_2',
+        parentNodeName: 'upper_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_lamp_middle_right_2',
+        name: 'lamp_center_right_upper_dust',
         position: {
           x: 1.8,
           y: 5.8,
           z: -7,
         },
-        parentNodeName: 'floor_2',
+        parentNodeName: 'upper_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_lamp_middle_left_2',
+        name: 'lamp_center_left_upper_dust',
         position: {
           x: 5,
           y: 5.8,
           z: -7,
         },
-        parentNodeName: 'floor_2',
+        parentNodeName: 'upper_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_signboard',
+        name: 'signboard_dust',
         position: {
           x: 5.1,
           y: 5.8,
@@ -217,12 +217,12 @@ export const particleConfigs: ParticleConfigs = qualityMode
         emitRate: 40,
         updateSpeed: 0.001,
         radius: 0.2,
-        parentNodeName: 'floor_2',
+        parentNodeName: 'upper_floor',
       },
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_window_right',
+        name: 'window_right_dust',
         position: {
           x: 2.7,
           y: 2.3,
@@ -236,7 +236,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_window_left',
+        name: 'window_left_dust',
         position: {
           x: 4.7,
           y: 2.3,
@@ -250,7 +250,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_stairs_top',
+        name: 'stairs_top_dust',
         position: {
           x: 3.5,
           y: 1.6,
@@ -262,7 +262,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_stairs_middle',
+        name: 'stairs_center_dust',
         position: {
           x: 3.7,
           y: 1.1,
@@ -274,7 +274,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_stairs_bottom',
+        name: 'stairs_bottom_dust',
         position: {
           x: 3.9,
           y: 0.5,
@@ -286,18 +286,18 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'room_dust_table',
+        name: 'table_dust',
         position: {
           x: 1.7,
           y: 1.2,
           z: -9.2,
         },
-        parentNodeName: 'floor_1',
+        parentNodeName: 'lower_floor',
       },
       {
         ...baseFogConfig,
         type: 'static',
-        name: 'room_fog_signboard',
+        name: 'signboard_fog',
         position: {
           x: 5.3,
           y: 5.8,
@@ -319,12 +319,12 @@ export const particleConfigs: ParticleConfigs = qualityMode
           y: -0.01,
           z: 0,
         },
-        parentNodeName: 'floor_2',
+        parentNodeName: 'upper_floor',
       },
       {
         ...baseFogConfig,
         type: 'static',
-        name: 'room_fog_window_right',
+        name: 'window_right_fog',
         position: {
           x: 2.7,
           y: 2.3,
@@ -335,7 +335,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseFogConfig,
         type: 'static',
-        name: 'room_fog_window_left',
+        name: 'window_left_fog',
         position: {
           x: 4.7,
           y: 2.3,
@@ -346,7 +346,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseFogConfig,
         type: 'static',
-        name: 'room_fog_stairs_top',
+        name: 'stairs_top_fog',
         position: {
           x: 3.3,
           y: 1.1,
@@ -357,7 +357,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseFogConfig,
         type: 'static',
-        name: 'room_fog_stairs_bottom',
+        name: 'stairs_bottom_fog',
         position: {
           x: 3.8,
           y: 0.5,
@@ -368,7 +368,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'hallway_dust_lamp_front',
+        name: 'hallway_front_lamp_dust',
         position: {
           x: 0,
           y: 5.8,
@@ -381,7 +381,7 @@ export const particleConfigs: ParticleConfigs = qualityMode
       {
         ...baseDustConfig,
         type: 'static',
-        name: 'hallway_dust_lamp_back',
+        name: 'hallway_back_lamp_dust',
         position: {
           x: 0,
           y: 5.8,

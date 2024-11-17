@@ -36,7 +36,7 @@ export default class Anomalies {
 
   private causeAnomaly(name: string) {
     switch (name) {
-      case 'overall_red':
+      case 'room_red':
         this.causeAnomalyOverallRed();
         break;
       case 'phonograph_oval':
