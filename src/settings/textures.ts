@@ -68,6 +68,11 @@ export const textureConfigs: TextureConfigs = [
     animation: roomLightmapAnimation,
   },
   {
+    name: 'lightmap_11_texture',
+    originalName: getTextureName('lightmap_11_texture'),
+    animation: roomLightmapAnimation,
+  },
+  {
     name: 'environment_outdoor_texture',
     originalName: getTextureName('environment_outdoor_texture'),
   },

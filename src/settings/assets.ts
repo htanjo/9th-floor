@@ -10,6 +10,7 @@ import lightmap07HighTextureUrl from '../assets/lm_07_0001_rgbd_high.webp?url';
 import lightmap08HighTextureUrl from '../assets/lm_08_0001_rgbd_high.webp?url';
 import lightmap09HighTextureUrl from '../assets/lm_09_0001_rgbd_high.webp?url';
 import lightmap10HighTextureUrl from '../assets/lm_10_0001_rgbd_high.webp?url';
+import lightmap11HighTextureUrl from '../assets/lm_11_0001_rgbd_high.webp?url';
 import lightmap01LowTextureUrl from '../assets/lm_01_0001_rgbd_low.webp?url';
 import lightmap02LowTextureUrl from '../assets/lm_02_0001_rgbd_low.webp?url';
 import lightmap03LowTextureUrl from '../assets/lm_03_0001_rgbd_low.webp?url';
@@ -20,6 +21,7 @@ import lightmap07LowTextureUrl from '../assets/lm_07_0001_rgbd_low.webp?url';
 import lightmap08LowTextureUrl from '../assets/lm_08_0001_rgbd_low.webp?url';
 import lightmap09LowTextureUrl from '../assets/lm_09_0001_rgbd_low.webp?url';
 import lightmap10LowTextureUrl from '../assets/lm_10_0001_rgbd_low.webp?url';
+import lightmap11LowTextureUrl from '../assets/lm_11_0001_rgbd_low.webp?url';
 import environmentOutdoorTextureUrl from '../assets/environment_outdoor.env?url';
 import environmentMirrorTextureUrl from '../assets/environment_mirror.env?url';
 import particleDustTextureUrl from '../assets/particle_dust.webp?url';
@@ -89,6 +91,11 @@ export const assetConfigs: AssetConfigs = [
     type: 'texture',
     name: 'lightmap_10_texture',
     url: qualityMode ? lightmap10HighTextureUrl : lightmap10LowTextureUrl,
+  },
+  {
+    type: 'texture',
+    name: 'lightmap_11_texture',
+    url: qualityMode ? lightmap11HighTextureUrl : lightmap11LowTextureUrl,
   },
   {
     type: 'cubeTexture',
