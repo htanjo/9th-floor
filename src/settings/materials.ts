@@ -378,11 +378,11 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'lamp_shade_center_right',
-    emissiveIntensity: 5.2,
+    emissiveIntensity: 6.2,
     alphaDisabled: true,
     animation: {
       targetProperty: 'emissiveIntensity',
-      ...createAnimationConfig('flickerSlow', 5.2, 15),
+      ...createAnimationConfig('flickerSlow', 6.2, 15),
     },
   },
   {

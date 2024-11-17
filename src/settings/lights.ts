@@ -145,7 +145,7 @@ export const lightConfigs: LightConfigs = [
     position: {
       x: 3.4,
       y: 2.2,
-      z: -1.95,
+      z: -2.2,
     },
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
@@ -162,7 +162,7 @@ export const lightConfigs: LightConfigs = [
     position: {
       x: 3.4,
       y: 5.8,
-      z: -1.95,
+      z: -2.2,
     },
     intensity: 0.2,
     diffuseColorHex: '#ffc7a4',
@@ -177,17 +177,17 @@ export const lightConfigs: LightConfigs = [
     name: 'floor_2_distant_light',
     variant: 'PointLight',
     position: {
-      x: 3.4,
-      y: 6.2,
-      z: 3,
+      x: 4.4,
+      y: 5.8,
+      z: -4,
     },
-    intensity: 1.8,
+    intensity: 1.2,
     diffuseColorHex: '#ffc7a4',
     radius: 0.2,
     parentNodeName: 'room',
     animation: {
       targetProperty: 'intensity',
-      ...createAnimationConfig('flickerMedium', 1.8, 30),
+      ...createAnimationConfig('flickerMedium', 1.2, 30),
     },
   },
   {
@@ -263,7 +263,7 @@ export const lightConfigs: LightConfigs = [
     variant: 'PointLight',
     position: {
       x: 1.7,
-      y: 1.1,
+      y: 1.25,
       z: -9.2,
     },
     intensity: 0.13,
@@ -273,6 +273,23 @@ export const lightConfigs: LightConfigs = [
     animation: {
       targetProperty: 'intensity',
       ...createAnimationConfig('flickerVeryFast', 0.13, 30),
+    },
+  },
+  {
+    name: 'table_gentle_light',
+    variant: 'PointLight',
+    position: {
+      x: 2,
+      y: 1.25,
+      z: -9.2,
+    },
+    intensity: 0.08,
+    diffuseColorHex: '#ffb575',
+    radius: 0.2,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerVeryFast', 0.08, 30),
     },
   },
   {
@@ -378,6 +395,40 @@ export const lightConfigs: LightConfigs = [
     },
   },
   {
+    name: 'pillar_1_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 2.6,
+      z: -6,
+    },
+    intensity: 0.2,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.1,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerFast', 0.2, 30),
+    },
+  },
+  {
+    name: 'pillar_2_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 6.2,
+      z: -8,
+    },
+    intensity: 0.2,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.1,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerFast', 0.2, 30),
+    },
+  },
+  {
     name: 'door_1_light',
     variant: 'PointLight',
     position: {
@@ -477,6 +528,23 @@ export const lightConfigs: LightConfigs = [
     animation: {
       targetProperty: 'intensity',
       ...createAnimationConfig('flickerSlow', 0.06, 30),
+    },
+  },
+  {
+    name: 'bookshelf_light',
+    variant: 'PointLight',
+    position: {
+      x: 5,
+      y: 2.2,
+      z: -7,
+    },
+    intensity: 0.1,
+    diffuseColorHex: '#ffdfc7',
+    radius: 0.1,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerFast', 0.1, 30),
     },
   },
   {
