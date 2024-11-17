@@ -13,23 +13,8 @@ export const meshConfigs: MeshConfigs = [
   // Lightmap 01: wall ==============================================
   // Upper floor
   {
-    name: 'cornice_upper',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
-    name: 'decal_spiderweb_upper',
-    effectiveLightNames: [],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
     name: 'decal_wall_upper',
     effectiveLightNames: ['window_composite_light', 'pillar_2_light'],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
-    name: 'wainscot_upper',
-    effectiveLightNames: ['window_composite_light', 'top_right_light'],
     parentNodeName: 'floor_2_meshes',
   },
   {
@@ -39,23 +24,8 @@ export const meshConfigs: MeshConfigs = [
   },
   // Lower floor
   {
-    name: 'cornice_lower',
-    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'decal_spiderweb_lower',
-    effectiveLightNames: [],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
     name: 'decal_wall_lower',
     effectiveLightNames: ['window_composite_light', 'table_gentle_light'],
-    parentNodeName: 'floor_1_meshes',
-  },
-  {
-    name: 'wainscot_lower',
-    effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'floor_1_meshes',
   },
   {
@@ -65,23 +35,8 @@ export const meshConfigs: MeshConfigs = [
   },
   // Stairs
   {
-    name: 'cornice_stairs',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'decal_spiderweb_stairs',
-    effectiveLightNames: [],
-    parentNodeName: 'stairs_meshes',
-  },
-  {
     name: 'decal_wall_stairs',
     effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'wainscot_stairs',
-    effectiveLightNames: ['window_composite_light', 'room_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
   {
@@ -91,27 +46,8 @@ export const meshConfigs: MeshConfigs = [
   },
   // Hallway
   {
-    name: 'cornice_hallway',
-    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
-    parentNodeName: 'hallway_meshes',
-  },
-  {
-    name: 'decal_spiderweb_hallway',
-    effectiveLightNames: [], // Avoid unexpected specular and z-fighting.
-    parentNodeName: 'hallway_meshes',
-  },
-  {
     name: 'decal_wall_hallway',
     effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
-    parentNodeName: 'hallway_meshes',
-  },
-  {
-    name: 'wainscot_hallway',
-    effectiveLightNames: [
-      'hallway_top_right_light',
-      'hallway_front_light',
-      'hallway_back_light',
-    ],
     parentNodeName: 'hallway_meshes',
   },
   {
@@ -234,16 +170,6 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'stairs_meshes',
   },
-  {
-    name: 'stairs_back_stairs',
-    effectiveLightNames: ['stairs_light'],
-    parentNodeName: 'stairs_meshes',
-  },
-  {
-    name: 'stairs_landing_stairs',
-    effectiveLightNames: ['window_composite_light'],
-    parentNodeName: 'stairs_meshes',
-  },
   // Hallway
   {
     name: 'ceiling_center_hallway',
@@ -271,7 +197,57 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
 
-  // Lightmap 03: large interior ====================================
+  // Lightmap 03: long interior =====================================
+  // Upper floor
+  {
+    name: 'cornice_upper',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
+    name: 'wainscot_upper',
+    effectiveLightNames: ['window_composite_light', 'top_right_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
+  // Lower floor
+  {
+    name: 'cornice_lower',
+    effectiveLightNames: ['window_composite_light', 'floor_1_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  {
+    name: 'wainscot_lower',
+    effectiveLightNames: ['window_composite_light', 'top_left_light'],
+    parentNodeName: 'floor_1_meshes',
+  },
+  // Stairs
+  {
+    name: 'cornice_stairs',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'wainscot_stairs',
+    effectiveLightNames: ['window_composite_light', 'room_composite_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  // Hallway
+  {
+    name: 'cornice_hallway',
+    effectiveLightNames: ['hallway_front_light', 'hallway_back_light'],
+    parentNodeName: 'hallway_meshes',
+  },
+  {
+    name: 'wainscot_hallway',
+    effectiveLightNames: [
+      'hallway_top_right_light',
+      'hallway_front_light',
+      'hallway_back_light',
+    ],
+    parentNodeName: 'hallway_meshes',
+  },
+
+  // Lightmap 04: large interior ====================================
   // Upper floor
   {
     name: 'door_upper',
@@ -296,6 +272,16 @@ export const meshConfigs: MeshConfigs = [
   },
   // Stairs
   {
+    name: 'stairs_back_stairs',
+    effectiveLightNames: ['stairs_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
+    name: 'stairs_landing_stairs',
+    effectiveLightNames: ['window_composite_light'],
+    parentNodeName: 'stairs_meshes',
+  },
+  {
     name: 'window_frame_stairs',
     effectiveLightNames: ['window_sun_light', 'room_composite_light'],
     parentNodeName: 'stairs_meshes',
@@ -317,7 +303,7 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
 
-  // Lightmap 04: small interior ====================================
+  // Lightmap 05: small interior ====================================
   // Upper floor
   {
     name: 'lamp_base_center_upper',
@@ -408,7 +394,13 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'hallway_meshes',
   },
 
-  // Lightmap 05: large furniture ===================================
+  // Lightmap 06: large furniture ===================================
+  // Upper floor
+  {
+    name: 'corner_cabinet_upper',
+    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
+    parentNodeName: 'floor_2_meshes',
+  },
   // Lower floor
   {
     name: 'bookshelf_lower',
@@ -427,7 +419,7 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
 
-  // Lightmap 06: small furniture ===================================
+  // Lightmap 07: small furniture ===================================
   // Upper floor
   {
     name: 'buffet_upper',
@@ -441,11 +433,6 @@ export const meshConfigs: MeshConfigs = [
   },
   {
     name: 'console_table_upper',
-    effectiveLightNames: ['window_composite_light', 'floor_2_light'],
-    parentNodeName: 'floor_2_meshes',
-  },
-  {
-    name: 'corner_cabinet_upper',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
     parentNodeName: 'floor_2_meshes',
   },
@@ -487,7 +474,7 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
 
-  // Lightmap 07: hanging object ====================================
+  // Lightmap 08: hanging object ====================================
   // Upper floor
   {
     name: 'mirror_frame_upper',
@@ -680,7 +667,7 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'stairs_meshes',
   },
 
-  // Lightmap 08: Large object ======================================
+  // Lightmap 09: Large object ======================================
   // Lower floor
   {
     name: 'book_lower',
@@ -688,7 +675,7 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_1_meshes',
   },
 
-  // Lightmap 09: Small object ======================================
+  // Lightmap 10: Small object ======================================
   // Upper floor
   {
     name: 'bottle_upper',
@@ -726,6 +713,11 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'floor_2_meshes',
   },
   {
+    name: 'spiderweb_upper',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_2_meshes',
+  },
+  {
     name: 'stationery_upper',
     effectiveLightNames: ['window_composite_light', 'floor_2_light'],
     parentNodeName: 'floor_2_meshes',
@@ -756,6 +748,11 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'floor_1_meshes',
   },
+  {
+    name: 'spiderweb_lower',
+    effectiveLightNames: [],
+    parentNodeName: 'floor_1_meshes',
+  },
   // Stairs
   {
     name: 'box_stairs',
@@ -772,8 +769,19 @@ export const meshConfigs: MeshConfigs = [
     effectiveLightNames: ['window_distant_light'],
     parentNodeName: 'stairs_meshes',
   },
+  {
+    name: 'spiderweb_stairs',
+    effectiveLightNames: [],
+    parentNodeName: 'stairs_meshes',
+  },
+  // Hallway
+  {
+    name: 'spiderweb_hallway',
+    effectiveLightNames: [], // Avoid unexpected specular and z-fighting.
+    parentNodeName: 'hallway_meshes',
+  },
 
-  // Lightmap 10: anomaly ===========================================
+  // Lightmap 11: anomaly ===========================================
   // Upper floor
   {
     name: 'sword_anomaly',

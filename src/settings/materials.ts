@@ -21,14 +21,6 @@ export type MaterialConfigs = MaterialConfig[];
 export const materialConfigs: MaterialConfigs = [
   // Lightmap 01: wall ==============================================
   {
-    name: 'cornice',
-    lightmapTextureName: 'lightmap_01_texture',
-  },
-  {
-    name: 'cornice_hallway',
-    lightmapTextureName: 'lightmap_01_texture',
-  },
-  {
     name: 'decal_wall',
     lightmapTextureName: 'lightmap_01_texture',
     alphaBlendDisabled: true, // Avoid unnatural specular according to angles.
@@ -39,24 +31,6 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_01_texture',
     alphaBlendDisabled: true, // Avoid unnatural specular according to angles.
     // zOffset: -0.1,
-  },
-  {
-    name: 'decal_spiderweb',
-    lightmapTextureName: 'lightmap_01_texture',
-    alphaBlendDisabled: false, // Enable accurate alpha blending.
-  },
-  {
-    name: 'decal_spiderweb_hallway',
-    lightmapTextureName: 'lightmap_01_texture',
-    alphaBlendDisabled: false, // Enable accurate alpha blending.
-  },
-  {
-    name: 'wainscot',
-    lightmapTextureName: 'lightmap_01_texture',
-  },
-  {
-    name: 'wainscot_hallway',
-    lightmapTextureName: 'lightmap_01_texture',
   },
   {
     name: 'wall',
@@ -122,100 +96,100 @@ export const materialConfigs: MaterialConfigs = [
     name: 'floor_medallion',
     lightmapTextureName: 'lightmap_02_texture',
   },
+
+  // Lightmap 03: long interior ====================================
   {
-    name: 'stairs_back',
-    lightmapTextureName: 'lightmap_02_texture',
+    name: 'cornice',
+    lightmapTextureName: 'lightmap_03_texture',
   },
   {
-    name: 'stairs_landing',
-    lightmapTextureName: 'lightmap_02_texture',
+    name: 'cornice_hallway',
+    lightmapTextureName: 'lightmap_03_texture',
+  },
+  {
+    name: 'wainscot',
+    lightmapTextureName: 'lightmap_03_texture',
+  },
+  {
+    name: 'wainscot_hallway',
+    lightmapTextureName: 'lightmap_03_texture',
   },
 
-  // Lightmap 03: large interior ====================================
+  // Lightmap 04: large interior ====================================
   {
     name: 'door',
-    lightmapTextureName: 'lightmap_03_texture',
+    lightmapTextureName: 'lightmap_04_texture',
   },
   {
     name: 'door_hallway',
-    lightmapTextureName: 'lightmap_03_texture',
+    lightmapTextureName: 'lightmap_04_texture',
   },
   {
     name: 'pillar',
-    lightmapTextureName: 'lightmap_03_texture',
+    lightmapTextureName: 'lightmap_04_texture',
   },
   {
     name: 'pillar_hallway',
-    lightmapTextureName: 'lightmap_03_texture',
+    lightmapTextureName: 'lightmap_04_texture',
+  },
+  {
+    name: 'stairs_back',
+    lightmapTextureName: 'lightmap_04_texture',
+  },
+  {
+    name: 'stairs_landing',
+    lightmapTextureName: 'lightmap_04_texture',
   },
   {
     name: 'window_frame',
-    lightmapTextureName: 'lightmap_03_texture',
+    lightmapTextureName: 'lightmap_04_texture',
   },
 
-  // Lightmap 04: small interior ====================================
+  // Lightmap 05: small interior ====================================
   {
     name: 'lamp_base',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'lamp_base_hallway',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'lamp_shade_off',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'lamp_shade_off_hallway',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'railing_baluster',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'railing_base',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'railing_handrail',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'railing_newel',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
   {
     name: 'stairs_steps',
-    lightmapTextureName: 'lightmap_04_texture',
+    lightmapTextureName: 'lightmap_05_texture',
   },
 
-  // Lightmap 05: large furniture ===================================
+  // Lightmap 06: large furniture ===================================
   {
     name: 'library_table',
-    lightmapTextureName: 'lightmap_05_texture',
+    lightmapTextureName: 'lightmap_06_texture',
   },
   {
     name: 'bookshelf',
-    lightmapTextureName: 'lightmap_05_texture',
-  },
-
-  // Lightmap 06: small furniture ===================================
-  {
-    name: 'buffet',
-    lightmapTextureName: 'lightmap_06_texture',
-  },
-  {
-    name: 'chair',
-    lightmapTextureName: 'lightmap_06_texture',
-  },
-  {
-    name: 'clock',
-    lightmapTextureName: 'lightmap_06_texture',
-  },
-  {
-    name: 'console_table',
     lightmapTextureName: 'lightmap_06_texture',
   },
   {
@@ -223,14 +197,32 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_06_texture',
   },
 
-  // Lightmap 07: hanging object ====================================
+  // Lightmap 07: small furniture ===================================
   {
-    name: 'mirror_frame',
+    name: 'buffet',
     lightmapTextureName: 'lightmap_07_texture',
   },
   {
-    name: 'mirror_surface',
+    name: 'chair',
     lightmapTextureName: 'lightmap_07_texture',
+  },
+  {
+    name: 'clock',
+    lightmapTextureName: 'lightmap_07_texture',
+  },
+  {
+    name: 'console_table',
+    lightmapTextureName: 'lightmap_07_texture',
+  },
+
+  // Lightmap 08: hanging object ====================================
+  {
+    name: 'mirror_frame',
+    lightmapTextureName: 'lightmap_08_texture',
+  },
+  {
+    name: 'mirror_surface',
+    lightmapTextureName: 'lightmap_08_texture',
     reflectionTextureName: 'environment_mirror_texture',
     animation: {
       targetProperty: 'environmentIntensity',
@@ -239,113 +231,123 @@ export const materialConfigs: MaterialConfigs = [
   },
   {
     name: 'picture_canvas',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'picture_frame_black',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'picture_frame_gold',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'picture_frame_silver',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'picture_label',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'picture_rail',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'poster',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
     alphaBlendDisabled: true,
   },
   {
     name: 'signboard_base',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
   },
   {
     name: 'signboard_number',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
     alphaBlendDisabled: false, // Avoid jagged edges.
   },
   {
     name: 'signboard_text',
-    lightmapTextureName: 'lightmap_07_texture',
+    lightmapTextureName: 'lightmap_08_texture',
     alphaBlendDisabled: false, // Avoid jagged edges.
   },
   {
     name: 'sword',
-    lightmapTextureName: 'lightmap_07_texture',
-  },
-
-  // Lightmap 08: Large object ======================================
-  {
-    name: 'book',
     lightmapTextureName: 'lightmap_08_texture',
   },
 
-  // Lightmap 09: Small object ======================================
+  // Lightmap 09: Large object ======================================
+  {
+    name: 'book',
+    lightmapTextureName: 'lightmap_09_texture',
+  },
+
+  // Lightmap 10: Small object ======================================
 
   {
     name: 'bottle',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'box',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'cat',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'cloth',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'globe',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'lantern',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'phonograph',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
+  },
+  {
+    name: 'spiderweb',
+    lightmapTextureName: 'lightmap_10_texture',
+    alphaBlendDisabled: false, // Enable accurate alpha blending.
+  },
+  {
+    name: 'spiderweb_hallway',
+    lightmapTextureName: 'lightmap_10_texture',
+    alphaBlendDisabled: false, // Enable accurate alpha blending.
   },
   {
     name: 'stationery',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'table_lamp_base',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
   {
     name: 'vase',
-    lightmapTextureName: 'lightmap_09_texture',
+    lightmapTextureName: 'lightmap_10_texture',
   },
 
-  // Lightmap 10: anomaly ===========================================
+  // Lightmap 11: anomaly ===========================================
   {
     name: 'chair_outside_anomaly',
-    lightmapTextureName: 'lightmap_10_texture',
+    lightmapTextureName: 'lightmap_11_texture',
   },
   {
     name: 'picture_canvas_anomaly',
-    lightmapTextureName: 'lightmap_10_texture',
+    lightmapTextureName: 'lightmap_11_texture',
   },
   {
     name: 'sword_anomaly',
-    lightmapTextureName: 'lightmap_10_texture',
+    lightmapTextureName: 'lightmap_11_texture',
   },
 
   // Lightmap none ==================================================

@@ -553,7 +553,7 @@ export default class SceneManager {
         includedMeshNames.includes(mesh.name),
       );
       if (includedMeshes.length > 0) {
-      // eslint-disable-next-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
         light.includedOnlyMeshes = includedMeshes;
       } else {
         // If there is no effective mesh for this light, dispose the light itself.
