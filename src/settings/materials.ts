@@ -207,7 +207,11 @@ export const materialConfigs: MaterialConfigs = [
     lightmapTextureName: 'lightmap_07_texture',
   },
   {
-    name: 'clock',
+    name: 'clock_base',
+    lightmapTextureName: 'lightmap_07_texture',
+  },
+  {
+    name: 'clock_glass',
     lightmapTextureName: 'lightmap_07_texture',
   },
   {

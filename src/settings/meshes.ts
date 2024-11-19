@@ -448,7 +448,17 @@ export const meshConfigs: MeshConfigs = [
     parentNodeName: 'lower_floor_meshes',
   },
   {
-    name: 'clock_lower',
+    name: 'clock_base_lower',
+    effectiveLightNames: ['window_composite_light', 'front_lower_light'],
+    parentNodeName: 'lower_floor_meshes',
+  },
+  {
+    name: 'clock_glass_lower',
+    effectiveLightNames: ['window_composite_light', 'clock_glass_light'],
+    parentNodeName: 'lower_floor_meshes',
+  },
+  {
+    name: 'clock_pendulum_lower',
     effectiveLightNames: ['window_composite_light', 'front_lower_light'],
     parentNodeName: 'lower_floor_meshes',
   },

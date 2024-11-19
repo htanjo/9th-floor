@@ -608,6 +608,23 @@ export const lightConfigs: LightConfigs = [
       ...createAnimationConfig('flickerFast', 0.1, 30),
     },
   },
+  {
+    name: 'clock_glass_light',
+    variant: 'PointLight',
+    position: {
+      x: 3.4,
+      y: 1.6,
+      z: -3.6,
+    },
+    intensity: 0.1,
+    diffuseColorHex: '#ffc7a4',
+    radius: 0.2,
+    parentNodeName: 'room',
+    animation: {
+      targetProperty: 'intensity',
+      ...createAnimationConfig('flickerMedium', 0.1, 30),
+    },
+  },
   // Hallway
   {
     name: 'hallway_lamp_front_light',
