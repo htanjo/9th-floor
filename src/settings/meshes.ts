@@ -687,6 +687,16 @@ export const meshConfigs: MeshConfigs = [
   // Lightmap 10: Small object ======================================
   // Upper floor
   {
+    name: 'accessory_base_upper',
+    effectiveLightNames: ['window_composite_light', 'front_upper_light'],
+    parentNodeName: 'upper_floor_meshes',
+  },
+  {
+    name: 'accessory_glass_upper',
+    effectiveLightNames: ['window_composite_light', 'front_upper_light'],
+    parentNodeName: 'upper_floor_meshes',
+  },
+  {
     name: 'bottle_upper',
     effectiveLightNames: ['window_composite_light', 'front_upper_light'],
     parentNodeName: 'upper_floor_meshes',
@@ -738,6 +748,16 @@ export const meshConfigs: MeshConfigs = [
   },
   // Lower floor
   {
+    name: 'accessory_base_lower',
+    effectiveLightNames: ['table_light', 'back_left_lower_light'],
+    parentNodeName: 'lower_floor_meshes',
+  },
+  {
+    name: 'accessory_glass_lower',
+    effectiveLightNames: ['table_light', 'back_left_lower_light'],
+    parentNodeName: 'lower_floor_meshes',
+  },
+  {
     name: 'bottle_lower',
     effectiveLightNames: ['window_composite_light', 'top_left_light'],
     parentNodeName: 'lower_floor_meshes',
@@ -760,6 +780,16 @@ export const meshConfigs: MeshConfigs = [
   {
     name: 'spiderweb_lower',
     effectiveLightNames: [],
+    parentNodeName: 'lower_floor_meshes',
+  },
+  {
+    name: 'stationery_lower',
+    effectiveLightNames: ['table_light', 'top_right_light'],
+    parentNodeName: 'lower_floor_meshes',
+  },
+  {
+    name: 'table_lamp_base_lower',
+    effectiveLightNames: ['lamp_center_lower_light', 'top_left_light'],
     parentNodeName: 'lower_floor_meshes',
   },
   // Stairs
@@ -839,16 +869,6 @@ export const meshConfigs: MeshConfigs = [
     name: 'lamp_shade_back_right_upper',
     effectiveLightNames: ['window_composite_light'],
     parentNodeName: 'upper_floor_meshes',
-  },
-  {
-    name: 'stationery_lower',
-    effectiveLightNames: ['table_light', 'top_right_light'],
-    parentNodeName: 'lower_floor_meshes',
-  },
-  {
-    name: 'table_lamp_base_lower',
-    effectiveLightNames: ['lamp_center_lower_light', 'top_left_light'],
-    parentNodeName: 'lower_floor_meshes',
   },
   // Lower floor
   {

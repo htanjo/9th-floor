@@ -284,7 +284,14 @@ export const materialConfigs: MaterialConfigs = [
   },
 
   // Lightmap 10: Small object ======================================
-
+  {
+    name: 'accessory_base',
+    lightmapTextureName: 'lightmap_10_texture',
+  },
+  {
+    name: 'accessory_glass',
+    lightmapTextureName: 'lightmap_10_texture',
+  },
   {
     name: 'bottle',
     lightmapTextureName: 'lightmap_10_texture',
