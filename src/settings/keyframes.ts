@@ -33,13 +33,13 @@ export const keyframes: Keyframes = [
   },
   {
     position: { x: 1.1, y: 5.1, z: -4 },
-    forwardRotationOffset: { x: toRadians(-5), y: 0, z: 0 },
+    forwardRotationOffset: { x: toRadians(-5), y: toRadians(-8), z: 0 },
     backwardRotationOffset: { x: 0, y: 0, z: 0 },
     areaName: 'upper_floor',
   },
   {
-    position: { x: 3.3, y: 5.1, z: -4 },
-    forwardRotationOffset: { x: toRadians(-10), y: 0, z: 0 },
+    position: { x: 3.5, y: 5.1, z: -4 },
+    forwardRotationOffset: { x: toRadians(-10), y: toRadians(-3), z: 0 },
     backwardRotationOffset: { x: toRadians(15), y: 0, z: 0 },
     areaName: 'upper_floor',
   },
