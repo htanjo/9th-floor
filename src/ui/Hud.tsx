@@ -37,7 +37,7 @@ function Hud({ fullscreen, onToggleFullscreen }: HudProps) {
           >
             <Icon
               name={fullscreen ? 'fullscreen_exit' : 'fullscreen'}
-              aria-label={fullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+              aria-label={fullscreen ? t('Exit Fullscreen') : t('Fullscreen')}
               className={classes.icon}
             />
           </button>
