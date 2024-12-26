@@ -51,9 +51,9 @@ function LoadingScreen({ enabled, loadingProgress }: LoadingScreenProps) {
           </animated.div>
         </div>
         <p className={classes.description}>
-          {t('You have wandered into a mysterious mansion.')}
+          {t("I'm lost in a mysterious mansion.")}
           <br />
-          {t('Find a way to escape.')}
+          {t('Now, I must escape...')}
         </p>
       </div>
       <div className={classes.backdrop} />
