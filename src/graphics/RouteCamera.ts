@@ -137,6 +137,28 @@ export default class RouteCamera extends TargetCamera {
     const targetPosition = this.getTargetPosition();
     const targetRotation = this.getTargetRotation();
 
+    // Adjust horizontal position.
+    const maxHorizontalOffset = 0.5;
+    const forward = new Vector3(0, 0, 1);
+    const direction = this.getDirection(forward);
+    const maxRightPosition = new Vector3(direction.z, 0, -direction.x)
+      .normalize()
+      .scale(maxHorizontalOffset);
+    const maxLeftPosition = new Vector3(-direction.z, 0, direction.x)
+      .normalize()
+      .scale(maxHorizontalOffset);
+    const inputLerpAmount = (this.inputX + 1) / 2;
+    const inputOffset = Vector3.Lerp(
+      maxRightPosition,
+      maxLeftPosition,
+      inputLerpAmount,
+    );
+    targetPosition.addInPlace(inputOffset);
+
+    // Adjust vertical position.
+    const maxVerticalOffset = 0.15;
+    targetPosition.y += this.inputY * maxVerticalOffset;
+
     // Adjust rotation based on user input.
     targetRotation.x += this.inputY * (Math.PI * 0.1);
     targetRotation.y += this.inputX * (Math.PI * 0.2);
@@ -166,7 +188,7 @@ export default class RouteCamera extends TargetCamera {
 
   private getTargetPosition() {
     const progress = this.getProgress(this.frame);
-    const targetPosition = this.positionPath.getPointAt(progress);
+    const targetPosition = this.positionPath.getPointAt(progress).clone();
     return targetPosition;
   }
 
