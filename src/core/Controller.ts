@@ -209,6 +209,12 @@ export default class Controller {
     });
   }
 
+  public onHorizontalScroll(callback: () => void) {
+    this.emitter.addEventListener('horizontalScroll', () => {
+      callback();
+    });
+  }
+
   public destroy() {
     if (this.virtualScroll) {
       this.virtualScroll.destroy();
@@ -390,9 +396,11 @@ export default class Controller {
   }
 
   private handleScroll(event: VirtualScrollEvent) {
+    // Do nothing during the loading screen.
     if (this.loadingScreenEnabled) {
-      // Do nothing during the loading screen.
-    } else if (this.startScreenEnabled) {
+      return;
+    }
+    if (this.startScreenEnabled) {
       // In the start screen, update progress and scroll value.
       const scrollLength = -event.deltaY;
       const scrollMultiplier = hasTouchscreen ? this.touchMultiplier : 1;
@@ -428,6 +436,13 @@ export default class Controller {
       multiplier = this.routeInvert ? -multiplier : multiplier;
       const frameIncrement = event.deltaY * this.moveSpeed * multiplier;
       this.inputMove(frameIncrement);
+    }
+    // Show the warning message if user scrolls horizontally.
+    if (
+      Math.abs(event.deltaX) > Math.abs(event.deltaY) * 2 &&
+      Math.abs(event.deltaX) > 20
+    ) {
+      this.emitter.dispatchEvent(new CustomEvent('horizontalScroll'));
     }
   }
 

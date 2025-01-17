@@ -13,6 +13,7 @@ import StartScreen from '../ui/StartScreen';
 import classes from './Screen.module.scss';
 import LoadingScreen from '../ui/LoadingScreen';
 import Hud from '../ui/Hud';
+import ScrollWarning from '../ui/ScrollWarning';
 import Scrollbar from '../ui/Scrollbar';
 import {
   maxFrame as maxFrameSetting,
@@ -20,6 +21,8 @@ import {
 } from '../settings/keyframes';
 
 const Debugger = lazy(() => import('../ui/Debugger'));
+
+let lastTimeout: NodeJS.Timeout;
 
 function Screen() {
   const sceneInstance = useScene();
@@ -32,6 +35,7 @@ function Screen() {
   const [maxFrameValue, setMaxFrameValue] = useState(maxFrameSetting);
   const [moveSpeedValue, setMoveSpeedValue] = useState(moveSpeedSetting);
   const [fullscreen, setFullscreen] = useState(!!document.fullscreenElement);
+  const [scrollWarningEnabled, setScrollWarningEnabled] = useState(false);
   const [debugMode] = useState(
     new URLSearchParams(window.location.search).get('debug') === 'true', // Enable debug mode if URL has "?debug=true".
   );
@@ -63,6 +67,15 @@ function Screen() {
       setFrameValue(frame);
       setMaxFrameValue(maxFrame);
       setMoveSpeedValue(moveSpeed);
+    });
+    controller.onHorizontalScroll(() => {
+      setScrollWarningEnabled(true);
+      const timeout = setTimeout(() => {
+        if (timeout === lastTimeout) {
+          setScrollWarningEnabled(false);
+        }
+      }, 1000);
+      lastTimeout = timeout;
     });
     controllerRef.current = controller;
   }, []);
@@ -138,6 +151,7 @@ function Screen() {
       {hudEnabled && (
         <Hud fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} />
       )}
+      <ScrollWarning enabled={scrollWarningEnabled} />
       {scrollbarEnabled && (
         <Scrollbar
           scrollLength={virtualScrollLength}
